@@ -1,0 +1,134 @@
+{
+    "a": {
+        "0": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        "1": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    },
+    "b": {
+        "0": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        "1": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        "2": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    },
+    "c": {
+        "0": {
+            "easeType": 0,
+            "endFrame": 0,
+            "transform": {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    }
+}

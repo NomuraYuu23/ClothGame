@@ -1,0 +1,2301 @@
+{
+    "name": "scene",
+    "objects": [
+        {
+            "type": "MESH",
+            "name": "Ground",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    -9.600000381469727
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    100.0,
+                    100.0,
+                    100.0
+                ]
+            },
+            "fileName": "Ground.obj",
+            "directoryPath": "Resources/Model/Ground",
+            "className": "Ground",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    2000.0,
+                    2000.0,
+                    18.99999976158142
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block00",
+            "transform": {
+                "translation": [
+                    30.0,
+                    -50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block01",
+            "transform": {
+                "translation": [
+                    30.0,
+                    -30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block02",
+            "transform": {
+                "translation": [
+                    30.0,
+                    -10.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block03",
+            "transform": {
+                "translation": [
+                    30.0,
+                    10.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block04",
+            "transform": {
+                "translation": [
+                    30.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block05",
+            "transform": {
+                "translation": [
+                    30.0,
+                    50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block06",
+            "transform": {
+                "translation": [
+                    30.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block07",
+            "transform": {
+                "translation": [
+                    50.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block08",
+            "transform": {
+                "translation": [
+                    70.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block09",
+            "transform": {
+                "translation": [
+                    90.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block10",
+            "transform": {
+                "translation": [
+                    110.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block11",
+            "transform": {
+                "translation": [
+                    130.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block12",
+            "transform": {
+                "translation": [
+                    150.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block13",
+            "transform": {
+                "translation": [
+                    150.0,
+                    50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block14",
+            "transform": {
+                "translation": [
+                    150.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block15",
+            "transform": {
+                "translation": [
+                    170.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block16",
+            "transform": {
+                "translation": [
+                    190.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block17",
+            "transform": {
+                "translation": [
+                    210.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block18",
+            "transform": {
+                "translation": [
+                    230.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block19",
+            "transform": {
+                "translation": [
+                    250.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block20",
+            "transform": {
+                "translation": [
+                    270.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block21",
+            "transform": {
+                "translation": [
+                    290.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block22",
+            "transform": {
+                "translation": [
+                    290.0,
+                    50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block23",
+            "transform": {
+                "translation": [
+                    290.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block24",
+            "transform": {
+                "translation": [
+                    290.0,
+                    90.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block25",
+            "transform": {
+                "translation": [
+                    290.0,
+                    110.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block26",
+            "transform": {
+                "translation": [
+                    290.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block27",
+            "transform": {
+                "translation": [
+                    290.0,
+                    150.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block28",
+            "transform": {
+                "translation": [
+                    290.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block29",
+            "transform": {
+                "translation": [
+                    270.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block30",
+            "transform": {
+                "translation": [
+                    250.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block31",
+            "transform": {
+                "translation": [
+                    230.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block32",
+            "transform": {
+                "translation": [
+                    210.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block33",
+            "transform": {
+                "translation": [
+                    190.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block34",
+            "transform": {
+                "translation": [
+                    170.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block35",
+            "transform": {
+                "translation": [
+                    150.0,
+                    170.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block36",
+            "transform": {
+                "translation": [
+                    150.0,
+                    150.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block37",
+            "transform": {
+                "translation": [
+                    150.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block38",
+            "transform": {
+                "translation": [
+                    130.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block39",
+            "transform": {
+                "translation": [
+                    110.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block40",
+            "transform": {
+                "translation": [
+                    90.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block41",
+            "transform": {
+                "translation": [
+                    70.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block42",
+            "transform": {
+                "translation": [
+                    50.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block43",
+            "transform": {
+                "translation": [
+                    30.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block44",
+            "transform": {
+                "translation": [
+                    10.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block45",
+            "transform": {
+                "translation": [
+                    -10.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block46",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    130.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block47",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    110.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block48",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    90.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block49",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    70.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block50",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block51",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block52",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    10.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block53",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    -10.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block54",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    -30.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block55",
+            "transform": {
+                "translation": [
+                    -30.0,
+                    -50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block56",
+            "transform": {
+                "translation": [
+                    -10.0,
+                    -50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Block57",
+            "transform": {
+                "translation": [
+                    10.0,
+                    -50.0,
+                    10.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    10.0
+                ]
+            },
+            "fileName": "Block.obj",
+            "directoryPath": "Resources/Model/Block",
+            "className": "Block",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    20.0,
+                    20.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "000_Player",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    -179.99998474121094
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Player.gltf",
+            "directoryPath": "Resources/Model/Player",
+            "className": "Player",
+            "parentName": "",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "size": [
+                    2.0,
+                    2.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Ghost00",
+            "transform": {
+                "translation": [
+                    0.0,
+                    15.0,
+                    3.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ghost.gltf",
+            "directoryPath": "Resources/Model/Ghost",
+            "className": "Ghost",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    2.0,
+                    2.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "PlayerWeapon",
+            "transform": {
+                "translation": [
+                    4.6486053466796875,
+                    0.0,
+                    1.9202319383621216
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "PlayerWeapon.obj",
+            "directoryPath": "Resources/Model/Player",
+            "className": "PlayerWeapon",
+            "parentName": "000_Player",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "size": [
+                    1.0,
+                    0.30000001192092896,
+                    3.0
+                ]
+            }
+        }
+    ]
+}

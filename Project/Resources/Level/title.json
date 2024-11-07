@@ -1,0 +1,116 @@
+{
+    "name": "scene",
+    "objects": [
+        {
+            "type": "MESH",
+            "name": "Ground",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    10.0,
+                    10.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ground.obj",
+            "directoryPath": "Resources/Model/Ground",
+            "className": "Ground",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    200.0,
+                    200.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Bonfire",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Bonfire.obj",
+            "directoryPath": "Resources/Model/Bonfire",
+            "className": "Bonfire",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.25
+                ],
+                "size": [
+                    2.0,
+                    2.0,
+                    0.5
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Player",
+            "transform": {
+                "translation": [
+                    2.5,
+                    4.5,
+                    0.10000000149011612
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    -21.623201370239258
+                ],
+                "scaling": [
+                    2.0,
+                    2.0,
+                    2.0
+                ]
+            },
+            "fileName": "Player.gltf",
+            "directoryPath": "Resources/Model/Player",
+            "className": "TitlePlayer",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    1.5
+                ],
+                "size": [
+                    2.0,
+                    2.0,
+                    6.0
+                ]
+            }
+        }
+    ]
+}
