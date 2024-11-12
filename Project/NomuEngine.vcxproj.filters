@@ -187,12 +187,6 @@
     <Filter Include="Application\Object\Player\State">
       <UniqueIdentifier>{9fff1f53-4f9e-4c83-b3b7-78059ae992e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Player\System">
-      <UniqueIdentifier>{072e4e32-ee4e-4e4e-90e7-21f4d6cbdbb2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy">
-      <UniqueIdentifier>{46ce4367-7435-4b32-8c8e-245c987ef51d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\System">
       <UniqueIdentifier>{dc265678-a7c1-47a4-bfdc-6a41ffedfd1f}</UniqueIdentifier>
     </Filter>
@@ -244,62 +238,8 @@
     <Filter Include="Engine\Object">
       <UniqueIdentifier>{e07ee63c-28e4-42ff-b09b-caf09754b225}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost">
-      <UniqueIdentifier>{6126349a-0e49-4181-9162-1455d53c579e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State">
-      <UniqueIdentifier>{ca8fde60-6e80-4aa4-b151-f35bc103a540}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan">
-      <UniqueIdentifier>{a9c15fe5-077d-4abf-a9b8-806351193ab3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State">
-      <UniqueIdentifier>{676e1830-9d84-4297-874c-df9edfbc05ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Object\Manager">
       <UniqueIdentifier>{7d36b8c3-2e09-4777-9b3e-ab256e224b84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\DashSwingDown">
-      <UniqueIdentifier>{c62a3fe1-2e67-419a-be93-3a2644e6aca2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\Root">
-      <UniqueIdentifier>{f2387f7a-ea68-495d-af79-d4f9c5c3139a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\WaitSee">
-      <UniqueIdentifier>{25c9fa6a-38c5-4467-a6c1-0128f7bca38d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Attack">
-      <UniqueIdentifier>{2b419da7-831f-4409-927c-738c151d186c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Chase">
-      <UniqueIdentifier>{0840d808-b90f-431a-8351-4ce2dc4d0df6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Damage">
-      <UniqueIdentifier>{34020ff4-33a6-44f5-a647-4c947d182482}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Root">
-      <UniqueIdentifier>{b91d5223-7f79-4347-a51b-a476c4c6d228}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Dead">
-      <UniqueIdentifier>{92bd9917-1fc1-43de-9fea-8ae62e5f3075}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\ShakeOff">
-      <UniqueIdentifier>{6cbbc51a-fa55-4b80-8acf-062c671e7e66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\3Consecutive">
-      <UniqueIdentifier>{0c0ca424-de27-4642-b842-29d42bb993b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\System">
-      <UniqueIdentifier>{ff5c1db8-9755-47d0-afe0-423bd6a658c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\System\Command">
-      <UniqueIdentifier>{175a1125-cc85-42a6-9526-7974551b82b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\System\Weapon">
-      <UniqueIdentifier>{cf74641f-2e1b-4259-9fcc-017f443435f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\System\Beam">
-      <UniqueIdentifier>{21c90584-4255-4dd3-b49f-3cdc5db180c4}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders\Skybox">
       <UniqueIdentifier>{0b26f4fb-a8ff-4992-beb0-5c6b50639ad4}</UniqueIdentifier>
@@ -316,12 +256,6 @@
     <Filter Include="Engine\PostEffect\HSVFilter">
       <UniqueIdentifier>{a1c50174-1ef5-48db-8ea8-68ace9c260de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\Beam">
-      <UniqueIdentifier>{77ebd6b8-3474-4794-a68e-6e0ca378c9e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\BaseWeapon">
-      <UniqueIdentifier>{10463b8a-d107-4e0d-aec7-b819be3f5c11}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Physics\Gravity">
       <UniqueIdentifier>{fdc13d48-4325-433a-9c95-20e493b58176}</UniqueIdentifier>
     </Filter>
@@ -330,33 +264,6 @@
     </Filter>
     <Filter Include="Application\GPUParticle">
       <UniqueIdentifier>{ea7adfd4-0777-456d-baec-6c83d5512967}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Bonfire">
-      <UniqueIdentifier>{2b4ed839-b0ce-44db-8e0b-9d85684bee39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Player\Title">
-      <UniqueIdentifier>{f2e9c355-4935-4361-8c80-a0131839b051}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\State\Cadaver">
-      <UniqueIdentifier>{87597692-bbb0-48d9-928c-4701c49d6bc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Obstacle">
-      <UniqueIdentifier>{86476363-7738-4157-a04a-70a59cd5cda7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Obstacle\Block">
-      <UniqueIdentifier>{1d2d094d-bc38-4f06-a0b3-44bff7959339}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Obstacle\Ground">
-      <UniqueIdentifier>{59beeb5c-dcf2-4572-b6ee-2ee83a88d375}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Obstacle\PillarFoundation">
-      <UniqueIdentifier>{e20c0039-5692-417f-8b05-a870c533d65f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Physics">
-      <UniqueIdentifier>{142f1e33-82f0-4c05-8dff-f9a8288dbd7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Physics\Pillar">
-      <UniqueIdentifier>{fd49b6f0-2fb5-4617-a706-ffe73f043ec7}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders\PostEffect\BinaryThreshold">
       <UniqueIdentifier>{093be72a-54f4-4c89-9465-faf8cf1c7f5c}</UniqueIdentifier>
@@ -412,12 +319,6 @@
     <Filter Include="shaders\PostEffect\HSVFilter">
       <UniqueIdentifier>{e4bed640-a217-4143-a704-421f4f242a9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Enemy\AxSpearMan\State\WaitingForBattle">
-      <UniqueIdentifier>{e7155d2d-fb3e-446b-8017-34e4e4a97e93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Obstacle\BossFog">
-      <UniqueIdentifier>{5048ec20-8169-4b3c-bb62-1d909bc63a36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shaders\GPUParticle\BonfireParticle">
       <UniqueIdentifier>{2dd60d39-2ed3-40fe-9e5f-3d668d2ccc24}</UniqueIdentifier>
     </Filter>
@@ -442,9 +343,6 @@
     <Filter Include="shaders\GPUParticle\PillarSmokeParticle\CS">
       <UniqueIdentifier>{afe45777-70ea-4ac6-9a41-16b3d960fbd9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\String">
-      <UniqueIdentifier>{852c053a-ada1-4e32-ae99-48e5bb028de1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Physics\Cloth">
       <UniqueIdentifier>{7050e05e-6ae1-451a-aad3-bac8052e41e2}</UniqueIdentifier>
     </Filter>
@@ -456,9 +354,6 @@
     </Filter>
     <Filter Include="Engine\Physics\ClothGPU">
       <UniqueIdentifier>{57a7911f-5060-432b-918f-f0ac710f5114}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Flag">
-      <UniqueIdentifier>{84135c1b-2d35-4373-8a67-dfe3bb5821dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders\ClothGPU\Collision">
       <UniqueIdentifier>{b54cd42f-9449-415a-bd9c-9de1e98c42c7}</UniqueIdentifier>
@@ -477,6 +372,12 @@
     </Filter>
     <Filter Include="Application\Effect">
       <UniqueIdentifier>{1faec693-bdd0-4789-84da-e1bc7cce53ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Player\State\System">
+      <UniqueIdentifier>{072e4e32-ee4e-4e4e-90e7-21f4d6cbdbb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Player\Animation">
+      <UniqueIdentifier>{8574c2d4-9e57-4fc1-8577-5e6efdf6d96e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -902,6 +803,27 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\System\PlayerStateSystem.cpp">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\System\PlayerStateFactory.cpp">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\System\PlayerCommand.cpp">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\Animation\PlayerAnimation.cpp">
+      <Filter>Application\Object\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\Player.cpp">
+      <Filter>Application\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1465,6 +1387,27 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\IPlayerState.h">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\System\PlayerStateSystem.h">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\System\PlayerStateFactory.h">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\System\PlayerCommand.h">
+      <Filter>Application\Object\Player\State\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\Animation\PlayerAnimation.h">
+      <Filter>Application\Object\Player\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\Player.h">
+      <Filter>Application\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

@@ -170,6 +170,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\GameSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\ObjectFactory.cpp" />
+    <ClCompile Include="Application\Object\Player\Animation\PlayerAnimation.cpp" />
+    <ClCompile Include="Application\Object\Player\Player.cpp" />
+    <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp" />
+    <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp" />
+    <ClCompile Include="Application\Object\Player\State\System\PlayerCommand.cpp" />
+    <ClCompile Include="Application\Object\Player\State\System\PlayerStateFactory.cpp" />
+    <ClCompile Include="Application\Object\Player\State\System\PlayerStateSystem.cpp" />
     <ClCompile Include="Application\Object\Sample\SampleObject.cpp" />
     <ClCompile Include="Application\Object\Manager\TitleSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\TutorialSceneObjectManager.cpp" />
@@ -317,6 +324,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\GameSceneObjectManager.h" />
     <ClInclude Include="Application\Object\ObjectFactory.h" />
+    <ClInclude Include="Application\Object\Player\Animation\PlayerAnimation.h" />
+    <ClInclude Include="Application\Object\Player\Player.h" />
+    <ClInclude Include="Application\Object\Player\State\IPlayerState.h" />
+    <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h" />
+    <ClInclude Include="Application\Object\Player\State\System\PlayerCommand.h" />
+    <ClInclude Include="Application\Object\Player\State\System\PlayerStateFactory.h" />
+    <ClInclude Include="Application\Object\Player\State\System\PlayerStateSystem.h" />
     <ClInclude Include="Application\Object\Sample\SampleObject.h" />
     <ClInclude Include="Application\Object\Manager\TitleSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\TutorialSceneObjectManager.h" />
