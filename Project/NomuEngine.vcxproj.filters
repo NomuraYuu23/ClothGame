@@ -824,7 +824,7 @@
       <Filter>Application\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1408,7 +1408,7 @@
       <Filter>Application\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

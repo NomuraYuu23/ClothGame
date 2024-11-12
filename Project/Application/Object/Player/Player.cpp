@@ -83,7 +83,7 @@ void Player::ColliderUpdate()
 	OBB obb = std::get<OBB>(*collider_.get());
 
 	obb.center_ = worldTransform_.GetWorldPosition();
-	//obb.center_.y += height_;
+
 	obb.SetOtientatuons(worldTransform_.rotateMatrix_);
 
 	ColliderShape* colliderShape = new ColliderShape();

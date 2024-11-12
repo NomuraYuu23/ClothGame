@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 #include "../../../../Engine/Input/Input.h"
+#include "../../../../Engine/Math/Vector/Vector3.h"
+#include "../../../../Engine/3D/Transform/WorldTransform.h"
 
 class Player;
 
@@ -27,7 +29,15 @@ protected:
 	//インスタンス
 	static Input* input_;
 
+	// 自動移動速度
+	static const float kAutoMoveSpeed_;
+
 public: // メンバ関数
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	virtual ~IPlayerState() = default;
 
 	/// <summary>
 	/// 初期化
@@ -39,11 +49,6 @@ public: // メンバ関数
 	/// </summary>
 	virtual void Update() = 0;
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	virtual ~IPlayerState() = default;
-
 	// プレイヤーの状態番号
 	uint32_t GetPlaryerStateNo() { return playerStateNo_; }
 
@@ -52,6 +57,21 @@ public: // メンバ関数
 
 	// プレイヤーセット
 	void SetPlayer(Player* player) { player_ = player; }
+
+protected: // メンバ関数
+
+	/// <summary>
+	/// 移動
+	/// </summary>
+	void Move();
+
+protected: // メンバ変数
+
+	// 移動速度
+	Vector3 moveVelocity_;
+
+	// ワールドトランスフォーム
+	WorldTransform* playerWorldTransform_;
 
 };
 

@@ -60,6 +60,8 @@ public: // 関数
 
 	uint32_t GetSerialNumber() { return serialNumber_; }
 
+	WorldTransform* GetWorldTransformAdress() { return &worldTransform_; }
+
 protected: // 変数
 
 	// 名前

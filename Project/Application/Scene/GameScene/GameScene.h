@@ -15,6 +15,7 @@
 
 #include "../../Camera/FollowCamera.h"
 #include "../../Effect/EffectManager.h"
+#include "../../Object/Player/Player.h"
 
 class GameScene : public IScene
 {
@@ -81,5 +82,8 @@ private:
 
 	// エフェクトマネージャー
 	EffectManager* effectManager_ = nullptr;
+
+	// プレイヤー
+	std::unique_ptr<Player> player_;
 
 };
