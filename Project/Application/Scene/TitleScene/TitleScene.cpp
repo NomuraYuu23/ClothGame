@@ -5,7 +5,7 @@
 #include "../../../Engine/Math/Ease.h"
 #include "../../../Engine/3D/Model/ModelDraw.h"
 #include "../../Object/Manager/TitleSceneObjectManager.h"
-#include "../../Object/ObjectFactory.h"
+#include "../../Object/Factory/ObjectFactory.h"
 
 TitleScene::~TitleScene()
 {
@@ -28,7 +28,6 @@ void TitleScene::Initialize()
 
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<TitleSceneObjectManager>();
-	ObjectFactory::GetInstance()->Initialize(objectManager_.get());
 	objectManager_->Initialize(kLevelIndexTitle, levelDataManager_);
 
 	// 平行光源

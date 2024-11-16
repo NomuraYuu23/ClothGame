@@ -1,10 +1,12 @@
 #include "TitleSceneObjectManager.h"
-#include "../ObjectFactory.h"
+#include "../Factory/ObjectFactory.h"
 
 void TitleSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager* levelDataManager)
 {
 
-	objectFactory_ = ObjectFactory::GetInstance();
+	// オブジェクトファクトリー
+	objectFactory_ = std::make_unique<ObjectFactory>();
+	static_cast<ObjectFactory*>(objectFactory_.get())->Initialize(this);
 
 	BaseObjectManager::Initialize(levelIndex, levelDataManager);
 

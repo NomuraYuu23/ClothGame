@@ -376,6 +376,12 @@
     <Filter Include="Application\Object\Skydome">
       <UniqueIdentifier>{5e2ab7d8-fdc5-492f-bc01-9c18dd7e23a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\Factory">
+      <UniqueIdentifier>{517228ef-debf-45e7-8382-91aab680356b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Ground">
+      <UniqueIdentifier>{0fa038c4-8dac-4e6e-8b04-e58cf3abc919}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -688,9 +694,6 @@
     <ClCompile Include="Engine\Animation\LocalMatrixDraw.cpp">
       <Filter>Engine\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\ObjectFactory.cpp">
-      <Filter>Application\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Object\BaseObjectManager.cpp">
       <Filter>Engine\Object</Filter>
     </ClCompile>
@@ -819,6 +822,15 @@
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp">
       <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Factory\ObjectFactory.cpp">
+      <Filter>Application\Object\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp">
+      <Filter>Application\Object\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Ground\Ground.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1251,9 +1263,6 @@
     <ClInclude Include="Engine\Animation\LocalMatrixDraw.h">
       <Filter>Engine\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\ObjectFactory.h">
-      <Filter>Application\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Object\BaseObjectManager.h">
       <Filter>Engine\Object</Filter>
     </ClInclude>
@@ -1400,6 +1409,15 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h">
       <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Factory\ObjectFactory.h">
+      <Filter>Application\Object\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Factory\ObjectCreate.h">
+      <Filter>Application\Object\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Ground\Ground.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
-#include "../../Engine/Object/AbstractObjectFactory.h"
-#include "../../Engine/Level/LevelData.h"
-#include "../../Engine/Object/BaseObjectManager.h"
+#include "../../../Engine/Object/AbstractObjectFactory.h"
+#include "../../../Engine/Level/LevelData.h"
+#include "../../../Engine/Object/BaseObjectManager.h"
 
 class ObjectFactory :
     public AbstractObjectFactory
@@ -10,17 +10,11 @@ class ObjectFactory :
 public: // サブクラス,定数
 
 	enum CreateObjectIndex {
+		kCreateObjectIndexSkydome, // スカイドーム
+		kCreateObjectIndexGround, // 地面
 		kCreateObjectIndexOfCount, // 数数える用
 
 	};
-
-public: // 静的メンバ関数
-
-	/// <summary>
-	/// インスタンス取得
-	/// </summary>
-	/// <returns></returns>
-	static ObjectFactory* GetInstance();
 
 public: //メンバ関数
 
@@ -55,12 +49,6 @@ private:
 
 	// マネージャー
 	static BaseObjectManager* objectManager_;
-
-private:
-	ObjectFactory() = default;
-	~ObjectFactory() = default;
-	ObjectFactory(const ObjectFactory&) = delete;
-	const ObjectFactory& operator=(const ObjectFactory&) = delete;
 
 };
 

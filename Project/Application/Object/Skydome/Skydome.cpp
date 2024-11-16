@@ -21,15 +21,3 @@ void Skydome::Update()
 	worldTransform_.UpdateMatrix();
 	
 }
-
-void Skydome::Draw(BaseCamera& camera) 
-{
-
-	MeshObject::Draw(camera);
-
-}
-
-void Skydome::ImGuiDraw()
-{
-
-}

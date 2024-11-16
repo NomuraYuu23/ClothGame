@@ -167,9 +167,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Effect\BillboardEffect.cpp" />
     <ClCompile Include="Application\Effect\EffectManager.cpp" />
     <ClCompile Include="Application\Camera\FollowCamera.cpp" />
+    <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp" />
+    <ClCompile Include="Application\Object\Ground\Ground.cpp" />
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\GameSceneObjectManager.cpp" />
-    <ClCompile Include="Application\Object\ObjectFactory.cpp" />
+    <ClCompile Include="Application\Object\Factory\ObjectFactory.cpp" />
     <ClCompile Include="Application\Object\Player\Animation\PlayerAnimation.cpp" />
     <ClCompile Include="Application\Object\Player\Player.cpp" />
     <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp" />
@@ -320,9 +322,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Collider2D\CollisionConfig2D.h" />
     <ClInclude Include="Application\Collider\ColliderParentObject.h" />
     <ClInclude Include="Application\Collider\CollisionConfig.h" />
+    <ClInclude Include="Application\Object\Factory\ObjectCreate.h" />
+    <ClInclude Include="Application\Object\Ground\Ground.h" />
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\GameSceneObjectManager.h" />
-    <ClInclude Include="Application\Object\ObjectFactory.h" />
+    <ClInclude Include="Application\Object\Factory\ObjectFactory.h" />
     <ClInclude Include="Application\Object\Player\Animation\PlayerAnimation.h" />
     <ClInclude Include="Application\Object\Player\Player.h" />
     <ClInclude Include="Application\Object\Player\State\IPlayerState.h" />

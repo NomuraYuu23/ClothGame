@@ -65,16 +65,20 @@ void MeshObject::Draw(BaseCamera& camera)
 void MeshObject::CollisionListRegister(CollisionManager* collisionManager)
 {
 
-	collisionManager->ListRegister(collider_.get());
+	if (collider_) {
+		collisionManager->ListRegister(collider_.get());
+	}
 
 }
 
 void MeshObject::CollisionListRegister(CollisionManager* collisionManager, ColliderDebugDraw* colliderDebugDraw)
 {
 
-	collisionManager->ListRegister(collider_.get());
+	if (collider_) {
+		collisionManager->ListRegister(collider_.get());
 
-	colliderDebugDraw->AddCollider(*collider_.get());
+		colliderDebugDraw->AddCollider(*collider_.get());
+	}
 
 }
 

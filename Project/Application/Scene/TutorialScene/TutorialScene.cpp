@@ -7,7 +7,7 @@
 #include "../../../Engine/Math/DeltaTime.h"
 #include "../../../Engine/3D/Model/ModelDraw.h"
 #include "../../Object/Manager/TutorialSceneObjectManager.h"
-#include "../../Object/ObjectFactory.h"
+#include "../../Object/Factory/ObjectFactory.h"
 
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
@@ -50,7 +50,6 @@ void TutorialScene::Initialize() {
 
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<TutorialSceneObjectManager>();
-	ObjectFactory::GetInstance()->Initialize(objectManager_.get());
 	objectManager_->Initialize(kLevelIndexTutorial, levelDataManager_);
 
 	// 追従カメラ

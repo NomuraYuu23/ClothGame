@@ -93,7 +93,7 @@ protected:
 	LevelDataManager* levelDataManager_;
 
 	// オブジェクトファクトリー
-	AbstractObjectFactory* objectFactory_;
+	std::unique_ptr<AbstractObjectFactory> objectFactory_;
 
 };
 

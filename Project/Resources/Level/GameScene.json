@@ -49,7 +49,7 @@
                     0.0
                 ],
                 "rotation": [
-                    -1.5707964897155762,
+                    -0.0,
                     0.0,
                     0.0
                 ],
@@ -61,7 +61,7 @@
             },
             "fileName": "skydome.obj",
             "directoryPath": "Resources/Model/Skydome",
-            "className": "Skydome.obj"
+            "className": "Skydome"
         }
     ]
 }

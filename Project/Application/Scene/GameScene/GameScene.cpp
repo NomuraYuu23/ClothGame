@@ -8,7 +8,7 @@
 #include "../../../Engine/3D/Model/ModelDraw.h"
 #include "../../../Engine/base/WindowSprite/WindowSprite.h"
 #include "../../Object/Manager/GameSceneObjectManager.h"
-#include "../../Object/ObjectFactory.h"
+#include "../../Object/Factory/ObjectFactory.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
 GameScene::~GameScene()
@@ -50,10 +50,6 @@ void GameScene::Initialize() {
 
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<GameSceneObjectManager>();
-
-	
-	ObjectFactory::GetInstance()->Initialize(objectManager_.get());
-	
 	objectManager_->Initialize(kLevelIndexMain, levelDataManager_);
 
 	// 追従カメラ

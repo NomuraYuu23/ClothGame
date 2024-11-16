@@ -1,5 +1,6 @@
 #include "ObjectFactory.h"
-#include "../../Engine/Object/MeshObject.h"
+#include "../../../Engine/Object/MeshObject.h"
+#include "ObjectCreate.h"
 
 // オブジェクト作成でそれぞれのタイプを作成するための関数群
 // 返り値 無し
@@ -11,18 +12,17 @@ std::array<
 // マネージャー
 BaseObjectManager* ObjectFactory::objectManager_ = nullptr;
 
-ObjectFactory* ObjectFactory::GetInstance()
-{
-	static ObjectFactory instance;
-	return &instance;
-}
-
 void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 {
 
 	objectManager_ = objectManager;
 
 	// 関数を入れていく
+	createObjectFunctions_[kCreateObjectIndexSkydome].first = "Skydome";
+	createObjectFunctions_[kCreateObjectIndexSkydome].second = ObjectCreate::CreateObjectSkydome;
+
+	createObjectFunctions_[kCreateObjectIndexGround].first = "Ground";
+	createObjectFunctions_[kCreateObjectIndexGround].second = ObjectCreate::CreateObjectGround;
 
 }
 
