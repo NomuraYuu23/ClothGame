@@ -1,7 +1,7 @@
 {
     "FollowCamera": {
-        "moveRate": 0.20000000298023224,
-        "offsetLength": -15.0,
-        "rotateRate": 0.10000000149011612
+        "moveRate": 1.0,
+        "offsetLength": -30.0,
+        "rotateRate": 1.0
     }
 }

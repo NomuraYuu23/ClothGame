@@ -22,7 +22,7 @@ void IPlayerState::Move()
 	// 横移動
 	moveVelocity_.x = Vector3::Normalize(move).x;
 	// 縦移動
-	moveVelocity_.z += kAutoMoveSpeed_;
+	moveVelocity_.z = kAutoMoveSpeed_;
 
 	// 座標変更
 	playerWorldTransform_->transform_.translate += moveVelocity_;

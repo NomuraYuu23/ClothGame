@@ -3,44 +3,6 @@
     "objects": [
         {
             "type": "MESH",
-            "name": "Ground",
-            "transform": {
-                "translation": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "rotation": [
-                    -0.0,
-                    0.0,
-                    0.0
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "Ground.obj",
-            "directoryPath": "Resources/Model/Ground",
-            "className": "Ground",
-            "parentName": "",
-            "collider": {
-                "type": "BOX",
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "size": [
-                    22.0,
-                    22.0,
-                    0.6000000238418579
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "Skydome",
             "transform": {
                 "translation": [
@@ -65,12 +27,12 @@
         },
         {
             "type": "MESH",
-            "name": "球",
+            "name": "Player",
             "transform": {
                 "translation": [
                     0.0,
-                    -7.300000190734863,
-                    1.3000000715255737
+                    0.0,
+                    1.5
                 ],
                 "rotation": [
                     -0.0,
@@ -97,6 +59,43 @@
                     2.0,
                     2.0,
                     2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Ground",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    50.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ground.obj",
+            "directoryPath": "Resources/Model/Ground",
+            "className": "Ground",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    19.75,
+                    987.5,
+                    0.6000000238418579
                 ]
             }
         }

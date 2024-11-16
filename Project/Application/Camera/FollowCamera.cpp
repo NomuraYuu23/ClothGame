@@ -14,27 +14,15 @@ void FollowCamera::Initialize() {
 
 	BaseCamera::Update();
 
-	// 追従対象の残像座標
-	interTarget_ = { 0.0f,0.0f,0.0f };
-
 	// 目指すアングル
 	destinationAngle_ = { 0.0f,0.0f,0.0f };
-
-	// 移動レート
-	moveRate_ = 0.2f;
-
-	// 回転レート
-	rotateRate_ = 0.1f;
-
 	// オフセットの長さ
-	offsetLength_ = -10.0f;
+	offsetLength_ = -50.0f;
 
 	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
 	const char* groupName = "FollowCamera";
 	//グループを追加
 	GlobalVariables::GetInstance()->CreateGroup(groupName);
-	globalVariables->AddItem(groupName, "moveRate", moveRate_);
-	globalVariables->AddItem(groupName, "rotateRate", rotateRate_);
 	globalVariables->AddItem(groupName, "offsetLength", offsetLength_);
 
 	ApplyGlobalVariables();
@@ -48,19 +36,15 @@ void FollowCamera::Update(float elapsedTime) {
 #endif // _DEBUG
 
 
-	NotLockOnUpdate();
-
-
 	//追従対象がいれば
 	if (target_) {
 		// 追従座標の補間
 		Vector3 targetPos = { target_->worldMatrix_.m[3][0], target_->worldMatrix_.m[3][1], target_->worldMatrix_.m[3][2] };
-		interTarget_ = Ease::Easing(Ease::EaseName::Lerp, interTarget_, targetPos, moveRate_);
 
 		// オフセット
 		Vector3 offset = OffsetCalc();
 
-		transform_.translate = Vector3::Add(interTarget_, offset);
+		transform_.translate = Vector3::Add(targetPos, offset);
 
 	}
 
@@ -95,12 +79,11 @@ void FollowCamera::SetTarget(const WorldTransform* target)
 
 	// 追従座標の補間
 	Vector3 targetPos = { target_->worldMatrix_.m[3][0], target_->worldMatrix_.m[3][1], target_->worldMatrix_.m[3][2] };
-	interTarget_ = targetPos;
 
 	// オフセット
 	Vector3 offset = OffsetCalc();
 
-	transform_.translate = Vector3::Add(interTarget_, offset);
+	transform_.translate = Vector3::Add(targetPos, offset);
 
 	//ビュー更新
 	BaseCamera::Update();
@@ -130,37 +113,12 @@ Vector3 FollowCamera::OffsetCalc()
 
 }
 
-void FollowCamera::NotLockOnUpdate()
-{
-
-	//インスタンス
-	Input* input = Input::GetInstance();
-
-	// スティック入力で角度を変更処理
-	// 回転速度
-	const float RotateSpeed = 0.000003f;
-
-	destinationAngle_.y += input->GetRightAnalogstick().x * RotateSpeed;
-	destinationAngle_.x += input->GetRightAnalogstick().y * RotateSpeed;
-
-	// xに制限
-	float limit = 3.14f / 4.0f;
-	destinationAngle_.x = std::clamp(destinationAngle_.x, 0.0f, limit);
-
-	// 回転を決定
-	transform_.rotate.y = Math::LerpShortAngle(transform_.rotate.y, destinationAngle_.y, rotateRate_);
-	transform_.rotate.x = Math::LerpShortAngle(transform_.rotate.x, destinationAngle_.x, rotateRate_);
-
-}
-
 void FollowCamera::ApplyGlobalVariables()
 {
 
 	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
 	const char* groupName = "FollowCamera";
 
-	moveRate_ = globalVariables->GetFloatValue(groupName, "moveRate");
-	rotateRate_ = globalVariables->GetFloatValue(groupName, "rotateRate");
 	offsetLength_ = globalVariables->GetFloatValue(groupName, "offsetLength");
 
 }

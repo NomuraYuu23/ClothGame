@@ -55,7 +55,7 @@ void GameScene::Initialize() {
 	// 追従カメラ
 	followCamera_ = std::make_unique<FollowCamera>();
 	followCamera_->Initialize();
-	//followCamera_->SetTarget(player_->GetWorldTransformAdress());
+	followCamera_->SetTarget(objectManager_->GetObjectPointer("Player")->GetWorldTransformAdress());
 
 	IScene::InitilaizeCheck();
 
