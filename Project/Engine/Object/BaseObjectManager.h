@@ -7,7 +7,7 @@
 #include "../Level/LevelIndex.h"
 #include "../Level/LevelDataManager.h"
 #include "../Collider/ColliderDebugDraw/ColliderDebugDraw.h"
-#include "../Collision/CollisionManager.h"
+#include "../Collision/BaseCollisionManager.h"
 #include "AbstractObjectFactory.h"
 
 class BaseObjectManager
@@ -64,7 +64,7 @@ public: //virtualではない
 	/// コライダー登録
 	/// </summary>
 	/// <param name="collisionManager"></param>
-	void CollisionListRegister(CollisionManager* collisionManager);
+	void CollisionListRegister(BaseCollisionManager* collisionManager);
 
 	/// <summary>
 	/// リセット

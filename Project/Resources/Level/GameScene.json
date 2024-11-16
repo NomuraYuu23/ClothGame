@@ -62,6 +62,39 @@
             "fileName": "skydome.obj",
             "directoryPath": "Resources/Model/Skydome",
             "className": "Skydome"
+        },
+        {
+            "type": "MESH",
+            "name": "球",
+            "transform": {
+                "translation": [
+                    0.0,
+                    -7.300000190734863,
+                    1.3000000715255737
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ball.obj",
+            "directoryPath": "Resources/default",
+            "className": "Player",
+            "collider": {
+                "type": "SPHERE",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "radius": 2
+            }
         }
     ]
 }

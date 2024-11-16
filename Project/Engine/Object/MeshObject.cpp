@@ -62,7 +62,7 @@ void MeshObject::Draw(BaseCamera& camera)
 
 }
 
-void MeshObject::CollisionListRegister(CollisionManager* collisionManager)
+void MeshObject::CollisionListRegister(BaseCollisionManager* collisionManager)
 {
 
 	if (collider_) {
@@ -71,7 +71,7 @@ void MeshObject::CollisionListRegister(CollisionManager* collisionManager)
 
 }
 
-void MeshObject::CollisionListRegister(CollisionManager* collisionManager, ColliderDebugDraw* colliderDebugDraw)
+void MeshObject::CollisionListRegister(BaseCollisionManager* collisionManager, ColliderDebugDraw* colliderDebugDraw)
 {
 
 	if (collider_) {

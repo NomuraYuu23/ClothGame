@@ -67,8 +67,6 @@ private:
 	// パーティクルマネージャー
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;
 
-	std::unique_ptr<CollisionManager> collisionManager_;
-
 	// 追加カメラ
 	std::unique_ptr<FollowCamera> followCamera_;
 

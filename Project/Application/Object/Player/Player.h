@@ -50,6 +50,13 @@ public: // メンバ関数
     /// <param name="camera">カメラ</param>
     void ParticleDraw(BaseCamera& camera) override;
 
+    /// <summary>
+    /// 衝突処理
+    /// </summary>
+    /// <param name="colliderPartner"></param>
+    /// <param name="collisionData"></param>
+    void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData);
+
 private: // メンバ関数
 
 	/// <summary>

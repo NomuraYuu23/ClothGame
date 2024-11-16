@@ -33,7 +33,7 @@
 #include "../../Math/Ease.h" // 補間
 
 // 衝突系
-#include "../../Collision/CollisionManager.h" // 3D衝突マネージャー
+#include "../../Collision/BaseCollisionManager.h" // 3D衝突マネージャー
 #include "../../Collider/ColliderDebugDraw/ColliderDebugDraw.h" // 3Dコライダーデバッグ描画
 #include "../../../Engine/Collision2D/Collision2DManager.h" // 2D衝突マネージャー
 #include "../../../Engine/Collision2D/Collision2DDebugDraw.h" // 2Dコライダーデバッグ描画

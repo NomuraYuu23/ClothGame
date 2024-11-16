@@ -38,9 +38,6 @@ void TutorialScene::Initialize() {
 
 	isDebugCameraActive_ = false;
 
-	collisionManager_.reset(new CollisionManager);
-	collisionManager_->Initialize();
-
 	ClothGPU::StaticInitialize(
 		dxCommon_->GetDevice(),
 		directionalLight_.get(),
@@ -92,13 +89,6 @@ void TutorialScene::Update() {
 
 	// オブジェクトマネージャー
 	objectManager_->Update();
-
-	// あたり判定
-	collisionManager_->ListClear();
-
-	objectManager_->CollisionListRegister(collisionManager_.get());
-
-	collisionManager_->CheakAllCollision();
 
 	// デバッグカメラ
 	DebugCameraUpdate();

@@ -432,7 +432,7 @@
     <ClCompile Include="Engine\Collision\Collision.cpp">
       <Filter>Engine\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Collision\CollisionManager.cpp">
+    <ClCompile Include="Engine\Collision\BaseCollisionManager.cpp">
       <Filter>Engine\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Framework\MyFramework.cpp">
@@ -832,6 +832,9 @@
     <ClCompile Include="Application\Object\Ground\Ground.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -891,7 +894,7 @@
     <ClInclude Include="Engine\Collider\Collider.h">
       <Filter>Engine\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Collision\CollisionManager.h">
+    <ClInclude Include="Engine\Collision\BaseCollisionManager.h">
       <Filter>Engine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Collision\Collision.h">
@@ -1417,6 +1420,9 @@
       <Filter>Application\Object\Factory</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Ground\Ground.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Collision\GameSceneCollisionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

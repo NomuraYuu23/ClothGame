@@ -2,12 +2,13 @@
 #include <variant>
 #include "../../Engine/Collision/CollisionData.h"
 
-class Null;
+class ParentNullObject;
+class Player;
 
-using ColliderParentObject = std::variant<Null*>;
+using ColliderParentObject = std::variant<ParentNullObject*, Player*>;
 
 // 親がないもの用
-class Null {
+class ParentNullObject {
 
 public:
 

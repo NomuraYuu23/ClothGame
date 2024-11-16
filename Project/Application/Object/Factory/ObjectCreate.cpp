@@ -2,6 +2,7 @@
 
 #include "../Ground/Ground.h"
 #include "../Skydome/Skydome.h"
+#include "../Player/Player.h"
 
 IObject* ObjectCreate::CreateObjectGround(LevelData::ObjectData& objectData)
 {
@@ -18,5 +19,14 @@ IObject* ObjectCreate::CreateObjectSkydome(LevelData::ObjectData& objectData)
 	IObject* object = new Skydome();
 	// 初期化
 	static_cast<Skydome*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	return object;
+}
+
+IObject* ObjectCreate::CreateObjectPlayer(LevelData::ObjectData& objectData)
+{
+	// インスタンス生成
+	IObject* object = new Player();
+	// 初期化
+	static_cast<Player*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	return object;
 }

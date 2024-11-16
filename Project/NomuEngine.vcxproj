@@ -164,6 +164,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\ClothDemo\CollisionObject\ClothDemoPlane.cpp" />
     <ClCompile Include="Application\ClothDemo\CollisionObject\ClothDemoSphere.cpp" />
     <ClCompile Include="Application\Collider\ColliderParentIdentification.cpp" />
+    <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp" />
     <ClCompile Include="Application\Effect\BillboardEffect.cpp" />
     <ClCompile Include="Application\Effect\EffectManager.cpp" />
     <ClCompile Include="Application\Camera\FollowCamera.cpp" />
@@ -300,7 +301,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Collider\OBB\OBB.cpp" />
     <ClCompile Include="Engine\Collider\Triangle\Triangle.cpp" />
     <ClCompile Include="Engine\Collision\Collision.cpp" />
-    <ClCompile Include="Engine\Collision\CollisionManager.cpp" />
+    <ClCompile Include="Engine\Collision\BaseCollisionManager.cpp" />
     <ClCompile Include="Engine\Collider\Plane\Plane.cpp" />
     <ClCompile Include="Application\Object\Skydome\Skydome.cpp" />
     <ClCompile Include="Engine\Collider\Sphere\Sphere.cpp" />
@@ -316,6 +317,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoPlane.h" />
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoSphere.h" />
     <ClInclude Include="Application\Collider\ColliderParentIdentification.h" />
+    <ClInclude Include="Application\Collision\GameSceneCollisionManager.h" />
     <ClInclude Include="Application\Effect\BillboardEffect.h" />
     <ClInclude Include="Application\Camera\FollowCamera.h" />
     <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h" />
@@ -488,7 +490,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Collider\OBB\OBB.h" />
     <ClInclude Include="Engine\Collider\Triangle\Triangle.h" />
     <ClInclude Include="Engine\Collision\Collision.h" />
-    <ClInclude Include="Engine\Collision\CollisionManager.h" />
+    <ClInclude Include="Engine\Collision\BaseCollisionManager.h" />
     <ClInclude Include="Engine\Collider\Plane\Plane.h" />
     <ClInclude Include="Application\Object\Skydome\Skydome.h" />
     <ClInclude Include="Engine\Collider\Sphere\Sphere.h" />

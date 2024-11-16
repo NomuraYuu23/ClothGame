@@ -12,6 +12,7 @@ public: // サブクラス,定数
 	enum CreateObjectIndex {
 		kCreateObjectIndexSkydome, // スカイドーム
 		kCreateObjectIndexGround, // 地面
+		kCreateObjectIndexPlayer, // プレイヤー
 		kCreateObjectIndexOfCount, // 数数える用
 
 	};

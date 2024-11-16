@@ -38,7 +38,7 @@ void GameScene::Initialize() {
 
 	isDebugCameraActive_ = false;
 
-	collisionManager_.reset(new CollisionManager);
+	collisionManager_.reset(new GameSceneCollisionManager);
 	collisionManager_->Initialize();
 
 	ClothGPU::StaticInitialize(

@@ -18,11 +18,18 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	objectManager_ = objectManager;
 
 	// 関数を入れていく
+
+	// スカイドーム
 	createObjectFunctions_[kCreateObjectIndexSkydome].first = "Skydome";
 	createObjectFunctions_[kCreateObjectIndexSkydome].second = ObjectCreate::CreateObjectSkydome;
 
+	// 地面
 	createObjectFunctions_[kCreateObjectIndexGround].first = "Ground";
 	createObjectFunctions_[kCreateObjectIndexGround].second = ObjectCreate::CreateObjectGround;
+
+	// プレイヤー
+	createObjectFunctions_[kCreateObjectIndexPlayer].first = "Player";
+	createObjectFunctions_[kCreateObjectIndexPlayer].second = ObjectCreate::CreateObjectPlayer;
 
 }
 

@@ -13,6 +13,7 @@
 #include "../../Camera/FollowCamera.h"
 #include "../../Effect/EffectManager.h"
 #include "../../Object/Player/Player.h"
+#include "../../Collision/GameSceneCollisionManager.h"
 
 class GameScene : public IScene
 {
@@ -65,7 +66,7 @@ private:
 	// パーティクルマネージャー
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;
 
-	std::unique_ptr<CollisionManager> collisionManager_;
+	std::unique_ptr<GameSceneCollisionManager> collisionManager_;
 
 	// 追加カメラ
 	std::unique_ptr<FollowCamera> followCamera_;
@@ -75,8 +76,5 @@ private:
 
 	// エフェクトマネージャー
 	EffectManager* effectManager_ = nullptr;
-
-	// プレイヤー
-	std::unique_ptr<Player> player_;
 
 };

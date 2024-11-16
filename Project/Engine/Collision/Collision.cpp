@@ -290,10 +290,10 @@ bool Collision::IsCollision(const OBB& obb, const Sphere& sphere, Vector3& p1, V
 	Vector3 centerInOBBLocalSpace = Matrix4x4::Transform(sphere.center_, obbWorldMatrixInverse);
 
 	AABB aabbOBBLocal;
-	aabbOBBLocal.Initialize(Vector3{ -obb.size_.x,-obb.size_.y, -obb.size_.z }, obb.size_, static_cast<Null*>(nullptr));
+	aabbOBBLocal.Initialize(Vector3{ -obb.size_.x,-obb.size_.y, -obb.size_.z }, obb.size_, static_cast<ParentNullObject*>(nullptr));
 
 	Sphere sphereOBBLocal;
-	sphereOBBLocal.Initialize(centerInOBBLocalSpace, sphere.radius_, static_cast<Null*>(nullptr));
+	sphereOBBLocal.Initialize(centerInOBBLocalSpace, sphere.radius_, static_cast<ParentNullObject*>(nullptr));
 
 	//ローカル空間で衝突
 	return IsCollision(aabbOBBLocal, sphereOBBLocal, p1, p2, t1, t2, pushBackDist);
@@ -387,7 +387,7 @@ bool Collision::IsCollision(const Capsule& capsule, const AABB& aabb, Vector3& p
 	tMax_ = std::clamp(tMax_, 0.0f, 1.0f);
 
 	Sphere sphere;
-	sphere.Initialize({ 0.0f,0.0f,0.0f }, 0.0f, static_cast<Null*>(nullptr));
+	sphere.Initialize({ 0.0f,0.0f,0.0f }, 0.0f, static_cast<ParentNullObject*>(nullptr));
 
 	sphere.center_ = Vector3::Add(Vector3::Multiply(1.0f - tMin_, start), Vector3::Multiply(tMin_, end));
 	sphere.radius_ = capsule.radius_ ;
@@ -437,7 +437,7 @@ bool Collision::IsCollision(const Capsule& capsule, const OBB& obb, Vector3& p1,
 	localAABB.Initialize(
 		{ -obb.size_.x, -obb.size_.y, -obb.size_.z },
 		{ obb.size_.x, obb.size_.y, obb.size_.z }, 
-		static_cast<Null*>(nullptr));
+		static_cast<ParentNullObject*>(nullptr));
 
 	bool result = IsCollision(localCapsule, localAABB, p1, p2, t1, t2, pushBackDist);
 

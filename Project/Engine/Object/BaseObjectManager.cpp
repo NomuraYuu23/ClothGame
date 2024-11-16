@@ -112,7 +112,7 @@ IObject* BaseObjectManager::GetObjectPointer(const std::string name)
 
 }
 
-void BaseObjectManager::CollisionListRegister(CollisionManager* collisionManager)
+void BaseObjectManager::CollisionListRegister(BaseCollisionManager* collisionManager)
 {
 
 	bool isDebug = false;
