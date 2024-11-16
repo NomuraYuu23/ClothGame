@@ -1,0 +1,67 @@
+{
+    "name": "scene",
+    "objects": [
+        {
+            "type": "MESH",
+            "name": "Ground",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ground.obj",
+            "directoryPath": "Resources/Model/Ground",
+            "className": "Ground",
+            "parentName": "",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    22.0,
+                    22.0,
+                    0.6000000238418579
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Skydome",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotation": [
+                    -1.5707964897155762,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "skydome.obj",
+            "directoryPath": "Resources/Model/Skydome",
+            "className": "Skydome.obj"
+        }
+    ]
+}
