@@ -1,8 +1,6 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
 
-#include "../../Skydome/Skydome.h"
-
 class ClearScene : public IScene
 {
 

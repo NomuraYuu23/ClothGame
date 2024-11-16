@@ -177,7 +177,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Player\State\System\PlayerCommand.cpp" />
     <ClCompile Include="Application\Object\Player\State\System\PlayerStateFactory.cpp" />
     <ClCompile Include="Application\Object\Player\State\System\PlayerStateSystem.cpp" />
-    <ClCompile Include="Application\Object\Sample\SampleObject.cpp" />
     <ClCompile Include="Application\Object\Manager\TitleSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\TutorialSceneObjectManager.cpp" />
     <ClCompile Include="Application\Scene\DebugScene\DebugScene.cpp" />
@@ -301,7 +300,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Collision\Collision.cpp" />
     <ClCompile Include="Engine\Collision\CollisionManager.cpp" />
     <ClCompile Include="Engine\Collider\Plane\Plane.cpp" />
-    <ClCompile Include="Application\Skydome\Skydome.cpp" />
+    <ClCompile Include="Application\Object\Skydome\Skydome.cpp" />
     <ClCompile Include="Engine\Collider\Sphere\Sphere.cpp" />
     <ClCompile Include="Engine\2D\Sprite.cpp" />
     <ClCompile Include="Engine\Math\Vector\Vector3.cpp" />
@@ -331,7 +330,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Player\State\System\PlayerCommand.h" />
     <ClInclude Include="Application\Object\Player\State\System\PlayerStateFactory.h" />
     <ClInclude Include="Application\Object\Player\State\System\PlayerStateSystem.h" />
-    <ClInclude Include="Application\Object\Sample\SampleObject.h" />
     <ClInclude Include="Application\Object\Manager\TitleSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\TutorialSceneObjectManager.h" />
     <ClInclude Include="Application\Scene\DebugScene\DebugScene.h" />
@@ -488,7 +486,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Collision\Collision.h" />
     <ClInclude Include="Engine\Collision\CollisionManager.h" />
     <ClInclude Include="Engine\Collider\Plane\Plane.h" />
-    <ClInclude Include="Application\Skydome\Skydome.h" />
+    <ClInclude Include="Application\Object\Skydome\Skydome.h" />
     <ClInclude Include="Engine\Collider\Sphere\Sphere.h" />
     <ClInclude Include="Engine\base\Debug\SafeDelete.h" />
     <ClInclude Include="Engine\2D\Sprite.h" />

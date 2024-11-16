@@ -31,10 +31,6 @@ void TitleScene::Initialize()
 	ObjectFactory::GetInstance()->Initialize(objectManager_.get());
 	objectManager_->Initialize(kLevelIndexTitle, levelDataManager_);
 
-	// スカイドーム
-	skydome_ = std::make_unique<Skydome>();
-	skydome_->Initialize(skydomeModel_.get());
-
 	// 平行光源
 	directionalLight_ = std::make_unique<DirectionalLight>();
 	directionalLight_->Initialize();
@@ -176,9 +172,6 @@ void TitleScene::Draw()
 
 	//3Dオブジェクトはここ
 
-	// スカイドーム
-	skydome_->Draw(camera_);
-
 	objectManager_->Draw(camera_, drawLine_);
 
 	ModelDraw::PostDraw();
@@ -272,8 +265,6 @@ void TitleScene::DebugCameraUpdate()
 
 void TitleScene::ModelCreate()
 {
-
-	skydomeModel_.reset(Model::Create("Resources/Model/Skydome/", "skydome.obj", dxCommon_));
 
 }
 

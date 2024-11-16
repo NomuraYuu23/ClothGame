@@ -1,7 +1,6 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
 
-#include "../../Skydome/Skydome.h"
 #include "../../../Engine/PostEffect/HSV/HSVFilter.h"
 
 class TitleScene : public IScene
@@ -61,10 +60,6 @@ private: // メンバ変数
 	bool buttonItIncreaseAlphaT_;
 	// 色
 	Vector4 buttonColor_;
-
-	// スカイドーム
-	std::unique_ptr<Skydome> skydome_;
-	std::unique_ptr<Model> skydomeModel_;
 
 	// スカイボックス
 	uint32_t skyboxTextureHandle_ = 0;

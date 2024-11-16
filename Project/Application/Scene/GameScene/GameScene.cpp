@@ -56,10 +56,6 @@ void GameScene::Initialize() {
 	
 	objectManager_->Initialize(kLevelIndexMain, levelDataManager_);
 
-	// スカイドーム
-	skydome_ = std::make_unique<Skydome>();
-	skydome_->Initialize(skydomeModel_.get());
-
 	// 追従カメラ
 	followCamera_ = std::make_unique<FollowCamera>();
 	followCamera_->Initialize();
@@ -102,9 +98,6 @@ void GameScene::Update() {
 	objectManager_->CollisionListRegister(collisionManager_.get());
 
 	collisionManager_->CheakAllCollision();
-
-	// スカイドーム
-	skydome_->Update();
 
 	// デバッグカメラ
 	DebugCameraUpdate();
@@ -152,9 +145,6 @@ void GameScene::Draw() {
 
 	//3Dオブジェクトはここ
 
-	// スカイドーム
-	skydome_->Draw(camera_);
-
 	objectManager_->Draw(camera_, drawLine_);
 
 	// エフェクトマネージャー
@@ -199,9 +189,6 @@ void GameScene::ImguiDraw(){
 	ImGui::Text("Frame rate: %6.2f fps", ImGui::GetIO().Framerate);
 	ImGui::End();
 
-	// スカイドーム
-	skydome_->ImGuiDraw();
-
 	debugCamera_->ImGuiDraw();
 
 	objectManager_->ImGuiDraw();
@@ -240,9 +227,6 @@ void GameScene::ModelCreate()
 {
 
 	particleCircleModel_.reset(Model::Create("Resources/Particle/", "plane.obj", dxCommon_));
-
-	// スカイドーム
-	skydomeModel_.reset(Model::Create("Resources/Model/Skydome/", "skydome.obj", dxCommon_));
 
 }
 

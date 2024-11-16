@@ -70,9 +70,6 @@
     <Filter Include="Application">
       <UniqueIdentifier>{9c627bdc-6eab-4551-adce-18be8337f0d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Skydome">
-      <UniqueIdentifier>{5e2ab7d8-fdc5-492f-bc01-9c18dd7e23a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Particle">
       <UniqueIdentifier>{2d4d8d71-6bfc-42c4-bf7e-2a8597a09e58}</UniqueIdentifier>
     </Filter>
@@ -108,9 +105,6 @@
     </Filter>
     <Filter Include="Application\Object">
       <UniqueIdentifier>{9b49da27-3781-4d42-bc44-35235504c6e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Object\Sample">
-      <UniqueIdentifier>{3cd2eab6-d125-4f00-80a5-f268f1095b83}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Light\PointLight">
       <UniqueIdentifier>{45e944ff-3794-4207-a952-3e887cba860a}</UniqueIdentifier>
@@ -379,6 +373,9 @@
     <Filter Include="Application\Object\Player\Animation">
       <UniqueIdentifier>{8574c2d4-9e57-4fc1-8577-5e6efdf6d96e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\Skydome">
+      <UniqueIdentifier>{5e2ab7d8-fdc5-492f-bc01-9c18dd7e23a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -471,8 +468,8 @@
     <ClCompile Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.cpp">
       <Filter>Engine\SceneTransition</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Skydome\Skydome.cpp">
-      <Filter>Application\Skydome</Filter>
+    <ClCompile Include="Application\Object\Skydome\Skydome.cpp">
+      <Filter>Application\Object\Skydome</Filter>
     </ClCompile>
     <ClCompile Include="Application\Scene\ClearScene\ClearScene.cpp">
       <Filter>Application\Scene</Filter>
@@ -534,9 +531,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Light\DirectionalLight\DirectionalLight.cpp">
       <Filter>Engine\Light\DirctionalLight</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Object\Sample\SampleObject.cpp">
-      <Filter>Application\Object\Sample</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Light\PointLight\PointLightManager.cpp">
       <Filter>Engine\Light\PointLight</Filter>
@@ -930,8 +924,8 @@
     <ClInclude Include="Engine\SceneTransition\SceneTransitionFactory\AbstractSceneTransitionFactory.h">
       <Filter>Engine\SceneTransition</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Skydome\Skydome.h">
-      <Filter>Application\Skydome</Filter>
+    <ClInclude Include="Application\Object\Skydome\Skydome.h">
+      <Filter>Application\Object\Skydome</Filter>
     </ClInclude>
     <ClInclude Include="Application\Scene\SceneName.h">
       <Filter>Application\Scene</Filter>
@@ -1016,9 +1010,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Light\DirectionalLight\DirectionalLightData.h">
       <Filter>Engine\Light\DirctionalLight</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Object\Sample\SampleObject.h">
-      <Filter>Application\Object\Sample</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Light\PointLight\PointLightData.h">
       <Filter>Engine\Light\PointLight</Filter>

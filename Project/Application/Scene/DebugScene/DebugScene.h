@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../Engine/Scene/IScene/IScene.h"
-#include "../../Skydome/Skydome.h"
+#include "../../Object/Skydome/Skydome.h"
 #include "../../../Engine/Physics/Cloth/Cloth.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 #include "../../ClothDemo/ClothDemo.h"

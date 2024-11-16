@@ -2,9 +2,6 @@
 #include <array>
 
 #include "../../../Engine/Scene/IScene/IScene.h"
-#include "../../Skydome/Skydome.h"
-
-#include "../../Object/Sample/SampleObject.h" // サンプルオブジェクト
 
 #include "../../../Engine/Light/DirectionalLight/DirectionalLight.h" // 平行光源
 #include "../../../Engine/Light/PointLight/PointLightManager.h" // 点光源
@@ -69,10 +66,6 @@ private:
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;
 
 	std::unique_ptr<CollisionManager> collisionManager_;
-
-	// スカイドーム
-	std::unique_ptr<Skydome> skydome_;
-	std::unique_ptr<Model> skydomeModel_;
 
 	// 追加カメラ
 	std::unique_ptr<FollowCamera> followCamera_;

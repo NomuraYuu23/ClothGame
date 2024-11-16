@@ -12,7 +12,14 @@ void DebugScene::Initialize()
 	// スカイドーム
 	skydomeModel_.reset(Model::Create("Resources/Model/Skydome/", "skydome.obj", dxCommon_));
 	skydome_ = std::make_unique<Skydome>();
-	skydome_->Initialize(skydomeModel_.get());
+	LevelData::MeshData skydomeData;
+	skydomeData.directoryPath = "Resources/Model/Skydome";
+	skydomeData.flieName = "skydome.obj";
+	skydomeData.transform = {1.0f,1.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
+	skydomeData.className = "skydome";
+	skydomeData.name = "";
+	skydomeData.parentName = "";
+	skydome_->Initialize(&skydomeData);
 
 	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
