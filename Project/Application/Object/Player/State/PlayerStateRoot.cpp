@@ -11,6 +11,6 @@ void PlayerStateRoot::Update()
 {
 
 	// 移動関数
-	Move();
+	//Move();
 
 }

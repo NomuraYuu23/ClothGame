@@ -1,6 +1,9 @@
 #include "Player.h"
+#include "Collision/PlayerCollision.h"
 #include "../../../Engine/Physics/Gravity/Gravity.h"
 #include "../../../Engine/3D/Model/ModelDraw.h"
+
+#include "../Ground/Ground.h"
 
 Player::Player()
 {
@@ -15,6 +18,15 @@ void Player::Initialize(LevelData::MeshData* data)
 
 	// メッシュオブジェクトの初期化
 	MeshObject::Initialize(data);
+
+	// コライダー
+	OBB obb = std::get<OBB>(*collider_.get());
+	obb.SetParentObject(this);
+	//obb.SetCollisionAttribute(collisionAttribute_);
+	//obb.SetCollisionMask(collisionMask_);
+	ColliderShape* colliderShape = new ColliderShape();
+	*colliderShape = obb;
+	collider_.reset(colliderShape);
 
 	// ステートの初期化
 	playerStateSystem_ = std::make_unique<PlayerStateSystem>();
@@ -45,7 +57,7 @@ void Player::Update()
 	worldTransform_.UpdateMatrix();
 
 	// コライダー
-	//ColliderUpdate();
+	ColliderUpdate();
 
 	// 速度保存
 	SaveVelocityUpdate();
@@ -82,6 +94,12 @@ void Player::ParticleDraw(BaseCamera& camera)
 
 void Player::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+
+	// 地面
+	if (std::holds_alternative<Ground*>(colliderPartner)) {
+		PlayerCollision::OnColiisionGround(this, colliderPartner);
+	}
+
 }
 
 void Player::ColliderUpdate()

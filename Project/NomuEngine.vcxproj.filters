@@ -382,6 +382,12 @@
     <Filter Include="Application\Object\Ground">
       <UniqueIdentifier>{0fa038c4-8dac-4e6e-8b04-e58cf3abc919}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\Player\Collision">
+      <UniqueIdentifier>{8629fde4-88be-4d1f-844e-adb5eb53c1fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Collision">
+      <UniqueIdentifier>{1e460dad-2ee3-4eef-8f3a-2a8c85e568ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -829,11 +835,14 @@
     <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp">
       <Filter>Application\Object\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Object\Player\Collision\PlayerCollision.cpp">
+      <Filter>Application\Object\Player\Collision</Filter>
+    </ClCompile>
     <ClCompile Include="Application\Object\Ground\Ground.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Object\Ground</Filter>
     </ClCompile>
     <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1419,11 +1428,14 @@
     <ClInclude Include="Application\Object\Factory\ObjectCreate.h">
       <Filter>Application\Object\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Object\Player\Collision\PlayerCollision.h">
+      <Filter>Application\Object\Player\Collision</Filter>
+    </ClInclude>
     <ClInclude Include="Application\Object\Ground\Ground.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Object\Ground</Filter>
     </ClInclude>
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

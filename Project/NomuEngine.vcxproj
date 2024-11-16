@@ -174,6 +174,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Manager\GameSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectFactory.cpp" />
     <ClCompile Include="Application\Object\Player\Animation\PlayerAnimation.cpp" />
+    <ClCompile Include="Application\Object\Player\Collision\PlayerCollision.cpp" />
     <ClCompile Include="Application\Object\Player\Player.cpp" />
     <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp" />
     <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp" />
@@ -330,6 +331,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Manager\GameSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Factory\ObjectFactory.h" />
     <ClInclude Include="Application\Object\Player\Animation\PlayerAnimation.h" />
+    <ClInclude Include="Application\Object\Player\Collision\PlayerCollision.h" />
     <ClInclude Include="Application\Object\Player\Player.h" />
     <ClInclude Include="Application\Object\Player\State\IPlayerState.h" />
     <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h" />
