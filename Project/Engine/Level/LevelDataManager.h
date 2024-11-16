@@ -35,7 +35,7 @@ private: // 定数
 	const std::array<const std::string, LevelIndex::kLevelIndexOfCount> fileNames_{
 		"title",
 		"tutorial",
-		"main",
+		"GameScene",
 	};
 
 private: // 変数
