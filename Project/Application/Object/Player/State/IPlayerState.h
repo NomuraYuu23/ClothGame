@@ -65,6 +65,11 @@ protected: // メンバ関数
 	/// </summary>
 	void Move();
 
+	/// <summary>
+	/// ワープ
+	/// </summary>
+	void Warp();
+
 protected: // メンバ変数
 
 	// 移動速度

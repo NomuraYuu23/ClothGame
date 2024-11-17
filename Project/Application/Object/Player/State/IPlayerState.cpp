@@ -9,7 +9,7 @@ Player* IPlayerState::player_ = nullptr;
 
 Input* IPlayerState::input_ = Input::GetInstance();
 
-const float IPlayerState::kAutoMoveSpeed_ = 1.0f;
+const float IPlayerState::kAutoMoveSpeed_ = 0.5f;
 
 void IPlayerState::Move()
 {
@@ -26,5 +26,26 @@ void IPlayerState::Move()
 
 	// 座標変更
 	playerWorldTransform_->transform_.translate += moveVelocity_;
+	// 座標制御
+	const float kTranslateMaxX = 9.0f;
+	playerWorldTransform_->transform_.translate.x = std::clamp(playerWorldTransform_->transform_.translate.x, -kTranslateMaxX, kTranslateMaxX);
+
+	// ワープ処理
+	Warp();
+
+}
+
+void IPlayerState::Warp()
+{
+
+	//位置確認
+	const float kTranslateMaxZ = 400.0f;
+	if (kTranslateMaxZ <= playerWorldTransform_->transform_.translate.z) {
+
+		// ワープ
+		const float kWarpTranslateZ = -400.0f;
+		playerWorldTransform_->transform_.translate.z = kWarpTranslateZ;
+
+	}
 
 }
