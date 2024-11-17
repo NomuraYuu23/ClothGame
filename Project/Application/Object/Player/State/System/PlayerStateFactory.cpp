@@ -1,5 +1,6 @@
 #include "PlayerStateFactory.h"
 #include "../PlayerStateRoot.h"
+#include "../PlayerStateJump.h"
 
 PlayerStateFactory* PlayerStateFactory::GetInstance()
 {
@@ -16,6 +17,9 @@ IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 	{
 	case kPlayerStateIndexRoot: // 通常
 		newPlayerState = new PlayerStateRoot();
+		break;
+	case kPlayerStateIndexJump: // ジャンプ
+		newPlayerState = new PlayerStateJump();
 		break;
 	case kPlayerStateIndexOfCount: // 使用不可
 	default:

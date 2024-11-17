@@ -5,10 +5,12 @@
 #include "../../../../Engine/3D/Transform/WorldTransform.h"
 
 class Player;
+class PlayerStateSystem;
 
 //プレイヤーの状態名
 enum PlayerStateIndex {
 	kPlayerStateIndexRoot, // 通常
+	kPlayerStateIndexJump, // ジャンプ
 	kPlayerStateIndexOfCount // 数
 };
 
@@ -25,6 +27,9 @@ protected:
 
 	// プレイヤー
 	static Player* player_;
+
+	// プレイヤーステートシステム
+	static PlayerStateSystem* playerStateSystem_;
 
 	//インスタンス
 	static Input* input_;
@@ -49,14 +54,31 @@ public: // メンバ関数
 	/// </summary>
 	virtual void Update() = 0;
 
-	// プレイヤーの状態番号
+public: // アクセッサ
+
+	/// <summary>
+	/// プレイヤーの状態番号取得
+	/// </summary>
+	/// <returns></returns>
 	uint32_t GetPlaryerStateNo() { return playerStateNo_; }
 
-	// プレイヤーのモーション番号
+	/// <summary>
+	/// プレイヤーのモーション番号取得
+	/// </summary>
+	/// <returns></returns>
 	uint32_t GetPlaryerMotionNo() { return playerMotionNo_; }
 
-	// プレイヤーセット
+	/// <summary>
+	/// プレイヤー設定
+	/// </summary>
+	/// <param name="player"></param>
 	void SetPlayer(Player* player) { player_ = player; }
+
+	/// <summary>
+	/// プレイヤーステートシステム設定
+	/// </summary>
+	/// <param name="player"></param>
+	void SetPlayerStateSystem(PlayerStateSystem* playerStateSystem) { playerStateSystem_ = playerStateSystem; }
 
 protected: // メンバ関数
 

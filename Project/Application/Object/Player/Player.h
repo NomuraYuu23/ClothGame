@@ -64,6 +64,21 @@ private: // メンバ関数
 	/// </summary>
 	void ColliderUpdate();
 
+
+public: // アクセッサ
+
+    /// <summary>
+    /// プレイヤーが浮いているか取得
+    /// </summary>
+    /// <returns></returns>
+    bool GetFloating() { return floating_; }
+
+    /// <summary>
+    /// プレイヤーが浮いているか取得
+    /// </summary>
+    /// <returns></returns>
+    void SetFloating(bool floating) { floating_ = floating; }
+
 private: // メンバ変数
 
     // ステートシステム
@@ -71,6 +86,9 @@ private: // メンバ変数
 
     // アニメーション
     std::unique_ptr<PlayerAnimation> playerAnimation_;
+
+    // プレイヤーが浮いているか
+    bool floating_;
 
 };
 

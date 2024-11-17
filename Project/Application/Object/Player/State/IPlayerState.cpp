@@ -7,6 +7,8 @@ uint32_t IPlayerState::playerMotionNo_ = 0;
 
 Player* IPlayerState::player_ = nullptr;
 
+PlayerStateSystem* IPlayerState::playerStateSystem_ = nullptr;
+
 Input* IPlayerState::input_ = Input::GetInstance();
 
 const float IPlayerState::kAutoMoveSpeed_ = 0.5f;
@@ -20,7 +22,8 @@ void IPlayerState::Move()
 	// 移動
 	Vector3 move = { input_->GetLeftAnalogstick().x, 0.0f, 0.0f };
 	// 横移動
-	moveVelocity_.x = Vector3::Normalize(move).x;
+	const float kMoveMagnificationX = 0.3f;
+	moveVelocity_.x = Vector3::Normalize(move).x * kMoveMagnificationX;
 	// 縦移動
 	moveVelocity_.z = kAutoMoveSpeed_;
 

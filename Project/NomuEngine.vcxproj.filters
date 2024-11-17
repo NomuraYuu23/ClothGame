@@ -844,6 +844,9 @@
     <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp">
       <Filter>Application\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1436,6 +1439,9 @@
     </ClInclude>
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h">
       <Filter>Application\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

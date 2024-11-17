@@ -15,6 +15,13 @@ void PlayerCommand::Initialize()
 
 uint32_t PlayerCommand::Command()
 {
+	
 	uint32_t resultState = PlayerStateIndex::kPlayerStateIndexRoot;
+
+	// Aボタンが押されていたらジャンプ
+	if (input_->TriggerJoystick(JoystickButton::kJoystickButtonA)) {
+		resultState = kPlayerStateIndexJump;
+	}
+
 	return resultState;
 }

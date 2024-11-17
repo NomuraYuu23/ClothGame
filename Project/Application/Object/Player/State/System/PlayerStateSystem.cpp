@@ -14,7 +14,8 @@ void PlayerStateSystem::Initialize(Player*player)
 	currentStateNo_ = PlayerStateIndex::kPlayerStateIndexRoot; // 最初のステート
 	prevStateNo_ = PlayerStateIndex::kPlayerStateIndexRoot; // 最初のステート
 	nextStateNo_ = PlayerStateIndex::kPlayerStateIndexRoot; // 最初のステート
-	playerState_->SetPlayer(player); // プレイヤーセット
+	playerState_->SetPlayer(player); // プレイヤー設定
+	playerState_->SetPlayerStateSystem(this); // プレイヤーステートシステム設定
 
 	// コマンド
 	playerCommand_ = PlayerCommand::GetInstance();

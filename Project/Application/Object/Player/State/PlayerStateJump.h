@@ -1,6 +1,6 @@
 #pragma once
 #include "IPlayerState.h"
-class PlayerStateRoot :
+class PlayerStateJump :
     public IPlayerState
 {
 

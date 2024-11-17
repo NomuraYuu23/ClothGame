@@ -31,6 +31,18 @@ public: // アクセッサ
 	/// <returns></returns>
 	IPlayerState* GetPlayerState() { return playerState_.get(); }
 
+	/// <summary>
+	/// コマンドを受け取るか設定
+	/// </summary>
+	/// <param name="receiveCommand"></param>
+	void SetReceiveCommand(bool receiveCommand) { receiveCommand_ = receiveCommand; }
+
+	/// <summary>
+	/// 割り込みコマンドがあるか設定
+	/// </summary>
+	/// <param name="interruptCommand"></param>
+	void SetInterruptCommand(bool interruptCommand) { interruptCommand_ = interruptCommand; }
+
 private: // メンバ変数
 
 	// ステート

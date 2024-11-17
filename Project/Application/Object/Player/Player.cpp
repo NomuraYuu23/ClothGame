@@ -36,6 +36,9 @@ void Player::Initialize(LevelData::MeshData* data)
 	//playerAnimation_ = std::make_unique<PlayerAnimation>();
 	//playerAnimation_->Initialize(model_);
 
+	// 浮いているか
+	floating_ = false;
+
 }
 
 void Player::Update()

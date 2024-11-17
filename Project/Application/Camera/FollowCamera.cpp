@@ -14,16 +14,17 @@ void FollowCamera::Initialize() {
 
 	BaseCamera::Update();
 
-	// 目指すアングル
-	destinationAngle_ = { 0.0f,0.0f,0.0f };
 	// オフセットの長さ
 	offsetLength_ = -50.0f;
+	// オフセットの高さ
+	offsetHeight_ = 3.0f;
 
 	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
 	const char* groupName = "FollowCamera";
 	//グループを追加
 	GlobalVariables::GetInstance()->CreateGroup(groupName);
 	globalVariables->AddItem(groupName, "offsetLength", offsetLength_);
+	globalVariables->AddItem(groupName, "offsetHeight", offsetHeight_);
 
 	ApplyGlobalVariables();
 
@@ -39,12 +40,12 @@ void FollowCamera::Update(float elapsedTime) {
 	//追従対象がいれば
 	if (target_) {
 		// 追従座標の補間
-		Vector3 targetPos = { target_->worldMatrix_.m[3][0], target_->worldMatrix_.m[3][1], target_->worldMatrix_.m[3][2] };
+		const Vector3 kTargetPosition = { 0.0f, 5.0f, target_->worldMatrix_.m[3][2] };
 
 		// オフセット
 		Vector3 offset = OffsetCalc();
 
-		transform_.translate = Vector3::Add(targetPos, offset);
+		transform_.translate = Vector3::Add(kTargetPosition, offset);
 
 	}
 
@@ -77,17 +78,6 @@ void FollowCamera::SetTarget(const WorldTransform* target)
 
 	target_ = target;
 
-	// 追従座標の補間
-	Vector3 targetPos = { target_->worldMatrix_.m[3][0], target_->worldMatrix_.m[3][1], target_->worldMatrix_.m[3][2] };
-
-	// オフセット
-	Vector3 offset = OffsetCalc();
-
-	transform_.translate = Vector3::Add(targetPos, offset);
-
-	//ビュー更新
-	BaseCamera::Update();
-
 }
 
 Matrix4x4 FollowCamera::GetRotateMatrix()
@@ -97,12 +87,11 @@ Matrix4x4 FollowCamera::GetRotateMatrix()
 
 }
 
-
 Vector3 FollowCamera::OffsetCalc()
 {
 
 	//追従対象からカメラまでのオフセット
-	Vector3 offset = { 0.0f, 3.0f, offsetLength_ };
+	Vector3 offset = { 0.0f, offsetHeight_, offsetLength_ };
 
 	Matrix4x4 rotateMatrix = GetRotateMatrix();
 
@@ -120,5 +109,6 @@ void FollowCamera::ApplyGlobalVariables()
 	const char* groupName = "FollowCamera";
 
 	offsetLength_ = globalVariables->GetFloatValue(groupName, "offsetLength");
+	offsetHeight_ = globalVariables->GetFloatValue(groupName, "offsetHeight");
 
 }
