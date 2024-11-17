@@ -168,6 +168,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Effect\BillboardEffect.cpp" />
     <ClCompile Include="Application\Effect\EffectManager.cpp" />
     <ClCompile Include="Application\Camera\FollowCamera.cpp" />
+    <ClCompile Include="Application\Object\ClothGate\ClothGate.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp" />
     <ClCompile Include="Application\Object\Ground\Ground.cpp" />
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
@@ -326,6 +327,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Collider2D\CollisionConfig2D.h" />
     <ClInclude Include="Application\Collider\ColliderParentObject.h" />
     <ClInclude Include="Application\Collider\CollisionConfig.h" />
+    <ClInclude Include="Application\Object\ClothGate\ClothGate.h" />
     <ClInclude Include="Application\Object\Factory\ObjectCreate.h" />
     <ClInclude Include="Application\Object\Ground\Ground.h" />
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />

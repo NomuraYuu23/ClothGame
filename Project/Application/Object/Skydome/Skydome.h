@@ -10,6 +10,7 @@ public: // メンバ関数
 	/// <summary>
 	/// 初期化
 	/// </summary>
+	/// <param name="data">データ</param>
 	void Initialize(LevelData::MeshData* data) override;
 
 	/// <summary>

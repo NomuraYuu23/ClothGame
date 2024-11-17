@@ -388,6 +388,9 @@
     <Filter Include="Application\Collision">
       <UniqueIdentifier>{1e460dad-2ee3-4eef-8f3a-2a8c85e568ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\ClothGate">
+      <UniqueIdentifier>{3d691f24-95dc-4b44-a40c-330a92c0b4de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -845,6 +848,9 @@
       <Filter>Application\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\ClothGate\ClothGate.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1441,6 +1447,9 @@
       <Filter>Application\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\ClothGate\ClothGate.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

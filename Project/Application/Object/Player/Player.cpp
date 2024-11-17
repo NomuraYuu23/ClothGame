@@ -4,6 +4,7 @@
 #include "../../../Engine/3D/Model/ModelDraw.h"
 
 #include "../Ground/Ground.h"
+#include "../../Collider/CollisionConfig.h"
 
 Player::Player()
 {
@@ -19,11 +20,15 @@ void Player::Initialize(LevelData::MeshData* data)
 	// メッシュオブジェクトの初期化
 	MeshObject::Initialize(data);
 
+	// 衝突マスク
+	collisionAttribute_ = kCollisionAttributePlayer;
+	collisionMask_ -= kCollisionAttributePlayer;
+
 	// コライダー
 	OBB obb = std::get<OBB>(*collider_.get());
 	obb.SetParentObject(this);
-	//obb.SetCollisionAttribute(collisionAttribute_);
-	//obb.SetCollisionMask(collisionMask_);
+	obb.SetCollisionAttribute(collisionAttribute_);
+	obb.SetCollisionMask(collisionMask_);
 	ColliderShape* colliderShape = new ColliderShape();
 	*colliderShape = obb;
 	collider_.reset(colliderShape);
