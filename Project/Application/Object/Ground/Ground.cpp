@@ -6,7 +6,13 @@ void Ground::Initialize(LevelData::MeshData* data)
 	
 	MeshObject::Initialize(data);
 
+	// マテリアル
 	material_->SetEnableLighting(BlinnPhongReflection);
+	EulerTransform uvTransform;
+	uvTransform.scale = { 2.0f, 50.0f,1.0f };
+	uvTransform.rotate = { 0.0f,0.0f,0.0f };
+	uvTransform.translate = { 0.0f,0.0f,0.0f };
+	material_->SetUvTransform(uvTransform);
 
 	// 衝突マスク
 	collisionAttribute_ = kCollisionAttributeGround;
