@@ -31,18 +31,31 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	}
 
 	// 布の計算データ
-	cloth_->SetMass(1.0f);
-	cloth_->SetSpeedResistance(0.9f);
-	cloth_->SetStiffness(100.0f); // 剛性。バネ定数k
+	// 質量
+	const float kClothMass = 1.0f;
+	cloth_->SetMass(kClothMass);
+	// 速度抵抗
+	const float kClothSpeedResistance = 0.9f;
+	cloth_->SetSpeedResistance(kClothSpeedResistance);
+	// 剛性。バネ定数k
+	const float kClothStiffness = 100.0f;
+	cloth_->SetStiffness(kClothStiffness);
 	// 抵抗
+	const float kClothStructural = 100.0f;
 	cloth_->SetStructuralStretch(100.0f);
 	cloth_->SetStructuralShrink(100.0f);
-	cloth_->SetShearStretch(70.0f);
-	cloth_->SetShearShrink(70.0f);
-	cloth_->SetBendingStretch(20.0f);
-	cloth_->SetBendingShrink(20.0f);
+	const float kClothShear = 70.0f;
+	cloth_->SetShearStretch(kClothShear);
+	cloth_->SetShearShrink(kClothShear);
+	const float kClothBending = 20.0f;
+	cloth_->SetBendingStretch(kClothBending);
+	cloth_->SetBendingShrink(kClothBending);
+	// 速度制限
+	const float kClothVelocityLimit = 0.13f;
+	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
-	cloth_->SetRelaxation(4);
+	const uint32_t kClothRelaxation = 4;
+	cloth_->SetRelaxation(kClothRelaxation);
 
 	// プレイヤーの衝突判定データ
 	playerCollider_.position_ = {0.0f,0.0f,0.0f};
@@ -58,12 +71,6 @@ void ClothGate::Update()
 
 	// 布CPU側処理
 	ClothUpdate();
-
-	// 球
-	// プレイヤーの情報をいれる
-	playerCollider_.position_ = player_->GetWorldTransformAdress()->GetWorldPosition();
-	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
-	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 
 }
 
@@ -117,6 +124,12 @@ void ClothGate::ClothUpdate()
 	cloth_->SetPosition(0, 0, kLeftTopPosition);
 	cloth_->SetWeight(kRightX, 0, false);
 	cloth_->SetPosition(kRightX, 0, kRightTopPosition);
+
+	// 球
+	// プレイヤーの情報をいれる
+	playerCollider_.position_ = player_->GetWorldTransformAdress()->GetWorldPosition();
+	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 
 }
 

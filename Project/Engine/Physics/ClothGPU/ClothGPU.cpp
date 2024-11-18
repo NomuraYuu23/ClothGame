@@ -673,6 +673,7 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 	ImGui::DragFloat("せん断バネ縮み抵抗", &clothCalcDataMap_->shearStretch_, 0.1f, 0.0f);
 	ImGui::DragFloat("曲げバネ伸び抵抗", &clothCalcDataMap_->bendingShrink_, 0.1f, 0.0f);
 	ImGui::DragFloat("曲げバネ縮み抵抗", &clothCalcDataMap_->bendingStretch_, 0.1f, 0.0f);
+	ImGui::DragFloat("速度制限", &clothCalcDataMap_->velocityLimit_, 0.01f, 0.0f,1.0f);
 
 	ImGui::End();
 
@@ -1076,6 +1077,7 @@ void ClothGPU::CBVInitialize(
 	clothCalcDataMap_->shearStretch_ = 10.0f; // せん断バネ縮み抵抗
 	clothCalcDataMap_->bendingShrink_ = 10.0f; // 曲げバネ伸び抵抗
 	clothCalcDataMap_->bendingStretch_ = 10.0f; // 曲げバネ縮み抵抗
+	clothCalcDataMap_->velocityLimit_ = 1.0f; // 速度制限
 
 	// 時間バッファ
 	perFrameBuff_ = BufferResource::CreateBufferResource(device, (sizeof(PerFrame) + 0xff) & ~0xff);

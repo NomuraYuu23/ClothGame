@@ -126,6 +126,8 @@ public: // サブクラス
 		float shearStretch_; // せん断バネ縮み抵抗
 		float bendingShrink_; // 曲げバネ伸び抵抗
 		float bendingStretch_; // 曲げバネ縮み抵抗
+		float velocityLimit_; // 速度制限
+
 	};
 
 	/// <summary>
@@ -624,6 +626,10 @@ public: // アクセッサ
 	// 曲げバネ縮み抵抗
 	void SetBendingStretch(float bendingStretch) { clothCalcDataMap_->bendingStretch_ = bendingStretch; }
 	float GetBendingStretch() { return clothCalcDataMap_->bendingStretch_; }
+
+	// 速度制限
+	void SetVelocityLimit(float velocityLimit) { clothCalcDataMap_->velocityLimit_ = velocityLimit; }
+	float GetVelocityLimit() { return clothCalcDataMap_->velocityLimit_; }
 
 	// バネフェーズの反復回数
 	void SetRelaxation(int32_t relaxation) { relaxation_ = relaxation; }

@@ -38,10 +38,16 @@ public: // メンバ関数
 	/// <param name="camera">カメラ</param>
 	void Draw(BaseCamera& camera) override;
 
-	void ImGuiDraw()override;
+	/// <summary>
+	/// ImGui描画
+	/// </summary>
+	void ImGuiDraw() override;
 
 public: // メンバ関数
 
+	/// <summary>
+	/// 布更新
+	/// </summary>
 	void ClothUpdate();
 	
 public: // アクセッサ

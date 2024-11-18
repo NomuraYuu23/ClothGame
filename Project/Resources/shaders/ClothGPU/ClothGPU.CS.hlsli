@@ -33,6 +33,7 @@ struct ClothCalcData
 	float32_t shearStretch_;
 	float32_t bendingShrink_; 
 	float32_t bendingStretch_;
+	float32_t velocityLimit_;
 };
 
 struct ExternalOperationData

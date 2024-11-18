@@ -33,6 +33,12 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		float32_t3 dx = (float32_t3)0;
 		// 速度
 		dx = massPoint.position_ - massPoint.prePosition_;
+
+		float32_t power = clamp(length(dx), 0.0f, gClothCalcData.velocityLimit_);
+		if (power != 0.0f) {
+			dx = power * normalize(dx);
+		}
+
 		// 前フレーム位置更新
 		gClothMassPoints[index].prePosition_ = massPoint.position_;
 		// 力の変位を足しこむ
