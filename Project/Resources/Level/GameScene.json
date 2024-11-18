@@ -98,6 +98,30 @@
                     6.000000238418579
                 ]
             }
+        },
+        {
+            "type": "MESH",
+            "name": "円錐",
+            "transform": {
+                "translation": [
+                    0.0,
+                    0.0,
+                    3.0
+                ],
+                "rotation": [
+                    -0.0,
+                    -0.0,
+                    -1.5707961320877075
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "ClothGate.obj",
+            "directoryPath": "Resources/Model/ClothGate",
+            "className": "ClothGate"
         }
     ]
 }

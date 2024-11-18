@@ -13,8 +13,8 @@ public: // サブクラス,定数
 		kCreateObjectIndexSkydome, // スカイドーム
 		kCreateObjectIndexGround, // 地面
 		kCreateObjectIndexPlayer, // プレイヤー
+		kCreateObjectIndexClothGate, // 布ゲート
 		kCreateObjectIndexOfCount, // 数数える用
-
 	};
 
 public: //メンバ関数

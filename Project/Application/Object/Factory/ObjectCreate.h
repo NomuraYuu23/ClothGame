@@ -2,6 +2,8 @@
 #include "../../../Engine/Level/LevelData.h"
 #include "../../../Engine/Object/IObject.h"
 
+class Player;
+
 class ObjectCreate
 {
 
@@ -27,6 +29,18 @@ public: //メンバ関数
 	/// <param name="objectData">オブジェクトデータ</param>
 	/// <returns>オブジェクト</returns>
 	static IObject* CreateObjectPlayer(LevelData::ObjectData& objectData);
+
+	/// <summary>
+	/// 布ゲート
+	/// </summary>
+	/// <param name="objectData">オブジェクトデータ</param>
+	/// <returns>オブジェクト</returns>
+	static IObject* CreateObjectClothGate(LevelData::ObjectData& objectData);
+
+private: // メンバ変数
+
+	// プレイヤー
+	static Player* player_;
 
 };
 

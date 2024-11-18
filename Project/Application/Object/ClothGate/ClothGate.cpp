@@ -15,9 +15,9 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	// 布
 	cloth_ = std::make_unique<ClothGPU>();
 	// 大きさ
-	const Vector2 kClothScale = {};
+	const Vector2 kClothScale = {4.0f,3.0f};
 	// 分割数
-	const Vector2 kClothDiv = {};
+	const Vector2 kClothDiv = {8.0f,8.0f};
 	// 初期化
 	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale, kClothDiv, "Resources/Sprite/Cloth/BlueCloth.png");
 
@@ -52,10 +52,8 @@ void ClothGate::Update()
 	cloth_->Update(dxCommon_->GetCommadList());
 
 	// 球
-	
 	// プレイヤーの情報をいれる
 	playerCollider_.position_ = player_->GetWorldTransformAdress()->GetWorldPosition();
-
 	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 

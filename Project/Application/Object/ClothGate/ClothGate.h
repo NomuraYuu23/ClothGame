@@ -52,5 +52,6 @@ private: // メンバ変数
 
 	// プレイヤー
 	Player* player_;
+
 };
 

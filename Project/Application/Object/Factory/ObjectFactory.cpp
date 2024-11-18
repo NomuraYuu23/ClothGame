@@ -31,6 +31,10 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	createObjectFunctions_[kCreateObjectIndexPlayer].first = "Player";
 	createObjectFunctions_[kCreateObjectIndexPlayer].second = ObjectCreate::CreateObjectPlayer;
 
+	// 布ゲート
+	createObjectFunctions_[kCreateObjectIndexClothGate].first = "ClothGate";
+	createObjectFunctions_[kCreateObjectIndexClothGate].second = ObjectCreate::CreateObjectClothGate;
+
 }
 
 IObject* ObjectFactory::CreateObject(LevelData::ObjectData& objectData)
