@@ -13,6 +13,10 @@ public: // 静的メンバ変数
 
 	// プレイヤーの衝突判定データの名前
 	static const std::string kPlayerColliderName_;
+	// 大きさ
+	static const Vector2 kClothScale_;
+	// 分割数
+	static const Vector2 kClothDiv_;
 	// DirectX
 	static DirectXCommon* dxCommon_;
 
@@ -33,6 +37,12 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="camera">カメラ</param>
 	void Draw(BaseCamera& camera) override;
+
+	void ImGuiDraw()override;
+
+public: // メンバ関数
+
+	void ClothUpdate();
 	
 public: // アクセッサ
 
