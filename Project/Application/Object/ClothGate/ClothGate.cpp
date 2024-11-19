@@ -6,7 +6,7 @@ const std::string ClothGate::kPlayerColliderName_ = "player";
 
 const Vector2 ClothGate::kClothScale_ = { 3.0f,4.0f };
 
-const Vector2 ClothGate::kClothDiv_ = { 16.0f,16.0f };
+const Vector2 ClothGate::kClothDiv_ = { 8.0f,8.0f };
 
 DirectXCommon* ClothGate::dxCommon_ = DirectXCommon::GetInstance();
 
@@ -51,7 +51,7 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 0.13f;
+	const float kClothVelocityLimit = 0.21f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 4;
@@ -122,8 +122,8 @@ void ClothGate::ClothUpdate()
 	// 設定
 	cloth_->SetWeight(0, 0, false);
 	cloth_->SetPosition(0, 0, kLeftTopPosition);
-	cloth_->SetWeight(kRightX, 0, false);
-	cloth_->SetPosition(kRightX, 0, kRightTopPosition);
+	cloth_->SetWeight(0, kRightX, false);
+	cloth_->SetPosition(0, kRightX, kRightTopPosition);
 
 	// 球
 	// プレイヤーの情報をいれる

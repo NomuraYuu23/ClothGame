@@ -391,6 +391,12 @@
     <Filter Include="Application\Object\ClothGate">
       <UniqueIdentifier>{3d691f24-95dc-4b44-a40c-330a92c0b4de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\Generator">
+      <UniqueIdentifier>{3468c333-5a93-4918-8893-997e406f56ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Level">
+      <UniqueIdentifier>{167280ef-abed-4faa-82e2-49ff4357ffb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -847,11 +853,11 @@
     <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp">
       <Filter>Application\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Application\Object\ClothGate\ClothGate.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Object\ClothGate</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp">
+      <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1446,11 +1452,11 @@
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h">
       <Filter>Application\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Object\ClothGate\ClothGate.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Object\ClothGate</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h">
+      <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

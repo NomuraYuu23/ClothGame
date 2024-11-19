@@ -36,6 +36,7 @@ private: // 定数
 		"title",
 		"tutorial",
 		"GameScene",
+		"GenerationPattern_00",
 	};
 
 private: // 変数
