@@ -51,15 +51,15 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 0.09f;
+	const float kClothVelocityLimit = 0.02f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
-	const uint32_t kClothRelaxation = 4;
+	const uint32_t kClothRelaxation = 6;
 	cloth_->SetRelaxation(kClothRelaxation);
 
 	// プレイヤーの衝突判定データ
 	playerCollider_.origin_ = {0.0f,0.0f,0.0f};
-	playerCollider_.diff_ = { 0.0f,0.0f,-1.0f };
+	playerCollider_.diff_ = { 0.0f,0.0f, 1.0f };
 	const float playerColliderRadius = 2.0f;
 	playerCollider_.radius_ = playerColliderRadius;
 	// 登録
@@ -89,20 +89,20 @@ void ClothGate::Draw(BaseCamera& camera)
 void ClothGate::ClothUpdate()
 {
 
-	// 乱数
-	std::random_device seedGenerator;
-	std::mt19937 randomEngine(seedGenerator());
+	//// 乱数
+	//std::random_device seedGenerator;
+	//std::mt19937 randomEngine(seedGenerator());
 
-	// 風力最大値
-	const float kWindPowerMin = -5.0f;
-	const float kWindPowerMax = 5.0f;
-	std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
+	//// 風力最大値
+	//const float kWindPowerMin = -5.0f;
+	//const float kWindPowerMax = 5.0f;
+	//std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
 
-	// 風力
-	const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
+	//// 風力
+	//const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
 
-	//風
-	cloth_->SetWind(wind);
+	////風
+	//cloth_->SetWind(wind);
 
 	// 布更新
 	cloth_->Update(dxCommon_->GetCommadList());

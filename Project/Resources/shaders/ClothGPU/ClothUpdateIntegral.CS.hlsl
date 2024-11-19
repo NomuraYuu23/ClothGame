@@ -26,9 +26,6 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		// 変位に変換
 		force = force * (gPerFrame.deltaTime * gPerFrame.deltaTime * 0.5f * rcp(gClothCalcData.mass_));
 
-		// 抵抗
-		float32_t resistance = 1.0f - gClothCalcData.speedResistance_ * gPerFrame.deltaTime;
-
 		// 変位
 		float32_t3 dx = (float32_t3)0;
 		// 速度
@@ -41,10 +38,18 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 
 		// 前フレーム位置更新
 		gClothMassPoints[index].prePosition_ = massPoint.position_;
+
+		// 空気抵抗
+		float32_t3 airResistance = (
+			gClothCalcData.speedResistance_ * -dx.x,
+			gClothCalcData.speedResistance_ * -dx.y,
+			gClothCalcData.speedResistance_ * -dx.z);
+		
+		// 空気加速度
+		float32_t3 airResistanceAcceleration = airResistance * rcp(gClothCalcData.mass_);
+
 		// 力の変位を足しこむ
-		dx = dx + force;
-		// 抵抗
-		dx *= resistance;
+		dx = dx + force + airResistanceAcceleration;
 
 		// 位置更新
 		dx *= massPoint.weight_; // 固定されてるか
