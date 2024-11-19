@@ -64,7 +64,7 @@ private: // メンバ変数
 	std::unique_ptr<ClothGPU> cloth_;
 
 	// プレイヤーの衝突判定データ
-	ClothGPUCollision::Sphere playerCollider_;
+	ClothGPUCollision::Capsule playerCollider_;
 
 	// プレイヤー
 	Player* player_;

@@ -10,7 +10,10 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	
 	BaseObjectManager::Initialize(levelIndex, levelDataManager);
 
-	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, 0);
+
+	for (uint32_t i = 0; i < 8; i++) {
+		GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, i);
+	}
 
 }
 
@@ -49,6 +52,7 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 
 			// パターン回数に応じて移動
 			object->GetWorldTransformAdress()->transform_.translate.z += currentGenerationCount * kPatternSize + kPatternStartPosition;
+			object->GetWorldTransformAdress()->UpdateMatrix();
 
 			// listへ
 			objects_.emplace_back(object->GetName(), std::move(object));

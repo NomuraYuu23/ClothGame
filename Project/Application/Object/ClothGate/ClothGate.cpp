@@ -4,7 +4,7 @@
 
 const std::string ClothGate::kPlayerColliderName_ = "player";
 
-const Vector2 ClothGate::kClothScale_ = { 3.0f,4.0f };
+const Vector2 ClothGate::kClothScale_ = { 4.0f,3.0f };
 
 const Vector2 ClothGate::kClothDiv_ = { 8.0f,8.0f };
 
@@ -51,18 +51,19 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 0.21f;
+	const float kClothVelocityLimit = 0.09f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 4;
 	cloth_->SetRelaxation(kClothRelaxation);
 
 	// プレイヤーの衝突判定データ
-	playerCollider_.position_ = {0.0f,0.0f,0.0f};
+	playerCollider_.origin_ = {0.0f,0.0f,0.0f};
+	playerCollider_.diff_ = { 0.0f,0.0f,-1.0f };
 	const float playerColliderRadius = 2.0f;
 	playerCollider_.radius_ = playerColliderRadius;
 	// 登録
-	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexSphere);
+	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
 }
 
@@ -93,12 +94,12 @@ void ClothGate::ClothUpdate()
 	std::mt19937 randomEngine(seedGenerator());
 
 	// 風力最大値
-	const float kWindPowerMin = -10.0f;
-	const float kWindPowerMax = 10.0f;
+	const float kWindPowerMin = -5.0f;
+	const float kWindPowerMax = 5.0f;
 	std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
 
 	// 風力
-	const Vector3 wind = { distribution(randomEngine), 0.0f, distribution(randomEngine) };
+	const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
 
 	//風
 	cloth_->SetWind(wind);
@@ -127,7 +128,7 @@ void ClothGate::ClothUpdate()
 
 	// 球
 	// プレイヤーの情報をいれる
-	playerCollider_.position_ = player_->GetWorldTransformAdress()->GetWorldPosition();
+	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
 	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 
