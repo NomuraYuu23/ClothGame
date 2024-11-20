@@ -47,18 +47,23 @@ public: // メンバ関数
 	/// </summary>
 	void ImGuiDraw() override;
 
-public: // メンバ関数
+	/// <summary>
+	/// 布リセット
+	/// </summary>
+	void ClothReset();
+
+private: // メンバ関数
+
+	/// <summary>
+	/// 布初期化
+	/// </summary>
+	void ClothInitialize();
 
 	/// <summary>
 	/// 布更新
 	/// </summary>
 	void ClothUpdate();
 
-	/// <summary>
-	/// 布リセット
-	/// </summary>
-	void ClothReset();
-	
 public: // アクセッサ
 
 	/// <summary>

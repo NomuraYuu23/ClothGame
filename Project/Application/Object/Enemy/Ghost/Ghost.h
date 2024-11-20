@@ -2,10 +2,24 @@
 #include "../BaseEnemy.h"
 #include "Animation/GhostAnimation.h"
 #include "State/System/GhostStateSystem.h"
+#include "../../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
 class Ghost :
     public BaseEnemy
 {
+
+public: // メンバ関数
+
+    // 自分の衝突判定データの名前
+    static const std::string kMyColliderName_;
+    // 大きさ
+    static const Vector2 kClothScale_;
+    // 分割数
+    static const Vector2 kClothDiv_;
+    // ワールド座標からの固定部分
+    static const Vector3 kBaseFixed_;
+    // DirectX
+    static DirectXCommon* dxCommon_;
 
 public: // メンバ関数
 
@@ -54,6 +68,23 @@ public: // メンバ関数
     /// <param name="collisionData"></param>
     void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) override;
 
+    /// <summary>
+    /// 布リセット
+    /// </summary>
+    void ClothReset();
+
+private: // メンバ関数
+
+    /// <summary>
+    /// 布初期化
+    /// </summary>
+    void ClothInitialize();
+
+    /// <summary>
+    /// 布更新
+    /// </summary>
+    void ClothUpdate();
+
 private: // メンバ変数
 
     // ステートシステム
@@ -61,6 +92,12 @@ private: // メンバ変数
 
     // アニメーション
    std::unique_ptr<GhostAnimation> ghostAnimation_;
+
+   // 布
+   std::unique_ptr<ClothGPU> cloth_;
+
+   // 自分の衝突判定データ
+   ClothGPUCollision::Sphere collider_;
 
 };
 

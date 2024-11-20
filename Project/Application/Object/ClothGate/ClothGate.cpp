@@ -23,44 +23,7 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	material_->SetEnableLighting(BlinnPhongReflection);
 
 	// 布
-	cloth_ = std::make_unique<ClothGPU>();
-	// 初期化
-	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Model/ClothGate/Cloth.png");
-
-	// 布の計算データ
-	// 質量
-	const float kClothMass = 1.0f;
-	cloth_->SetMass(kClothMass);
-	// 速度抵抗
-	const float kClothSpeedResistance = 0.02f;
-	cloth_->SetSpeedResistance(kClothSpeedResistance);
-	// 剛性。バネ定数k
-	const float kClothStiffness = 100.0f;
-	cloth_->SetStiffness(kClothStiffness);
-	// 抵抗
-	const float kClothStructural = 100.0f;
-	cloth_->SetStructuralStretch(100.0f);
-	cloth_->SetStructuralShrink(100.0f);
-	const float kClothShear = 70.0f;
-	cloth_->SetShearStretch(kClothShear);
-	cloth_->SetShearShrink(kClothShear);
-	const float kClothBending = 20.0f;
-	cloth_->SetBendingStretch(kClothBending);
-	cloth_->SetBendingShrink(kClothBending);
-	// 速度制限
-	const float kClothVelocityLimit = 0.09f;
-	cloth_->SetVelocityLimit(kClothVelocityLimit);
-	// 更新回数
-	const uint32_t kClothRelaxation = 6;
-	cloth_->SetRelaxation(kClothRelaxation);
-
-	// プレイヤーの衝突判定データ
-	playerCollider_.origin_ = {0.0f,0.0f,0.0f};
-	playerCollider_.diff_ = { 0.0f,0.0f, 1.0f };
-	const float playerColliderRadius = 2.0f;
-	playerCollider_.radius_ = playerColliderRadius;
-	// 登録
-	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+	ClothInitialize();
 
 }
 
@@ -80,6 +43,70 @@ void ClothGate::Draw(BaseCamera& camera)
 
 	// 布
 	cloth_->Draw(dxCommon_->GetCommadList(), &camera);
+
+}
+
+void ClothGate::ClothReset()
+{
+
+	// 位置をリセット
+	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
+	for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
+		for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
+			// 重み
+			cloth_->SetWeight(y, x, true);
+			// 位置
+			resetPosition = worldTransform_.GetWorldPosition();
+			resetPosition.x += Ease::Easing(Ease::EaseName::Lerp, kBaseLeftFixed_.x, kBaseRightFixed_.x, static_cast<float>(x) / kClothDiv_.x);
+			resetPosition.y += Ease::Easing(Ease::EaseName::Lerp, kBaseRightFixed_.y, 0.0f, static_cast<float>(y) / kClothDiv_.y);
+			cloth_->SetPosition(y, x, resetPosition);
+		}
+	}
+
+}
+
+void ClothGate::ClothInitialize()
+{
+
+	// 布
+	cloth_ = std::make_unique<ClothGPU>();
+	// 初期化
+	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Model/ClothGate/Cloth.png");
+
+	// 布の計算データ
+	// 質量
+	const float kClothMass = 1.0f;
+	cloth_->SetMass(kClothMass);
+	// 速度抵抗
+	const float kClothSpeedResistance = 0.02f;
+	cloth_->SetSpeedResistance(kClothSpeedResistance);
+	// 剛性。バネ定数k
+	const float kClothStiffness = 100.0f;
+	cloth_->SetStiffness(kClothStiffness);
+	// 抵抗
+	const float kClothStructural = 100.0f;
+	cloth_->SetStructuralStretch(kClothStructural);
+	cloth_->SetStructuralShrink(kClothStructural);
+	const float kClothShear = 70.0f;
+	cloth_->SetShearStretch(kClothShear);
+	cloth_->SetShearShrink(kClothShear);
+	const float kClothBending = 20.0f;
+	cloth_->SetBendingStretch(kClothBending);
+	cloth_->SetBendingShrink(kClothBending);
+	// 速度制限
+	const float kClothVelocityLimit = 0.09f;
+	cloth_->SetVelocityLimit(kClothVelocityLimit);
+	// 更新回数
+	const uint32_t kClothRelaxation = 6;
+	cloth_->SetRelaxation(kClothRelaxation);
+
+	// プレイヤーの衝突判定データ
+	playerCollider_.origin_ = { 0.0f,0.0f,0.0f };
+	playerCollider_.diff_ = { 0.0f,0.0f, 1.0f };
+	const float playerColliderRadius = 2.0f;
+	playerCollider_.radius_ = playerColliderRadius;
+	// 登録
+	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
 }
 
@@ -105,7 +132,7 @@ void ClothGate::ClothUpdate()
 	cloth_->Update(dxCommon_->GetCommadList());
 
 	// 固定部分
-	
+
 	// 右質点位置
 	const uint32_t kRightX = static_cast<uint32_t>(kClothDiv_.x);
 
@@ -124,25 +151,6 @@ void ClothGate::ClothUpdate()
 	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
 	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
-
-}
-
-void ClothGate::ClothReset()
-{
-
-	// 位置をリセット
-	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
-	for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
-		for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
-			// 重み
-			cloth_->SetWeight(y, x, true);
-			// 位置
-			resetPosition = worldTransform_.GetWorldPosition();
-			resetPosition.x += Ease::Easing(Ease::EaseName::Lerp, kBaseLeftFixed_.x, kBaseRightFixed_.x, static_cast<float>(x) / kClothDiv_.x);
-			resetPosition.y += Ease::Easing(Ease::EaseName::Lerp, kBaseRightFixed_.y, 0.0f, static_cast<float>(y) / kClothDiv_.y);
-			cloth_->SetPosition(y, x, resetPosition);
-		}
-	}
 
 }
 
