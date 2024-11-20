@@ -40,7 +40,7 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		gClothMassPoints[index].prePosition_ = massPoint.position_;
 
 		// 空気抵抗
-		float32_t3 airResistance = (
+		float32_t3 airResistance = float32_t3(
 			gClothCalcData.speedResistance_ * -dx.x,
 			gClothCalcData.speedResistance_ * -dx.y,
 			gClothCalcData.speedResistance_ * -dx.z);

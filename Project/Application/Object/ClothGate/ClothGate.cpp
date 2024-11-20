@@ -1,12 +1,17 @@
 #include "ClothGate.h"
 #include "../Player/Player.h"
 #include "../../../Engine/Math/RandomEngine.h"
+#include "../../../Engine/Math/Ease.h"
 
 const std::string ClothGate::kPlayerColliderName_ = "player";
 
 const Vector2 ClothGate::kClothScale_ = { 4.0f,3.0f };
 
 const Vector2 ClothGate::kClothDiv_ = { 8.0f,8.0f };
+
+const Vector3 ClothGate::kBaseLeftFixed_ = { -2.0f, 3.0f, 0.0f };
+
+const Vector3 ClothGate::kBaseRightFixed_ = { 2.0f, 3.0f, 0.0f };
 
 DirectXCommon* ClothGate::dxCommon_ = DirectXCommon::GetInstance();
 
@@ -22,20 +27,12 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	// 初期化
 	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Sprite/Cloth/BlueCloth.png");
 
-	// 位置をリセット
-	for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
-		for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
-			cloth_->SetWeight(y, x, true);
-			cloth_->SetPosition(y, x, worldTransform_.GetWorldPosition());
-		}
-	}
-
 	// 布の計算データ
 	// 質量
 	const float kClothMass = 1.0f;
 	cloth_->SetMass(kClothMass);
 	// 速度抵抗
-	const float kClothSpeedResistance = 0.9f;
+	const float kClothSpeedResistance = 0.02f;
 	cloth_->SetSpeedResistance(kClothSpeedResistance);
 	// 剛性。バネ定数k
 	const float kClothStiffness = 100.0f;
@@ -51,7 +48,7 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 0.02f;
+	const float kClothVelocityLimit = 0.09f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 6;
@@ -89,20 +86,20 @@ void ClothGate::Draw(BaseCamera& camera)
 void ClothGate::ClothUpdate()
 {
 
-	//// 乱数
-	//std::random_device seedGenerator;
-	//std::mt19937 randomEngine(seedGenerator());
+	// 乱数
+	std::random_device seedGenerator;
+	std::mt19937 randomEngine(seedGenerator());
 
-	//// 風力最大値
-	//const float kWindPowerMin = -5.0f;
-	//const float kWindPowerMax = 5.0f;
-	//std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
+	// 風力最大値
+	const float kWindPowerMin = -5.0f;
+	const float kWindPowerMax = 5.0f;
+	std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
 
-	//// 風力
-	//const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
+	// 風力
+	const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
 
-	////風
-	//cloth_->SetWind(wind);
+	//風
+	cloth_->SetWind(wind);
 
 	// 布更新
 	cloth_->Update(dxCommon_->GetCommadList());
@@ -112,13 +109,9 @@ void ClothGate::ClothUpdate()
 	// 右質点位置
 	const uint32_t kRightX = static_cast<uint32_t>(kClothDiv_.x);
 
-	// ワールド座標からの移動距離
-	const Vector3 kBaseLeftMove = { -2.0f, 3.0f, 0.0f };
-	const Vector3 kBaseRightMove = { 2.0f, 3.0f, 0.0f };
-
 	// 座標
-	const Vector3 kLeftTopPosition = worldTransform_.GetWorldPosition() + kBaseLeftMove;
-	const Vector3 kRightTopPosition = worldTransform_.GetWorldPosition() + kBaseRightMove;
+	const Vector3 kLeftTopPosition = worldTransform_.GetWorldPosition() + kBaseLeftFixed_;
+	const Vector3 kRightTopPosition = worldTransform_.GetWorldPosition() + kBaseRightFixed_;
 
 	// 設定
 	cloth_->SetWeight(0, 0, false);
@@ -131,6 +124,25 @@ void ClothGate::ClothUpdate()
 	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
 	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+
+}
+
+void ClothGate::ClothReset()
+{
+
+	// 位置をリセット
+	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
+	for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
+		for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
+			// 重み
+			cloth_->SetWeight(y, x, true);
+			// 位置
+			resetPosition = worldTransform_.GetWorldPosition();
+			resetPosition.x += Ease::Easing(Ease::EaseName::Lerp, kBaseLeftFixed_.x, kBaseRightFixed_.x, static_cast<float>(x) / kClothDiv_.x);
+			resetPosition.y += Ease::Easing(Ease::EaseName::Lerp, kBaseRightFixed_.y, 0.0f, static_cast<float>(y) / kClothDiv_.y);
+			cloth_->SetPosition(y, x, resetPosition);
+		}
+	}
 
 }
 

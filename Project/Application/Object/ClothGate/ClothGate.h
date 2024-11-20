@@ -17,6 +17,10 @@ public: // 静的メンバ変数
 	static const Vector2 kClothScale_;
 	// 分割数
 	static const Vector2 kClothDiv_;
+	// ワールド座標からの左固定部分
+	static const Vector3 kBaseLeftFixed_;
+	// ワールド座標からの右固定部分
+	static const Vector3 kBaseRightFixed_;
 	// DirectX
 	static DirectXCommon* dxCommon_;
 
@@ -49,6 +53,11 @@ public: // メンバ関数
 	/// 布更新
 	/// </summary>
 	void ClothUpdate();
+
+	/// <summary>
+	/// 布リセット
+	/// </summary>
+	void ClothReset();
 	
 public: // アクセッサ
 

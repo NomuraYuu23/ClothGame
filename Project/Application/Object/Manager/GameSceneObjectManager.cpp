@@ -1,5 +1,6 @@
 #include "GameSceneObjectManager.h"
 #include "../Factory/ObjectFactory.h"
+#include "../ClothGate/ClothGate.h"
 
 void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager* levelDataManager)
 {
@@ -53,6 +54,7 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 			// パターン回数に応じて移動
 			object->GetWorldTransformAdress()->transform_.translate.z += currentGenerationCount * kPatternSize + kPatternStartPosition;
 			object->GetWorldTransformAdress()->UpdateMatrix();
+			static_cast<ClothGate*>(object.get())->ClothReset();
 
 			// listへ
 			objects_.emplace_back(object->GetName(), std::move(object));
