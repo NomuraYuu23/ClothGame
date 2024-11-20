@@ -391,11 +391,26 @@
     <Filter Include="Application\Object\ClothGate">
       <UniqueIdentifier>{3d691f24-95dc-4b44-a40c-330a92c0b4de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Generator">
-      <UniqueIdentifier>{3468c333-5a93-4918-8893-997e406f56ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Level">
       <UniqueIdentifier>{167280ef-abed-4faa-82e2-49ff4357ffb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Enemy">
+      <UniqueIdentifier>{4db8b758-9923-4a9a-8a05-569ad1b11765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Enemy\Ghost">
+      <UniqueIdentifier>{30406f08-d111-44b4-af7a-8dd27b91304f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\BaseCharacter">
+      <UniqueIdentifier>{99c05f84-040d-4fc2-88f8-fd0977af86e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Enemy\Ghost\Animation">
+      <UniqueIdentifier>{8fa08d4f-9f10-41d9-bbf5-da8bba93945f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Enemy\Ghost\State">
+      <UniqueIdentifier>{0555b109-3a0d-4975-aef2-5735ae6ab108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Object\Enemy\Ghost\State\System">
+      <UniqueIdentifier>{dc8c5704-f3f9-4141-90b0-76ea2ca312e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -858,6 +873,21 @@
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp">
       <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\BaseEnemy.cpp">
+      <Filter>Application\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\Ghost.cpp">
+      <Filter>Application\Object\Enemy\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.cpp">
+      <Filter>Application\Object\Enemy\Ghost\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\BaseCharacter\BaseCharacterAnimation.cpp">
+      <Filter>Application\Object\BaseCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1457,6 +1487,21 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h">
       <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\BaseEnemy.h">
+      <Filter>Application\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\Ghost.h">
+      <Filter>Application\Object\Enemy\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.h">
+      <Filter>Application\Object\Enemy\Ghost\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\BaseCharacter\BaseCharacterAnimation.h">
+      <Filter>Application\Object\BaseCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

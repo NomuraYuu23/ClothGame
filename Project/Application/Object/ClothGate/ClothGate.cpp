@@ -25,7 +25,7 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 	// 布
 	cloth_ = std::make_unique<ClothGPU>();
 	// 初期化
-	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Sprite/Cloth/BlueCloth.png");
+	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Model/ClothGate/Cloth.png");
 
 	// 布の計算データ
 	// 質量
@@ -148,7 +148,5 @@ void ClothGate::ClothReset()
 
 void ClothGate::ImGuiDraw()
 {
-
-	cloth_->ImGuiDraw("clothGPU");
 
 }

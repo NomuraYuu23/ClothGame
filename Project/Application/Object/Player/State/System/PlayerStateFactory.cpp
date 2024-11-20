@@ -2,12 +2,6 @@
 #include "../PlayerStateRoot.h"
 #include "../PlayerStateJump.h"
 
-PlayerStateFactory* PlayerStateFactory::GetInstance()
-{
-	static PlayerStateFactory instance;
-	return &instance;
-}
-
 IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 {
 	// 次のステートを生成

@@ -57,9 +57,6 @@ private: // メンバ変数
 	// 次のステート番号
 	uint32_t nextStateNo_;
 
-	// ステートファクトリー
-	PlayerStateFactory* playerStateFactory_;
-
 	// コマンド
 	PlayerCommand* playerCommand_;
 

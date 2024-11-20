@@ -64,7 +64,6 @@ private: // メンバ関数
 	/// </summary>
 	void ColliderUpdate();
 
-
 public: // アクセッサ
 
     /// <summary>

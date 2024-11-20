@@ -3,11 +3,8 @@
 void PlayerStateSystem::Initialize(Player*player)
 {
 
-	// ステートファクトリー
-	playerStateFactory_ = PlayerStateFactory::GetInstance();
-
 	// ステート
-	playerState_.reset(playerStateFactory_->CreatePlayerState(PlayerStateIndex::kPlayerStateIndexRoot)); // 最初のステート
+	playerState_.reset(PlayerStateFactory::CreatePlayerState(PlayerStateIndex::kPlayerStateIndexRoot)); // 最初のステート
 	playerState_->Initialize();
 
 	// ステート番号
@@ -48,7 +45,7 @@ void PlayerStateSystem::Update()
 	// ステートが変わったか
 	if (prevStateNo_ != currentStateNo_) {
 		//ステート変更（初期化）
-		playerState_.reset(playerStateFactory_->CreatePlayerState(currentStateNo_));
+		playerState_.reset(PlayerStateFactory::CreatePlayerState(currentStateNo_));
 		playerState_->Initialize();
 	}
 

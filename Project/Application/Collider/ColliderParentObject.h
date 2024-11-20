@@ -5,8 +5,9 @@
 class ParentNullObject;
 class Player;
 class Ground;
+class BaseEnemy;
 
-using ColliderParentObject = std::variant<ParentNullObject*, Player*, Ground*>;
+using ColliderParentObject = std::variant<ParentNullObject*, Player*, Ground*, BaseEnemy*>;
 
 // 親がないもの用
 class ParentNullObject {

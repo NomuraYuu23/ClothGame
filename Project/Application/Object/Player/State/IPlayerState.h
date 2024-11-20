@@ -31,7 +31,7 @@ protected:
 	// プレイヤーステートシステム
 	static PlayerStateSystem* playerStateSystem_;
 
-	//インスタンス
+	// 入力
 	static Input* input_;
 
 	// 自動移動速度
@@ -77,7 +77,7 @@ public: // アクセッサ
 	/// <summary>
 	/// プレイヤーステートシステム設定
 	/// </summary>
-	/// <param name="player"></param>
+	/// <param name="playerStateSystem"></param>
 	void SetPlayerStateSystem(PlayerStateSystem* playerStateSystem) { playerStateSystem_ = playerStateSystem; }
 
 protected: // メンバ関数
