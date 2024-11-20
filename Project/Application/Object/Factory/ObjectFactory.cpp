@@ -2,6 +2,9 @@
 #include "../../../Engine/Object/MeshObject.h"
 #include "ObjectCreate.h"
 
+#include "../ClothGate/ClothGate.h"
+#include "../Enemy/Ghost/Ghost.h"
+
 // オブジェクト作成でそれぞれのタイプを作成するための関数群
 // 返り値 無し
 // 引数1 オブジェクト
@@ -62,5 +65,44 @@ IObject* ObjectFactory::CreateObject(LevelData::ObjectData& objectData)
 	}
 
     return object;
+
+}
+
+IObject* ObjectFactory::CreateObjectPattern(LevelData::ObjectData& objectData, uint32_t currentGenerationCount)
+{
+
+	IObject* object = nullptr;
+
+	// パターンの始まる距離
+	const float kPatternStartPosition = -400.0f;
+	// パターン区間の大きさ
+	const float kPatternSize = 100.0f;
+
+	// 確認のためメッシュオブジェクトのみ
+	// クラスの名前など取得してオブジェクトを作る
+	if (std::holds_alternative<LevelData::MeshData>(objectData)) {
+
+		LevelData::MeshData data = std::get<LevelData::MeshData>(objectData);
+
+		for (uint32_t i = 0; i < kCreateObjectIndexOfCount; ++i) {
+			if (data.className == createObjectFunctions_[i].first) {
+				object = createObjectFunctions_[i].second(objectData);
+				// パターン回数に応じて移動
+				object->GetWorldTransformAdress()->transform_.translate.z += currentGenerationCount * kPatternSize + kPatternStartPosition;
+				object->GetWorldTransformAdress()->UpdateMatrix();
+				if (i == kCreateObjectIndexClothGate) {
+					static_cast<ClothGate*>(object)->ClothReset();
+				}
+				else if (i == kCreateObjectIndexGhost) {
+					static_cast<Ghost*>(object)->ClothReset();
+				}
+
+			}
+
+		}
+
+	}
+
+	return object;
 
 }

@@ -12,9 +12,9 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	BaseObjectManager::Initialize(levelIndex, levelDataManager);
 
 
-	//for (uint32_t i = 0; i < 8; i++) {
-	//	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, i);
-	//}
+	for (uint32_t i = 0; i < 8; i++) {
+		GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, i);
+	}
 
 }
 
@@ -33,10 +33,6 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 
 	// レベルデータの取得
 	LevelData* levelData = levelDataManager_->GetLevelDatas(levelIndex);
-	// パターンの始まる距離
-	const float kPatternStartPosition = -400.0f;
-	// パターン区間の大きさ
-	const float kPatternSize = 100.0f;
 
 	// レベルデータのオブジェクトを走査
 	for (std::vector<LevelData::ObjectData>::iterator it = levelData->objectsData_.begin();
@@ -47,15 +43,9 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 
 		// 型にあわせてInitialize
 		std::unique_ptr<IObject> object;
-		object.reset(objectFactory_->CreateObject(objectData));
+		object.reset(static_cast<ObjectFactory*>(objectFactory_.get())->CreateObjectPattern(objectData, currentGenerationCount));
 
 		if (object) {
-
-			// パターン回数に応じて移動
-			object->GetWorldTransformAdress()->transform_.translate.z += currentGenerationCount * kPatternSize + kPatternStartPosition;
-			object->GetWorldTransformAdress()->UpdateMatrix();
-			static_cast<ClothGate*>(object.get())->ClothReset();
-
 			// listへ
 			objects_.emplace_back(object->GetName(), std::move(object));
 		}

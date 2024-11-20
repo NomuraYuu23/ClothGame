@@ -123,7 +123,7 @@
         },
         {
             "type": "MESH",
-            "name": "ClothGate.007",
+            "name": "ClothGate.005",
             "transform": {
                 "translation": [
                     1.0,
@@ -144,6 +144,43 @@
             "fileName": "ClothGate.obj",
             "directoryPath": "Resources/Model/ClothGate",
             "className": "ClothGate"
+        },
+        {
+            "type": "MESH",
+            "name": "Ghost.000",
+            "transform": {
+                "translation": [
+                    0.0,
+                    56.0,
+                    3.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Ghost.obj",
+            "directoryPath": "Resources/Model/Enemy/Ghost",
+            "className": "Ghost",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
         }
     ]
 }

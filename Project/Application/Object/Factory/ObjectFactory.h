@@ -35,6 +35,14 @@ public: //メンバ関数
 	IObject* CreateObject(LevelData::ObjectData& objectData) override;
 
 	/// <summary>
+	/// オブジェクト作成Patternバージョン
+	/// </summary>
+	/// <param name="objectData">オブジェクトデータ/param>
+	/// <param name="currentGenerationCount">生成回数</param>
+	/// <returns>オブジェクト</returns>
+	IObject* CreateObjectPattern(LevelData::ObjectData& objectData, uint32_t currentGenerationCount);
+
+	/// <summary>
 	/// オブジェクトマネージャー設定
 	/// </summary>
 	/// <param name="objectManager"></param>

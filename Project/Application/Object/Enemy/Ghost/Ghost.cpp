@@ -37,7 +37,6 @@ void Ghost::Initialize(LevelData::MeshData* data)
 
 	// 布
 	ClothInitialize();
-	ClothReset();
 
 }
 
@@ -88,8 +87,6 @@ void Ghost::Draw(BaseCamera& camera)
 
 void Ghost::ImGuiDraw()
 {
-
-	cloth_->ImGuiDraw("a");
 
 }
 
@@ -169,19 +166,19 @@ void Ghost::ClothUpdate()
 {
 
 	// 乱数
-	//std::random_device seedGenerator;
-	//std::mt19937 randomEngine(seedGenerator());
+	std::random_device seedGenerator;
+	std::mt19937 randomEngine(seedGenerator());
 
-	//// 風力最大値
-	//const float kWindPowerMin = -5.0f;
-	//const float kWindPowerMax = 5.0f;
-	//std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
+	// 風力最大値
+	const float kWindPowerMin = -2.0f;
+	const float kWindPowerMax = 2.0f;
+	std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
 
-	//// 風力
-	//const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
+	// 風力
+	const Vector3 wind = { distribution(randomEngine) * 10.0f, 0.0f, distribution(randomEngine) * 10.0f };
 
-	////風
-	//cloth_->SetWind(wind);
+	//風
+	cloth_->SetWind(wind);
 
 	// 布更新
 	cloth_->Update(dxCommon_->GetCommadList());
