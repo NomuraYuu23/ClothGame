@@ -173,7 +173,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\Ghost.cpp" />
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.cpp" />
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\IGhostState.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.cpp" />
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp" />
     <ClCompile Include="Application\Object\Ground\Ground.cpp" />
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
@@ -337,7 +340,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Enemy\BaseEnemy.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\Ghost.h" />
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.h" />
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\IGhostState.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.h" />
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.h" />
     <ClInclude Include="Application\Object\Factory\ObjectCreate.h" />
     <ClInclude Include="Application\Object\Ground\Ground.h" />
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />

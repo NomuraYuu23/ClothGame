@@ -1,5 +1,7 @@
 #include "GhostStateFactory.h"
 
+#include "../GhostStateRoot.h"
+
 IGhostState* GhostStateFactory::CreateGhostState(uint32_t ghostStateName)
 {
 	// 次のステートを生成
@@ -8,7 +10,7 @@ IGhostState* GhostStateFactory::CreateGhostState(uint32_t ghostStateName)
 	switch (ghostStateName)
 	{
 	case kGhostStateIndexRoot: // 通常
-		//newGhostState = new PlayerStateRoot();
+		newGhostState = new GhostStateRoot();
 		break;
 	case kGhostStateIndexOfCount: // 使用不可
 	default:

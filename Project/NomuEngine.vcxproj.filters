@@ -887,7 +887,16 @@
       <Filter>Application\Object\BaseCharacter</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Object\Enemy\Ghost\State\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\IGhostState.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1500,8 +1509,17 @@
     <ClInclude Include="Application\Object\BaseCharacter\BaseCharacterAnimation.h">
       <Filter>Application\Object\BaseCharacter</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\IGhostState.h">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClInclude>
     <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Object\Enemy\Ghost\State\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.h">
+      <Filter>Application\Object\Enemy\Ghost\State\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.h">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

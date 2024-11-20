@@ -15,6 +15,10 @@ void Ghost::Initialize(LevelData::MeshData* data)
 	// エネミーの共通初期化
 	BaseEnemy::Initialize(data);
 
+	// ステートの初期化
+	ghostStateSystem_ = std::make_unique<GhostStateSystem>();
+	ghostStateSystem_->Initialize(this);
+
 	// アニメーションの初期化
 	//ghostAnimation_ = std::make_unique<GhostAnimation>();
 	//ghostAnimation_->Initialize(model_);
@@ -29,7 +33,7 @@ void Ghost::Update()
 	MeshObject::Update();
 
 	// ステートの更新
-	//playerStateSystem_->Update();
+	ghostStateSystem_->Update();
 
 	// アニメーション更新
 	//ghostAnimation_->Update(playerStateSystem_->GetPlayerState()->GetPlaryerMotionNo());

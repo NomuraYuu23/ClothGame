@@ -37,6 +37,13 @@ public: //メンバ関数
 	/// <returns>オブジェクト</returns>
 	static IObject* CreateObjectClothGate(LevelData::ObjectData& objectData);
 
+	/// <summary>
+	/// ゴースト
+	/// </summary>
+	/// <param name="objectData">オブジェクトデータ</param>
+	/// <returns>オブジェクト</returns>
+	static IObject* CreateObjectGhost(LevelData::ObjectData& objectData);
+
 private: // メンバ変数
 
 	// プレイヤー

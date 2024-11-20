@@ -1,6 +1,8 @@
 #pragma once
 #include "../BaseEnemy.h"
 #include "Animation/GhostAnimation.h"
+#include "State/System/GhostStateSystem.h"
+
 class Ghost :
     public BaseEnemy
 {
@@ -55,7 +57,7 @@ public: // メンバ関数
 private: // メンバ変数
 
     // ステートシステム
-    //std::unique_ptr<PlayerStateSystem> playerStateSystem_;
+    std::unique_ptr<GhostStateSystem> ghostStateSystem_;
 
     // アニメーション
    std::unique_ptr<GhostAnimation> ghostAnimation_;

@@ -4,6 +4,7 @@
 #include "../Skydome/Skydome.h"
 #include "../Player/Player.h"
 #include "../ClothGate/ClothGate.h"
+#include "../Enemy/Ghost/Ghost.h"
 
 // プレイヤー
 Player* ObjectCreate::player_ = nullptr;
@@ -47,5 +48,14 @@ IObject* ObjectCreate::CreateObjectClothGate(LevelData::ObjectData& objectData)
 	// 初期化
 	static_cast<ClothGate*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	static_cast<ClothGate*>(object)->SetPlayer(player_);
+	return object;
+}
+
+IObject* ObjectCreate::CreateObjectGhost(LevelData::ObjectData& objectData)
+{
+	// インスタンス生成
+	IObject* object = new Ghost();
+	// 初期化
+	static_cast<Ghost*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	return object;
 }

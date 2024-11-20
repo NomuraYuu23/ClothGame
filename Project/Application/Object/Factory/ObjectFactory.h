@@ -14,6 +14,7 @@ public: // サブクラス,定数
 		kCreateObjectIndexGround, // 地面
 		kCreateObjectIndexPlayer, // プレイヤー
 		kCreateObjectIndexClothGate, // 布ゲート
+		kCreateObjectIndexGhost, // ゴースト
 		kCreateObjectIndexOfCount, // 数数える用
 	};
 

@@ -101,7 +101,7 @@
         },
         {
             "type": "MESH",
-            "name": "円錐",
+            "name": "球",
             "transform": {
                 "translation": [
                     0.0,
@@ -110,8 +110,8 @@
                 ],
                 "rotation": [
                     -0.0,
-                    -0.0,
-                    -1.5707961320877075
+                    0.0,
+                    0.0
                 ],
                 "scaling": [
                     1.0,
@@ -119,9 +119,22 @@
                     1.0
                 ]
             },
-            "fileName": "ClothGate.obj",
-            "directoryPath": "Resources/Model/ClothGate",
-            "className": "ClothGate"
+            "fileName": "Ghost.obj",
+            "directoryPath": "Resources/Model/Enemy/Ghost",
+            "className": "Ghost",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
         }
     ]
 }
