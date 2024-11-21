@@ -15,8 +15,16 @@ public: // メンバ関数
     static const Vector2 kClothScale_;
     // 分割数
     static const Vector2 kClothDiv_;
-    // ワールド座標からの固定部分
-    static const Vector3 kBaseFixed_;
+    // ワールド座標からの固定部分上
+    static const Vector3 kBaseFixedTop_;
+    // ワールド座標からの固定部分左
+    static const Vector3 kBaseFixedLeft_;
+    // ワールド座標からの固定部分右
+    static const Vector3 kBaseFixedRight_;
+    // ワールド座標からの固定部分前
+    static const Vector3 kBaseFixedFront_;
+    // ワールド座標からの固定部分後ろ
+    static const Vector3 kBaseFixedBack_;
     // DirectX
     static DirectXCommon* dxCommon_;
 

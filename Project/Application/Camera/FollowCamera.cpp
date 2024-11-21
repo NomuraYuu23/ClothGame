@@ -17,7 +17,11 @@ void FollowCamera::Initialize() {
 	// オフセットの長さ
 	offsetLength_ = -50.0f;
 	// オフセットの高さ
-	offsetHeight_ = 3.0f;
+	offsetHeight_ = 8.0f;
+
+	// 回転固定
+	const float rotateX = 0.1f;
+	transform_.rotate.x = rotateX;
 
 	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
 	const char* groupName = "FollowCamera";
@@ -40,7 +44,7 @@ void FollowCamera::Update(float elapsedTime) {
 	//追従対象がいれば
 	if (target_) {
 		// 追従座標の補間
-		const Vector3 kTargetPosition = { 0.0f, 5.0f, target_->worldMatrix_.m[3][2] };
+		const Vector3 kTargetPosition = { 0.0f, 0.0f, target_->worldMatrix_.m[3][2] };
 
 		// オフセット
 		Vector3 offset = OffsetCalc();

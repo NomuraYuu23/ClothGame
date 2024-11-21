@@ -54,54 +54,6 @@
             "name": "ClothGate.002",
             "transform": {
                 "translation": [
-                    -1.0,
-                    40.0,
-                    3.0
-                ],
-                "rotation": [
-                    -0.0,
-                    -0.0,
-                    -1.5707961320877075
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "ClothGate.obj",
-            "directoryPath": "Resources/Model/ClothGate",
-            "className": "ClothGate"
-        },
-        {
-            "type": "MESH",
-            "name": "ClothGate.003",
-            "transform": {
-                "translation": [
-                    5.0,
-                    70.0,
-                    3.0
-                ],
-                "rotation": [
-                    -0.0,
-                    -0.0,
-                    -1.5707961320877075
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "ClothGate.obj",
-            "directoryPath": "Resources/Model/ClothGate",
-            "className": "ClothGate"
-        },
-        {
-            "type": "MESH",
-            "name": "ClothGate.004",
-            "transform": {
-                "translation": [
                     3.0,
                     80.0,
                     3.0
@@ -123,7 +75,7 @@
         },
         {
             "type": "MESH",
-            "name": "ClothGate.005",
+            "name": "ClothGate.003",
             "transform": {
                 "translation": [
                     1.0,

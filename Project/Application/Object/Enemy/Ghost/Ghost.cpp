@@ -8,8 +8,16 @@ const std::string Ghost::kMyColliderName_ = "ghost";
 const Vector2 Ghost::kClothScale_ = { 3.0f, 3.0f };;
 // 分割数
 const Vector2 Ghost::kClothDiv_ = { 16.0f,16.0f };
-// ワールド座標からの固定部分
-const Vector3 Ghost::kBaseFixed_ = { 0.0f,1.7f,0.0f };
+// ワールド座標からの固定部分上
+const Vector3 Ghost::kBaseFixedTop_ = { 0.0f,1.7f,0.0f };
+// ワールド座標からの固定部分左
+const Vector3 Ghost::kBaseFixedLeft_ = { -0.7f,1.0f,0.0f };
+// ワールド座標からの固定部分右
+const Vector3 Ghost::kBaseFixedRight_ = { 0.7f,1.0f,0.0f };
+// ワールド座標からの固定部分前
+const Vector3 Ghost::kBaseFixedFront_ = { 0.0f,1.0f,-0.7f };
+// ワールド座標からの固定部分後ろ
+const Vector3 Ghost::kBaseFixedBack_ = { 0.0f,1.0f,0.7f };
 // DirectX
 DirectXCommon* Ghost::dxCommon_ = DirectXCommon::GetInstance();
 
@@ -92,7 +100,7 @@ void Ghost::ClothReset()
 			// 重み
 			cloth_->SetWeight(y, x, true);
 			// 位置
-			resetPosition = worldTransform_.GetWorldPosition() + kBaseFixed_;
+			resetPosition = worldTransform_.GetWorldPosition() + kBaseFixedTop_;
 			resetPosition.x += Ease::Easing(Ease::EaseName::Lerp, -kClothScale_.x, kClothScale_.x, static_cast<float>(x) / kClothDiv_.x);
 			resetPosition.z += Ease::Easing(Ease::EaseName::Lerp, -kClothScale_.y, kClothScale_.y, static_cast<float>(y) / kClothDiv_.y);
 			cloth_->SetPosition(y, x, resetPosition);
@@ -140,7 +148,7 @@ void Ghost::ClothInitialize()
 	const float playerColliderRadius = 0.6f;
 	collider_.radius_ = playerColliderRadius;
 	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixed_.y - playerColliderRadius;
+	collider_.position_.y += kBaseFixedTop_.y - playerColliderRadius;
 	// 登録
 	cloth_->CollisionDataRegistration(kMyColliderName_, ClothGPUCollision::kCollisionTypeIndexSphere);
 
@@ -174,16 +182,30 @@ void Ghost::ClothUpdate()
 	const uint32_t kFixedY = static_cast<uint32_t>(kClothDiv_.y / 2.0f);
 
 	// 座標
-	const Vector3 kFixedPosition = worldTransform_.GetWorldPosition() + kBaseFixed_;
+	const Vector3 kFixedPosition = worldTransform_.GetWorldPosition() + kBaseFixedTop_;
+	// 固定点距離
+	const uint32_t kFixedPointDistance = 3;
 
 	// 設定
 	cloth_->SetWeight(kFixedY, kFixedX, false);
 	cloth_->SetPosition(kFixedY, kFixedX, kFixedPosition);
 
+	cloth_->SetWeight(kFixedY, kFixedX + kFixedPointDistance, false);
+	cloth_->SetPosition(kFixedY, kFixedX + kFixedPointDistance, worldTransform_.GetWorldPosition() + kBaseFixedRight_);
+
+	cloth_->SetWeight(kFixedY, kFixedX - kFixedPointDistance, false);
+	cloth_->SetPosition(kFixedY, kFixedX - kFixedPointDistance, worldTransform_.GetWorldPosition() + kBaseFixedLeft_);
+
+	cloth_->SetWeight(kFixedY + kFixedPointDistance, kFixedX, false);
+	cloth_->SetPosition(kFixedY + kFixedPointDistance, kFixedX, worldTransform_.GetWorldPosition() + kBaseFixedBack_);
+
+	cloth_->SetWeight(kFixedY - kFixedPointDistance, kFixedX, false);
+	cloth_->SetPosition(kFixedY - kFixedPointDistance, kFixedX, worldTransform_.GetWorldPosition() + kBaseFixedFront_);
+
 	// 球
 	// 情報をいれる
 	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixed_.y - collider_.radius_;
+	collider_.position_.y += kBaseFixedTop_.y - collider_.radius_;
 	ClothGPUCollision::CollisionDataMap colliderData = collider_;
 	cloth_->CollisionDataUpdate(kMyColliderName_, colliderData);
 

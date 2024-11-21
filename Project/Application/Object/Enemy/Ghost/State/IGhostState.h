@@ -10,6 +10,7 @@ class GhostStateSystem;
 //プレイヤーの状態名
 enum GhostStateIndex {
 	kGhostStateIndexRoot, // 通常
+	kGhostStateIndexSideMove, // 横移動
 	kGhostStateIndexOfCount // 数
 };
 
@@ -17,15 +18,6 @@ class IGhostState
 {
 
 protected:
-
-	// ゴーストの状態番号
-	static uint32_t ghostStateNo_;
-
-	// ゴースト
-	static Ghost* ghost_;
-
-	// ゴーストステートシステム
-	static GhostStateSystem* ghostStateSystem_;
 
 	// 入力
 	static Input* input_;
@@ -66,6 +58,17 @@ public: // アクセッサ
 	/// </summary>
 	/// <param name="ghostStateSystem"></param>
 	void SetGhostStateSystem(GhostStateSystem* ghostStateSystem) { ghostStateSystem_ = ghostStateSystem; }
+
+protected: // メンバ変数
+
+	// ゴーストの状態番号
+	uint32_t ghostStateNo_;
+
+	// ゴースト
+	Ghost* ghost_;
+
+	// ゴーストステートシステム
+	GhostStateSystem* ghostStateSystem_;
 
 };
 

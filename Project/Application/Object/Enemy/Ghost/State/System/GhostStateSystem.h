@@ -42,5 +42,8 @@ private: // メンバ変数
 	// 次のステート番号
 	uint32_t nextStateNo_;
 
+	// ゴースト
+	Ghost* ghost_;
+
 };
 
