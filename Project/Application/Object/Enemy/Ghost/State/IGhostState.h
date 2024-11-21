@@ -21,9 +21,6 @@ protected:
 	// ゴーストの状態番号
 	static uint32_t ghostStateNo_;
 
-	// ゴーストのモーション番号
-	static uint32_t ghostMotionNo_;
-
 	// ゴースト
 	static Ghost* ghost_;
 
@@ -57,12 +54,6 @@ public: // アクセッサ
 	/// </summary>
 	/// <returns></returns>
 	uint32_t GetGhostStateNo() { return ghostStateNo_; }
-
-	/// <summary>
-	/// ゴーストのモーション番号取得
-	/// </summary>
-	/// <returns></returns>
-	uint32_t GetGhostMotionNo() { return ghostMotionNo_; }
 
 	/// <summary>
 	/// ゴースト設定

@@ -403,9 +403,6 @@
     <Filter Include="Application\Object\BaseCharacter">
       <UniqueIdentifier>{99c05f84-040d-4fc2-88f8-fd0977af86e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Enemy\Ghost\Animation">
-      <UniqueIdentifier>{8fa08d4f-9f10-41d9-bbf5-da8bba93945f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Object\Enemy\Ghost\State">
       <UniqueIdentifier>{0555b109-3a0d-4975-aef2-5735ae6ab108}</UniqueIdentifier>
     </Filter>
@@ -879,9 +876,6 @@
     </ClCompile>
     <ClCompile Include="Application\Object\Enemy\Ghost\Ghost.cpp">
       <Filter>Application\Object\Enemy\Ghost</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.cpp">
-      <Filter>Application\Object\Enemy\Ghost\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\BaseCharacter\BaseCharacterAnimation.cpp">
       <Filter>Application\Object\BaseCharacter</Filter>
@@ -1502,9 +1496,6 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Enemy\Ghost\Ghost.h">
       <Filter>Application\Object\Enemy\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Object\Enemy\Ghost\Animation\GhostAnimation.h">
-      <Filter>Application\Object\Enemy\Ghost\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\BaseCharacter\BaseCharacterAnimation.h">
       <Filter>Application\Object\BaseCharacter</Filter>

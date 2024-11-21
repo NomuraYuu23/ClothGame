@@ -1,6 +1,5 @@
 #pragma once
 #include "../BaseEnemy.h"
-#include "Animation/GhostAnimation.h"
 #include "State/System/GhostStateSystem.h"
 #include "../../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
@@ -89,9 +88,6 @@ private: // メンバ変数
 
     // ステートシステム
     std::unique_ptr<GhostStateSystem> ghostStateSystem_;
-
-    // アニメーション
-   std::unique_ptr<GhostAnimation> ghostAnimation_;
 
    // 布
    std::unique_ptr<ClothGPU> cloth_;
