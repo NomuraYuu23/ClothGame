@@ -52,17 +52,6 @@ public:
 	/// <param name="device">デバイス</param>
 	/// <param name="directoryPath"></param>
 	void Initialize(ID3D12Device* device, std::string directoryPath = "Resources/");
-
-	/// <summary>
-	/// 全テクスチャリセット
-	/// </summary>
-	void ResetAll();
-
-	/// <summary>
-	/// テクスチャのリセット
-	/// </summary>
-	void ResetTexture();
-
 	
 	/// <summary>
 	/// テクスチャのリセット
