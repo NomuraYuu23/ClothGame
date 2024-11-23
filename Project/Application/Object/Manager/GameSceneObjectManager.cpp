@@ -12,6 +12,7 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	BaseObjectManager::Initialize(levelIndex, levelDataManager);
 
 
+	// お試し
 	for (uint32_t i = 0; i < 8; i++) {
 		GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, i);
 	}

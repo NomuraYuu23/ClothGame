@@ -104,7 +104,7 @@ void ClothGPU::PipelineStateCSInitializeForInitVertex(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexInitVertex,
-		L"Resources/shaders/ClothGPU/ClothInitVertex.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothInitVertex.CS.hlsl");
 
 }
 
@@ -151,7 +151,7 @@ void ClothGPU::PipelineStateCSInitializeForInitMassPoint(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexInitMassPoint,
-		L"Resources/shaders/ClothGPU/ClothInitMassPoint.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothInitMassPoint.CS.hlsl");
 
 }
 
@@ -194,7 +194,7 @@ void ClothGPU::PipelineStateCSInitializeForInitSurface(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexInitSurface,
-		L"Resources/shaders/ClothGPU/ClothInitSurface.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothInitSurface.CS.hlsl");
 
 }
 
@@ -237,7 +237,7 @@ void ClothGPU::PipelineStateCSInitializeForUpdateExternalOperation(ID3D12Device*
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexUpdateExternalOperation,
-		L"Resources/shaders/ClothGPU/ClothUpdateExternalOperation.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothUpdateExternalOperation.CS.hlsl");
 
 }
 
@@ -277,7 +277,7 @@ void ClothGPU::PipelineStateCSInitializeForUpdateIntegral(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexUpdateIntegral,
-		L"Resources/shaders/ClothGPU/ClothUpdateIntegral.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothUpdateIntegral.CS.hlsl");
 
 }
 
@@ -339,7 +339,7 @@ void ClothGPU::PipelineStateCSInitializeForUpdateSpring(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexUpdateSpring,
-		L"Resources/shaders/ClothGPU/ClothUpdateSpring.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothUpdateSpring.CS.hlsl");
 
 }
 
@@ -382,7 +382,7 @@ void ClothGPU::PipelineStateCSInitializeForUpdateSurface(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexUpdateSurface,
-		L"Resources/shaders/ClothGPU/ClothUpdateSurface.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothUpdateSurface.CS.hlsl");
 
 }
 
@@ -447,7 +447,7 @@ void ClothGPU::PipelineStateCSInitializeForUpdateVertex(ID3D12Device* device)
 		rootParameters,
 		_countof(rootParameters),
 		kPipelineStateCSIndexUpdateVertex,
-		L"Resources/shaders/ClothGPU/ClothUpdateVertex.CS.hlsl");
+		L"Resources/Shaders/ClothGPU/ClothUpdateVertex.CS.hlsl");
 
 }
 
