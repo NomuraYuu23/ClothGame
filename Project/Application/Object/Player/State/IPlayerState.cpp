@@ -11,7 +11,7 @@ PlayerStateSystem* IPlayerState::playerStateSystem_ = nullptr;
 
 Input* IPlayerState::input_ = Input::GetInstance();
 
-const float IPlayerState::kAutoMoveSpeed_ = 0.5f;
+const float IPlayerState::kAutoMoveSpeed_ = 0.6f;
 
 void IPlayerState::Move()
 {
