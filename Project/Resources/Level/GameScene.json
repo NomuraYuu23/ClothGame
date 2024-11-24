@@ -30,9 +30,9 @@
             "name": "Player",
             "transform": {
                 "translation": [
-                    -8.810662269592285,
-                    -436.1566162109375,
-                    4.536371231079102
+                    0.0,
+                    -470.0,
+                    4.0
                 ],
                 "rotation": [
                     -0.0,
@@ -64,12 +64,12 @@
         },
         {
             "type": "MESH",
-            "name": "Ground",
+            "name": "BaseGround",
             "transform": {
                 "translation": [
                     0.0,
-                    -1145.707763671875,
-                    -10.0
+                    -440.0,
+                    2.0
                 ],
                 "rotation": [
                     -0.0,
@@ -77,25 +77,25 @@
                     0.0
                 ],
                 "scaling": [
-                    1.0,
-                    50.0,
-                    10.0
+                    5.0,
+                    20.0,
+                    2.0
                 ]
             },
-            "fileName": "Ground.obj",
-            "directoryPath": "Resources/Model/Ground",
-            "className": "Ground",
+            "fileName": "GroundBlock.obj",
+            "directoryPath": "Resources/Model/GroundBlock",
+            "className": "GroundBlock",
             "collider": {
                 "type": "BOX",
                 "center": [
                     0.0,
                     0.0,
-                    1.0
+                    0.0
                 ],
                 "size": [
-                    30.0,
-                    1500.0,
-                    6.000000238418579
+                    20.0,
+                    80.0,
+                    2.0
                 ]
             }
         }

@@ -46,7 +46,7 @@ void IPlayerState::Warp()
 	if (kTranslateMaxZ <= playerWorldTransform_->transform_.translate.z) {
 
 		// ワープ
-		const float kWarpTranslateZ = -400.0f;
+		const float kWarpTranslateZ = -470.0f;
 		playerWorldTransform_->transform_.translate.z = kWarpTranslateZ;
 
 	}
