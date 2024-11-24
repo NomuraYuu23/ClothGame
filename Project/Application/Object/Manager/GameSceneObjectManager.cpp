@@ -1,6 +1,6 @@
 #include "GameSceneObjectManager.h"
 #include "../Factory/ObjectFactory.h"
-#include "../ClothGate/ClothGate.h"
+#include "../Factory/CreateObjectNames.h"
 
 void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager* levelDataManager)
 {
@@ -11,6 +11,11 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	
 	BaseObjectManager::Initialize(levelIndex, levelDataManager);
 
+	// 影
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	shadowModel_.reset(Model::Create("Resources/Model/shadow/", "shadow.obj", dxCommon));
+	shadowManager_ = std::make_unique<ShadowManager>();
+	shadowManager_->Initialize(shadowModel_.get());
 
 	// お試し
 	for (uint32_t i = 0; i < 8; i++) {
@@ -22,10 +27,35 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 void GameSceneObjectManager::Update()
 {
 
+	// オブジェクトマネージャー
 	BaseObjectManager::Update();
 
 	// ワープ時、オブジェクトの追加
 
+	// 影
+	ShadowUpdate();
+
+}
+
+void GameSceneObjectManager::Draw(BaseCamera& camera)
+{
+
+	// オブジェクトマネージャー
+	BaseObjectManager::Draw(camera);
+
+	// 影
+	shadowManager_->Draw(camera);
+
+}
+
+void GameSceneObjectManager::Draw(BaseCamera& camera, DrawLine* drawLine)
+{
+
+	// オブジェクトマネージャー
+	BaseObjectManager::Draw(camera, drawLine);
+
+	// 影
+	shadowManager_->Draw(camera);
 
 }
 
@@ -52,4 +82,41 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 		}
 
 	}
+
+}
+
+void GameSceneObjectManager::ShadowUpdate()
+{
+
+	// 前処理
+	shadowManager_->PreUpdate();
+
+	// 更新処理
+	for (std::list<ObjectPair>::iterator it = objects_.begin();
+		it != objects_.end(); ++it) {
+
+		// オブジェクト名前(クラス)を取ってくる
+		uint32_t objectIndex = 0;
+		for (uint32_t i = 0; i < kCreateObjectIndexOfCount; i++) {
+			if (it->second->GetClassNameString() == kCreateObjectNames_[i]) {
+				objectIndex = i;
+				break;
+			}
+		}
+
+		// 影を出現させるオブジェクト
+		if (objectIndex == kCreateObjectIndexPlayer ||
+			objectIndex == kCreateObjectIndexGhost) {
+			shadowManager_->CastsShadowObjListRegister( static_cast<MeshObject*>(it->second.get()));
+		}
+		// 影が写るオブジェクト
+		else if (objectIndex == kCreateObjectIndexGroundBlock) {
+			shadowManager_->ShadowAppearsObjListRegister(static_cast<MeshObject*>(it->second.get()));
+		}
+
+	}
+
+	// 更新
+	shadowManager_->Update();
+
 }

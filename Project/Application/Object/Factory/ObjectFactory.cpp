@@ -4,13 +4,14 @@
 
 #include "../ClothGate/ClothGate.h"
 #include "../Enemy/Ghost/Ghost.h"
+#include "CreateObjectNames.h"
 
 // オブジェクト作成でそれぞれのタイプを作成するための関数群
 // 返り値 無し
 // 引数1 オブジェクト
 std::array<
 	std::pair<std::string, std::function<IObject*(LevelData::ObjectData&)>>,
-	ObjectFactory::CreateObjectIndex::kCreateObjectIndexOfCount> ObjectFactory::createObjectFunctions_ = {};
+	CreateObjectIndex::kCreateObjectIndexOfCount> ObjectFactory::createObjectFunctions_ = {};
 
 // マネージャー
 BaseObjectManager* ObjectFactory::objectManager_ = nullptr;
@@ -23,27 +24,27 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	// 関数を入れていく
 
 	// スカイドーム
-	createObjectFunctions_[kCreateObjectIndexSkydome].first = "Skydome";
+	createObjectFunctions_[kCreateObjectIndexSkydome].first = kCreateObjectNames_[kCreateObjectIndexSkydome];
 	createObjectFunctions_[kCreateObjectIndexSkydome].second = ObjectCreate::CreateObjectSkydome;
 
 	// 地面
-	createObjectFunctions_[kCreateObjectIndexGround].first = "Ground";
+	createObjectFunctions_[kCreateObjectIndexGround].first = kCreateObjectNames_[kCreateObjectIndexGround];
 	createObjectFunctions_[kCreateObjectIndexGround].second = ObjectCreate::CreateObjectGround;
 
 	// 地面
-	createObjectFunctions_[kCreateObjectIndexGroundBlock].first = "GroundBlock";
+	createObjectFunctions_[kCreateObjectIndexGroundBlock].first = kCreateObjectNames_[kCreateObjectIndexGroundBlock];
 	createObjectFunctions_[kCreateObjectIndexGroundBlock].second = ObjectCreate::CreateObjectGroundBlock;
 
 	// プレイヤー
-	createObjectFunctions_[kCreateObjectIndexPlayer].first = "Player";
+	createObjectFunctions_[kCreateObjectIndexPlayer].first = kCreateObjectNames_[kCreateObjectIndexPlayer];
 	createObjectFunctions_[kCreateObjectIndexPlayer].second = ObjectCreate::CreateObjectPlayer;
 
 	// 布ゲート
-	createObjectFunctions_[kCreateObjectIndexClothGate].first = "ClothGate";
+	createObjectFunctions_[kCreateObjectIndexClothGate].first = kCreateObjectNames_[kCreateObjectIndexClothGate];
 	createObjectFunctions_[kCreateObjectIndexClothGate].second = ObjectCreate::CreateObjectClothGate;
 
-	// 布ゲート
-	createObjectFunctions_[kCreateObjectIndexGhost].first = "Ghost";
+	// ゴースト
+	createObjectFunctions_[kCreateObjectIndexGhost].first = kCreateObjectNames_[kCreateObjectIndexGhost];
 	createObjectFunctions_[kCreateObjectIndexGhost].second = ObjectCreate::CreateObjectGhost;
 
 }

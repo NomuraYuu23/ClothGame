@@ -55,6 +55,12 @@ public: // 関数
 	/// <returns></returns>
 	std::string GetName() { return name_; }
 
+	/// <summary>
+	/// クラス名前取得
+	/// </summary>
+	/// <returns></returns>
+	std::string GetClassNameString() { return className_; }
+
 	void SetIsDead(bool isDead) { isDead_ = isDead; }
 	bool GetIsDead() { return isDead_; }
 
@@ -66,6 +72,9 @@ protected: // 変数
 
 	// 名前
 	std::string name_;
+
+	// クラス名前
+	std::string className_;
 
 	// トランスフォーム
 	WorldTransform worldTransform_;

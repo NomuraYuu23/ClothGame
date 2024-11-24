@@ -11,6 +11,9 @@ void MeshObject::Initialize(LevelData::MeshData* data)
 	// 名前
 	name_ = data->name;
 
+	// クラス名前
+	className_ = data->className;
+
 	// ファイルの名前
 	fileName_ = data->flieName;
 

@@ -412,6 +412,9 @@
     <Filter Include="Application\Object\GroundBlock">
       <UniqueIdentifier>{5cf937f4-0e32-4d0e-a6c4-bb21b2266ed0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\System\Shadow">
+      <UniqueIdentifier>{05d37b47-7e24-4dae-b750-eeab10c3b02c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -900,6 +903,12 @@
     </ClCompile>
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.cpp">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\System\Shadow\Shadow.cpp">
+      <Filter>Application\System\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\System\Shadow\ShadowManager.cpp">
+      <Filter>Application\System\Shadow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1526,6 +1535,18 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.h">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\System\Shadow\Shadow.h">
+      <Filter>Application\System\Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\System\Shadow\ShadowManager.h">
+      <Filter>Application\System\Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Factory\CreateObjectIndex.h">
+      <Filter>Application\Object\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Factory\CreateObjectNames.h">
+      <Filter>Application\Object\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

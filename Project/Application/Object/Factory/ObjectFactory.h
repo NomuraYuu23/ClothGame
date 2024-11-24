@@ -2,22 +2,11 @@
 #include "../../../Engine/Object/AbstractObjectFactory.h"
 #include "../../../Engine/Level/LevelData.h"
 #include "../../../Engine/Object/BaseObjectManager.h"
+#include "CreateObjectIndex.h"
 
 class ObjectFactory :
     public AbstractObjectFactory
 {
-
-public: // サブクラス,定数
-
-	enum CreateObjectIndex {
-		kCreateObjectIndexSkydome, // スカイドーム
-		kCreateObjectIndexGround, // 地面
-		kCreateObjectIndexGroundBlock, // 地面ブロック版
-		kCreateObjectIndexPlayer, // プレイヤー
-		kCreateObjectIndexClothGate, // 布ゲート
-		kCreateObjectIndexGhost, // ゴースト
-		kCreateObjectIndexOfCount, // 数数える用
-	};
 
 public: //メンバ関数
 
