@@ -30,6 +30,10 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	createObjectFunctions_[kCreateObjectIndexGround].first = "Ground";
 	createObjectFunctions_[kCreateObjectIndexGround].second = ObjectCreate::CreateObjectGround;
 
+	// 地面
+	createObjectFunctions_[kCreateObjectIndexGroundBlock].first = "GroundBlock";
+	createObjectFunctions_[kCreateObjectIndexGroundBlock].second = ObjectCreate::CreateObjectGroundBlock;
+
 	// プレイヤー
 	createObjectFunctions_[kCreateObjectIndexPlayer].first = "Player";
 	createObjectFunctions_[kCreateObjectIndexPlayer].second = ObjectCreate::CreateObjectPlayer;

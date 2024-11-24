@@ -5,6 +5,7 @@
 #include "../Player/Player.h"
 #include "../ClothGate/ClothGate.h"
 #include "../Enemy/Ghost/Ghost.h"
+#include "../GroundBlock/GroundBlock.h"
 
 // プレイヤー
 Player* ObjectCreate::player_ = nullptr;
@@ -13,6 +14,15 @@ IObject* ObjectCreate::CreateObjectGround(LevelData::ObjectData& objectData)
 {
 	// インスタンス生成
 	IObject* object = new Ground();
+	// 初期化
+	static_cast<Ground*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	return object;
+}
+
+IObject* ObjectCreate::CreateObjectGroundBlock(LevelData::ObjectData& objectData)
+{
+	// インスタンス生成
+	IObject* object = new GroundBlock();
 	// 初期化
 	static_cast<Ground*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	return object;

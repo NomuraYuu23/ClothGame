@@ -107,6 +107,10 @@ void Player::OnCollision(ColliderParentObject colliderPartner, const CollisionDa
 	if (std::holds_alternative<Ground*>(colliderPartner)) {
 		PlayerCollision::OnColiisionGround(this, colliderPartner);
 	}
+	// 地面ブロック
+	else if (std::holds_alternative<GroundBlock*>(colliderPartner)) {
+		PlayerCollision::OnColiisionGroundBlock(this, colliderPartner);
+	}
 
 }
 

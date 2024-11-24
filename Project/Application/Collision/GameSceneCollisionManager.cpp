@@ -4,6 +4,7 @@
 #include "../Object/Player/Player.h"
 #include "../Object/Ground/Ground.h"
 #include "../Object/Enemy/BaseEnemy.h"
+#include "../Object/GroundBlock/GroundBlock.h"
 
 void GameSceneCollisionManager::CheckCollisionPair(ColliderShape* colliderA, ColliderShape* colliderB)
 {

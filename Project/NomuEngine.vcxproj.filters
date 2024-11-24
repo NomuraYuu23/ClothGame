@@ -409,6 +409,9 @@
     <Filter Include="Application\Object\Enemy\Ghost\State\System">
       <UniqueIdentifier>{dc8c5704-f3f9-4141-90b0-76ea2ca312e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\GroundBlock">
+      <UniqueIdentifier>{5cf937f4-0e32-4d0e-a6c4-bb21b2266ed0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -892,8 +895,11 @@
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.cpp">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.cpp">
+    <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1515,8 +1521,11 @@
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.h">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.h">
+    <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.h">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

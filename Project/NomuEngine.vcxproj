@@ -178,6 +178,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp" />
+    <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp" />
     <ClCompile Include="Application\Object\Ground\Ground.cpp" />
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\GameSceneObjectManager.cpp" />
@@ -345,6 +346,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateFactory.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.h" />
     <ClInclude Include="Application\Object\Factory\ObjectCreate.h" />
+    <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h" />
     <ClInclude Include="Application\Object\Ground\Ground.h" />
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\GameSceneObjectManager.h" />

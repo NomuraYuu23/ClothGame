@@ -17,6 +17,13 @@ public: //メンバ関数
 	static IObject* CreateObjectGround(LevelData::ObjectData& objectData);
 
 	/// <summary>
+	/// 地面ブロック
+	/// </summary>
+	/// <param name="objectData">オブジェクトデータ</param>
+	/// <returns>オブジェクト</returns>
+	static IObject* CreateObjectGroundBlock(LevelData::ObjectData& objectData);
+
+	/// <summary>
 	/// スカイドーム
 	/// </summary>
 	/// <param name="objectData">オブジェクトデータ</param>
