@@ -1,6 +1,8 @@
 #include "PlayerStateFactory.h"
 #include "../PlayerStateRoot.h"
 #include "../PlayerStateJump.h"
+#include "../PlayerStateDamage.h"
+#include "../PlayerStateFall.h"
 
 IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 {
@@ -14,6 +16,12 @@ IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 		break;
 	case kPlayerStateIndexJump: // ジャンプ
 		newPlayerState = new PlayerStateJump();
+		break;
+	case kPlayerStateIndexDamage: // ダメージ
+		newPlayerState = new PlayerStateDamage();
+		break;
+	case kPlayerStateIndexFall: // 落下
+		newPlayerState = new PlayerStateFall();
 		break;
 	case kPlayerStateIndexOfCount: // 使用不可
 	default:

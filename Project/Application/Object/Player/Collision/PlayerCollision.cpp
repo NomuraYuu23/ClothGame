@@ -39,7 +39,9 @@ void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObjec
 	worldTransform->transform_.translate += extrusion;
 	worldTransform->UpdateMatrix();
 
-	// 浮いていないに変更
-	player->SetFloating(false);
+	if (Vector3::Normalize(extrusion).y == 1.0f) {
+		// 浮いていないに変更
+		player->SetFloating(false);
+	}
 
 }

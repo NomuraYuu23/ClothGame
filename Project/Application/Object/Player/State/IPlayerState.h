@@ -11,6 +11,8 @@ class PlayerStateSystem;
 enum PlayerStateIndex {
 	kPlayerStateIndexRoot, // 通常
 	kPlayerStateIndexJump, // ジャンプ
+	kPlayerStateIndexDamage, // ダメージ
+	kPlayerStateIndexFall, // 落下
 	kPlayerStateIndexOfCount // 数
 };
 

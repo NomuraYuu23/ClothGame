@@ -64,6 +64,11 @@ private: // メンバ関数
 	/// </summary>
 	void ColliderUpdate();
 
+    /// <summary>
+    /// 落下確認
+    /// </summary>
+    void FallCheck();
+
 public: // アクセッサ
 
     /// <summary>

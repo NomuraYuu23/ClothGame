@@ -64,11 +64,17 @@ void Player::Update()
 	// ワールドトランスフォーム更新
 	worldTransform_.UpdateMatrix();
 
+	// 落下確認
+	FallCheck();
+
 	// コライダー
 	ColliderUpdate();
 
 	// 速度保存
 	SaveVelocityUpdate();
+
+	// 落下していることにする
+	floating_ = true;
 
 }
 
@@ -128,5 +134,17 @@ void Player::ColliderUpdate()
 	*colliderShape = obb;
 
 	collider_.reset(colliderShape);
+
+}
+
+void Player::FallCheck()
+{
+
+	// 落下
+	const float kFallPositionY = -10.0f;
+	if (worldTransform_.GetWorldPosition().y <= kFallPositionY) {
+		playerStateSystem_->SetInterruptCommand(true);
+		playerStateSystem_->SetNextStateNo(kPlayerStateIndexDamage);
+	}
 
 }

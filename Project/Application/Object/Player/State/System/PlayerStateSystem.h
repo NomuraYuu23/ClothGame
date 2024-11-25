@@ -43,6 +43,12 @@ public: // アクセッサ
 	/// <param name="interruptCommand"></param>
 	void SetInterruptCommand(bool interruptCommand) { interruptCommand_ = interruptCommand; }
 
+	/// <summary>
+	/// 次のステート番号設定
+	/// </summary>
+	/// <param name="nextStateNo"></param>
+	void SetNextStateNo(uint32_t nextStateNo) {	nextStateNo_ = nextStateNo;	}
+
 private: // メンバ変数
 
 	// ステート

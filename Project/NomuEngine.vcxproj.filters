@@ -898,9 +898,6 @@
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.cpp">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.cpp">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
@@ -909,6 +906,15 @@
     </ClCompile>
     <ClCompile Include="Application\System\Shadow\ShadowManager.cpp">
       <Filter>Application\System\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateDamage.cpp">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp">
+      <Filter>Application\Object\GroundBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1530,9 +1536,6 @@
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.h">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.h">
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
@@ -1547,6 +1550,15 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Factory\CreateObjectNames.h">
       <Filter>Application\Object\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateDamage.h">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h">
+      <Filter>Application\Object\GroundBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
