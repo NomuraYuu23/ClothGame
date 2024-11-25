@@ -5,6 +5,9 @@
 void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObject colliderPartner)
 {
 
+	if (!player->GetFloating()) {
+		return;
+	}
 
 	// 地面
 	GroundBlock* ground = std::get<GroundBlock*>(colliderPartner);
