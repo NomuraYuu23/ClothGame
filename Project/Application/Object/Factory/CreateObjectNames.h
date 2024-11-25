@@ -5,7 +5,6 @@
 
 const std::array<std::string, CreateObjectIndex::kCreateObjectIndexOfCount> kCreateObjectNames_ = {
 	"Skydome",
-	"Ground",
 	"GroundBlock",
 	"Player",
 	"ClothGate",

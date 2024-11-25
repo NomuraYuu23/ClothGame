@@ -2,7 +2,6 @@
 #include "../../Engine/Collision/Collision.h"
 
 #include "../Object/Player/Player.h"
-#include "../Object/Ground/Ground.h"
 #include "../Object/Enemy/BaseEnemy.h"
 #include "../Object/GroundBlock/GroundBlock.h"
 

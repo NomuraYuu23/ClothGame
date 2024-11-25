@@ -10,13 +10,6 @@ class ObjectCreate
 public: //メンバ関数
 
 	/// <summary>
-	/// 地面
-	/// </summary>
-	/// <param name="objectData">オブジェクトデータ</param>
-	/// <returns>オブジェクト</returns>
-	static IObject* CreateObjectGround(LevelData::ObjectData& objectData);
-
-	/// <summary>
 	/// 地面ブロック
 	/// </summary>
 	/// <param name="objectData">オブジェクトデータ</param>

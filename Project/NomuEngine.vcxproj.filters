@@ -379,9 +379,6 @@
     <Filter Include="Application\Object\Factory">
       <UniqueIdentifier>{517228ef-debf-45e7-8382-91aab680356b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Object\Ground">
-      <UniqueIdentifier>{0fa038c4-8dac-4e6e-8b04-e58cf3abc919}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Object\Player\Collision">
       <UniqueIdentifier>{8629fde4-88be-4d1f-844e-adb5eb53c1fb}</UniqueIdentifier>
     </Filter>
@@ -754,9 +751,6 @@
     <ClCompile Include="Engine\Collision\Extrusion.cpp">
       <Filter>Engine\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Collider\ColliderParentIdentification.cpp">
-      <Filter>Application\Collider</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Physics\Cloth\Cloth.cpp">
       <Filter>Engine\Physics\Cloth</Filter>
     </ClCompile>
@@ -864,9 +858,6 @@
     </ClCompile>
     <ClCompile Include="Application\Object\Player\Collision\PlayerCollision.cpp">
       <Filter>Application\Object\Player\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Object\Ground\Ground.cpp">
-      <Filter>Application\Object\Ground</Filter>
     </ClCompile>
     <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp">
       <Filter>Application\Collision</Filter>
@@ -1386,9 +1377,6 @@
     <ClInclude Include="Engine\Collision\Extrusion.h">
       <Filter>Engine\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Collider\ColliderParentIdentification.h">
-      <Filter>Application\Collider</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Physics\Cloth\Cloth.h">
       <Filter>Engine\Physics\Cloth</Filter>
     </ClInclude>
@@ -1502,9 +1490,6 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Player\Collision\PlayerCollision.h">
       <Filter>Application\Object\Player\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Object\Ground\Ground.h">
-      <Filter>Application\Object\Ground</Filter>
     </ClInclude>
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h">
       <Filter>Application\Collision</Filter>

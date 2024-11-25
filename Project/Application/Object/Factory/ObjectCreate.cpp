@@ -1,6 +1,5 @@
 #include "ObjectCreate.h"
 
-#include "../Ground/Ground.h"
 #include "../Skydome/Skydome.h"
 #include "../Player/Player.h"
 #include "../ClothGate/ClothGate.h"
@@ -10,21 +9,12 @@
 // プレイヤー
 Player* ObjectCreate::player_ = nullptr;
 
-IObject* ObjectCreate::CreateObjectGround(LevelData::ObjectData& objectData)
-{
-	// インスタンス生成
-	IObject* object = new Ground();
-	// 初期化
-	static_cast<Ground*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
-	return object;
-}
-
 IObject* ObjectCreate::CreateObjectGroundBlock(LevelData::ObjectData& objectData)
 {
 	// インスタンス生成
 	IObject* object = new GroundBlock();
 	// 初期化
-	static_cast<Ground*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	static_cast<GroundBlock*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	return object;
 }
 

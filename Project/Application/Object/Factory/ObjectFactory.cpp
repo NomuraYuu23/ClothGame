@@ -28,10 +28,6 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	createObjectFunctions_[kCreateObjectIndexSkydome].second = ObjectCreate::CreateObjectSkydome;
 
 	// 地面
-	createObjectFunctions_[kCreateObjectIndexGround].first = kCreateObjectNames_[kCreateObjectIndexGround];
-	createObjectFunctions_[kCreateObjectIndexGround].second = ObjectCreate::CreateObjectGround;
-
-	// 地面
 	createObjectFunctions_[kCreateObjectIndexGroundBlock].first = kCreateObjectNames_[kCreateObjectIndexGroundBlock];
 	createObjectFunctions_[kCreateObjectIndexGroundBlock].second = ObjectCreate::CreateObjectGroundBlock;
 

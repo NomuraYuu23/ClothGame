@@ -140,7 +140,7 @@
             "transform": {
                 "translation": [
                     0.0,
-                    25.0,
+                    22.0,
                     2.0
                 ],
                 "rotation": [
@@ -150,7 +150,7 @@
                 ],
                 "scaling": [
                     5.0,
-                    12.5,
+                    11.0,
                     2.0
                 ]
             },
@@ -166,7 +166,7 @@
                 ],
                 "size": [
                     20.0,
-                    50.0,
+                    44.0,
                     2.0
                 ]
             }
@@ -177,7 +177,7 @@
             "transform": {
                 "translation": [
                     0.0,
-                    75.0,
+                    88.0,
                     2.0
                 ],
                 "rotation": [
@@ -187,7 +187,7 @@
                 ],
                 "scaling": [
                     5.0,
-                    10.0,
+                    6.0,
                     2.0
                 ]
             },
@@ -203,7 +203,81 @@
                 ],
                 "size": [
                     20.0,
-                    40.0,
+                    24.0,
+                    2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Ground.002",
+            "transform": {
+                "translation": [
+                    1.0,
+                    71.0,
+                    2.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    2.5999999046325684,
+                    2.5,
+                    2.0
+                ]
+            },
+            "fileName": "GroundBlock.obj",
+            "directoryPath": "Resources/Model/GroundBlock",
+            "className": "GroundBlock",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    10.399999618530273,
+                    10.0,
+                    2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Ground.003",
+            "transform": {
+                "translation": [
+                    -3.0,
+                    59.0,
+                    2.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    2.5999999046325684,
+                    3.5,
+                    2.0
+                ]
+            },
+            "fileName": "GroundBlock.obj",
+            "directoryPath": "Resources/Model/GroundBlock",
+            "className": "GroundBlock",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    10.399999618530273,
+                    14.0,
                     2.0
                 ]
             }

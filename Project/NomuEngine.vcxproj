@@ -163,7 +163,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\ClothDemo\CollisionObject\ClothDemoObject.cpp" />
     <ClCompile Include="Application\ClothDemo\CollisionObject\ClothDemoPlane.cpp" />
     <ClCompile Include="Application\ClothDemo\CollisionObject\ClothDemoSphere.cpp" />
-    <ClCompile Include="Application\Collider\ColliderParentIdentification.cpp" />
     <ClCompile Include="Application\Collision\GameSceneCollisionManager.cpp" />
     <ClCompile Include="Application\Effect\BillboardEffect.cpp" />
     <ClCompile Include="Application\Effect\EffectManager.cpp" />
@@ -179,7 +178,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Enemy\Ghost\State\System\GhostStateSystem.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectCreate.cpp" />
     <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp" />
-    <ClCompile Include="Application\Object\Ground\Ground.cpp" />
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\GameSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Factory\ObjectFactory.cpp" />
@@ -332,7 +330,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoObject.h" />
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoPlane.h" />
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoSphere.h" />
-    <ClInclude Include="Application\Collider\ColliderParentIdentification.h" />
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h" />
     <ClInclude Include="Application\Effect\BillboardEffect.h" />
     <ClInclude Include="Application\Camera\FollowCamera.h" />
@@ -353,7 +350,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Factory\CreateObjectNames.h" />
     <ClInclude Include="Application\Object\Factory\ObjectCreate.h" />
     <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h" />
-    <ClInclude Include="Application\Object\Ground\Ground.h" />
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\GameSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Factory\ObjectFactory.h" />

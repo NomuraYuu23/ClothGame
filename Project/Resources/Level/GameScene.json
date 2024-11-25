@@ -64,7 +64,44 @@
         },
         {
             "type": "MESH",
-            "name": "BaseGround",
+            "name": "BaseGround.000",
+            "transform": {
+                "translation": [
+                    0.0,
+                    440.0,
+                    2.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    5.0,
+                    20.0,
+                    2.0
+                ]
+            },
+            "fileName": "GroundBlock.obj",
+            "directoryPath": "Resources/Model/GroundBlock",
+            "className": "GroundBlock",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    20.0,
+                    80.0,
+                    2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "BaseGround.001",
             "transform": {
                 "translation": [
                     0.0,

@@ -2,8 +2,6 @@
 #include "Collision/PlayerCollision.h"
 #include "../../../Engine/Physics/Gravity/Gravity.h"
 #include "../../../Engine/3D/Model/ModelDraw.h"
-
-#include "../Ground/Ground.h"
 #include "../../Collider/CollisionConfig.h"
 
 Player::Player()
@@ -109,12 +107,8 @@ void Player::ParticleDraw(BaseCamera& camera)
 void Player::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
 
-	// 地面
-	if (std::holds_alternative<Ground*>(colliderPartner)) {
-		PlayerCollision::OnColiisionGround(this, colliderPartner);
-	}
 	// 地面ブロック
-	else if (std::holds_alternative<GroundBlock*>(colliderPartner)) {
+	if (std::holds_alternative<GroundBlock*>(colliderPartner)) {
 		PlayerCollision::OnColiisionGroundBlock(this, colliderPartner);
 	}
 
