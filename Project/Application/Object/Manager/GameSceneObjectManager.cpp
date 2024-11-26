@@ -18,9 +18,7 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	shadowManager_->Initialize(shadowModel_.get());
 
 	// お試し
-	for (uint32_t i = 0; i < 8; i++) {
-		GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager, i);
-	}
+	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager);
 
 }
 
@@ -59,7 +57,7 @@ void GameSceneObjectManager::Draw(BaseCamera& camera, DrawLine* drawLine)
 
 }
 
-void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataManager* levelDataManager, uint32_t currentGenerationCount)
+void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataManager* levelDataManager)
 {
 
 	// レベルデータの取得
@@ -74,7 +72,7 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 
 		// 型にあわせてInitialize
 		std::unique_ptr<IObject> object;
-		object.reset(static_cast<ObjectFactory*>(objectFactory_.get())->CreateObjectPattern(objectData, currentGenerationCount));
+		object.reset(static_cast<ObjectFactory*>(objectFactory_.get())->CreateObjectPattern(objectData));
 
 		if (object) {
 			// listへ

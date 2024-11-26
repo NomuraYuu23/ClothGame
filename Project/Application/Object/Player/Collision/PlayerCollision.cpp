@@ -5,6 +5,7 @@
 void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObject colliderPartner)
 {
 
+	// 他のブロックとぶつかってるか
 	if (!player->GetFloating()) {
 		return;
 	}

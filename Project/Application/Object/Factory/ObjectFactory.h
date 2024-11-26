@@ -28,9 +28,8 @@ public: //メンバ関数
 	/// オブジェクト作成Patternバージョン
 	/// </summary>
 	/// <param name="objectData">オブジェクトデータ/param>
-	/// <param name="currentGenerationCount">生成回数</param>
 	/// <returns>オブジェクト</returns>
-	IObject* CreateObjectPattern(LevelData::ObjectData& objectData, uint32_t currentGenerationCount);
+	IObject* CreateObjectPattern(LevelData::ObjectData& objectData);
 
 	/// <summary>
 	/// オブジェクトマネージャー設定

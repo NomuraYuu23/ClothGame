@@ -69,15 +69,13 @@ IObject* ObjectFactory::CreateObject(LevelData::ObjectData& objectData)
 
 }
 
-IObject* ObjectFactory::CreateObjectPattern(LevelData::ObjectData& objectData, uint32_t currentGenerationCount)
+IObject* ObjectFactory::CreateObjectPattern(LevelData::ObjectData& objectData)
 {
 
 	IObject* object = nullptr;
 
 	// パターンの始まる距離
 	const float kPatternStartPosition = -400.0f;
-	// パターン区間の大きさ
-	const float kPatternSize = 100.0f;
 
 	// 確認のためメッシュオブジェクトのみ
 	// クラスの名前など取得してオブジェクトを作る
@@ -88,8 +86,8 @@ IObject* ObjectFactory::CreateObjectPattern(LevelData::ObjectData& objectData, u
 		for (uint32_t i = 0; i < kCreateObjectIndexOfCount; ++i) {
 			if (data.className == createObjectFunctions_[i].first) {
 				object = createObjectFunctions_[i].second(objectData);
-				// パターン回数に応じて移動
-				object->GetWorldTransformAdress()->transform_.translate.z += currentGenerationCount * kPatternSize + kPatternStartPosition;
+				// 移動
+				object->GetWorldTransformAdress()->transform_.translate.z += kPatternStartPosition;
 				object->GetWorldTransformAdress()->UpdateMatrix();
 				if (i == kCreateObjectIndexClothGate) {
 					static_cast<ClothGate*>(object)->ClothReset();

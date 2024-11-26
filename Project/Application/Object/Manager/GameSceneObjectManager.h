@@ -39,10 +39,11 @@ private: // メンバ関数
 	/// </summary>
 	/// <param name="levelIndex">レベル番号</param>
 	/// <param name="levelDataManager">レベルデータマネージャー</param>
-	/// <param name="currentGenerationCount">現在の生成回数</param>
-	void GeneratePattern(LevelIndex levelIndex, LevelDataManager* levelDataManager, uint32_t currentGenerationCount);
+	void GeneratePattern(LevelIndex levelIndex, LevelDataManager* levelDataManager);
 
-
+	/// <summary>
+	/// 影更新
+	/// </summary>
 	void ShadowUpdate();
 
 private: // メンバ変数
