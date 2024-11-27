@@ -149,8 +149,31 @@ void ClothGate::ClothUpdate()
 	// 球
 	// プレイヤーの情報をいれる
 	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
-	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
-	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+
+	// プレイヤーの衝突
+	const float kCollisionDistance = 10.0f;
+	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
+		// 登録済み
+		if (registeringPlayer_) {
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+		}
+		// 登録してない
+		else {
+			cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+			registeringPlayer_ = true;
+		}
+	}
+	// 衝突してない
+	else {
+		// 登録解除
+		if (registeringPlayer_) {
+			cloth_->CollisionDataDelete(kPlayerColliderName_);
+			registeringPlayer_ = false;
+		}
+	}
 
 }
 
