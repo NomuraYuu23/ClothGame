@@ -105,11 +105,13 @@ void GameSceneObjectManager::ShadowUpdate()
 		// 影を出現させるオブジェクト
 		if (objectIndex == kCreateObjectIndexPlayer ||
 			objectIndex == kCreateObjectIndexGhost) {
-			shadowManager_->CastsShadowObjListRegister( static_cast<MeshObject*>(it->second.get()));
+			shadowManager_->CastsShadowObjListRegister(static_cast<MeshObject*>(it->second.get()));
 		}
 		// 影が写るオブジェクト
 		else if (objectIndex == kCreateObjectIndexGroundBlock) {
-			shadowManager_->ShadowAppearsObjListRegister(static_cast<MeshObject*>(it->second.get()));
+
+			const Vector3 addSize = { -0.5f, 0.0f, -0.5f };
+			shadowManager_->ShadowAppearsObjListRegister(static_cast<MeshObject*>(it->second.get()), addSize);
 		}
 
 	}
