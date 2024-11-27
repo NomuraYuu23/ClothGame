@@ -22,6 +22,10 @@ uint32_t PlayerCommand::Command()
 	if (input_->TriggerJoystick(JoystickButton::kJoystickButtonA)) {
 		resultState = kPlayerStateIndexJump;
 	}
+	// Bボタンが押されていたらダッシュ
+	else if (input_->TriggerJoystick(JoystickButton::kJoystickButtonB)) {
+		resultState = kPlayerStateIndexDash;
+	}
 
 	return resultState;
 }

@@ -13,6 +13,7 @@ enum PlayerStateIndex {
 	kPlayerStateIndexJump, // ジャンプ
 	kPlayerStateIndexDamage, // ダメージ
 	kPlayerStateIndexFall, // 落下
+	kPlayerStateIndexDash, // ダッシュ
 	kPlayerStateIndexOfCount // 数
 };
 
