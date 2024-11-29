@@ -46,8 +46,6 @@ void SideCloth::Draw(BaseCamera& camera)
 void SideCloth::ImGuiDraw()
 {
 
-	cloth_->ImGuiDraw("q");
-
 }
 
 void SideCloth::ClothReset()
@@ -75,14 +73,16 @@ void SideCloth::ClothInitialize()
 	// 布
 	cloth_ = std::make_unique<ClothGPU>();
 	// 初期化
-	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Model/SideCloth/SideCloth.png");
+	cloth_->Initialize(dxCommon_->GetDevice(), dxCommon_->GetCommadListLoad(), kClothScale_, kClothDiv_, "Resources/Model/SideCloth/Cloth.png");
+	// マテリアル
+	cloth_->GetMaterial()->SetEnableLighting(BlinnPhongReflection);
 
 	// 布の計算データ
 	// 質量
 	const float kClothMass = 7.0f;
 	cloth_->SetMass(kClothMass);
 	// 速度抵抗
-	const float kClothSpeedResistance = 10.0f;
+	const float kClothSpeedResistance = 0.0f;
 	cloth_->SetSpeedResistance(kClothSpeedResistance);
 	// 剛性。バネ定数k
 	const float kClothStiffness = 100.0f;
@@ -130,7 +130,8 @@ void SideCloth::ClothUpdate()
 	// 固定部分
 
 	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
-	for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); x += 4) {
+	const uint32_t step = 4;
+	for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); x += step) {
 		// 重み
 		cloth_->SetWeight(0, x, true);
 		// 位置
