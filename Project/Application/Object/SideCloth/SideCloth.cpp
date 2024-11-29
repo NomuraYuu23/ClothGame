@@ -4,7 +4,7 @@
 
 const Vector2 SideCloth::kClothScale_ = { 50.0f,20.0f };
 
-const Vector2 SideCloth::kClothDiv_ = { 32.0f,16.0f };
+const Vector2 SideCloth::kClothDiv_ = { 16.0f,16.0f };
 
 const Vector3 SideCloth::kBaseLeftFixed_ = { 0.0f, 20.0f, -2.0f };
 

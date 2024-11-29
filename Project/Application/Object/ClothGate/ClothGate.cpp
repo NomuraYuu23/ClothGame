@@ -108,10 +108,54 @@ void ClothGate::ClothInitialize()
 	// 登録
 	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
+	// 一度描画したか
+	haveDrawnOnce_ = false;
+
 }
 
 void ClothGate::ClothUpdate()
 {
+
+	// 更新するか
+
+	// 球
+	// プレイヤーの情報をいれる
+	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
+
+	// プレイヤー近い
+	const float kCollisionDistance = 50.0f;
+	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
+		// 登録済み
+		if (registeringPlayer_) {
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+		}
+		// 登録してない
+		else {
+			cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+			registeringPlayer_ = true;
+		}
+	}
+	// プレイヤー遠い
+	else {
+		// 登録解除
+		if (registeringPlayer_) {
+			cloth_->CollisionDataDelete(kPlayerColliderName_);
+			registeringPlayer_ = false;
+		}
+
+		// 更新しない
+		if (haveDrawnOnce_) {
+			return;
+		}
+		else {
+			haveDrawnOnce_ = true;
+		}
+
+	}
+
 	// 乱数
 	std::random_device seedGenerator;
 	std::mt19937 randomEngine(seedGenerator());
@@ -144,36 +188,6 @@ void ClothGate::ClothUpdate()
 	cloth_->SetPosition(0, 0, kLeftTopPosition);
 	cloth_->SetWeight(0, kRightX, false);
 	cloth_->SetPosition(0, kRightX, kRightTopPosition);
-
-	// 球
-	// プレイヤーの情報をいれる
-	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
-
-	// プレイヤーの衝突
-	const float kCollisionDistance = 10.0f;
-	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
-		// 登録済み
-		if (registeringPlayer_) {
-			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
-			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
-		}
-		// 登録してない
-		else {
-			cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
-			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
-			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
-			registeringPlayer_ = true;
-		}
-	}
-	// 衝突してない
-	else {
-		// 登録解除
-		if (registeringPlayer_) {
-			cloth_->CollisionDataDelete(kPlayerColliderName_);
-			registeringPlayer_ = false;
-		}
-	}
-
 
 }
 

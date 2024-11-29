@@ -86,5 +86,8 @@ private: // メンバ変数
 	// プレイヤーを登録しているか
 	bool registeringPlayer_;
 
+	// 一度描画したか
+	bool haveDrawnOnce_;
+
 };
 
