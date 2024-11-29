@@ -56,5 +56,8 @@ private: // メンバ変数
 	// オフセットの高さ
 	float offsetHeight_ = 3.0f;
 
+	// ターゲット位置
+	Vector3 interTarget_;
+
 };
 
