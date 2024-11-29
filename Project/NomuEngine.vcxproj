@@ -195,6 +195,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Player\State\System\PlayerStateSystem.cpp" />
     <ClCompile Include="Application\Object\Manager\TitleSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\TutorialSceneObjectManager.cpp" />
+    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp" />
     <ClCompile Include="Application\Scene\DebugScene\DebugScene.cpp" />
     <ClCompile Include="Application\Scene\SelectScene\SelectScene.cpp" />
     <ClCompile Include="Application\Scene\TitleScene\TitleScene.cpp" />
@@ -368,6 +369,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Player\State\System\PlayerStateSystem.h" />
     <ClInclude Include="Application\Object\Manager\TitleSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\TutorialSceneObjectManager.h" />
+    <ClInclude Include="Application\Object\SideCloth\SideCloth.h" />
     <ClInclude Include="Application\Scene\DebugScene\DebugScene.h" />
     <ClInclude Include="Application\Scene\SceneName.h" />
     <ClInclude Include="Application\Scene\SelectScene\SelectScene.h" />

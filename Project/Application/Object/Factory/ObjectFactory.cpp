@@ -3,6 +3,7 @@
 #include "ObjectCreate.h"
 
 #include "../ClothGate/ClothGate.h"
+#include "../SideCloth/SideCloth.h"
 #include "../Enemy/Ghost/Ghost.h"
 #include "CreateObjectNames.h"
 
@@ -43,6 +44,10 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	createObjectFunctions_[kCreateObjectIndexGhost].first = kCreateObjectNames_[kCreateObjectIndexGhost];
 	createObjectFunctions_[kCreateObjectIndexGhost].second = ObjectCreate::CreateObjectGhost;
 
+	// 横に置く布
+	createObjectFunctions_[kCreateObjectIndexSideCloth].first = kCreateObjectNames_[kCreateObjectIndexSideCloth];
+	createObjectFunctions_[kCreateObjectIndexSideCloth].second = ObjectCreate::CreateObjectSideCloth;
+
 }
 
 IObject* ObjectFactory::CreateObject(LevelData::ObjectData& objectData)
@@ -59,6 +64,9 @@ IObject* ObjectFactory::CreateObject(LevelData::ObjectData& objectData)
 		for (uint32_t i = 0; i < kCreateObjectIndexOfCount; ++i) {
 			if (data.className == createObjectFunctions_[i].first) {
 				object = createObjectFunctions_[i].second(objectData);
+				if (i == kCreateObjectIndexSideCloth) {
+					static_cast<SideCloth*>(object)->ClothReset();
+				}
 			}
 
 		}

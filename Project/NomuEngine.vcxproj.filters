@@ -412,6 +412,9 @@
     <Filter Include="Application\System\Shadow">
       <UniqueIdentifier>{05d37b47-7e24-4dae-b750-eeab10c3b02c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\SideCloth">
+      <UniqueIdentifier>{bb31f4b5-cbdf-4277-9268-6a3a8b410086}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -908,6 +911,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateDash.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1549,6 +1555,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateDash.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\SideCloth\SideCloth.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

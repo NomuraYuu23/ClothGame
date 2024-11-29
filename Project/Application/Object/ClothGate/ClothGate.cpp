@@ -112,7 +112,6 @@ void ClothGate::ClothInitialize()
 
 void ClothGate::ClothUpdate()
 {
-
 	// 乱数
 	std::random_device seedGenerator;
 	std::mt19937 randomEngine(seedGenerator());
@@ -174,6 +173,7 @@ void ClothGate::ClothUpdate()
 			registeringPlayer_ = false;
 		}
 	}
+
 
 }
 

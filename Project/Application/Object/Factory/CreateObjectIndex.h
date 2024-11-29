@@ -6,5 +6,6 @@ enum CreateObjectIndex {
 	kCreateObjectIndexPlayer, // プレイヤー
 	kCreateObjectIndexClothGate, // 布ゲート
 	kCreateObjectIndexGhost, // ゴースト
+	kCreateObjectIndexSideCloth, // 横に置く布
 	kCreateObjectIndexOfCount, // 数数える用
 };
