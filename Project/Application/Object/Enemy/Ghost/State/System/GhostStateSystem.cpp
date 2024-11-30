@@ -16,6 +16,8 @@ void GhostStateSystem::Initialize(Ghost* ghost)
 	ghostState_->SetGhost(ghost_); // プレイヤー設定
 	ghostState_->SetGhostStateSystem(this); // プレイヤーステートシステム設定
 
+	interruptCommand_ = false;
+
 }
 
 void GhostStateSystem::Update()
@@ -25,7 +27,15 @@ void GhostStateSystem::Update()
 	currentStateNo_ = ghostState_->GetGhostStateNo();
 
 	// ステートが変わったか
-	if (prevStateNo_ != currentStateNo_) {
+	if (interruptCommand_) {
+		interruptCommand_ = false;
+		//ステート変更（初期化）
+		ghostState_.reset(GhostStateFactory::CreateGhostState(nextStateNo_));
+		ghostState_->Initialize();
+		ghostState_->SetGhost(ghost_); // プレイヤー設定
+		ghostState_->SetGhostStateSystem(this); // プレイヤーステートシステム設定
+	}
+	else if (prevStateNo_ != currentStateNo_) {
 		//ステート変更（初期化）
 		ghostState_.reset(GhostStateFactory::CreateGhostState(currentStateNo_));
 		ghostState_->Initialize();

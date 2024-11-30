@@ -907,13 +907,16 @@
     <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp">
       <Filter>Application\Object\GroundBlock</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp">
+      <Filter>Application\Object\SideCloth</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateDash.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp">
+    <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1551,13 +1554,16 @@
     <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h">
       <Filter>Application\Object\GroundBlock</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Application\Object\SideCloth\SideCloth.h">
+      <Filter>Application\Object\SideCloth</Filter>
     </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateDash.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Object\SideCloth\SideCloth.h">
+    <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
