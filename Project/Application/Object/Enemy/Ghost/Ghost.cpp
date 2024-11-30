@@ -151,7 +151,7 @@ void Ghost::ClothInitialize()
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 1.0f;
+	const float kClothVelocityLimit = 1000.0f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 6;

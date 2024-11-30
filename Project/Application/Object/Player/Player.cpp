@@ -41,11 +41,17 @@ void Player::Initialize(LevelData::MeshData* data)
 
 	// 浮いているか
 	floating_ = false;
+	
+	// ワープ
+	warping_ = false;
 
 }
 
 void Player::Update()
 {
+
+	// ワープリセット
+	warping_ = false;
 
 	// メッシュオブジェクトの更新
 	MeshObject::Update();

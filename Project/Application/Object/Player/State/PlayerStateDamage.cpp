@@ -25,6 +25,7 @@ void PlayerStateDamage::Update()
 	// ワープ
 	const Vector3 kWarpTranslate = { 0.0f, 4.0f, -470.0f };
 	playerWorldTransform_->transform_.translate = kWarpTranslate;
+	player_->SetWarping(true);
 	
 	// 状態をRootへ
 	playerStateNo_ = kPlayerStateIndexRoot;

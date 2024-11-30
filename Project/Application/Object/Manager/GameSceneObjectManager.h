@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/Object/BaseObjectManager.h"
 #include "../../System/Shadow/ShadowManager.h"
+
+class Player;
+
 class GameSceneObjectManager :
     public BaseObjectManager
 {
@@ -32,6 +35,8 @@ public: // メンバ関数
 	/// <param name="drawLine">線描画クラス</param>
 	void Draw(BaseCamera& camera, DrawLine* drawLine) override;
 
+	void LevelChange();
+
 private: // メンバ関数
 
 	/// <summary>
@@ -52,6 +57,18 @@ private: // メンバ変数
 	std::unique_ptr<ShadowManager> shadowManager_;
 	// 影モデル
 	std::unique_ptr<Model> shadowModel_;
+
+	// レベル
+	uint32_t level_;
+
+	// 生成タイミング削除位置
+	uint32_t a_;
+
+	// レベルデータマネージャー
+	LevelDataManager* levelDataManager_;
+
+	// プレイヤー
+	Player* player_;
 
 };
 

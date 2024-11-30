@@ -78,10 +78,22 @@ public: // アクセッサ
     bool GetFloating() { return floating_; }
 
     /// <summary>
-    /// プレイヤーが浮いているか取得
+    /// プレイヤーが浮いているか設定
     /// </summary>
     /// <returns></returns>
     void SetFloating(bool floating) { floating_ = floating; }
+
+    /// <summary>
+    /// ワープ設定
+    /// </summary>
+    /// <param name="warping">ワープ</param>
+    void SetWarping(bool warping) { warping_ = warping; }
+
+    /// <summary>
+    /// ワープ取得
+    /// </summary>
+    /// <returns></returns>
+    bool GetWarping() { return warping_; }
 
 private: // メンバ変数
 
@@ -93,6 +105,9 @@ private: // メンバ変数
 
     // プレイヤーが浮いているか
     bool floating_;
+
+    // ワープ
+    bool warping_;
 
 };
 

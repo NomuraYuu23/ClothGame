@@ -1,6 +1,7 @@
 #include "GameSceneObjectManager.h"
 #include "../Factory/ObjectFactory.h"
 #include "../Factory/CreateObjectNames.h"
+#include "../Player/Player.h"
 
 void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager* levelDataManager)
 {
@@ -8,8 +9,13 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	// オブジェクトファクトリー
 	objectFactory_ = std::make_unique<ObjectFactory>();
 	static_cast<ObjectFactory*>(objectFactory_.get())->Initialize(this);
-	
-	BaseObjectManager::Initialize(levelIndex, levelDataManager);
+
+	levelDataManager_ = levelDataManager;
+	BaseObjectManager::Initialize(levelIndex, levelDataManager_);
+
+	a_ = static_cast<uint32_t>(objects_.size());
+
+	player_ = static_cast<Player*>(GetObjectPointer("Player"));
 
 	// 影
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
@@ -18,7 +24,7 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	shadowManager_->Initialize(shadowModel_.get());
 
 	// お試し
-	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager);
+	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
 
 }
 
@@ -27,6 +33,10 @@ void GameSceneObjectManager::Update()
 
 	// オブジェクトマネージャー
 	BaseObjectManager::Update();
+
+	//if (player_->GetWarping()) {
+	//	LevelChange();
+	//}
 
 	// ワープ時、オブジェクトの追加
 
@@ -54,6 +64,24 @@ void GameSceneObjectManager::Draw(BaseCamera& camera, DrawLine* drawLine)
 
 	// 影
 	shadowManager_->Draw(camera);
+
+}
+
+void GameSceneObjectManager::LevelChange()
+{
+
+	uint32_t count = 0;
+
+	objects_.remove_if([&](ObjectPair& objects) {
+		count++;
+		if (count > a_) {
+			objects.second.reset();
+			return true;
+		}
+		return false;
+		});
+
+	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
 
 }
 
