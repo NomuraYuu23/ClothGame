@@ -1,6 +1,8 @@
 #include "SideCloth.h"
 #include "../../../Engine/Math/Ease.h"
 #include "../../../Engine/Math/RandomEngine.h"
+#include "../Player/Player.h"
+#include "../../../Engine/Math/DeltaTime.h"
 
 const Vector2 SideCloth::kClothScale_ = { 50.0f,20.0f };
 
@@ -104,10 +106,32 @@ void SideCloth::ClothInitialize()
 	const uint32_t kClothRelaxation = 6;
 	cloth_->SetRelaxation(kClothRelaxation);
 
+	// 更新秒数
+	updateSeconds_ = 0.0f;
+
 }
 
 void SideCloth::ClothUpdate()
 {
+
+	// プレイヤーの情報をいれる
+	const Vector3 playerPosition = player_->GetWorldTransformAdress()->GetWorldPosition();
+
+	// プレイヤー近い
+	const float kCollisionDistance = 50.0f;
+	if (Vector3::Length(Vector3::Subtract(playerPosition, worldTransform_.GetWorldPosition())) < kCollisionDistance) {
+		updateSeconds_ = 0.0f;
+	}
+	// プレイヤー遠い
+	else {
+		const float kUpdateEndSeconds = 3.0f;
+		// 更新フレーム
+		updateSeconds_ += kDeltaTime_;
+		if (updateSeconds_ >= kUpdateEndSeconds) {
+			updateSeconds_ = kUpdateEndSeconds;
+			return;
+		}
+	}
 
 	// 乱数
 	std::random_device seedGenerator;

@@ -21,8 +21,6 @@ public: // 静的メンバ変数
 	static const Vector3 kBaseLeftFixed_;
 	// ワールド座標からの右固定部分
 	static const Vector3 kBaseRightFixed_;
-	// 更新終了秒数
-	static const float kUpdateEndSeconds_;
 	// DirectX
 	static DirectXCommon* dxCommon_;
 

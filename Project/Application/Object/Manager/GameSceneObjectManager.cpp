@@ -34,9 +34,9 @@ void GameSceneObjectManager::Update()
 	// オブジェクトマネージャー
 	BaseObjectManager::Update();
 
-	//if (player_->GetWarping()) {
-	//	LevelChange();
-	//}
+	if (player_->GetWarping()) {
+		LevelChange();
+	}
 
 	// ワープ時、オブジェクトの追加
 

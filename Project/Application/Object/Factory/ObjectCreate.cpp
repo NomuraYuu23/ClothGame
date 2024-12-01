@@ -67,5 +67,6 @@ IObject* ObjectCreate::CreateObjectSideCloth(LevelData::ObjectData& objectData)
 	IObject* object = new SideCloth();
 	// 初期化
 	static_cast<SideCloth*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	static_cast<SideCloth*>(object)->SetPlayer(player_);
 	return object;
 }

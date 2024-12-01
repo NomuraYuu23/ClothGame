@@ -2,6 +2,9 @@
 #include "../../../Engine/Object/MeshObject.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
+// 前方宣言
+class Player;
+
 class SideCloth :
     public MeshObject
 {
@@ -59,10 +62,24 @@ private: // メンバ関数
 	/// </summary>
 	void ClothUpdate();
 
+public: // アクセッサ
+
+	/// <summary>
+	/// プレイヤー設定
+	/// </summary>
+	/// <param name="player"></param>
+	void SetPlayer(Player* player) { player_ = player; }
+
 private: // メンバ変数
 
 	// 布
 	std::unique_ptr<ClothGPU> cloth_;
+
+	// プレイヤー
+	Player* player_;
+
+	// 更新秒数
+	float updateSeconds_;
 
 };
 

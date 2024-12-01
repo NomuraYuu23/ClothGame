@@ -14,8 +14,6 @@ const Vector3 ClothGate::kBaseLeftFixed_ = { -2.0f, 3.0f, 0.0f };
 
 const Vector3 ClothGate::kBaseRightFixed_ = { 2.0f, 3.0f, 0.0f };
 
-const float ClothGate::kUpdateEndSeconds_ = 3.0f;
-
 DirectXCommon* ClothGate::dxCommon_ = DirectXCommon::GetInstance();
 
 void ClothGate::Initialize(LevelData::MeshData* data)
@@ -27,9 +25,6 @@ void ClothGate::Initialize(LevelData::MeshData* data)
 
 	// 布
 	ClothInitialize();
-
-	// 更新秒数
-	updateSeconds_ = 0.0f;
 
 }
 
@@ -114,6 +109,9 @@ void ClothGate::ClothInitialize()
 	// 登録
 	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
+	// 更新秒数
+	updateSeconds_ = 0.0f;
+
 }
 
 void ClothGate::ClothUpdate()
@@ -149,11 +147,11 @@ void ClothGate::ClothUpdate()
 			registeringPlayer_ = false;
 			updateSeconds_ = 0.0f;
 		}
-
+		const float kUpdateEndSeconds = 3.0f;
 		// 更新フレーム
 		updateSeconds_ += kDeltaTime_;
-		if (updateSeconds_ >= kUpdateEndSeconds_) {
-			updateSeconds_ = kUpdateEndSeconds_;
+		if (updateSeconds_ >= kUpdateEndSeconds) {
+			updateSeconds_ = kUpdateEndSeconds;
 			return;
 		}
 
