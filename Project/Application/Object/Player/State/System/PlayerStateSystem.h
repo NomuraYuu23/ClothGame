@@ -49,6 +49,12 @@ public: // アクセッサ
 	/// <param name="nextStateNo"></param>
 	void SetNextStateNo(uint32_t nextStateNo) {	nextStateNo_ = nextStateNo;	}
 
+	/// <summary>
+	/// プレイヤーコマンド
+	/// </summary>
+	/// <returns></returns>
+	PlayerCommand* GetPlayerCommand() { return playerCommand_.get(); }
+
 private: // メンバ変数
 
 	// ステート
@@ -68,6 +74,9 @@ private: // メンバ変数
 
 	// 割り込みコマンドがあるか
 	bool interruptCommand_;
+
+	// コマンド
+	std::unique_ptr<PlayerCommand> playerCommand_;
 
 };
 

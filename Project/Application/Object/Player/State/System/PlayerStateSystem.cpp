@@ -15,7 +15,8 @@ void PlayerStateSystem::Initialize(Player*player)
 	playerState_->SetPlayerStateSystem(this); // プレイヤーステートシステム設定
 
 	// コマンド
-	PlayerCommand::Initialize();
+	playerCommand_ = std::make_unique<PlayerCommand>();
+	playerCommand_->Initialize();
 
 	// コマンドを受け取るか
 	receiveCommand_ = true;
@@ -28,6 +29,9 @@ void PlayerStateSystem::Initialize(Player*player)
 void PlayerStateSystem::Update()
 {
 
+	// コマンド更新
+	playerCommand_->Update();
+
 	// ステートのチェック
 	prevStateNo_ = currentStateNo_;
 	if (interruptCommand_) {
@@ -35,7 +39,7 @@ void PlayerStateSystem::Update()
 		interruptCommand_ = false;
 	}
 	else if (receiveCommand_) {
-		currentStateNo_ = PlayerCommand::Command();
+		currentStateNo_ = playerCommand_->Command();
 	}
 	else {
 		currentStateNo_ = playerState_->GetPlaryerStateNo();

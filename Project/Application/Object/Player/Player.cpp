@@ -50,8 +50,12 @@ void Player::Initialize(LevelData::MeshData* data)
 void Player::Update()
 {
 
-	// ワープリセット
-	warping_ = false;
+	// ワープした
+	if (warping_) {
+		// ワープリセット
+		warping_ = false;
+		playerStateSystem_->GetPlayerCommand()->DashReset();
+	}
 
 	// メッシュオブジェクトの更新
 	MeshObject::Update();
