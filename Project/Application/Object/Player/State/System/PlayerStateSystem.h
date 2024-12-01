@@ -63,9 +63,6 @@ private: // メンバ変数
 	// 次のステート番号
 	uint32_t nextStateNo_;
 
-	// コマンド
-	PlayerCommand* playerCommand_;
-
 	// コマンドを受け取るか
 	bool receiveCommand_;
 

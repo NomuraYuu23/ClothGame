@@ -15,8 +15,7 @@ void PlayerStateSystem::Initialize(Player*player)
 	playerState_->SetPlayerStateSystem(this); // プレイヤーステートシステム設定
 
 	// コマンド
-	playerCommand_ = PlayerCommand::GetInstance();
-	playerCommand_->Initialize();
+	PlayerCommand::Initialize();
 
 	// コマンドを受け取るか
 	receiveCommand_ = true;
@@ -36,7 +35,7 @@ void PlayerStateSystem::Update()
 		interruptCommand_ = false;
 	}
 	else if (receiveCommand_) {
-		currentStateNo_ = playerCommand_->Command();
+		currentStateNo_ = PlayerCommand::Command();
 	}
 	else {
 		currentStateNo_ = playerState_->GetPlaryerStateNo();

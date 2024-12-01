@@ -124,7 +124,7 @@ void SideCloth::ClothUpdate()
 	}
 	// プレイヤー遠い
 	else {
-		const float kUpdateEndSeconds = 3.0f;
+		const float kUpdateEndSeconds = 1.0f;
 		// 更新フレーム
 		updateSeconds_ += kDeltaTime_;
 		if (updateSeconds_ >= kUpdateEndSeconds) {
@@ -138,8 +138,8 @@ void SideCloth::ClothUpdate()
 	std::mt19937 randomEngine(seedGenerator());
 
 	// 風力最大値
-	const float kWindPowerMin = -5.0f;
-	const float kWindPowerMax = 5.0f;
+	const float kWindPowerMin = -1.0f;
+	const float kWindPowerMax = 1.0f;
 	std::uniform_real_distribution<float> distribution(kWindPowerMin, kWindPowerMax);
 
 	// 風力

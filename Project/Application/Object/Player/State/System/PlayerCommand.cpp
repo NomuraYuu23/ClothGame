@@ -3,12 +3,6 @@
 
 Input* PlayerCommand::input_ = Input::GetInstance();
 
-PlayerCommand* PlayerCommand::GetInstance()
-{
-	static PlayerCommand instance;
-	return &instance;
-}
-
 void PlayerCommand::Initialize()
 {
 }
