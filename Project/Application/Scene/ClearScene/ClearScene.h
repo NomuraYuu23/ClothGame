@@ -43,5 +43,20 @@ private: // メンバ関数
 private: // メンバ変数
 
 
+	// ボタン
+	std::unique_ptr<Sprite> buttonSprite_;
+	uint32_t buttonTextureHandle_;
+	// 点滅用媒介変数
+	float buttonAlphaT_;
+	// 点滅用媒介変数速度
+	float buttonAlphaTSpeed_;
+	// 点滅用媒介変数は増えるか
+	bool buttonItIncreaseAlphaT_;
+	// 色
+	Vector4 buttonColor_;
+
+	std::unique_ptr<Sprite> clearSprite_;
+	uint32_t clearTextureHandle_;
+
 };
 
