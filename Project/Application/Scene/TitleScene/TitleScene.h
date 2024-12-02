@@ -56,4 +56,19 @@ private: // メンバ変数
 	std::unique_ptr<ShockWaveManager> shockWaveManager_;
 	bool isShockWave_;
 
+	// ボタン
+	std::unique_ptr<Sprite> buttonSprite_;
+	uint32_t buttonTextureHandle_;
+	// 点滅用媒介変数
+	float buttonAlphaT_;
+	// 点滅用媒介変数速度
+	float buttonAlphaTSpeed_;
+	// 点滅用媒介変数は増えるか
+	bool buttonItIncreaseAlphaT_;
+	// 色
+	Vector4 buttonColor_;
+
+	std::unique_ptr<Sprite> titleSprite_;
+	uint32_t titleTextureHandle_;
+
 };
