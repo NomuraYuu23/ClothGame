@@ -18,6 +18,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	// メッシュオブジェクトの初期化
 	MeshObject::Initialize(data);
 
+	material_->SetEnableLighting(HalfLambert);
+
 	// 衝突マスク
 	collisionAttribute_ = kCollisionAttributePlayer;
 	collisionMask_ -= kCollisionAttributePlayer;
