@@ -20,12 +20,6 @@ void TitleScene::Initialize()
 	ModelCreate();
 	TextureLoad();
 
-	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, { 640.0f, 600.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
-	buttonAlphaT_ = 0.0f;
-	buttonAlphaTSpeed_ = 0.01f;
-	buttonItIncreaseAlphaT_ = true;
-	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
-
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<TitleSceneObjectManager>();
 	objectManager_->Initialize(kLevelIndexTitle, levelDataManager_);
@@ -111,42 +105,6 @@ void TitleScene::Update()
 	// デバッグカメラ
 	DebugCameraUpdate();
 
-	// ボタンスプライト
-	if (buttonItIncreaseAlphaT_) {
-		buttonAlphaT_ += buttonAlphaTSpeed_;
-		if (buttonAlphaT_ >= 1.0f) {
-			buttonAlphaT_ = 1.0f;
-			buttonItIncreaseAlphaT_ = false;
-		}
-	}
-	else {
-		buttonAlphaT_ -= buttonAlphaTSpeed_;
-		if (buttonAlphaT_ <= 0.0f) {
-			buttonAlphaT_ = 0.0f;
-			buttonItIncreaseAlphaT_ = true;
-		}
-	}
-	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
-	buttonSprite_->SetColor(buttonColor_);
-
-	// ボタンスプライト
-	if (buttonItIncreaseAlphaT_) {
-		buttonAlphaT_ += buttonAlphaTSpeed_;
-		if (buttonAlphaT_ >= 1.0f) {
-			buttonAlphaT_ = 1.0f;
-			buttonItIncreaseAlphaT_ = false;
-		}
-	}
-	else {
-		buttonAlphaT_ -= buttonAlphaTSpeed_;
-		if (buttonAlphaT_ <= 0.0f) {
-			buttonAlphaT_ = 0.0f;
-			buttonItIncreaseAlphaT_ = true;
-		}
-	}
-	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
-	buttonSprite_->SetColor(buttonColor_);
-
 	if (isShockWave_) {
 		shockWaveManager_->Update();
 	}
@@ -215,8 +173,6 @@ void TitleScene::Draw()
 
 	//背景
 	//前景スプライト描画
-	
-	buttonSprite_->Draw();
 
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();
@@ -269,8 +225,6 @@ void TitleScene::ModelCreate()
 
 void TitleScene::TextureLoad()
 {
-
-	buttonTextureHandle_ = TextureManager::Load("Resources/OutGame/titleString_00.png", dxCommon_);
 
 	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 

@@ -916,7 +916,16 @@
     <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp">
       <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="Application\UI\UIManager.cpp">
+      <Filter>Application\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\BaseUI.cpp">
+      <Filter>Application\UI</Filter>
+    </ClCompile>
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\ButtonAUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1563,7 +1572,16 @@
     <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h">
       <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
+    <ClInclude Include="Application\UI\UIManager.h">
+      <Filter>Application\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\BaseUI.h">
+      <Filter>Application\UI</Filter>
+    </ClInclude>
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.h">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\ButtonAUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

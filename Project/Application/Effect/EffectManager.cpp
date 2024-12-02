@@ -7,7 +7,7 @@ const std::string EffectManager::texturePath = "Resources/Sprite/Effect/";
 // テクスチャ名前
 const std::array<std::string, EffectManager::EffectTextureIndexOfCount> EffectManager::effectTextureNames_ =
 {
-	"bload.png"
+	"test.png"
 };
 
 // ビルボードエフェクトが使うテクスチャ番号
