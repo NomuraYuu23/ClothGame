@@ -11,18 +11,35 @@ public: // サブクラス
 	// テクスチャ一覧
 	enum TextureIndex {
 		kTextureIndexButtonA, // ボタンA
+		kTextureIndexButtonB, // ボタンB
+		kTextureIndexStickL, // スティックL
+
+		kTextureIndexStringJump, // 文字ジャンプ
+		kTextureIndexStringDash, // 文字ダッシュ
+		kTextureIndexStringMove, // 文字ムーブ
+
 		kTextureIndexOfCount
 	};
 
 	// UI一覧
 	enum UIIndex {
 		kUIIndexJumpButton, // ジャンプボタン
+		kUIIndexDashButton, // ダッシュボタン
+		kUIIndexMoveStick, // 移動スティック
+
+		kUIIndexStringJump, // 文字ジャンプ
+		kUIIndexStringDash, // 文字ダッシュ
+		kUIIndexStringMove, // 文字ムーブ
+
 		kUIIndexOfCount
 	};
 
 	// クラス一覧
 	enum ClassIndex {
-		kClassIndexButtonA, // ジャンプボタン
+		kClassIndexBase, // ベース
+		kClassIndexButtonA, // ボタンA
+		kClassIndexButtonB, // ボタンB
+		kClassIndexIndexStickL, // スティックL
 		kClassIndexOfCount
 	};
 
@@ -41,18 +58,37 @@ private: // 定数
 	const std::array<std::string, TextureIndex::kTextureIndexOfCount> kTextureFileNames_ =
 	{
 		"ButtonA.png",
+		"ButtonB.png",
+		"StickL.png",
+
+		"JumpUI.png",
+		"DashUI.png",
+		"MoveUI.png",
 	};
 
-	// UIネーム(Resouce/UI/の次から)
+	// UIネーム
 	const std::array<std::string, UIIndex::kUIIndexOfCount> kUINames_ =
 	{
 		"JumpButton",
+		"DashButton",
+		"MoveStick",
+
+		"StringJump",
+		"StringDash",
+		"StringMove",
 	};
 
 	// UI作成データ
 	const std::array<UICreateData, UIIndex::kUIIndexOfCount> kUICreateDatas_ =
-	{ 
-		{kTextureIndexButtonA, kClassIndexButtonA, {0.0f,0.0f}, {64.0f,64.0f}},
+	{
+		UICreateData{ kTextureIndexButtonA, kClassIndexButtonA, {75.0f,50.0f}, {64.0f,64.0f} },
+		UICreateData{ kTextureIndexButtonB, kClassIndexButtonB, {75.0f,125.0f}, {64.0f,64.0f}},
+		UICreateData{ kTextureIndexStickL, kClassIndexIndexStickL, {75.0f,200.0f}, {64.0f,64.0f}},
+		
+		UICreateData{ kTextureIndexStringJump, kClassIndexBase, {200.0f,50.0f}, {128.0f,64.0f} },
+		UICreateData{ kTextureIndexStringDash, kClassIndexBase, {200.0f,125.0f}, {128.0f,64.0f}},
+		UICreateData{ kTextureIndexStringMove, kClassIndexBase, {200.0f,200.0f}, {128.0f,64.0f}},
+
 	};
 
 public: // メンバ関数

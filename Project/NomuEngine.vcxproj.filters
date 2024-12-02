@@ -415,6 +415,9 @@
     <Filter Include="Application\Object\SideCloth">
       <UniqueIdentifier>{bb31f4b5-cbdf-4277-9268-6a3a8b410086}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\UI\Button">
+      <UniqueIdentifier>{cb4de93d-8f2c-460c-bc34-66aeebc8f37a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -926,6 +929,12 @@
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClCompile>
     <ClCompile Include="Application\UI\ButtonAUI.cpp">
+      <Filter>Application\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\ButtonBUI.cpp">
+      <Filter>Application\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\StickLUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1582,6 +1591,12 @@
       <Filter>Application\Object\Enemy\Ghost\State</Filter>
     </ClInclude>
     <ClInclude Include="Application\UI\ButtonAUI.h">
+      <Filter>Application\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\ButtonBUI.h">
+      <Filter>Application\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\StickLUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
