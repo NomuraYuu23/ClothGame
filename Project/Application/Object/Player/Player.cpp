@@ -47,6 +47,9 @@ void Player::Initialize(LevelData::MeshData* data)
 	// ワープ
 	warping_ = false;
 
+	// レベルアップ
+	levelUp_ = false;
+
 }
 
 void Player::Update()
@@ -56,6 +59,7 @@ void Player::Update()
 	if (warping_) {
 		// ワープリセット
 		warping_ = false;
+		levelUp_ = false;
 		playerStateSystem_->GetPlayerCommand()->DashReset();
 	}
 

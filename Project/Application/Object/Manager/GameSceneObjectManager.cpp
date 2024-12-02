@@ -13,7 +13,7 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	levelDataManager_ = levelDataManager;
 	BaseObjectManager::Initialize(levelIndex, levelDataManager_);
 
-	a_ = static_cast<uint32_t>(objects_.size());
+	objectsDeletionPosition_ = static_cast<uint32_t>(objects_.size());
 
 	player_ = static_cast<Player*>(GetObjectPointer("Player"));
 
@@ -25,6 +25,8 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 
 	// お試し
 	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
+
+	level_ = 0;
 
 }
 
@@ -70,18 +72,32 @@ void GameSceneObjectManager::Draw(BaseCamera& camera, DrawLine* drawLine)
 void GameSceneObjectManager::LevelChange()
 {
 
+	const uint32_t kLevelMax = 1;
+
+	// レベルアップ
+	if (player_->GetLevelUp()) {
+		level_++;
+	}
+
+	if (level_ >= kLevelMax) {
+		levelChangeEnd_ = true;
+		return;
+	}
+
 	uint32_t count = 0;
 
 	objects_.remove_if([&](ObjectPair& objects) {
 		count++;
-		if (count > a_) {
+		if (count > objectsDeletionPosition_) {
 			objects.second.reset();
 			return true;
 		}
 		return false;
 		});
 
-	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
+	LevelIndex levelIndex = static_cast<LevelIndex>(kLevelIndexGenerationPattern_00 + level_);
+
+	GeneratePattern(levelIndex, levelDataManager_);
 
 }
 

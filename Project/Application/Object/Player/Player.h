@@ -95,6 +95,18 @@ public: // アクセッサ
     /// <returns></returns>
     bool GetWarping() { return warping_; }
 
+    /// <summary>
+    /// レベルアップ設定
+    /// </summary>
+    /// <param name="warping">レベルアップ</param>
+    void SetLevelUp(bool levelUp) { levelUp_ = levelUp; }
+
+    /// <summary>
+    /// レベルアップ取得
+    /// </summary>
+    /// <returns></returns>
+    bool GetLevelUp() { return levelUp_; }
+
 private: // メンバ変数
 
     // ステートシステム
@@ -108,6 +120,9 @@ private: // メンバ変数
 
     // ワープ
     bool warping_;
+
+    // レベルアップ
+    bool levelUp_;
 
 };
 

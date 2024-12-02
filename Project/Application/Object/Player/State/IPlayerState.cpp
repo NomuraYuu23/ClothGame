@@ -49,7 +49,7 @@ void IPlayerState::Warp()
 		const float kWarpTranslateZ = -470.0f;
 		playerWorldTransform_->transform_.translate.z = kWarpTranslateZ;
 		player_->SetWarping(true);
-
+		player_->SetLevelUp(true);
 	}
 
 }

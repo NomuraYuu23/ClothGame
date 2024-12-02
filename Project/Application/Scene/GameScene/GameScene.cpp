@@ -106,6 +106,11 @@ void GameScene::Update() {
 	// UIマネージャー
 	uiManager_->Update();
 
+	// ゲームが終了するか
+	if (static_cast<GameSceneObjectManager*>(objectManager_.get())->GetLevelChangeEnd()) {
+		requestSceneNo_ = kClear;
+	}
+
 }
 
 /// <summary>
