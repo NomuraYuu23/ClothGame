@@ -12,6 +12,13 @@ void StickLUI::Update()
 
 	BaseUI::Update();
 
+
+	Vector2 addPosition = { 0.0f,0.0f };
+
+	addPosition.x = input_->GetLeftAnalogstick().x / 3276.7f;
+
+	sprite_->SetPosition(position_ + addPosition);
+
 }
 
 void StickLUI::ImGuiDraw()

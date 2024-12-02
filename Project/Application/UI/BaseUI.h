@@ -1,7 +1,14 @@
 #pragma once
 #include "../../Engine/2D/Sprite.h"
+#include "../../Engine/Input/Input.h"
+
 class BaseUI
 {
+
+public: // メンバ変数
+
+	// 入力
+	static Input* input_;
 
 public: // メンバ関数
 

@@ -1,6 +1,8 @@
 #include "BaseUI.h"
 #include "../../Engine/2D/ImguiManager.h"
 
+Input* BaseUI::input_ = Input::GetInstance();
+
 void BaseUI::Initialize(uint32_t textureHandle, const Vector2& position, const Vector2& size)
 {
 
