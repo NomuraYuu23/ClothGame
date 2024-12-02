@@ -27,43 +27,6 @@
         },
         {
             "type": "MESH",
-            "name": "Player",
-            "transform": {
-                "translation": [
-                    0.0,
-                    -470.0,
-                    4.0
-                ],
-                "rotation": [
-                    -0.0,
-                    0.0,
-                    0.0
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "Ball.obj",
-            "directoryPath": "Resources/default",
-            "className": "Player",
-            "collider": {
-                "type": "BOX",
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "size": [
-                    2.0,
-                    2.0,
-                    2.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "BaseGround.000",
             "transform": {
                 "translation": [
@@ -132,6 +95,43 @@
                 "size": [
                     20.0,
                     80.0,
+                    2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "Player",
+            "transform": {
+                "translation": [
+                    0.0,
+                    -470.0,
+                    4.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Player.obj",
+            "directoryPath": "Resources/Model/Player",
+            "className": "Player",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    1.2000000476837158,
+                    1.2000000476837158,
                     2.0
                 ]
             }

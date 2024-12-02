@@ -15,7 +15,8 @@ void StickLUI::Update()
 
 	Vector2 addPosition = { 0.0f,0.0f };
 
-	addPosition.x = input_->GetLeftAnalogstick().x / 3276.7f;
+	const float kDenominator = 3276.7f;
+	addPosition.x = input_->GetLeftAnalogstick().x / kDenominator;
 
 	sprite_->SetPosition(position_ + addPosition);
 
