@@ -4,6 +4,12 @@
 #include "../base/WinApp.h"
 #include "../../externals/imgui/imgui_impl_dx12.h"
 #include "../../externals/imgui/imgui_impl_win32.h"
+#include "../../externals/imgui/GraphEditor.h"
+#include "../../externals/imgui/ImCurveEdit.h"
+#include "../../externals/imgui/ImGradient.h"
+#include "../../externals/imgui/ImGuizmo.h"
+#include "../../externals/imgui/ImSequencer.h"
+#include "../../externals/imgui/ImZoomSlider.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
