@@ -29,16 +29,16 @@ void DebugCamera::Update(float elapsedTime) {
 	if (input->PushKey(DIK_A)) {
 		velocity.x -= moveSpeed_;
 	}
-	if (input->PushKey(DIK_W)) {
+	if (input->PushKey(DIK_SPACE)) {
 		velocity.y += moveSpeed_;
 	}
-	if (input->PushKey(DIK_S)) {
+	if (input->PushKey(DIK_LSHIFT)) {
 		velocity.y -= moveSpeed_;
 	}
-	if (input->PushKey(DIK_E)) {
+	if (input->PushKey(DIK_W)) {
 		velocity.z += moveSpeed_;
 	}
-	if (input->PushKey(DIK_Q)) {
+	if (input->PushKey(DIK_S)) {
 		velocity.z -= moveSpeed_;
 	}
 
@@ -66,9 +66,18 @@ void DebugCamera::Update(float elapsedTime) {
 void DebugCamera::ImGuiDraw()
 {
 
-	ImGui::Begin("DebugCamera");
-	ImGui::DragFloat3("translate",&transform_.translate.x,0.01f);
-	ImGui::DragFloat3("rotate", &transform_.rotate.x, 0.01f);
+	ImGui::Begin("デバッグカメラ");
+	ImGui::DragFloat3("位置",&transform_.translate.x,0.01f);
+	ImGui::DragFloat3("回転", &transform_.rotate.x, 0.01f);
+	ImGui::Text("操作説明");
+	ImGui::Text("移動 ： 上：左Shift");
+	ImGui::Text("移動 ： 下：Space");
+	ImGui::Text("移動 ： 前：W");
+	ImGui::Text("移動 ： 後：S");
+	ImGui::Text("移動 ： 右：D");
+	ImGui::Text("移動 ： 左：A");
+	ImGui::Text("回転 ： 縦回転：↑、↓");
+	ImGui::Text("回転 ： 横回転：←、→");
 	ImGui::End();
 
 }

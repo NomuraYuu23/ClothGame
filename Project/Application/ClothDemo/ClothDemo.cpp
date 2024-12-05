@@ -81,42 +81,64 @@ void ClothDemo::Draw(BaseCamera* camera)
 void ClothDemo::ImGuiDraw()
 {
 
-	clothGPU_->ImGuiDraw("clothGPU");
+	clothGPU_->ImGuiDraw("布計算パラメータ");
 
-	ImGui::Begin("ClothDemo");
+	ImGui::Begin("クロスシミュレーションデモ");
 	// 布
-	ImGui::Text("Cloth");
-	ImGui::DragFloat2("ClothDiv", &clothDiv_.x, 1.0f, 4.0f, 256.0f);
-	ImGui::DragFloat2("ClothScale", &clothScale_.x, 0.01f, 1.0f);
+	ImGui::Text("布");
+	ImGui::DragFloat2("分割数", &clothDiv_.x, 1.0f, 4.0f, 256.0f);
+	ImGui::DragFloat2("大きさ", &clothScale_.x, 0.01f, 1.0f);
 
-	if (ImGui::Button("ClothReset")) {
+	if (ImGui::Button("リセット(作成し直す)")) {
 		// 布の初期化
 		ClothReset(dxCommon_->GetCommadList());
 		// リセット
 		ClothPositionReset(kFixedIndexTop);
 	}
-	ImGui::DragFloat3("ResetPosition", &resetPosition_.x, 0.01f);
-	if (ImGui::Button("RemoveFixation")) {
+	ImGui::DragFloat3("リセット位置", &resetPosition_.x, 0.01f);
+	if (ImGui::Button("固定部分を解除する")) {
 		RemoveFixation();
 	}
-	if (ImGui::Button("Reset_FixedEnd")) {
+	if (ImGui::Button("端4点を固定する")) {
 		ClothPositionReset(kFixedIndexEnd);
 	}
-	if (ImGui::Button("Reset_FixedTop")) {
+	if (ImGui::Button("上部分を固定する")) {
 		ClothPositionReset(kFixedIndexTop);
 	}
+
+	// 物体
+	std::string name = "";
+
 	// 平面
 	plane_->ImGuiDraw();
-	if (ImGui::Button("PlaneSwitching")) {
+	if (plane_->GetExist()) {
+		name = "平面を消す";
+	}
+	else {
+		name = "平面を出す";
+	}
+	if (ImGui::Button(name.c_str())) {
 		PlaneSwitching();
 	}
 	// 球
 	sphere_->ImGuiDraw();
-	if (ImGui::Button("SphereSwitching")) {
+	if (sphere_->GetExist()) {
+		name = "球を消す";
+	}
+	else {
+		name = "球を出す";
+	}
+	if (ImGui::Button(name.c_str())) {
 		SphereSwitching();
 	}
 	capsule_->ImGuiDraw();
-	if (ImGui::Button("CapsuleSwitching")) {
+	if (capsule_->GetExist()) {
+		name = "カプセルを消す";
+	}
+	else {
+		name = "カプセルを出す";
+	}
+	if (ImGui::Button(name.c_str())) {
 		CapsuleSwitching();
 	}
 	ImGui::End();
@@ -163,6 +185,7 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 {
 
 	// 布の計算データ一時保存
+	float mass = 1.0f; // 質量
 	Vector3 gravity{}; // 重力
 	Vector3 wind{}; // 風力
 	float stiffness = 0.0f; // 剛性。バネ定数k
@@ -173,6 +196,7 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 	float shearStretch = 0.0f; // せん断バネ縮み抵抗
 	float bendingShrink = 0.0f; // 曲げバネ伸び抵抗
 	float bendingStretch = 0.0f; // 曲げバネ縮み抵抗
+	float velocityLimit = 0.0f; // 速度制限
 	int32_t relaxation = 1;
 
 	if (clothGPU_) {
@@ -187,14 +211,17 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 		shearStretch = clothGPU_->GetShearShrink();
 		bendingShrink = clothGPU_->GetBendingStretch();
 		bendingStretch = clothGPU_->GetBendingShrink();
+		// 速度制限
+		velocityLimit = clothGPU_->GetVelocityLimit();
 		// 更新回数
 		relaxation = clothGPU_->GetRelaxation();
 	}
 	else {
+		mass = 1.0f;
 		gravity = {0.0f,-9.8f, 0.0f}; // 重力
 		wind = { 0.0f, 0.0f, 0.0f }; // 風力
 		stiffness = 100.0f; // 剛性。バネ定数k
-		speedResistance = 0.2f; // 速度抵抗
+		speedResistance = 0.0f; // 速度抵抗
 		// 抵抗 (structural > shear >= bending)の大きさが酔良い
 		structuralShrink = 100.0f;
 		structuralStretch = 100.0f;
@@ -202,6 +229,8 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 		shearStretch = 80.0f;
 		bendingShrink = 60.0f;
 		bendingStretch = 60.0f;
+		// 速度制限
+		velocityLimit = 1000.0f;
 		// 更新回数
 		relaxation = 6; // 最大数
 	}
@@ -212,6 +241,7 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 	clothGPU_->Initialize(dxCommon_->GetDevice(), commandList, clothScale_, clothDiv_, "Resources/Sprite/Cloth/BlueCloth.png");
 
 	// 布の計算データを戻す
+	clothGPU_->SetMass(mass); // 質量
 	clothGPU_->SetGravity(gravity); // 重力
 	clothGPU_->SetWind(wind); // 風力
 	clothGPU_->SetStiffness(stiffness); // 剛性。バネ定数k
@@ -223,6 +253,8 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 	clothGPU_->SetShearShrink(shearStretch);
 	clothGPU_->SetBendingStretch(bendingShrink);
 	clothGPU_->SetBendingShrink(bendingStretch);
+	// 速度制限
+	clothGPU_->SetVelocityLimit(velocityLimit);
 	// 更新回数
 	clothGPU_->SetRelaxation(relaxation);
 
