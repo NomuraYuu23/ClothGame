@@ -2,7 +2,7 @@
 #include "../IPlayerState.h"
 #include "../../../../../Engine/Math/DeltaTime.h"
 
-const float PlayerCommand::KDashCoolTime_ = 2.0f;
+const float PlayerCommand::KDashCoolTime_ = 0.5f;
 
 void PlayerCommand::Initialize()
 {
