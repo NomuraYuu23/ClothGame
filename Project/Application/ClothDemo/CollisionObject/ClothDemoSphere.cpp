@@ -65,15 +65,11 @@ void ClothDemoSphere::Update()
 void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
 {
 
-    ImGui::Text("sphere");
+    ImGui::Text("球");
     // 法線
-    ImGui::DragFloat3("sphere.position", &data_.position_.x, 0.01f);
+    ImGui::DragFloat3("球_位置", &data_.position_.x, 0.01f);
     // 距離
-    ImGui::DragFloat("sphere.radius", &data_.radius_, 0.01f, 0.01f, 1000.0f);
-
-    if (ImGuizmo::IsUsing()) {
-        ImGui::Text("IsUsing");
-    }
+    ImGui::DragFloat("球_半径", &data_.radius_, 0.01f, 0.01f, 1000.0f);
 
     // ギズモ
 
@@ -87,11 +83,13 @@ void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
     Matrix4x4 matrix = Matrix4x4::MakeAffineMatrix(transform.scale, transform.rotate, transform.translate);
 
     // モード
-    if (ImGui::RadioButton("位置", guizmoOperation_ == ImGuizmo::TRANSLATE)) {
+    std::string modeName = "球位置_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::TRANSLATE)) {
         guizmoOperation_ = ImGuizmo::TRANSLATE;
     }
     ImGui::SameLine();
-    if (ImGui::RadioButton("半径", guizmoOperation_ == ImGuizmo::SCALE_X)) {
+    modeName = "球半径_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::SCALE_X)) {
         guizmoOperation_ = ImGuizmo::SCALE_X;
     }
 

@@ -70,12 +70,12 @@ void ClothDemoPlane::Update()
 void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
 {
 
-    ImGui::Text("plane");
+    ImGui::Text("平面");
     // 法線
-    ImGui::DragFloat3("plane.normal", &data_.normal_.x, 0.01f);
+    ImGui::DragFloat3("平面_法線", &data_.normal_.x, 0.01f);
     data_.normal_ = Vector3::Normalize(data_.normal_);
     // 距離
-    ImGui::DragFloat("plane.distance", &data_.distance_, 0.01f);
+    ImGui::DragFloat("平面_距離", &data_.distance_, 0.01f);
 
     // ギズモ
 
@@ -87,7 +87,6 @@ void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
         Vector3{ 0.0f, data_.distance_, 0.0f },
     };
 
-
     Matrix4x4 scaleMatrix = Matrix4x4::MakeScaleMatrix(kScale_);
     Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, data_.normal_);
     Matrix4x4 translateMatrix = Matrix4x4::MakeTranslateMatrix(Vector3{ 0.0f, data_.distance_, 0.0f });
@@ -95,11 +94,13 @@ void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
     Matrix4x4 matrix = Matrix4x4::Multiply(scaleMatrix, Matrix4x4::Multiply(rotateMatrix, translateMatrix));
 
     // モード
-    if (ImGui::RadioButton("距離", guizmoOperation_ == ImGuizmo::TRANSLATE_Z)) {
+    std::string modeName = "平面距離_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::TRANSLATE_Z)) {
         guizmoOperation_ = ImGuizmo::TRANSLATE_Z;
     }
     ImGui::SameLine();
-    if (ImGui::RadioButton("法線", guizmoOperation_ == ImGuizmo::ROTATE)) {
+    modeName = "平面法線_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::ROTATE)) {
         guizmoOperation_ = ImGuizmo::ROTATE;
     }
 

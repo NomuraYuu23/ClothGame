@@ -55,6 +55,13 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     // トランスフォーム、円柱
     cylinderWorldTransform_.Initialize(cylinderModel_->GetRootNode());
 
+    // ギズモ操作番号
+    guizmoOperation_ = ImGuizmo::TRANSLATE;
+
+    // ギズモID
+    guizmoID_ = nextGuizmoID_;
+    nextGuizmoID_++;
+
 }
 
 void ClothDemoCapsule::Update()
@@ -129,12 +136,71 @@ void ClothDemoCapsule::Draw(BaseCamera& camera)
 void ClothDemoCapsule::ImGuiDraw(BaseCamera& camera)
 {
 
-    ImGui::Text("capsule");
+    ImGui::Text("カプセル");
     // 原点
-    ImGui::DragFloat3("capsule.origin", &data_.origin_.x, 0.01f);
+    ImGui::DragFloat3("カプセル_原点", &data_.origin_.x, 0.01f);
     // 終点までのベクトル
-    ImGui::DragFloat3("capsule.diff", &data_.diff_.x, 0.01f);
-    // 距離
-    ImGui::DragFloat("capsule.radius", &data_.radius_, 0.01f);
+    ImGui::DragFloat3("カプセル_終点までのベクトル", &data_.diff_.x, 0.01f);
+    // 半径
+    ImGui::DragFloat("カプセル_半径", &data_.radius_, 0.01f);
+
+    // ギズモ
+
+    // 変数
+    EulerTransform transform =
+    {
+        Vector3{ data_.radius_, data_.radius_, Vector3::Length(data_.diff_) * 0.5f },
+        Vector3{ 0.0f,0.0f,0.0f },
+        data_.origin_ + (data_.diff_ * 0.5f)
+    };
+    Matrix4x4 scaleMatrix = Matrix4x4::MakeScaleMatrix(transform.scale);
+    Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, Vector3::Normalize(data_.diff_));
+    Matrix4x4 translateMatrix = Matrix4x4::MakeTranslateMatrix(transform.translate);
+
+    Matrix4x4 matrix = Matrix4x4::Multiply(scaleMatrix, Matrix4x4::Multiply(rotateMatrix, translateMatrix));
+
+    // モード
+    std::string modeName = "カプセル位置_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::TRANSLATE)) {
+        guizmoOperation_ = ImGuizmo::TRANSLATE;
+    }
+    ImGui::SameLine();
+    modeName = "カプセル回転_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::ROTATE)) {
+        guizmoOperation_ = ImGuizmo::ROTATE;
+    }
+    ImGui::SameLine();
+    modeName = "カプセル半径_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::SCALE_X)) {
+        guizmoOperation_ = ImGuizmo::SCALE_X;
+    }
+    ImGui::SameLine();
+    modeName = "カプセル長さ_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::SCALE_Z)) {
+        guizmoOperation_ = ImGuizmo::SCALE_Z;
+    }
+
+    // 操作部分
+    ImGuizmo::PushID(guizmoID_);
+    ImGuiIO& io = ImGui::GetIO();
+    ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
+    ImGuizmo::Manipulate(
+        &camera.GetViewMatrix().m[0][0], &camera.GetProjectionMatrix().m[0][0], static_cast<ImGuizmo::OPERATION>(guizmoOperation_), ImGuizmo::LOCAL, &matrix.m[0][0], NULL, NULL);
+    
+    if (ImGuizmo::IsUsing()) {
+        // 位置と半径を取り出す
+        ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
+
+        // データを代入
+        data_.origin_ = transform.translate - Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix);
+        data_.diff_ = Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix) * 2.0f;
+        data_.radius_ = transform.scale.x;
+    }
+    
+    // ID
+    ImGuizmo::PopID();
+
+    // 更新
+    Update();
 
 }
