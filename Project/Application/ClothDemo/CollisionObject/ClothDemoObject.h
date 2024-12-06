@@ -5,6 +5,11 @@
 class ClothDemoObject
 {
 
+protected: // 静的メンバ変数
+
+    // 次のギズモID
+    static uint32_t nextGuizmoID_;
+
 public:
 
     /// <summary>
@@ -50,6 +55,12 @@ public: // アクセッサ
     /// <returns></returns>
     std::string GetName() { return name_; }
 
+    /// <summary>
+    /// ギズモID取得
+    /// </summary>
+    /// <param name="guizmoID">ギズモID</param>
+    void SetGuizmoID(uint32_t guizmoID) { guizmoID_ = guizmoID; }
+
 protected:
 
     // トランスフォーム
@@ -78,6 +89,9 @@ protected:
 
     // ギズモ操作番号
     uint32_t guizmoOperation_;
+
+    // ギズモID
+    uint32_t guizmoID_;
 
 };
 

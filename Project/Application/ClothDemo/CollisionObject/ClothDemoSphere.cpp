@@ -43,6 +43,10 @@ void ClothDemoSphere::Initialize(const std::string& name)
     // ギズモ操作番号
     guizmoOperation_ = ImGuizmo::TRANSLATE;
 
+    // ギズモID
+    guizmoID_ = nextGuizmoID_;
+    nextGuizmoID_++;
+
 }
 
 void ClothDemoSphere::Update()
@@ -67,6 +71,10 @@ void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
     // 距離
     ImGui::DragFloat("sphere.radius", &data_.radius_, 0.01f, 0.01f, 1000.0f);
 
+    if (ImGuizmo::IsUsing()) {
+        ImGui::Text("IsUsing");
+    }
+
     // ギズモ
 
     // 変数
@@ -78,6 +86,7 @@ void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
     };
     Matrix4x4 matrix = Matrix4x4::MakeAffineMatrix(transform.scale, transform.rotate, transform.translate);
 
+    // モード
     if (ImGui::RadioButton("位置", guizmoOperation_ == ImGuizmo::TRANSLATE)) {
         guizmoOperation_ = ImGuizmo::TRANSLATE;
     }
@@ -87,10 +96,13 @@ void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
     }
 
     // 操作部分
+    ImGuizmo::PushID(guizmoID_);
     ImGuiIO& io = ImGui::GetIO();
     ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
     ImGuizmo::Manipulate(
         &camera.GetViewMatrix().m[0][0], &camera.GetProjectionMatrix().m[0][0], static_cast<ImGuizmo::OPERATION>(guizmoOperation_), ImGuizmo::LOCAL, &matrix.m[0][0], NULL, NULL);
+    // ID
+    ImGuizmo::PopID();
 
     // 位置と半径を取り出す
     ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
