@@ -28,6 +28,18 @@ public: // アクセッサ
 	/// <returns></returns>
 	IGhostState* GetGhostState() { return ghostState_.get(); }
 
+	/// <summary>
+	/// 次のステート番号取得
+	/// </summary>
+	/// <param name="nextStateNo">次のステート番号</param>
+	void SetNextStateNo(uint32_t nextStateNo) { nextStateNo_ = nextStateNo; }
+
+	/// <summary>
+	/// 割り込みコマンドがあるか取得
+	/// </summary>
+	/// <param name="interruptCommand">割り込みコマンドがあるか</param>
+	void SetInterruptCommand(bool interruptCommand) { interruptCommand_ = interruptCommand; }
+
 private: // メンバ変数
 
 	// ステート
@@ -44,6 +56,9 @@ private: // メンバ変数
 
 	// ゴースト
 	Ghost* ghost_;
+
+	// 割り込みコマンドがあるか
+	bool interruptCommand_;
 
 };
 

@@ -14,6 +14,7 @@
 #include "../../Effect/EffectManager.h"
 #include "../../Object/Player/Player.h"
 #include "../../Collision/GameSceneCollisionManager.h"
+#include "../../UI/UIManager.h"
 
 class GameScene : public IScene
 {
@@ -76,5 +77,8 @@ private:
 
 	// エフェクトマネージャー
 	EffectManager* effectManager_ = nullptr;
+
+	// UIマネージャー
+	std::unique_ptr<UIManager> uiManager_ = nullptr;
 
 };

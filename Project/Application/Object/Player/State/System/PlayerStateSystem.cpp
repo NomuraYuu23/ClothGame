@@ -15,7 +15,7 @@ void PlayerStateSystem::Initialize(Player*player)
 	playerState_->SetPlayerStateSystem(this); // プレイヤーステートシステム設定
 
 	// コマンド
-	playerCommand_ = PlayerCommand::GetInstance();
+	playerCommand_ = std::make_unique<PlayerCommand>();
 	playerCommand_->Initialize();
 
 	// コマンドを受け取るか
@@ -28,6 +28,9 @@ void PlayerStateSystem::Initialize(Player*player)
 
 void PlayerStateSystem::Update()
 {
+
+	// コマンド更新
+	playerCommand_->Update();
 
 	// ステートのチェック
 	prevStateNo_ = currentStateNo_;

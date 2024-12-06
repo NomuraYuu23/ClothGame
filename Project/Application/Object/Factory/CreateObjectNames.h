@@ -9,4 +9,5 @@ const std::array<std::string, CreateObjectIndex::kCreateObjectIndexOfCount> kCre
 	"Player",
 	"ClothGate",
 	"Ghost",
+	"SideCloth",
 };

@@ -49,6 +49,13 @@ private: // メンバ関数
 
 private: // メンバ変数
 
+	// スカイボックス
+	uint32_t skyboxTextureHandle_ = 0;
+
+	// 衝撃波
+	std::unique_ptr<ShockWaveManager> shockWaveManager_;
+	bool isShockWave_;
+
 	// ボタン
 	std::unique_ptr<Sprite> buttonSprite_;
 	uint32_t buttonTextureHandle_;
@@ -61,11 +68,7 @@ private: // メンバ変数
 	// 色
 	Vector4 buttonColor_;
 
-	// スカイボックス
-	uint32_t skyboxTextureHandle_ = 0;
-
-	// 衝撃波
-	std::unique_ptr<ShockWaveManager> shockWaveManager_;
-	bool isShockWave_;
+	std::unique_ptr<Sprite> titleSprite_;
+	uint32_t titleTextureHandle_;
 
 };

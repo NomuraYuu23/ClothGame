@@ -5,6 +5,7 @@
 #include "../ClothGate/ClothGate.h"
 #include "../Enemy/Ghost/Ghost.h"
 #include "../GroundBlock/GroundBlock.h"
+#include "../SideCloth/SideCloth.h"
 
 // プレイヤー
 Player* ObjectCreate::player_ = nullptr;
@@ -57,5 +58,15 @@ IObject* ObjectCreate::CreateObjectGhost(LevelData::ObjectData& objectData)
 	IObject* object = new Ghost();
 	// 初期化
 	static_cast<Ghost*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	return object;
+}
+
+IObject* ObjectCreate::CreateObjectSideCloth(LevelData::ObjectData& objectData)
+{
+	// インスタンス生成
+	IObject* object = new SideCloth();
+	// 初期化
+	static_cast<SideCloth*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	static_cast<SideCloth*>(object)->SetPlayer(player_);
 	return object;
 }

@@ -38,13 +38,15 @@ public:
 	/// 影を発生させるオブジェクトリスト登録
 	/// </summary>
 	/// <param name="object">オブジェクト</param>
-	void CastsShadowObjListRegister(MeshObject* object);
+	/// <param name="sizeAdd">大きさ加算分</param>
+	void CastsShadowObjListRegister(MeshObject* object, const Vector3& sizeAdd = {0.0f,0.0f,0.0f});
 
 	/// <summary>
 	/// 影が現れるオブジェクトリスト登録
 	/// </summary>
 	/// <param name="object">オブジェクト</param>
-	void ShadowAppearsObjListRegister(MeshObject* object);
+	/// <param name="sizeAdd">大きさ加算分</param>
+	void ShadowAppearsObjListRegister(MeshObject* object, const Vector3& sizeAdd = { 0.0f,0.0f,0.0f });
 
 private:
 

@@ -3,13 +3,10 @@
 class PlayerCommand
 {
 
-public: // 静的メンバ関数
+private: // 静的メンバ変数
 
-	/// <summary>
-	/// インスタンス取得
-	/// </summary>
-	/// <returns></returns>
-	static PlayerCommand* GetInstance();
+	// ダッシュクールタイム
+	static const float KDashCoolTime_;
 
 public: // メンバ関数
 
@@ -19,21 +16,36 @@ public: // メンバ関数
 	void Initialize();
 
 	/// <summary>
+	/// 更新
+	/// </summary>
+	void Update();
+
+	/// <summary>
 	/// コマンド
 	/// </summary>
 	/// <returns>ステート</returns>
 	uint32_t Command();
 
+	/// <summary>
+	/// ダッシュ使用リセット
+	/// </summary>
+	void DashReset();
+
+public: // アクセッサ
+
+	/// <summary>
+	/// ダッシュ経過時間取得
+	/// </summary>
+	/// <returns></returns>
+	float GetDashElapsedTime() { return dashElapsedTime_; }
+
 private: // メンバ変数
 
 	// 入力
-	static Input* input_;
+	Input* input_;
 
-private:
-	PlayerCommand() = default;
-	~PlayerCommand() = default;
-	PlayerCommand(const PlayerCommand&) = delete;
-	const PlayerCommand& operator=(const PlayerCommand&) = delete;
+	// ダッシュ経過時間
+	float dashElapsedTime_;
 
 };
 

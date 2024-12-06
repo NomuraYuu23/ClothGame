@@ -2,6 +2,7 @@
 #include "../Player/Player.h"
 #include "../../../Engine/Math/RandomEngine.h"
 #include "../../../Engine/Math/Ease.h"
+#include "../../../Engine/Math/DeltaTime.h"
 
 const std::string ClothGate::kPlayerColliderName_ = "player";
 
@@ -108,10 +109,53 @@ void ClothGate::ClothInitialize()
 	// 登録
 	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
+	// 更新秒数
+	updateSeconds_ = 0.0f;
+
 }
 
 void ClothGate::ClothUpdate()
 {
+
+	// 更新するか
+
+	// 球
+	// プレイヤーの情報をいれる
+	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
+
+	// プレイヤー近い
+	const float kCollisionDistance = 50.0f;
+	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
+		// 登録済み
+		if (registeringPlayer_) {
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+		}
+		// 登録してない
+		else {
+			cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
+			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
+			registeringPlayer_ = true;
+		}
+	}
+	// プレイヤー遠い
+	else {
+		// 登録解除
+		if (registeringPlayer_) {
+			cloth_->CollisionDataDelete(kPlayerColliderName_);
+			registeringPlayer_ = false;
+			updateSeconds_ = 0.0f;
+		}
+		const float kUpdateEndSeconds = 3.0f;
+		// 更新フレーム
+		updateSeconds_ += kDeltaTime_;
+		if (updateSeconds_ >= kUpdateEndSeconds) {
+			updateSeconds_ = kUpdateEndSeconds;
+			return;
+		}
+
+	}
 
 	// 乱数
 	std::random_device seedGenerator;
@@ -145,12 +189,6 @@ void ClothGate::ClothUpdate()
 	cloth_->SetPosition(0, 0, kLeftTopPosition);
 	cloth_->SetWeight(0, kRightX, false);
 	cloth_->SetPosition(0, kRightX, kRightTopPosition);
-
-	// 球
-	// プレイヤーの情報をいれる
-	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
-	ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
-	cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 
 }
 

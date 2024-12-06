@@ -11,6 +11,7 @@ class GhostStateSystem;
 enum GhostStateIndex {
 	kGhostStateIndexRoot, // 通常
 	kGhostStateIndexSideMove, // 横移動
+	kGhostStateIndexBlownAway, // 吹き飛び
 	kGhostStateIndexOfCount // 数
 };
 

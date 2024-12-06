@@ -18,6 +18,8 @@ void FollowCamera::Initialize() {
 	offsetLength_ = -50.0f;
 	// オフセットの高さ
 	offsetHeight_ = 8.0f;
+	// ターゲット位置
+	interTarget_ = {0.0f,0.0f,0.0f};
 
 	// 回転固定
 	const float rotateX = 0.1f;
@@ -44,12 +46,15 @@ void FollowCamera::Update(float elapsedTime) {
 	//追従対象がいれば
 	if (target_) {
 		// 追従座標の補間
-		const Vector3 kTargetPosition = { 0.0f, 0.0f, target_->worldMatrix_.m[3][2] };
+		const Vector3 kTargetPositionEnd = { 0.0f, 0.0f, target_->worldMatrix_.m[3][2] };
+		// 移動レート
+		const float kMoveRate = 0.1f;
+		interTarget_ = Ease::Easing(Ease::EaseName::Lerp, interTarget_, kTargetPositionEnd, kMoveRate);
 
 		// オフセット
 		Vector3 offset = OffsetCalc();
 
-		transform_.translate = Vector3::Add(kTargetPosition, offset);
+		transform_.translate = Vector3::Add(interTarget_, offset);
 
 	}
 

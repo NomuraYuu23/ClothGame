@@ -41,23 +41,31 @@ void ShadowManager::PreUpdate()
 
 }
 
-void ShadowManager::CastsShadowObjListRegister(MeshObject* object)
+void ShadowManager::CastsShadowObjListRegister(MeshObject* object, const Vector3& sizeAdd)
 {
 
 	OBB obb = std::get<OBB>(*object->GetCollider());
 
-	ShadowCandidate shadow = { obb.center_ , obb.size_ };
+	ShadowCandidate shadow = { obb.center_ , obb.size_ + sizeAdd };
 
 	castsShadowObjList_.push_back(shadow);
 
 }
 
-void ShadowManager::ShadowAppearsObjListRegister(MeshObject* object)
+void ShadowManager::ShadowAppearsObjListRegister(MeshObject* object, const Vector3& sizeAdd)
 {
 
 	OBB obb = std::get<OBB>(*object->GetCollider());
 
-	ShadowCandidate shadow = { obb.center_ , obb.size_ };
+	// sizeAdd用処理(あたり判定を見た目に合わせる処理)
+	const Vector3 scale = object->GetWorldTransformAdress()->transform_.scale;
+	const Vector3 size = {
+		scale.x * (obb.size_.x / scale.x + sizeAdd.x / 2.0f),
+		scale.y * (obb.size_.y / scale.y + sizeAdd.y / 2.0f),
+		scale.z * (obb.size_.z / scale.z + sizeAdd.z / 2.0f),
+	};
+
+	ShadowCandidate shadow = { obb.center_ , size };
 
 	shadowAppearsObjList_.push_back(shadow);
 

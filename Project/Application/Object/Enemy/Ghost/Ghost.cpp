@@ -2,6 +2,8 @@
 #include "../../../Engine/Math/RandomEngine.h"
 #include "../../../Engine/Math/Ease.h"
 
+#include "../../Player/Player.h"
+
 // 自分の衝突判定データの名前
 const std::string Ghost::kMyColliderName_ = "ghost";
 // 大きさ
@@ -88,6 +90,17 @@ void Ghost::ParticleDraw(BaseCamera& camera)
 
 void Ghost::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+
+	// プレイヤー
+	if (std::holds_alternative<Player*>(colliderPartner)) {
+		
+		Player* player = std::get<Player*>(colliderPartner);
+		
+		ghostStateSystem_->SetNextStateNo(kGhostStateIndexBlownAway);
+		ghostStateSystem_->SetInterruptCommand(true);
+
+	}
+
 }
 
 void Ghost::ClothReset()
@@ -138,7 +151,7 @@ void Ghost::ClothInitialize()
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 1.0f;
+	const float kClothVelocityLimit = 1000.0f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 6;

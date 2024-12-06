@@ -4,6 +4,9 @@
 void PlayerStateRoot::Initialize()
 {
 
+	// プレイヤーは通常状態に
+	playerStateNo_ = kPlayerStateIndexRoot;
+
 }
 
 void PlayerStateRoot::Update()

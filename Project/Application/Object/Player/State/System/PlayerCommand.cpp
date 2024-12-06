@@ -1,16 +1,26 @@
 #include "PlayerCommand.h"
 #include "../IPlayerState.h"
+#include "../../../../../Engine/Math/DeltaTime.h"
 
-Input* PlayerCommand::input_ = Input::GetInstance();
-
-PlayerCommand* PlayerCommand::GetInstance()
-{
-	static PlayerCommand instance;
-	return &instance;
-}
+const float PlayerCommand::KDashCoolTime_ = 0.5f;
 
 void PlayerCommand::Initialize()
 {
+
+	input_ = Input::GetInstance();
+
+	dashElapsedTime_ = KDashCoolTime_;
+
+}
+
+void PlayerCommand::Update()
+{
+
+	dashElapsedTime_ += kDeltaTime_;
+	if (dashElapsedTime_ >= KDashCoolTime_) {
+		dashElapsedTime_ = KDashCoolTime_;
+	}
+
 }
 
 uint32_t PlayerCommand::Command()
@@ -22,6 +32,18 @@ uint32_t PlayerCommand::Command()
 	if (input_->TriggerJoystick(JoystickButton::kJoystickButtonA)) {
 		resultState = kPlayerStateIndexJump;
 	}
+	// Bボタンが押されていたらダッシュ
+	else if (input_->TriggerJoystick(JoystickButton::kJoystickButtonB) && dashElapsedTime_ == KDashCoolTime_) {
+		resultState = kPlayerStateIndexDash;
+		dashElapsedTime_ = 0.0f;
+	}
 
 	return resultState;
+}
+
+void PlayerCommand::DashReset()
+{
+
+	dashElapsedTime_ = KDashCoolTime_;
+
 }

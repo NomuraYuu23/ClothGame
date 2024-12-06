@@ -83,5 +83,11 @@ private: // メンバ変数
 	// プレイヤー
 	Player* player_;
 
+	// プレイヤーを登録しているか
+	bool registeringPlayer_;
+
+	// 更新秒数
+	float updateSeconds_;
+
 };
 

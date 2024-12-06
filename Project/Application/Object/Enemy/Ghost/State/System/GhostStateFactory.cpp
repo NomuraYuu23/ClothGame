@@ -2,6 +2,7 @@
 
 #include "../GhostStateRoot.h"
 #include "../GhostStateSideMove.h"
+#include "../GhostStateBlownAway.h"
 
 IGhostState* GhostStateFactory::CreateGhostState(uint32_t ghostStateName)
 {
@@ -13,8 +14,11 @@ IGhostState* GhostStateFactory::CreateGhostState(uint32_t ghostStateName)
 	case kGhostStateIndexRoot: // 通常
 		newGhostState = new GhostStateRoot();
 		break;
-	case kGhostStateIndexSideMove: // 通常
+	case kGhostStateIndexSideMove: // 横移動
 		newGhostState = new GhostStateSideMove();
+		break;
+	case kGhostStateIndexBlownAway: // 吹き飛び
+		newGhostState = new GhostStateBlownAway();
 		break;
 	case kGhostStateIndexOfCount: // 使用不可
 	default:

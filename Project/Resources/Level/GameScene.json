@@ -27,43 +27,6 @@
         },
         {
             "type": "MESH",
-            "name": "Player",
-            "transform": {
-                "translation": [
-                    0.0,
-                    -470.0,
-                    4.0
-                ],
-                "rotation": [
-                    -0.0,
-                    0.0,
-                    0.0
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "Ball.obj",
-            "directoryPath": "Resources/default",
-            "className": "Player",
-            "collider": {
-                "type": "BOX",
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "size": [
-                    2.0,
-                    2.0,
-                    2.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "BaseGround.000",
             "transform": {
                 "translation": [
@@ -135,6 +98,907 @@
                     2.0
                 ]
             }
+        },
+        {
+            "type": "MESH",
+            "name": "Player",
+            "transform": {
+                "translation": [
+                    0.0,
+                    -470.0,
+                    4.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "Player.obj",
+            "directoryPath": "Resources/Model/Player",
+            "className": "Player",
+            "collider": {
+                "type": "BOX",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    1.2000000476837158,
+                    1.2000000476837158,
+                    2.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.000",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -430.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.001",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -380.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.002",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -330.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.003",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -280.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.004",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -230.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.005",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -180.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.006",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -130.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.007",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -80.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.008",
+            "transform": {
+                "translation": [
+                    12.0,
+                    -30.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.009",
+            "transform": {
+                "translation": [
+                    12.0,
+                    30.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.010",
+            "transform": {
+                "translation": [
+                    12.0,
+                    80.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.011",
+            "transform": {
+                "translation": [
+                    12.0,
+                    130.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.012",
+            "transform": {
+                "translation": [
+                    12.0,
+                    180.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.013",
+            "transform": {
+                "translation": [
+                    12.0,
+                    230.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.014",
+            "transform": {
+                "translation": [
+                    12.0,
+                    280.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.015",
+            "transform": {
+                "translation": [
+                    12.0,
+                    330.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.016",
+            "transform": {
+                "translation": [
+                    12.0,
+                    380.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.017",
+            "transform": {
+                "translation": [
+                    12.0,
+                    430.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.018",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    430.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.019",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    380.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.020",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    330.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.021",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    280.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.022",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    230.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.023",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    180.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.024",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    130.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.025",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    80.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.026",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    30.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.027",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -30.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.028",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -80.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.029",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -130.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.030",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -180.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.031",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -230.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.032",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -280.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.033",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -330.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.034",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -380.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
+        },
+        {
+            "type": "MESH",
+            "name": "SideCloth.035",
+            "transform": {
+                "translation": [
+                    -12.0,
+                    -430.0,
+                    0.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    0.0
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "SideCloth.obj",
+            "directoryPath": "Resources/Model/SideCloth",
+            "className": "SideCloth"
         }
     ]
 }

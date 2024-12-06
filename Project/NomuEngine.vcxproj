@@ -171,6 +171,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\ClothGate\ClothGate.cpp" />
     <ClCompile Include="Application\Object\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\Ghost.cpp" />
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\State\IGhostState.cpp" />
@@ -186,6 +187,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Player\Player.cpp" />
     <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp" />
     <ClCompile Include="Application\Object\Player\State\PlayerStateDamage.cpp" />
+    <ClCompile Include="Application\Object\Player\State\PlayerStateDash.cpp" />
     <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp" />
     <ClCompile Include="Application\Object\Player\State\PlayerStateJump.cpp" />
     <ClCompile Include="Application\Object\Player\State\PlayerStateRoot.cpp" />
@@ -194,12 +196,18 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Object\Player\State\System\PlayerStateSystem.cpp" />
     <ClCompile Include="Application\Object\Manager\TitleSceneObjectManager.cpp" />
     <ClCompile Include="Application\Object\Manager\TutorialSceneObjectManager.cpp" />
+    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp" />
     <ClCompile Include="Application\Scene\DebugScene\DebugScene.cpp" />
     <ClCompile Include="Application\Scene\SelectScene\SelectScene.cpp" />
     <ClCompile Include="Application\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Application\Scene\TutorialScene\TutorialScene.cpp" />
     <ClCompile Include="Application\System\Shadow\Shadow.cpp" />
     <ClCompile Include="Application\System\Shadow\ShadowManager.cpp" />
+    <ClCompile Include="Application\UI\BaseUI.cpp" />
+    <ClCompile Include="Application\UI\ButtonAUI.cpp" />
+    <ClCompile Include="Application\UI\ButtonBUI.cpp" />
+    <ClCompile Include="Application\UI\StickLUI.cpp" />
+    <ClCompile Include="Application\UI\UIManager.cpp" />
     <ClCompile Include="Engine\2D\ImGuiManager.cpp" />
     <ClCompile Include="Engine\3D\Line\DrawLine.cpp" />
     <ClCompile Include="Engine\3D\Fog\FogManager.cpp" />
@@ -341,6 +349,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\ClothGate\ClothGate.h" />
     <ClInclude Include="Application\Object\Enemy\BaseEnemy.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\Ghost.h" />
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateRoot.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateSideMove.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\State\IGhostState.h" />
@@ -358,6 +367,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Player\Player.h" />
     <ClInclude Include="Application\Object\Player\State\IPlayerState.h" />
     <ClInclude Include="Application\Object\Player\State\PlayerStateDamage.h" />
+    <ClInclude Include="Application\Object\Player\State\PlayerStateDash.h" />
     <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h" />
     <ClInclude Include="Application\Object\Player\State\PlayerStateJump.h" />
     <ClInclude Include="Application\Object\Player\State\PlayerStateRoot.h" />
@@ -366,6 +376,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Object\Player\State\System\PlayerStateSystem.h" />
     <ClInclude Include="Application\Object\Manager\TitleSceneObjectManager.h" />
     <ClInclude Include="Application\Object\Manager\TutorialSceneObjectManager.h" />
+    <ClInclude Include="Application\Object\SideCloth\SideCloth.h" />
     <ClInclude Include="Application\Scene\DebugScene\DebugScene.h" />
     <ClInclude Include="Application\Scene\SceneName.h" />
     <ClInclude Include="Application\Scene\SelectScene\SelectScene.h" />
@@ -374,6 +385,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Effect\EffectManager.h" />
     <ClInclude Include="Application\System\Shadow\Shadow.h" />
     <ClInclude Include="Application\System\Shadow\ShadowManager.h" />
+    <ClInclude Include="Application\UI\BaseUI.h" />
+    <ClInclude Include="Application\UI\ButtonAUI.h" />
+    <ClInclude Include="Application\UI\ButtonBUI.h" />
+    <ClInclude Include="Application\UI\StickLUI.h" />
+    <ClInclude Include="Application\UI\UIManager.h" />
     <ClInclude Include="Engine\2D\ImGuiManager.h" />
     <ClInclude Include="Engine\2D\SpriteForGPU.h" />
     <ClInclude Include="Engine\2D\SpriteVertex.h" />

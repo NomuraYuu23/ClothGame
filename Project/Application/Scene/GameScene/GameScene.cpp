@@ -57,6 +57,10 @@ void GameScene::Initialize() {
 	followCamera_->Initialize();
 	followCamera_->SetTarget(objectManager_->GetObjectPointer("Player")->GetWorldTransformAdress());
 
+	// UIマネージャー
+	uiManager_ = std::make_unique<UIManager>();
+	uiManager_->Initialize();
+
 	IScene::InitilaizeCheck();
 
 }
@@ -99,6 +103,13 @@ void GameScene::Update() {
 	DebugCameraUpdate();
 	// エフェクトマネージャー
 	effectManager_->Update(camera_);
+	// UIマネージャー
+	uiManager_->Update();
+
+	// ゲームが終了するか
+	if (static_cast<GameSceneObjectManager*>(objectManager_.get())->GetLevelChangeEnd()) {
+		requestSceneNo_ = kClear;
+	}
 
 }
 
@@ -171,6 +182,7 @@ void GameScene::Draw() {
 
 	//背景
 	//前景スプライト描画
+	uiManager_->Draw();
 
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();
@@ -190,6 +202,8 @@ void GameScene::ImguiDraw(){
 	objectManager_->ImGuiDraw();
 
 	PostEffect::GetInstance()->ImGuiDraw();
+
+	uiManager_->ImGuiDraw();
 
 }
 

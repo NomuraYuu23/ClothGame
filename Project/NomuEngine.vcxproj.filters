@@ -412,6 +412,12 @@
     <Filter Include="Application\System\Shadow">
       <UniqueIdentifier>{05d37b47-7e24-4dae-b750-eeab10c3b02c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Object\SideCloth">
+      <UniqueIdentifier>{bb31f4b5-cbdf-4277-9268-6a3a8b410086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\UI\Button">
+      <UniqueIdentifier>{cb4de93d-8f2c-460c-bc34-66aeebc8f37a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -904,7 +910,31 @@
     <ClCompile Include="Application\Object\GroundBlock\GroundBlock.cpp">
       <Filter>Application\Object\GroundBlock</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Object\SideCloth\SideCloth.cpp">
+      <Filter>Application\Object\SideCloth</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Player\State\PlayerStateDash.cpp">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
     <ClCompile Include="Application\Object\Player\State\PlayerStateFall.cpp">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\UIManager.cpp">
+      <Filter>Application\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\BaseUI.cpp">
+      <Filter>Application\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.cpp">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\ButtonAUI.cpp">
+      <Filter>Application\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\ButtonBUI.cpp">
+      <Filter>Application\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\UI\StickLUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1542,7 +1572,31 @@
     <ClInclude Include="Application\Object\GroundBlock\GroundBlock.h">
       <Filter>Application\Object\GroundBlock</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Object\SideCloth\SideCloth.h">
+      <Filter>Application\Object\SideCloth</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Player\State\PlayerStateDash.h">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
     <ClInclude Include="Application\Object\Player\State\PlayerStateFall.h">
+      <Filter>Application\Object\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\UIManager.h">
+      <Filter>Application\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\BaseUI.h">
+      <Filter>Application\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Enemy\Ghost\State\GhostStateBlownAway.h">
+      <Filter>Application\Object\Enemy\Ghost\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\ButtonAUI.h">
+      <Filter>Application\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\ButtonBUI.h">
+      <Filter>Application\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\UI\StickLUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

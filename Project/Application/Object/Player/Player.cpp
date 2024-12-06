@@ -18,6 +18,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	// メッシュオブジェクトの初期化
 	MeshObject::Initialize(data);
 
+	material_->SetEnableLighting(HalfLambert);
+
 	// 衝突マスク
 	collisionAttribute_ = kCollisionAttributePlayer;
 	collisionMask_ -= kCollisionAttributePlayer;
@@ -41,11 +43,25 @@ void Player::Initialize(LevelData::MeshData* data)
 
 	// 浮いているか
 	floating_ = false;
+	
+	// ワープ
+	warping_ = false;
+
+	// レベルアップ
+	levelUp_ = false;
 
 }
 
 void Player::Update()
 {
+
+	// ワープした
+	if (warping_) {
+		// ワープリセット
+		warping_ = false;
+		levelUp_ = false;
+		playerStateSystem_->GetPlayerCommand()->DashReset();
+	}
 
 	// メッシュオブジェクトの更新
 	MeshObject::Update();

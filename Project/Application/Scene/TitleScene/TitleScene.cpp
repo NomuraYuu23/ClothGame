@@ -20,12 +20,6 @@ void TitleScene::Initialize()
 	ModelCreate();
 	TextureLoad();
 
-	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, { 640.0f, 600.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
-	buttonAlphaT_ = 0.0f;
-	buttonAlphaTSpeed_ = 0.01f;
-	buttonItIncreaseAlphaT_ = true;
-	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
-
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<TitleSceneObjectManager>();
 	objectManager_->Initialize(kLevelIndexTitle, levelDataManager_);
@@ -92,6 +86,14 @@ void TitleScene::Initialize()
 	shockWaveManager_->SetThickness(0.1f);
 	shockWaveManager_->SetRadiusMax(2.0f);
 	isShockWave_ = false;
+
+	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, { 400.0f, 540.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
+	buttonAlphaT_ = 0.0f;
+	buttonAlphaTSpeed_ = 0.01f;
+	buttonItIncreaseAlphaT_ = true;
+	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	titleSprite_.reset(Sprite::Create(titleTextureHandle_, { 640.0f, 360.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
 
 	IScene::InitilaizeCheck();
 
@@ -215,7 +217,8 @@ void TitleScene::Draw()
 
 	//背景
 	//前景スプライト描画
-	
+	titleSprite_->Draw();
+
 	buttonSprite_->Draw();
 
 	// 前景スプライト描画後処理
@@ -270,7 +273,9 @@ void TitleScene::ModelCreate()
 void TitleScene::TextureLoad()
 {
 
-	buttonTextureHandle_ = TextureManager::Load("Resources/OutGame/titleString_00.png", dxCommon_);
+	buttonTextureHandle_ = TextureManager::Load("Resources/UI/ButtonA.png", dxCommon_);
+
+	titleTextureHandle_ = TextureManager::Load("Resources/OutGame/Title.png", dxCommon_);
 
 	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 

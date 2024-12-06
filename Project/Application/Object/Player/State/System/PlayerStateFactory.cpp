@@ -3,6 +3,7 @@
 #include "../PlayerStateJump.h"
 #include "../PlayerStateDamage.h"
 #include "../PlayerStateFall.h"
+#include "../PlayerStateDash.h"
 
 IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 {
@@ -22,6 +23,9 @@ IPlayerState* PlayerStateFactory::CreatePlayerState(uint32_t playerStateName)
 		break;
 	case kPlayerStateIndexFall: // 落下
 		newPlayerState = new PlayerStateFall();
+		break;	
+	case kPlayerStateIndexDash: // ダッシュ
+		newPlayerState = new PlayerStateDash();
 		break;
 	case kPlayerStateIndexOfCount: // 使用不可
 	default:
