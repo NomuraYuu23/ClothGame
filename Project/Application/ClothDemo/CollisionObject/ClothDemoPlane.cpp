@@ -60,7 +60,7 @@ void ClothDemoPlane::Update()
 
 }
 
-void ClothDemoPlane::ImGuiDraw()
+void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
 {
 
     ImGui::Text("plane");

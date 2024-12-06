@@ -126,7 +126,7 @@ void ClothDemoCapsule::Draw(BaseCamera& camera)
 
 }
 
-void ClothDemoCapsule::ImGuiDraw()
+void ClothDemoCapsule::ImGuiDraw(BaseCamera& camera)
 {
 
     ImGui::Text("capsule");

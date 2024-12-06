@@ -303,6 +303,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Engine\SkyBox\SkyBox.cpp" />
     <ClCompile Include="externals\imgui\imgui.cpp" />
+    <ClCompile Include="externals\imgui\ImGuizmo.cpp" />
     <ClCompile Include="externals\imgui\imgui_demo.cpp" />
     <ClCompile Include="externals\imgui\imgui_draw.cpp" />
     <ClCompile Include="externals\imgui\imgui_impl_dx12.cpp" />
@@ -516,6 +517,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="Engine\SkyBox\SkyBox.h" />
     <ClInclude Include="externals\imgui\imgui.h" />
+    <ClInclude Include="externals\imgui\ImGuizmo.h" />
     <ClInclude Include="externals\imgui\imgui_impl_dx12.h" />
     <ClInclude Include="externals\imgui\imgui_impl_win32.h" />
     <ClInclude Include="externals\imgui\imgui_internal.h" />

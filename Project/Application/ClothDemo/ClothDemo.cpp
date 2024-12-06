@@ -78,7 +78,7 @@ void ClothDemo::Draw(BaseCamera* camera)
 
 }
 
-void ClothDemo::ImGuiDraw()
+void ClothDemo::ImGuiDraw(BaseCamera& camera)
 {
 
 	clothGPU_->ImGuiDraw("布計算パラメータ");
@@ -110,7 +110,7 @@ void ClothDemo::ImGuiDraw()
 	std::string name = "";
 
 	// 平面
-	plane_->ImGuiDraw();
+	plane_->ImGuiDraw(camera);
 	if (plane_->GetExist()) {
 		name = "平面を消す";
 	}
@@ -121,7 +121,7 @@ void ClothDemo::ImGuiDraw()
 		PlaneSwitching();
 	}
 	// 球
-	sphere_->ImGuiDraw();
+	sphere_->ImGuiDraw(camera);
 	if (sphere_->GetExist()) {
 		name = "球を消す";
 	}
@@ -131,7 +131,7 @@ void ClothDemo::ImGuiDraw()
 	if (ImGui::Button(name.c_str())) {
 		SphereSwitching();
 	}
-	capsule_->ImGuiDraw();
+	capsule_->ImGuiDraw(camera);
 	if (capsule_->GetExist()) {
 		name = "カプセルを消す";
 	}

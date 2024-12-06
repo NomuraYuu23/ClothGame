@@ -76,7 +76,7 @@ void DebugScene::Draw()
 void DebugScene::ImguiDraw()
 {
 
-	clothDemo_->ImGuiDraw();
+	clothDemo_->ImGuiDraw(camera_);
 
 	debugCamera_->ImGuiDraw();
 

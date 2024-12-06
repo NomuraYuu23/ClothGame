@@ -22,7 +22,8 @@ public:
     /// <summary>
     /// ImGui描画
     /// </summary>
-    void ImGuiDraw() override;
+    /// <param name="camera"></param>
+    void ImGuiDraw(BaseCamera& camera) override;
 
     /// <summary>
     /// データ取得

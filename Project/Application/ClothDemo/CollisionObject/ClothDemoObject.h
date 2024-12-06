@@ -23,11 +23,12 @@ public:
     /// </summary>
     /// <param name="camera">カメラ</param>
     virtual void Draw(BaseCamera& camera);
-
+    
     /// <summary>
-    /// ImGui描画
+    /// 描画
     /// </summary>
-    virtual void ImGuiDraw() = 0;
+    /// <param name="camera">カメラ</param>
+    virtual void ImGuiDraw(BaseCamera& camera) = 0;
 
 public: // アクセッサ
 
@@ -74,6 +75,9 @@ protected:
 
     // テクスチャハンドル
     uint32_t textureHandle_;
+
+    // ギズモ操作番号
+    uint32_t guizmoOperation_;
 
 };
 
