@@ -107,6 +107,12 @@ public: // アクセッサ
     /// <returns></returns>
     bool GetLevelUp() { return levelUp_; }
 
+    /// <summary>
+    /// 現在のステート番号
+    /// </summary>
+    /// <returns></returns>
+    uint32_t GetCurrentStateNo() { return playerStateSystem_->GetCurrentStateNo(); };
+
 private: // メンバ変数
 
     // ステートシステム

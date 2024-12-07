@@ -103,7 +103,7 @@ void ClothGate::ClothInitialize()
 
 	// プレイヤーの衝突判定データ
 	playerCollider_.origin_ = { 0.0f,0.0f,0.0f };
-	playerCollider_.diff_ = { 0.0f,0.0f, 1.0f };
+	playerCollider_.diff_ = { 0.0f,0.0f, 0.0f };
 	const float playerColliderRadius = 2.0f;
 	playerCollider_.radius_ = playerColliderRadius;
 	// 登録
@@ -123,8 +123,18 @@ void ClothGate::ClothUpdate()
 	// プレイヤーの情報をいれる
 	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
 
+	// プレイヤーの衝突判定差分ベクトル通常版
+	if (player_->GetCurrentStateNo() == kPlayerStateIndexDash) {
+		const float kDashPlayerColliderDiffZ = -10.0f;
+		playerCollider_.diff_ = { 0.0f, 0.0f, kDashPlayerColliderDiffZ };
+	}
+	else {
+		const float kRootPlayerColliderDiffZ = -1.0f;
+		playerCollider_.diff_ = { 0.0f, 0.0f, kRootPlayerColliderDiffZ };
+	}
+
 	// プレイヤー近い
-	const float kCollisionDistance = 50.0f;
+	const float kCollisionDistance = 10.0f;
 	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
 		// 登録済み
 		if (registeringPlayer_) {
