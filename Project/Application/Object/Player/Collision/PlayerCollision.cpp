@@ -1,5 +1,6 @@
 #include "PlayerCollision.h"
 #include "../../GroundBlock/GroundBlock.h"
+#include "../../Enemy/BaseEnemy.h"
 #include "../../../Engine/Collision/Extrusion.h"
 
 void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObject colliderPartner)
@@ -32,8 +33,11 @@ void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObjec
 void PlayerCollision::OnColiisionEnemy(Player* player, ColliderParentObject colliderPartner)
 {
 
+	// 敵
+	BaseEnemy* enemy = std::get<BaseEnemy*>(colliderPartner);
+
 	// ダッシュ中か
-	if (player->GetCurrentStateNo() == kPlayerStateIndexDash) {
+	if (player->GetCurrentStateNo() == kPlayerStateIndexDash || !enemy->GetConflictWithPlayer()) {
 		return;
 	}
 
