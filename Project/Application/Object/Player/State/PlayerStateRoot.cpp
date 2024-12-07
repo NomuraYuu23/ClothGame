@@ -7,6 +7,9 @@ void PlayerStateRoot::Initialize()
 	// プレイヤーは通常状態に
 	playerStateNo_ = kPlayerStateIndexRoot;
 
+	// モーション番号
+	playerMotionNo_ = PlayerAnimation::PlayerMotionIndex::kPlayerMotionIndexRun;
+
 }
 
 void PlayerStateRoot::Update()
