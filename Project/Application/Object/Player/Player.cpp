@@ -38,8 +38,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	playerStateSystem_->Initialize(this);
 
 	// アニメーションの初期化
-	//playerAnimation_ = std::make_unique<PlayerAnimation>();
-	//playerAnimation_->Initialize(model_);
+	playerAnimation_ = std::make_unique<PlayerAnimation>();
+	playerAnimation_->Initialize(model_);
 
 	// 浮いているか
 	floating_ = false;
@@ -70,7 +70,7 @@ void Player::Update()
 	playerStateSystem_->Update();
 
 	// アニメーション更新
-	//playerAnimation_->Update(playerStateSystem_->GetPlayerState()->GetPlaryerMotionNo());
+	playerAnimation_->Update(playerStateSystem_->GetPlayerState()->GetPlaryerMotionNo());
 
 	// 重力
 	worldTransform_.transform_.translate += Gravity::Execute();
@@ -96,15 +96,13 @@ void Player::Draw(BaseCamera& camera)
 {
 
 	// アニメーションオブジェクトになるまでコメントアウト
-	//ModelDraw::AnimObjectDesc desc;
-	//desc.camera = &camera;
-	//desc.localMatrixManager = playerAnimation_->GetLocalMatrixManager();
-	//desc.material = material_.get();
-	//desc.model = model_;
-	//desc.worldTransform = &worldTransform_;
-	//ModelDraw::AnimObjectDraw(desc);
-
-	MeshObject::Draw(camera);
+	ModelDraw::AnimObjectDesc desc;
+	desc.camera = &camera;
+	desc.localMatrixManager = playerAnimation_->GetLocalMatrixManager();
+	desc.material = material_.get();
+	desc.model = model_;
+	desc.worldTransform = &worldTransform_;
+	ModelDraw::AnimObjectDraw(desc);
 
 }
 
