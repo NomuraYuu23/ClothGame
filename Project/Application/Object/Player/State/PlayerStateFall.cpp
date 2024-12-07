@@ -14,6 +14,9 @@ void PlayerStateFall::Initialize()
 	// プレイヤーは落下状態に
 	playerStateNo_ = kPlayerStateIndexFall;
 
+	// モーション番号
+	playerMotionNo_ = PlayerAnimation::PlayerMotionIndex::kPlayerMotionIndexJump;
+
 }
 
 void PlayerStateFall::Update()

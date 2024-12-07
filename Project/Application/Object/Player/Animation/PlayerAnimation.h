@@ -11,6 +11,8 @@ public: // サブクラス
 	enum PlayerMotionIndex {
 		kPlayerMotionIndexRun, // 走る
 		kPlayerMotionIndexJump, // ジャンプ
+		kPlayerMotionIndexDash, // ダッシュ
+		kPlayerMotionIndexDamage, // ダメージ
 		kPlayerMotionIndexOfCount // 数
 	};
 

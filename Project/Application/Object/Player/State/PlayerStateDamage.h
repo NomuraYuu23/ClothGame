@@ -16,5 +16,10 @@ public: // メンバ関数
 	/// </summary>
 	void Update() override;
 
+private: // メンバ変数
+
+	// アニメーション時間
+	float animationTime_;
+
 };
 

@@ -17,6 +17,9 @@ void PlayerStateDash::Initialize()
 	// フレームカウント
 	frameCount_ = 0.0f;
 
+	// モーション番号
+	playerMotionNo_ = PlayerAnimation::PlayerMotionIndex::kPlayerMotionIndexDash;
+
 }
 
 void PlayerStateDash::Update()
