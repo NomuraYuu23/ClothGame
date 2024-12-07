@@ -57,6 +57,11 @@ public: // メンバ関数
     /// <param name="collisionData"></param>
     void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData);
 
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    void Damage();
+
 private: // メンバ関数
 
 	/// <summary>

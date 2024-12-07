@@ -28,3 +28,15 @@ void PlayerCollision::OnColiisionGroundBlock(Player* player, ColliderParentObjec
 	}
 
 }
+
+void PlayerCollision::OnColiisionEnemy(Player* player, ColliderParentObject colliderPartner)
+{
+
+	// ダッシュ中か
+	if (player->GetCurrentStateNo() == kPlayerStateIndexDash) {
+		return;
+	}
+
+	player->Damage();
+
+}

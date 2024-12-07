@@ -127,6 +127,19 @@ void Player::OnCollision(ColliderParentObject colliderPartner, const CollisionDa
 	if (std::holds_alternative<GroundBlock*>(colliderPartner)) {
 		PlayerCollision::OnColiisionGroundBlock(this, colliderPartner);
 	}
+	// ゴースト
+	if (std::holds_alternative<BaseEnemy*>(colliderPartner)) {
+		PlayerCollision::OnColiisionEnemy(this, colliderPartner);
+	}
+
+}
+
+void Player::Damage()
+{
+
+	// ダメージ状態へ
+	playerStateSystem_->SetInterruptCommand(true);
+	playerStateSystem_->SetNextStateNo(kPlayerStateIndexDamage);
 
 }
 
@@ -153,8 +166,7 @@ void Player::FallCheck()
 	// 落下
 	const float kFallPositionY = -10.0f;
 	if (worldTransform_.GetWorldPosition().y <= kFallPositionY) {
-		playerStateSystem_->SetInterruptCommand(true);
-		playerStateSystem_->SetNextStateNo(kPlayerStateIndexDamage);
+		Damage();
 	}
 
 }

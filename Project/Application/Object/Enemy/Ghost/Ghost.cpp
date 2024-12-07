@@ -96,8 +96,10 @@ void Ghost::OnCollision(ColliderParentObject colliderPartner, const CollisionDat
 		
 		Player* player = std::get<Player*>(colliderPartner);
 		
-		ghostStateSystem_->SetNextStateNo(kGhostStateIndexBlownAway);
-		ghostStateSystem_->SetInterruptCommand(true);
+		if (player->GetCurrentStateNo() == kPlayerStateIndexDash) {
+			ghostStateSystem_->SetNextStateNo(kGhostStateIndexBlownAway);
+			ghostStateSystem_->SetInterruptCommand(true);
+		}
 
 	}
 
