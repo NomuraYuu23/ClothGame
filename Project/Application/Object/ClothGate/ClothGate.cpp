@@ -110,7 +110,8 @@ void ClothGate::ClothInitialize()
 	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
 	// 更新秒数
-	updateSeconds_ = 0.0f;
+	const float kInitUpdateSeconds = 2.8f;
+	updateSeconds_ = kInitUpdateSeconds;
 
 }
 
