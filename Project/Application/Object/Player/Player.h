@@ -5,10 +5,16 @@
 #include "State/System/PlayerStateFactory.h"
 #include "State/System/PlayerStateSystem.h"
 #include "Animation/PlayerAnimation.h"
+#include "../../GPUParticle/RunDustParticle/RunDustParticle.h"
 
 class Player :
     public MeshObject
 {
+
+private: 
+
+    // 足までの位置
+    static const Vector3 kPositionToFeet_;
 
 public: // メンバ関数
 
@@ -134,6 +140,9 @@ private: // メンバ変数
 
     // レベルアップ
     bool levelUp_;
+
+    // 砂ぼこり
+    std::unique_ptr<RunDustParticle> runDustParticle_;
 
 };
 

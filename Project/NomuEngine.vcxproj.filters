@@ -397,6 +397,9 @@
     <Filter Include="Application\System\Start">
       <UniqueIdentifier>{4f806038-eab7-425e-bc33-20a48683f633}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders\GPUParticle\RunDash">
+      <UniqueIdentifier>{63c54488-09c9-478d-9809-d8bf33df4e15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -1647,6 +1650,9 @@
     <None Include="Resources\Shaders\GPUParticle\GPUParticle.CS.hlsli">
       <Filter>shaders\GPUParticle\CS</Filter>
     </None>
+    <None Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDust.CS.hlsli">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NomuEngine.rc">
@@ -1854,6 +1860,15 @@
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\ParticleUpdate.CS.hlsl">
       <Filter>shaders\GPUParticle\CS</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

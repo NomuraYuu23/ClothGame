@@ -4,6 +4,9 @@
 #include "../../../Engine/3D/Model/ModelDraw.h"
 #include "../../Collider/CollisionConfig.h"
 
+// 足までの位置
+const Vector3 Player::kPositionToFeet_ = { 0.0f,-1.0f,0.0f };
+
 Player::Player()
 {
 }
@@ -50,6 +53,27 @@ void Player::Initialize(LevelData::MeshData* data)
 	// レベルアップ
 	levelUp_ = false;
 
+	// 砂埃
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	runDustParticle_ = std::make_unique<RunDustParticle>();
+	runDustParticle_->Initialize(
+		dxCommon->GetDevice(),
+		dxCommon->GetCommadListLoad(),
+		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
+		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
+
+	// エミッタ設定
+	const EmitterCS kEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			10, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	runDustParticle_->SetEmitter(kEmitter);
+
 }
 
 void Player::Update()
@@ -87,6 +111,24 @@ void Player::Update()
 	// 速度保存
 	SaveVelocityUpdate();
 
+	// 砂埃
+	const EmitterCS kEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			2, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	if (!floating_) {
+		runDustParticle_->SetEmitter(kEmitter, false);
+	}
+	else {
+		runDustParticle_->SetEmitter(kEmitter, true);
+	}
+	runDustParticle_->Update();
+
 	// 落下していることにする
 	floating_ = true;
 
@@ -114,7 +156,8 @@ void Player::ImGuiDraw()
 void Player::ParticleDraw(BaseCamera& camera)
 {
 
-
+	// 砂埃
+	runDustParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
 
 }
 

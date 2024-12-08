@@ -11,19 +11,23 @@
 void RunDustParticle::Initialize(ID3D12Device* device, ID3D12GraphicsCommandList* commandList, ID3D12RootSignature* rootSignature, ID3D12PipelineState* pipelineState)
 {
 
-	textureFilename_ = "cloud.png";
+	// テクスチャ名前
+	textureFilename_ = "smoke.png";
 
+	// 初期化
 	GPUParticle::Initialize(device, commandList, rootSignature, pipelineState);
 
-	EmitterCS emitter;
-	emitter.count = 10;
-	emitter.frequency = 0.1f;
-	emitter.frequencyTime = 0.0f;
-	emitter.translate = Vector3(0.0f, 3.0f, 0.0f);
-	emitter.radius = 1.0f;
-	emitter.emit = 0;
-
-	SetEmitter(emitter);
+	// エミッタ設定
+	const EmitterCS kEmitter =
+	{
+			Vector3{0.0f, 3.0f, 0.0f}, // 位置
+			1.0f, // 射出半径
+			10, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	SetEmitter(kEmitter);
 
 }
 
@@ -234,7 +238,7 @@ void RunDustParticle::PipelineStateCSInitializeForInitialize(ID3D12Device* devic
 
 	// シェーダコンパイル
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/RunDustParticle/RunDustInitialize.CS.hlsl",
+		L"Resources/shaders/GPUParticle/RunDustParticle/RunDustInitialize.CS.hlsl",
 		L"cs_6_0",
 		L"main");
 
@@ -338,7 +342,7 @@ void RunDustParticle::PipelineStateCSInitializeForEmit(ID3D12Device* device)
 
 	// シェーダコンパイル
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/RunDustParticle/RunDustEmit.CS.hlsl",
+		L"Resources/shaders/GPUParticle/RunDustParticle/RunDustEmit.CS.hlsl",
 		L"cs_6_0",
 		L"main");
 
@@ -438,7 +442,7 @@ void RunDustParticle::PipelineStateCSInitializeForUpdate(ID3D12Device* device)
 
 	// シェーダコンパイル
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/RunDustParticle/RunDustUpdate.CS.hlsl",
+		L"Resources/shaders/GPUParticle/RunDustParticle/RunDustUpdate.CS.hlsl",
 		L"cs_6_0",
 		L"main");
 
