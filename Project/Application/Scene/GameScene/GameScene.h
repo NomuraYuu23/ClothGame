@@ -16,6 +16,7 @@
 #include "../../Collision/GameSceneCollisionManager.h"
 #include "../../UI/UIManager.h"
 #include "../../System/Start/StartCountDown.h"
+#include "../../System/PostEffectSystem/PostEffectSystem.h"
 
 class GameScene : public IScene
 {
@@ -84,5 +85,8 @@ private:
 
 	// カウントダウンシステム
 	std::unique_ptr<StartCountDown> startCountDown_ = nullptr;
+
+	// ポストエフェクトシステム
+	std::unique_ptr<PostEffectSystem> postEffectSystem_ = nullptr;
 
 };
