@@ -5,10 +5,16 @@
 #include "State/System/PlayerStateFactory.h"
 #include "State/System/PlayerStateSystem.h"
 #include "Animation/PlayerAnimation.h"
+#include "../../GPUParticle/RunDustParticle/RunDustParticle.h"
 
 class Player :
     public MeshObject
 {
+
+private: 
+
+    // 足までの位置
+    static const Vector3 kPositionToFeet_;
 
 public: // メンバ関数
 
@@ -56,6 +62,11 @@ public: // メンバ関数
     /// <param name="colliderPartner"></param>
     /// <param name="collisionData"></param>
     void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData);
+
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    void Damage();
 
 private: // メンバ関数
 
@@ -107,6 +118,12 @@ public: // アクセッサ
     /// <returns></returns>
     bool GetLevelUp() { return levelUp_; }
 
+    /// <summary>
+    /// 現在のステート番号
+    /// </summary>
+    /// <returns></returns>
+    uint32_t GetCurrentStateNo() { return playerStateSystem_->GetCurrentStateNo(); };
+
 private: // メンバ変数
 
     // ステートシステム
@@ -123,6 +140,9 @@ private: // メンバ変数
 
     // レベルアップ
     bool levelUp_;
+
+    // 砂ぼこり
+    std::unique_ptr<RunDustParticle> runDustParticle_;
 
 };
 

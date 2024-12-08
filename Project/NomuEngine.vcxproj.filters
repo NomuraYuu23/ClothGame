@@ -313,30 +313,6 @@
     <Filter Include="shaders\PostEffect\HSVFilter">
       <UniqueIdentifier>{e4bed640-a217-4143-a704-421f4f242a9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders\GPUParticle\BonfireParticle">
-      <UniqueIdentifier>{2dd60d39-2ed3-40fe-9e5f-3d668d2ccc24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\BonfireParticle\CS">
-      <UniqueIdentifier>{b68dd55c-7912-4a19-9900-2d57191447dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\BloadParticle">
-      <UniqueIdentifier>{0f8b438b-72de-4fb6-b7dc-f3b819eac664}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\BloadParticle\CS">
-      <UniqueIdentifier>{990f24b8-1d49-404f-bae2-03d82e4b1a60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\FieldSparksParticle">
-      <UniqueIdentifier>{775d06be-4c4b-4bee-a162-8e3259f528c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\FieldSparksParticle\CS">
-      <UniqueIdentifier>{0a5136f7-afef-4201-8083-9b99789eadce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\PillarSmokeParticle">
-      <UniqueIdentifier>{1457ec65-2545-4635-b9de-e0155fbc62e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="shaders\GPUParticle\PillarSmokeParticle\CS">
-      <UniqueIdentifier>{afe45777-70ea-4ac6-9a41-16b3d960fbd9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Physics\Cloth">
       <UniqueIdentifier>{7050e05e-6ae1-451a-aad3-bac8052e41e2}</UniqueIdentifier>
     </Filter>
@@ -417,6 +393,15 @@
     </Filter>
     <Filter Include="Application\UI\Button">
       <UniqueIdentifier>{cb4de93d-8f2c-460c-bc34-66aeebc8f37a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\System\Start">
+      <UniqueIdentifier>{4f806038-eab7-425e-bc33-20a48683f633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\GPUParticle\RunDash">
+      <UniqueIdentifier>{63c54488-09c9-478d-9809-d8bf33df4e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\System\PostEffectSystem">
+      <UniqueIdentifier>{91acd4c9-9bf6-42cb-9c04-c472ff6ee0a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -934,7 +919,16 @@
     <ClCompile Include="Application\UI\ButtonBUI.cpp">
       <Filter>Application\UI\Button</Filter>
     </ClCompile>
+    <ClCompile Include="Application\System\Start\StartCountDown.cpp">
+      <Filter>Application\System\Start</Filter>
+    </ClCompile>
     <ClCompile Include="Application\UI\StickLUI.cpp">
+      <Filter>Application\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GPUParticle\RunDustParticle\RunDustParticle.cpp">
+      <Filter>Application\GPUParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\System\PostEffectSystem\PostEffectSystem.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="externals\imgui\ImGuizmo.cpp">
@@ -1599,7 +1593,16 @@
     <ClInclude Include="Application\UI\ButtonBUI.h">
       <Filter>Application\UI\Button</Filter>
     </ClInclude>
+    <ClInclude Include="Application\System\Start\StartCountDown.h">
+      <Filter>Application\System\Start</Filter>
+    </ClInclude>
     <ClInclude Include="Application\UI\StickLUI.h">
+      <Filter>Application\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\GPUParticle\RunDustParticle\RunDustParticle.h">
+      <Filter>Application\GPUParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\System\PostEffectSystem\PostEffectSystem.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="externals\imgui\ImGuizmo.h">
@@ -1647,32 +1650,23 @@
     <None Include="Resources\shaders\RandomGenerator\RandomGenerator.hlsli">
       <Filter>shaders</Filter>
     </None>
-    <None Include="Resources\shaders\GPUParticle\GPUParticle.CS.hlsli">
-      <Filter>shaders\GPUParticle\CS</Filter>
-    </None>
-    <None Include="Resources\shaders\BonfireParticle\Bonfire.CS.hlsli">
-      <Filter>shaders\GPUParticle\BonfireParticle\CS</Filter>
-    </None>
     <None Include="Resources\shaders\GPUParticle\GPUParticleDissolve.hlsli">
       <Filter>shaders\GPUParticle</Filter>
     </None>
     <None Include="Resources\shaders\PostEffect\PostEffectParameters.hlsli">
       <Filter>shaders\PostEffect</Filter>
     </None>
-    <None Include="Resources\shaders\BloadParticle\Bload.CS.hlsli">
-      <Filter>shaders\GPUParticle\BloadParticle\CS</Filter>
-    </None>
-    <None Include="Resources\shaders\FieldSparksParticle\FieldSparks.CS.hlsli">
-      <Filter>shaders\GPUParticle\FieldSparksParticle\CS</Filter>
-    </None>
-    <None Include="Resources\shaders\PillarSmokeParticle\PillarSmoke.CS.hlsli">
-      <Filter>shaders\GPUParticle\PillarSmokeParticle\CS</Filter>
-    </None>
     <None Include="Resources\shaders\Cloth\Cloth.hlsli">
       <Filter>shaders\Cloth</Filter>
     </None>
     <None Include="Resources\shaders\ClothGPU\ClothGPU.CS.hlsli">
       <Filter>shaders\ClothGPU</Filter>
+    </None>
+    <None Include="Resources\Shaders\GPUParticle\GPUParticle.CS.hlsli">
+      <Filter>shaders\GPUParticle\CS</Filter>
+    </None>
+    <None Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDust.CS.hlsli">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1759,24 +1753,6 @@
     <FxCompile Include="Resources\shaders\PostEffect\PostEffectCalc.CS.hlsl">
       <Filter>shaders\PostEffect</Filter>
     </FxCompile>
-    <FxCompile Include="Resources\shaders\GPUParticle\ParticleInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\GPUParticle\ParticleEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\GPUParticle\ParticleUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\BonfireParticle\BonfireUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\BonfireParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\BonfireParticle\BonfireEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\BonfireParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\BonfireParticle\BonfireInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\BonfireParticle\CS</Filter>
-    </FxCompile>
     <FxCompile Include="Resources\shaders\GPUParticle\GPUParticleDissolve.PS.hlsl">
       <Filter>shaders\GPUParticle</Filter>
     </FxCompile>
@@ -1846,33 +1822,6 @@
     <FxCompile Include="Resources\shaders\PostEffect\HSVFilter.CS.hlsl">
       <Filter>shaders\PostEffect\HSVFilter</Filter>
     </FxCompile>
-    <FxCompile Include="Resources\shaders\BloadParticle\BloadEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\BloadParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\BloadParticle\BloadInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\BloadParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\BloadParticle\BloadUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\BloadParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\FieldSparksParticle\FieldSparksEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\FieldSparksParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\FieldSparksParticle\FieldSparksInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\FieldSparksParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\FieldSparksParticle\FieldSparksUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\FieldSparksParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\PillarSmokeParticle\PillarSmokeEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\PillarSmokeParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\PillarSmokeParticle\PillarSmokeInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\PillarSmokeParticle\CS</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\PillarSmokeParticle\PillarSmokeUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\PillarSmokeParticle\CS</Filter>
-    </FxCompile>
     <FxCompile Include="Resources\shaders\GPUParticle\GPUParticleBlendNormal.VS.hlsl">
       <Filter>shaders\GPUParticle</Filter>
     </FxCompile>
@@ -1917,6 +1866,24 @@
     </FxCompile>
     <FxCompile Include="Resources\shaders\ClothGPU\Collision\ClothCollisionCapsule.CS.hlsl">
       <Filter>shaders\ClothGPU\Collision</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\ParticleEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\CS</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\ParticleInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\CS</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\ParticleUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\CS</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\RunDash</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

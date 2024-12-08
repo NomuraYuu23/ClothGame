@@ -55,6 +55,12 @@ public: // アクセッサ
 	/// <returns></returns>
 	PlayerCommand* GetPlayerCommand() { return playerCommand_.get(); }
 
+	/// <summary>
+	/// 現在のステート番号
+	/// </summary>
+	/// <returns></returns>
+	uint32_t GetCurrentStateNo() { return currentStateNo_; };
+
 private: // メンバ変数
 
 	// ステート

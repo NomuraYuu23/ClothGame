@@ -38,5 +38,24 @@ protected: // メンバ関数
     /// </summary>
     virtual void ColliderUpdate();
 
+public: // アクセッサ
+
+    /// <summary>
+    /// プレイヤーと衝突するか取得
+    /// </summary>
+    /// <returns></returns>
+    bool GetConflictWithPlayer() { return conflictWithPlayer_; }
+
+    /// <summary>
+    /// プレイヤーと衝突するか設定
+    /// </summary>
+    /// <param name="conflictWithPlayer"></param>
+    void SetConflictWithPlayer(bool conflictWithPlayer) { conflictWithPlayer_ = conflictWithPlayer; }
+
+protected: // メンバ変数
+
+    // プレイヤーと衝突するか
+    bool conflictWithPlayer_;
+
 };
 

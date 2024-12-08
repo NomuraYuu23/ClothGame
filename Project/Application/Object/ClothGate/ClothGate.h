@@ -9,7 +9,7 @@ class ClothGate :
     public MeshObject
 {
 
-public: // 静的メンバ変数
+private: // 静的メンバ変数
 
 	// プレイヤーの衝突判定データの名前
 	static const std::string kPlayerColliderName_;

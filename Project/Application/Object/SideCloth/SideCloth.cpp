@@ -107,7 +107,8 @@ void SideCloth::ClothInitialize()
 	cloth_->SetRelaxation(kClothRelaxation);
 
 	// 更新秒数
-	updateSeconds_ = 0.0f;
+	const float kInitUpdateSeconds = 0.8f;
+	updateSeconds_ = kInitUpdateSeconds;
 
 }
 

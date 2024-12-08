@@ -61,6 +61,16 @@ void GameScene::Initialize() {
 	uiManager_ = std::make_unique<UIManager>();
 	uiManager_->Initialize();
 
+	// スタートカウントダウン
+	startCountDown_ = std::make_unique<StartCountDown>();
+	startCountDown_->Initialize();
+
+	// ポストエフェクト
+	postEffectSystem_ = std::make_unique<PostEffectSystem>();
+	postEffectSystem_->Initialize();
+	postEffectSystem_->SetPlayer(static_cast<Player*>(objectManager_->GetObjectPointer("Player")));
+	postEffectSystem_->SetRenderTargetTexture(renderTargetTexture_);
+
 	IScene::InitilaizeCheck();
 
 }
@@ -89,6 +99,12 @@ void GameScene::Update() {
 
 	camera_ = static_cast<BaseCamera>(*followCamera_.get());
 
+	// スタートカウントダウン
+	startCountDown_->Update();
+	if (!startCountDown_->GetCountdownEnded()) {
+		return;
+	}
+
 	// オブジェクトマネージャー
 	objectManager_->Update();
 
@@ -105,6 +121,8 @@ void GameScene::Update() {
 	effectManager_->Update(camera_);
 	// UIマネージャー
 	uiManager_->Update();
+	// ポストエフェクト
+	postEffectSystem_->Update();
 
 	// ゲームが終了するか
 	if (static_cast<GameSceneObjectManager*>(objectManager_.get())->GetLevelChangeEnd()) {
@@ -117,13 +135,6 @@ void GameScene::Update() {
 /// 描画処理
 /// </summary>
 void GameScene::Draw() {
-
-	// ポストエフェクト設定
-	PostEffect::GetInstance()->SetKernelSize(33);
-	PostEffect::GetInstance()->SetGaussianSigma(33.0f);
-	PostEffect::GetInstance()->SetProjectionInverse(Matrix4x4::Inverse(camera_.GetProjectionMatrix()));
-	PostEffect::GetInstance()->SetRadialBlurStrength(0.2f);
-	PostEffect::GetInstance()->SetThreshold(0.25f);
 
 	//ゲームの処理 
 
@@ -174,6 +185,8 @@ void GameScene::Draw() {
 
 #pragma endregion
 
+	// ポストエフェクト
+	postEffectSystem_->Execute();
 
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
@@ -182,7 +195,12 @@ void GameScene::Draw() {
 
 	//背景
 	//前景スプライト描画
+
+	// UI
 	uiManager_->Draw();
+
+	// システム
+	startCountDown_->Draw();
 
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();

@@ -17,6 +17,9 @@ void PlayerStateDash::Initialize()
 	// フレームカウント
 	frameCount_ = 0.0f;
 
+	// モーション番号
+	playerMotionNo_ = PlayerAnimation::PlayerMotionIndex::kPlayerMotionIndexDash;
+
 }
 
 void PlayerStateDash::Update()
@@ -40,7 +43,7 @@ void PlayerStateDash::Update()
 
 	// 通常に移行
 	frameCount_ += kDeltaTime_;
-	const float kEndFrame = 0.1f;
+	const float kEndFrame = 0.15f;
 	if (frameCount_ >= kEndFrame) {
 		playerStateSystem_->SetReceiveCommand(true);
 		playerStateNo_ = kPlayerStateIndexRoot;

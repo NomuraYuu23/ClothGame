@@ -119,7 +119,7 @@
                     1.0
                 ]
             },
-            "fileName": "Player.obj",
+            "fileName": "Player.gltf",
             "directoryPath": "Resources/Model/Player",
             "className": "Player",
             "collider": {

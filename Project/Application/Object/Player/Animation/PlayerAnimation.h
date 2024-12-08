@@ -9,7 +9,10 @@ public: // サブクラス
 
 	// モーション番号
 	enum PlayerMotionIndex {
-		kPlayerMotionIndexWait, // 待ち
+		kPlayerMotionIndexRun, // 走る
+		kPlayerMotionIndexJump, // ジャンプ
+		kPlayerMotionIndexDash, // ダッシュ
+		kPlayerMotionIndexDamage, // ダメージ
 		kPlayerMotionIndexOfCount // 数
 	};
 

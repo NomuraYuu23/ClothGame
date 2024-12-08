@@ -15,6 +15,9 @@ void PlayerStateJump::Initialize()
 	// プレイヤーはジャンプ状態に
 	playerStateNo_ = kPlayerStateIndexJump;
 
+	// モーション番号
+	playerMotionNo_ = PlayerAnimation::PlayerMotionIndex::kPlayerMotionIndexJump;
+
 }
 
 void PlayerStateJump::Update()
