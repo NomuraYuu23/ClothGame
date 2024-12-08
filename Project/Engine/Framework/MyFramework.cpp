@@ -75,6 +75,8 @@ void MyFramework::Initialize()
 
 	// クエリタイムスタンプ
 	QueryTimestamp::GetInstance()->Initialize(dxCommon->GetDevice());
+	// 使うか
+	QueryTimestamp::GetInstance()->SetUsed(false);
 
 #endif // _DEMO
 

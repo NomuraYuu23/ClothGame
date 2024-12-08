@@ -58,6 +58,10 @@ void QueryTimestamp::Initialize(ID3D12Device* device)
 void QueryTimestamp::Preprocessing(ID3D12GraphicsCommandList* commandList)
 {
 
+	if (!used_) {
+		return;
+	}
+
 	// 実行中のクエリを終了
 	commandList->EndQuery(
 		query_.Get(), 
@@ -68,6 +72,10 @@ void QueryTimestamp::Preprocessing(ID3D12GraphicsCommandList* commandList)
 
 void QueryTimestamp::Postprocessing(ID3D12GraphicsCommandList* commandList)
 {
+
+	if (!used_) {
+		return;
+	}
 
 	// 実行中のクエリを終了
 	command_->GetCommadList()->EndQuery(
@@ -120,6 +128,10 @@ void QueryTimestamp::Postprocessing(ID3D12GraphicsCommandList* commandList)
 void QueryTimestamp::Reading()
 {
 
+	if (!used_) {
+		return;
+	}
+
 	//GPU タイムスタンプ カウンターがインクリメントされる速度を決定
 	UI64 freq = 0;
 	DxCommand::GetCommandQueue()->GetTimestampFrequency(&freq);
@@ -138,8 +150,11 @@ void QueryTimestamp::Reading()
 void QueryTimestamp::ImGuiDraw()
 {
 
+	if (!used_) {
+		return;
+	}
+
 	ImGui::Begin("QueryTimestamp");
-	//ImGui::Text("%.5f ms", &time_);
 	ImGui::DragFloat("GPUの処理時間(ms)", &time_,0.0f);
 	ImGui::End();
 

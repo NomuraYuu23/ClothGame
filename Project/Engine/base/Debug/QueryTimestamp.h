@@ -53,6 +53,14 @@ public: // 関数
 	/// </summary>
 	void ImGuiDraw();
 
+public: // アクセッサ
+
+	/// <summary>
+	/// 使用するか
+	/// </summary>
+	/// <param name="used">使用するか</param>
+	void SetUsed(bool used) { used_ = used; }
+
 public: // 定数
 
 	// フレームカウント
@@ -79,6 +87,9 @@ public: // 変数
 	// フェンス
 	Microsoft::WRL::ComPtr<ID3D12Fence> fence_;
 	UINT64 fenceVal_ = 0;
+
+	// 使用するか
+	bool used_;
 
 private: // シングルトン
 
