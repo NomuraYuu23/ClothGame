@@ -70,14 +70,14 @@ void DebugCamera::ImGuiDraw()
 	ImGui::DragFloat3("位置",&transform_.translate.x,0.01f);
 	ImGui::DragFloat3("回転", &transform_.rotate.x, 0.01f);
 	ImGui::Text("操作説明");
-	ImGui::Text("移動 ： 上：左Shift");
-	ImGui::Text("移動 ： 下：Space");
-	ImGui::Text("移動 ： 前：W");
-	ImGui::Text("移動 ： 後：S");
-	ImGui::Text("移動 ： 右：D");
-	ImGui::Text("移動 ： 左：A");
-	ImGui::Text("回転 ： 縦回転：↑、↓");
-	ImGui::Text("回転 ： 横回転：←、→");
+	ImGui::Text("移動 上：左Shift");
+	ImGui::Text("移動 下：Space");
+	ImGui::Text("移動 前：W");
+	ImGui::Text("移動 後：S");
+	ImGui::Text("移動 右：D");
+	ImGui::Text("移動 左：A");
+	ImGui::Text("回転 縦回転：↑、↓");
+	ImGui::Text("回転 横回転：←、→");
 	ImGui::End();
 
 }
