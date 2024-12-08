@@ -43,7 +43,7 @@ void PlayerStateDash::Update()
 
 	// 通常に移行
 	frameCount_ += kDeltaTime_;
-	const float kEndFrame = 0.1f;
+	const float kEndFrame = 0.15f;
 	if (frameCount_ >= kEndFrame) {
 		playerStateSystem_->SetReceiveCommand(true);
 		playerStateNo_ = kPlayerStateIndexRoot;
