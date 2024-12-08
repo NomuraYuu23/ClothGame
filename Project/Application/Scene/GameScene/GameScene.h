@@ -15,6 +15,7 @@
 #include "../../Object/Player/Player.h"
 #include "../../Collision/GameSceneCollisionManager.h"
 #include "../../UI/UIManager.h"
+#include "../../System/Start/StartCountDown.h"
 
 class GameScene : public IScene
 {
@@ -80,5 +81,8 @@ private:
 
 	// UIマネージャー
 	std::unique_ptr<UIManager> uiManager_ = nullptr;
+
+	// カウントダウンシステム
+	std::unique_ptr<StartCountDown> startCountDown_ = nullptr;
 
 };

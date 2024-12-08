@@ -61,6 +61,10 @@ void GameScene::Initialize() {
 	uiManager_ = std::make_unique<UIManager>();
 	uiManager_->Initialize();
 
+	// スタートカウントダウン
+	startCountDown_ = std::make_unique<StartCountDown>();
+	startCountDown_->Initialize();
+
 	IScene::InitilaizeCheck();
 
 }
@@ -88,6 +92,12 @@ void GameScene::Update() {
 	followCamera_->Update();
 
 	camera_ = static_cast<BaseCamera>(*followCamera_.get());
+
+	// スタートカウントダウン
+	startCountDown_->Update();
+	if (!startCountDown_->GetCountdownEnded()) {
+		return;
+	}
 
 	// オブジェクトマネージャー
 	objectManager_->Update();
@@ -182,7 +192,12 @@ void GameScene::Draw() {
 
 	//背景
 	//前景スプライト描画
+
+	// UI
 	uiManager_->Draw();
+
+	// システム
+	startCountDown_->Draw();
 
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();

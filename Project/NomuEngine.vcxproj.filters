@@ -418,6 +418,9 @@
     <Filter Include="Application\UI\Button">
       <UniqueIdentifier>{cb4de93d-8f2c-460c-bc34-66aeebc8f37a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\System\Start">
+      <UniqueIdentifier>{4f806038-eab7-425e-bc33-20a48683f633}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -935,6 +938,9 @@
       <Filter>Application\UI\Button</Filter>
     </ClCompile>
     <ClCompile Include="Application\UI\StickLUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\System\Start\StartCountDown.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1597,6 +1603,9 @@
       <Filter>Application\UI\Button</Filter>
     </ClInclude>
     <ClInclude Include="Application\UI\StickLUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\System\Start\StartCountDown.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

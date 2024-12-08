@@ -203,6 +203,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Scene\TutorialScene\TutorialScene.cpp" />
     <ClCompile Include="Application\System\Shadow\Shadow.cpp" />
     <ClCompile Include="Application\System\Shadow\ShadowManager.cpp" />
+    <ClCompile Include="Application\System\Start\StartCountDown.cpp" />
     <ClCompile Include="Application\UI\BaseUI.cpp" />
     <ClCompile Include="Application\UI\ButtonAUI.cpp" />
     <ClCompile Include="Application\UI\ButtonBUI.cpp" />
@@ -385,6 +386,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Effect\EffectManager.h" />
     <ClInclude Include="Application\System\Shadow\Shadow.h" />
     <ClInclude Include="Application\System\Shadow\ShadowManager.h" />
+    <ClInclude Include="Application\System\Start\StartCountDown.h" />
     <ClInclude Include="Application\UI\BaseUI.h" />
     <ClInclude Include="Application\UI\ButtonAUI.h" />
     <ClInclude Include="Application\UI\ButtonBUI.h" />
