@@ -1,3 +1,5 @@
+[![DebugBuild](https://github.com/NomuraYuu23/ClothGame/actions/workflows/DebugBuild.yml/badge.svg?branch=master)](https://github.com/NomuraYuu23/ClothGame/actions/workflows/DebugBuild.yml)
+
 # 機能
 
 ## クロスシミュレーション
