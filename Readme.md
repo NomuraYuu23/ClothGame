@@ -1,4 +1,5 @@
 [![DebugBuild](https://github.com/NomuraYuu23/ClothGame/actions/workflows/DebugBuild.yml/badge.svg?branch=master)](https://github.com/NomuraYuu23/ClothGame/actions/workflows/DebugBuild.yml)
+[![ReleaseBuild](https://github.com/NomuraYuu23/ClothGame/actions/workflows/ReleaseBuild.yml/badge.svg?branch=master)](https://github.com/NomuraYuu23/ClothGame/actions/workflows/ReleaseBuild.yml)
 
 # 機能
 
