@@ -12,6 +12,9 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+/// <summary>
+/// ImGuiマネージャー
+/// </summary>
 class ImGuiManager
 {
 public: // メンバ関数
@@ -47,13 +50,15 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-private: 
+private: // メンバ変数
 
+	// DirectXCommon
 	DirectXCommon* dxCommon_ = nullptr;
 
+	// ディスクリプタヒープ番号
 	uint32_t indexDescriptorHeap_;
 
-private:
+private: // シングルトン
 	ImGuiManager() = default;
 	~ImGuiManager() = default;
 	ImGuiManager(const ImGuiManager&) = delete;
