@@ -814,12 +814,6 @@
     <ClCompile Include="Application\Effect\BillboardEffect.cpp">
       <Filter>Application\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Effect\EffectManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp">
       <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
@@ -929,7 +923,13 @@
       <Filter>Application\GPUParticle</Filter>
     </ClCompile>
     <ClCompile Include="Application\System\PostEffectSystem\PostEffectSystem.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\System\PostEffectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Effect\EffectManager.cpp">
+      <Filter>Application\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
+      <Filter>Application\Object\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1479,12 +1479,6 @@
     <ClInclude Include="Application\Effect\BillboardEffect.h">
       <Filter>Application\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Effect\EffectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Object\Player\State\IPlayerState.h">
       <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
@@ -1600,7 +1594,13 @@
       <Filter>Application\GPUParticle</Filter>
     </ClInclude>
     <ClInclude Include="Application\System\PostEffectSystem\PostEffectSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\System\PostEffectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Effect\EffectManager.h">
+      <Filter>Application\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
+      <Filter>Application\Object\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
