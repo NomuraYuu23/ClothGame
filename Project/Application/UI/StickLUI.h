@@ -1,5 +1,9 @@
 #pragma once
 #include "BaseUI.h"
+
+/// <summary>
+/// スティックUI
+/// </summary>
 class StickLUI :
     public BaseUI
 {

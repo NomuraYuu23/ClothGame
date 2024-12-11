@@ -2,6 +2,9 @@
 #include "../../../Engine/Object/MeshObject.h"
 #include "../../Collider/CollisionConfig.h"
 
+/// <summary>
+/// エネミーの基盤
+/// </summary>
 class BaseEnemy :
     public MeshObject
 {

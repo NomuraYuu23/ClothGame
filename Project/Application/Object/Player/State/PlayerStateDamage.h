@@ -1,5 +1,9 @@
 #pragma once
 #include "IPlayerState.h"
+
+/// <summary>
+/// プレイヤーのダメージ状態
+/// </summary>
 class PlayerStateDamage :
     public IPlayerState
 {

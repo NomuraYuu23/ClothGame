@@ -2,6 +2,9 @@
 #include "../../../Engine/3D/ManyObjects/LargeNumberOfObjects.h"
 #include "../../../Engine/Object/MeshObject.h"
 
+/// <summary>
+/// 丸影マネージャー
+/// </summary>
 class ShadowManager :
     public LargeNumberOfObjects
 {
@@ -13,7 +16,7 @@ public:
 	/// </summary>
 	struct ShadowCandidate {
 		Vector3 position_; // 位置
-		Vector3 size_; // 大きさ,コライダーサイズいれとけばおｋ
+		Vector3 size_; // 大きさ,コライダーサイズいれとく
 	};
 
 public:

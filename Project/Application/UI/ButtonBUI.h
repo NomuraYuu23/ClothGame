@@ -1,5 +1,9 @@
 #pragma once
 #include "BaseUI.h"
+
+/// <summary>
+/// ボタンBのUI
+/// </summary>
 class ButtonBUI :
     public BaseUI
 {

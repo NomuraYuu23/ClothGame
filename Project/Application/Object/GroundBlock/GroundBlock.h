@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/Object/MeshObject.h"
 
+/// <summary>
+/// 地面ブロック
+/// </summary>
 class GroundBlock :
     public MeshObject
 {

@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/Object/MeshObject.h"
 
+/// <summary>
+/// スカイドーム
+/// </summary>
 class Skydome : 
 	public MeshObject 
 {

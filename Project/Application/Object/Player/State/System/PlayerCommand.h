@@ -1,5 +1,9 @@
 #pragma once
 #include "../../../../../Engine/Input/Input.h"
+
+/// <summary>
+/// プレイヤーのコマンド
+/// </summary>
 class PlayerCommand
 {
 

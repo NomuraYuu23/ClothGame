@@ -3,7 +3,11 @@
 #include <memory>
 #include "../../../Engine/2D/Sprite.h"
 
-class SceneTransitionBlackOut : public ISceneTransition{
+/// <summary>
+/// だんだん黒くなるシーン遷移
+/// </summary>
+class SceneTransitionBlackOut : 
+	public ISceneTransition{
 
 public: // メンバ関数
 

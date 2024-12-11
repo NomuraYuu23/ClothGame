@@ -1,6 +1,8 @@
 #pragma once
 
-// シーン名
+/// <summary>
+/// シーン名
+/// </summary>
 enum SceneName {
 	kTitle, // タイトル
 	kSelect,// セレクト

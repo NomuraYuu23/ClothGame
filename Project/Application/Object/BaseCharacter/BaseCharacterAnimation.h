@@ -4,6 +4,9 @@
 #include "../../../Engine/Animation/LocalMatrixManager.h"
 #include "../../../Engine/3D/Model/Model.h"
 
+/// <summary>
+/// キャラクターアニメーションの基盤
+/// </summary>
 class BaseCharacterAnimation
 {
 

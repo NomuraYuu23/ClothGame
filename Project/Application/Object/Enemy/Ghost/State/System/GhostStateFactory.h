@@ -1,6 +1,9 @@
 #pragma once
 #include "../IGhostState.h"
 
+/// <summary>
+/// ゴースト状態用ファクトリー
+/// </summary>
 class GhostStateFactory
 {
 

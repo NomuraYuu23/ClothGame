@@ -5,6 +5,9 @@
 // 前方宣言
 class Player;
 
+/// <summary>
+/// 布ゲート
+/// </summary>
 class ClothGate :
     public MeshObject
 {

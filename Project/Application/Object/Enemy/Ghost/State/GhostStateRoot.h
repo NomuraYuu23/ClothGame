@@ -1,5 +1,9 @@
 #pragma once
 #include "IGhostState.h"
+
+/// <summary>
+/// ゴーストの通常状態
+/// </summary>
 class GhostStateRoot :
     public IGhostState
 {

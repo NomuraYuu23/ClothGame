@@ -3,6 +3,9 @@
 #include "State/System/GhostStateSystem.h"
 #include "../../../../Engine/Physics/ClothGPU/ClothGPU.h"
 
+/// <summary>
+/// ゴースト
+/// </summary>
 class Ghost :
     public BaseEnemy
 {

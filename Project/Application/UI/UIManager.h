@@ -3,6 +3,9 @@
 #include "../../Engine/Math/Vector/Vector2.h"
 #include "BaseUI.h"
 
+/// <summary>
+/// UIマネージャー
+/// </summary>
 class UIManager
 {
 

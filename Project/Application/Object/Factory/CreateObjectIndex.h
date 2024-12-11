@@ -1,5 +1,9 @@
 #pragma once
 
+/// <summary>
+/// オブジェクト作成用の番号
+/// </summary>
+
 enum CreateObjectIndex {
 	kCreateObjectIndexSkydome, // スカイドーム
 	kCreateObjectIndexGroundBlock, // 地面ブロック版

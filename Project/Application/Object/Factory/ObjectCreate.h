@@ -2,8 +2,12 @@
 #include "../../../Engine/Level/LevelData.h"
 #include "../../../Engine/Object/IObject.h"
 
+// 前方宣言
 class Player;
 
+/// <summary>
+/// オブジェクト作成関数をまとめたもの
+/// </summary>
 class ObjectCreate
 {
 

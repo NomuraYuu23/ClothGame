@@ -5,6 +5,9 @@
 // 前方宣言
 class Player;
 
+/// <summary>
+/// 横の布
+/// </summary>
 class SideCloth :
     public MeshObject
 {

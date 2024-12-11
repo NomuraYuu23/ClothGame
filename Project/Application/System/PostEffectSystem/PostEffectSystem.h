@@ -2,8 +2,12 @@
 #include "../../../Engine/PostEffect/PostEffect.h"
 #include "../../../Engine/base/WindowSprite/WindowSprite.h"
 
+// 前方宣言
 class Player;
 
+/// <summary>
+/// ポストエフェクトシステム
+/// </summary>
 class PostEffectSystem
 {
 

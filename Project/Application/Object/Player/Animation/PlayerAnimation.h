@@ -1,6 +1,9 @@
 #pragma once
 #include "../../BaseCharacter/BaseCharacterAnimation.h"
 
+/// <summary>
+/// プレイヤーのアニメーション
+/// </summary>
 class PlayerAnimation : 
 	public BaseCharacterAnimation
 {

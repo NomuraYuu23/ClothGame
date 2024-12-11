@@ -1,11 +1,18 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
 
-class ClearScene : public IScene
+/// <summary>
+/// クリアシーン
+/// </summary>
+class ClearScene : 
+	public IScene
 {
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~ClearScene();
 
 	/// <summary>
@@ -42,20 +49,22 @@ private: // メンバ関数
 
 private: // メンバ変数
 
-
-	// ボタン
+	// ボタンスプライト
 	std::unique_ptr<Sprite> buttonSprite_;
+	// ボタンテクスチャハンドル
 	uint32_t buttonTextureHandle_;
-	// 点滅用媒介変数
+	// ボタン点滅用媒介変数
 	float buttonAlphaT_;
-	// 点滅用媒介変数速度
+	// ボタン点滅用媒介変数速度
 	float buttonAlphaTSpeed_;
-	// 点滅用媒介変数は増えるか
+	// ボタン点滅用媒介変数は増えるか
 	bool buttonItIncreaseAlphaT_;
-	// 色
+	// ボタン色
 	Vector4 buttonColor_;
 
+	// クリアスプライト
 	std::unique_ptr<Sprite> clearSprite_;
+	// クリアテクスチャハンドル
 	uint32_t clearTextureHandle_;
 
 };

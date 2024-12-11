@@ -1,7 +1,11 @@
 #pragma once
 #include "../../../Engine/SceneTransition/SceneTransitionFactory/AbstractSceneTransitionFactory.h"
 
-class SceneTransitionFactory : public AbstractSceneTransitionFactory{
+/// <summary>
+/// シーン遷移用ファクトリー
+/// </summary>
+class SceneTransitionFactory : 
+	public AbstractSceneTransitionFactory{
 
 public: // 静的メンバ関数
 

@@ -1,5 +1,9 @@
 #pragma once
 #include "IGhostState.h"
+
+/// <summary>
+/// ゴーストの吹っ飛び状態
+/// </summary>
 class GhostStateBlownAway :
     public IGhostState
 {

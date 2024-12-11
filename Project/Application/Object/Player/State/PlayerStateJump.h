@@ -1,5 +1,9 @@
 #pragma once
 #include "IPlayerState.h"
+
+/// <summary>
+/// プレイヤーのジャンプ状態
+/// </summary>
 class PlayerStateJump :
     public IPlayerState
 {

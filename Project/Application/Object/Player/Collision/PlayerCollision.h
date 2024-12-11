@@ -2,6 +2,9 @@
 #include "../../../Collider/ColliderParentObject.h"
 #include "../Player.h"
 
+/// <summary>
+/// プレイヤーの衝突処理
+/// </summary>
 class PlayerCollision
 {
 

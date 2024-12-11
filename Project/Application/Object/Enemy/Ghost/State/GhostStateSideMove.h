@@ -1,5 +1,9 @@
 #pragma once
 #include "IGhostState.h"
+
+/// <summary>
+/// ゴーストの横移動状態
+/// </summary>
 class GhostStateSideMove :
     public IGhostState
 {

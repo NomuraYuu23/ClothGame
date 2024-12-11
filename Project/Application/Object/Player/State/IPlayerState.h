@@ -4,10 +4,13 @@
 #include "../../../../Engine/Math/Vector/Vector3.h"
 #include "../../../../Engine/3D/Transform/WorldTransform.h"
 
+// 前方宣言
 class Player;
 class PlayerStateSystem;
 
-//プレイヤーの状態名
+/// <summary>
+/// プレイヤーの状態名
+/// </summary>
 enum PlayerStateIndex {
 	kPlayerStateIndexRoot, // 通常
 	kPlayerStateIndexJump, // ジャンプ
@@ -17,6 +20,9 @@ enum PlayerStateIndex {
 	kPlayerStateIndexOfCount // 数
 };
 
+/// <summary>
+/// プレイヤーの状態の基盤
+/// </summary>
 class IPlayerState
 {
 

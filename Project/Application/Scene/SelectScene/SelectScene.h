@@ -1,6 +1,11 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
-class SelectScene : public IScene{
+
+/// <summary>
+/// セレクトシーン
+/// </summary>
+class SelectScene : 
+	public IScene{
 
 public: // メンバ関数
 

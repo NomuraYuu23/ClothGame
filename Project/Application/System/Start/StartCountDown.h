@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/2D/Sprite.h"
 
+/// <summary>
+/// スタートカウントダウンシステム
+/// </summary>
 class StartCountDown
 {
 
