@@ -14,6 +14,9 @@
 
 #pragma comment(lib, "dxcompiler.lib")
 
+/// <summary>
+/// 線描画
+/// </summary>
 class DrawLine
 {
 
@@ -83,7 +86,7 @@ public: // 静的メンバ変数
 	// 線最大数
 	const uint32_t kNumInstanceMax_ = 4096;
 
-private: // メンバ変数
+private: // シングルトン
 
 	DrawLine() = default;
 	~DrawLine() = default;

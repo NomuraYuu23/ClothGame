@@ -8,6 +8,9 @@
 #include "../Model/ModelNode.h"
 #include "../Model/ModelNodeData.h"
 
+/// <summary>
+/// ワールドトランスフォーム
+/// </summary>
 class WorldTransform
 {
 

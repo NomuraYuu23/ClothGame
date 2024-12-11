@@ -12,6 +12,9 @@
 #include "../Vertex/VertexInfluence.h"
 #include "../../Animation/SkinningInformation.h"
 
+/// <summary>
+/// メッシュ
+/// </summary>
 class Mesh
 {
 
@@ -160,8 +163,16 @@ private:
 
 public:
 
+	/// <summary>
+	/// 静的初期化
+	/// </summary>
+	/// <param name="device">デバイス</param>
 	static void StaticInitialize(ID3D12Device* device);
 
+	/// <summary>
+	/// パイプライン初期化
+	/// </summary>
+	/// <param name="device">デバイス</param>
 	static void PipelineStateCSInitialize(ID3D12Device* device);
 
 public:

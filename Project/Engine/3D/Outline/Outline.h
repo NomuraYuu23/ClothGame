@@ -10,6 +10,9 @@
 
 #include "OutlineData.h"
 
+/// <summary>
+/// アウトライン
+/// </summary>
 class Outline
 {
 
@@ -28,6 +31,10 @@ public: // 関数
 
 public: // アクセッサ
 
+	/// <summary>
+	/// バッファ取得
+	/// </summary>
+	/// <returns></returns>
 	ID3D12Resource* GetOutlineDataBuff() { return outlineDataBuff_.Get(); }
 
 private: // 変数

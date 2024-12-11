@@ -7,6 +7,9 @@
 #include "../Fog/FogManager.h"
 #include "../Outline/Outline.h"
 
+/// <summary>
+/// モデル描画
+/// </summary>
 class ModelDraw
 {
 
@@ -25,7 +28,7 @@ public: // サブクラス
 
 		kPipelineStateIndexNormalOutline, // アニメーション無しアウトライン
 
-		kPipelineStateIndexOfCount
+		kPipelineStateIndexOfCount // 数
 	};
 	
 	// 描画前処理引数
@@ -65,22 +68,22 @@ public: // サブクラス
 	{
 		Model* model = nullptr; //モデル
 		LocalMatrixManager* localMatrixManager = nullptr;// ローカル行列マネージャー
-		D3D12_GPU_DESCRIPTOR_HANDLE* transformationMatrixesHandle = nullptr;
-		BaseCamera* camera = nullptr;
-		uint32_t numInstance = 0;
-		D3D12_GPU_DESCRIPTOR_HANDLE* materialsHandle = nullptr;
-		std::vector<UINT> textureHandles;
+		D3D12_GPU_DESCRIPTOR_HANDLE* transformationMatrixesHandle = nullptr; // トランスフォーム行列ハンドル
+		BaseCamera* camera = nullptr; // カメラ
+		uint32_t numInstance = 0; // インスタンス数
+		D3D12_GPU_DESCRIPTOR_HANDLE* materialsHandle = nullptr; // マテリアルハンドル
+		std::vector<UINT> textureHandles; //テクスチャハンドル
 	};
 
 	// 複数のアニメーション無しオブジェクト
 	struct ManyNormalObjectsDesc
 	{
 		Model* model = nullptr; //モデル
-		D3D12_GPU_DESCRIPTOR_HANDLE* transformationMatrixesHandle = nullptr;
-		BaseCamera* camera = nullptr;
-		uint32_t numInstance = 0;
-		D3D12_GPU_DESCRIPTOR_HANDLE* materialsHandle = nullptr;
-		std::vector<UINT> textureHandles;
+		D3D12_GPU_DESCRIPTOR_HANDLE* transformationMatrixesHandle = nullptr; // トランスフォーム行列ハンドル
+		BaseCamera* camera = nullptr; // カメラ
+		uint32_t numInstance = 0; // インスタンス数
+		D3D12_GPU_DESCRIPTOR_HANDLE* materialsHandle = nullptr; // マテリアルハンドル
+		std::vector<UINT> textureHandles; // テクスチャハンドル
 	};
 
 	struct NormalOutlineDesc 
@@ -172,12 +175,17 @@ public: // 描画
 	static void ManyNormalObjectsDraw(ManyNormalObjectsDesc& desc);
 
 	/// <summary>
-	/// 
+	/// アウトライン
 	/// </summary>
 	static void NormalOutlineDraw(NormalOutlineDesc& desc);
 
 private: // 関数
 
+	/// <summary>
+	/// 頂点のUAV更新
+	/// </summary>
+	/// <param name="model">モデル</param>
+	/// <param name="localMatrixManager">ローカル行列マネージャー</param>
 	static void UpdateVertexUAV(
 		Model* model,
 		LocalMatrixManager* localMatrixManager);

@@ -69,7 +69,6 @@ public:
 	/// <returns></returns>
 	std::list<std::unique_ptr<OneOfManyObjects>>* GetObjects() { return &objects_; }
 
-
 protected: // トランスフォーム関係
 
 	// トランスフォームマトリックス
@@ -96,9 +95,6 @@ protected: // モデル関係
 
 	// モデル
 	Model* model_ = nullptr;
-
-	//	マテリアル
-	//std::unique_ptr<Material> material_;
 
 	//Sprite用のマテリアルリソースを作る
 	Microsoft::WRL::ComPtr<ID3D12Resource> materialsBuff_;

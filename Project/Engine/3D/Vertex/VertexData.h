@@ -3,10 +3,13 @@
 #include "../../Math/Vector/Vector3.h"
 #include "../../Math/Vector/Vector4.h"
 
+/// <summary>
+/// 頂点データ
+/// </summary>
 struct VertexData {
 
-	Vector4 position;
-	Vector2 texcoord;
-	Vector3 normal;
+	Vector4 position; // 位置
+	Vector2 texcoord; //テクスチャ座標
+	Vector3 normal; // 法線
 
 };
