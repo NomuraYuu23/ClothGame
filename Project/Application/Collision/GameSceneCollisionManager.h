@@ -1,6 +1,9 @@
 #pragma once
 #include "../../Engine/Collision/BaseCollisionManager.h"
 
+/// <summary>
+/// ゲームシーン用の衝突マネージャー
+/// </summary>
 class GameSceneCollisionManager :
     public BaseCollisionManager
 {

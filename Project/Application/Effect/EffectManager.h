@@ -1,6 +1,9 @@
 #pragma once
 #include "BillboardEffect.h"
 
+/// <summary>
+/// エフェクトマネージャー
+/// </summary>
 class EffectManager
 {
 

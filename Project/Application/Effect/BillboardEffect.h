@@ -3,6 +3,9 @@
 #include "../../Engine/3D/Model/Model.h"
 #include "../../Engine/Math/Ease.h"
 
+/// <summary>
+/// ビルボードを使用したエフェクトの基盤
+/// </summary>
 class BillboardEffect
 {
 

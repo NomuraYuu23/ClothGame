@@ -341,6 +341,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoObject.h" />
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoPlane.h" />
     <ClInclude Include="Application\ClothDemo\CollisionObject\ClothDemoSphere.h" />
+    <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h" />
     <ClInclude Include="Application\Collision\GameSceneCollisionManager.h" />
     <ClInclude Include="Application\Effect\BillboardEffect.h" />
     <ClInclude Include="Application\Camera\FollowCamera.h" />

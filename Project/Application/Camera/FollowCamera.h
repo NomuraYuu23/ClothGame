@@ -2,6 +2,9 @@
 #include "../../../Engine/3D/Transform/WorldTransform.h"
 #include "../../../Engine/Camera/BaseCamera.h"
 
+/// <summary>
+/// 追従カメラ
+/// </summary>
 class FollowCamera :
 	public BaseCamera
 {

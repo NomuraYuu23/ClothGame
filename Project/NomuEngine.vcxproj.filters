@@ -400,6 +400,9 @@
     <Filter Include="Application\System\PostEffectSystem">
       <UniqueIdentifier>{91acd4c9-9bf6-42cb-9c04-c472ff6ee0a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Collider2D">
+      <UniqueIdentifier>{ada4d6fb-f8d8-4de8-817d-cc970ee7b575}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -1592,6 +1595,9 @@
     </ClInclude>
     <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
       <Filter>Application\Object\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h">
+      <Filter>Application\Collider2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

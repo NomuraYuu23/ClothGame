@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/GPUParticle/GPUParticle.h"
 
+/// <summary>
+/// 走る、ダッシュの時のエフェクト
+/// </summary>
 class RunDustParticle :
     public GPUParticle
 {
