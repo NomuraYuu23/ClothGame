@@ -2,6 +2,9 @@
 #include "ClothDemoObject.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPUCollision.h"
 
+/// <summary>
+/// クロスシミュレーションデモのカプセルオブジェクト
+/// </summary>
 class ClothDemoCapsule :
     public ClothDemoObject
 {

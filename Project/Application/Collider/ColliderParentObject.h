@@ -2,14 +2,22 @@
 #include <variant>
 #include "../../Engine/Collision/CollisionData.h"
 
+/// <summary>
+/// 衝突時に「OnCollision」を呼ぶための設定
+/// </summary>
+
+// 前方宣言
 class ParentNullObject;
 class Player;
 class BaseEnemy;
 class GroundBlock;
 
+// variantでまとめる
 using ColliderParentObject = std::variant<ParentNullObject*, Player*, BaseEnemy*, GroundBlock*>;
 
-// 親がないもの用
+/// <summary>
+/// 親がないもの用
+/// </summary>
 class ParentNullObject {
 
 public:

@@ -124,9 +124,6 @@
     <Filter Include="Engine\Math\Matrix4x4">
       <UniqueIdentifier>{358fa42c-da60-4ac5-9e6b-cf5c70c0bda9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Collider2D">
-      <UniqueIdentifier>{9ac58789-fc1d-4653-9fe5-d73a64de3881}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Collider2D">
       <UniqueIdentifier>{803ed6ba-ffb7-4b13-bd75-ec906b55bd5e}</UniqueIdentifier>
     </Filter>
@@ -1157,12 +1154,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Collider2D\CollisionConfig2D.h">
-      <Filter>Application\Collider2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h">
-      <Filter>Application\Collider2D</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Collider2D\Box.h">
       <Filter>Engine\Collider2D</Filter>

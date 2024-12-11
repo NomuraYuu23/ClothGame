@@ -2,6 +2,9 @@
 #include "../../../Engine/3D/Transform/WorldTransform.h"
 #include "../../../Engine/3D/Model/Model.h"
 
+/// <summary>
+/// クロスシミュレーションデモのオブジェクトの基盤
+/// </summary>
 class ClothDemoObject
 {
 

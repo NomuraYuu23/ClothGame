@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../../../Engine/Physics/Cloth/Cloth.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 #include "../../Engine/base/DxCommon/DirectXCommon.h"
@@ -8,6 +7,9 @@
 #include "CollisionObject/ClothDemoSphere.h"
 #include "CollisionObject/ClothDemoCapsule.h"
 
+/// <summary>
+/// クロスシミュレーションデモ
+/// </summary>
 class ClothDemo
 {
 

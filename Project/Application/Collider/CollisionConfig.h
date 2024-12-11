@@ -1,6 +1,10 @@
 #pragma once
 #include <cstdInt>
 
+/// <summary>
+/// 衝突マスク用の定数
+/// </summary>
+
 //プレイヤー
 const uint32_t kCollisionAttributePlayer = 0b1;
 // 地面
