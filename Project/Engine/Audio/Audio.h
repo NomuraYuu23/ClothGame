@@ -14,8 +14,11 @@
 #include <mfidl.h>
 #include <mfreadwrite.h>
 
-
+/// <summary>
+/// オーディオ
+/// </summary>
 class Audio {
+
 public:
 
 	// サウンドデータの最大数
@@ -56,6 +59,7 @@ public:
 
 	//インスタンス
 	static Audio* GetInstance();
+	
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -94,11 +98,13 @@ public:
 	/// <returns>再生中のサウンドデータの番号</returns>
 	IXAudio2SourceVoice* PlayWave(uint32_t soundDataHandle, bool isLoop, float volume = 1.0f);
 
-private:
+private: // シングルトン
 	Audio() = default;
 	~Audio() = default;
 	Audio(const Audio&) = delete;
 	const Audio& operator=(const Audio&) = delete;
+
+private: // メンバ変数
 
 	// XAudio2のインスタンス
 	Microsoft::WRL::ComPtr<IXAudio2> xAudio2_;
