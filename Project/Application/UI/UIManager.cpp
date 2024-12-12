@@ -62,6 +62,8 @@ void UIManager::ImGuiDraw()
 		uis_[imGuiMode_]->ImGuiDraw();
 	}
 
+	ImGui::End();
+
 }
 
 BaseUI* UIManager::CreateUI(ClassIndex index)
