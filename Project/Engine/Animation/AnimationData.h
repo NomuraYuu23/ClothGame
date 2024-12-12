@@ -4,10 +4,8 @@
 /// <summary>
 /// アニメーションデータ
 /// </summary>
-class AnimationData
+struct AnimationData
 {
-
-public:
 
 	// ノードアニメーション
 	std::vector<NodeAnimationData> nodeAnimationDatas_;

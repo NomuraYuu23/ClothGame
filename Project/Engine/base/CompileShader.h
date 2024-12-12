@@ -16,9 +16,9 @@ public: // サブクラス
 	/// シェーダーコンパイル用
 	/// </summary>
 	struct CompileShaderStruct {
-		IDxcUtils* dxcUtils = nullptr;
-		IDxcCompiler3* dxcCompiler = nullptr;
-		IDxcIncludeHandler* includeHandler = nullptr;
+		IDxcUtils* dxcUtils = nullptr; // ユーティリティ
+		IDxcCompiler3* dxcCompiler = nullptr; // コンパイラ
+		IDxcIncludeHandler* includeHandler = nullptr; // ハンドラー
 	};
 
 public: // 静的メンバ変数

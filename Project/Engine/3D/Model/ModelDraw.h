@@ -96,11 +96,11 @@ public: // サブクラス
 public:
 
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 	// ルートシグネチャ
-	static ID3D12RootSignature* sRootSignature[PipelineStateIndex::kPipelineStateIndexOfCount];
+	static ID3D12RootSignature* sRootSignature_[PipelineStateIndex::kPipelineStateIndexOfCount];
 	// パイプラインステートオブジェクト
-	static ID3D12PipelineState* sPipelineState[PipelineStateIndex::kPipelineStateIndexOfCount];
+	static ID3D12PipelineState* sPipelineState_[PipelineStateIndex::kPipelineStateIndexOfCount];
 	//	平行光源
 	static DirectionalLight* sDirectionalLight_;
 	// ポイントライトマネージャ

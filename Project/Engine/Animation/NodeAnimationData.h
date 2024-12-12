@@ -15,9 +15,9 @@ struct AnimationVector3Key
 {
 
 	// タイム 秒
-	double time_;
+	double time;
 	// 値
-	Vector3 value_;
+	Vector3 value;
 
 };
 
@@ -28,9 +28,9 @@ struct AnimationQuaternionKey
 {
 
 	// タイム 秒
-	double time_;
+	double time;
 	// 値
-	Quaternion value_;
+	Quaternion value;
 
 };
 
@@ -43,7 +43,7 @@ class NodeAnimationData
 public:
 
 	// 秒に変換するための値
-	static const double kSecondsConversion;
+	static const double kSecondsConversion_;
 
 public: // 読み込み
 

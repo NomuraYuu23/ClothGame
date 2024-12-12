@@ -14,7 +14,7 @@ class LocalMatrixManager
 public:
 
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 
 public:
 

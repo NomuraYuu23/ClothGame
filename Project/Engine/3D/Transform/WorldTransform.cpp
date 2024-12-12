@@ -6,7 +6,7 @@
 #include "../../base/DescriptorHerpManager/SRVDescriptorHerpManager.h"
 
 // コマンドリスト
-ID3D12GraphicsCommandList* WorldTransform::sCommandList = nullptr;
+ID3D12GraphicsCommandList* WorldTransform::sCommandList_ = nullptr;
 
 WorldTransform::~WorldTransform()
 {

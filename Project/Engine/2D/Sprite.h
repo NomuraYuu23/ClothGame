@@ -62,15 +62,15 @@ public:
 private:
 
 	// 頂点数
-	static const int kVertNum = 6;
+	static const int kVertNum_ = 6;
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 	// ルートシグネチャ
-	static ID3D12RootSignature* sRootSignature;
+	static ID3D12RootSignature* sRootSignature_;
 	// パイプラインステートオブジェクト
-	static ID3D12PipelineState* sPipelineState;
+	static ID3D12PipelineState* sPipelineState_;
 
 public:
 	/// <summary>
@@ -125,7 +125,7 @@ private:
 	// 頂点バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> vertBuff_;
 	// 頂点バッファマップ
-	SpriteVertex* vertMap = nullptr;
+	SpriteVertex* vertMap_ = nullptr;
 	// 頂点バッファビュー
 	D3D12_VERTEX_BUFFER_VIEW vbView_{};
 	// インデックスバッファ
@@ -133,7 +133,7 @@ private:
 	//インデックスバッファビュー
 	D3D12_INDEX_BUFFER_VIEW ibView_{};
 	//インデックスリソースにデータを書き込む
-	uint32_t* indexMap = nullptr;
+	uint32_t* indexMap_ = nullptr;
 	//テクスチャ番号
 	UINT textureHandle_ = 0;
 	// リソース設定

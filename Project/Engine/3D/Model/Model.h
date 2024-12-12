@@ -96,14 +96,14 @@ public:
 	/// デフォルトマテリアル取得
 	/// </summary>
 	/// <returns></returns>
-	static Material* GetDefaultMaterial() { return sDefaultMaterial.get(); };
+	static Material* GetDefaultMaterial() { return sDefaultMaterial_.get(); };
 
 private:
 
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 	// デフォルトマテリアル
-	static std::unique_ptr<Material> sDefaultMaterial;
+	static std::unique_ptr<Material> sDefaultMaterial_;
 
 public:
 

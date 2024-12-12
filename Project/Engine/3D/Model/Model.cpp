@@ -13,9 +13,9 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* Model::sDevice = nullptr;
+ID3D12Device* Model::sDevice_ = nullptr;
 // デフォルトマテリアル
-std::unique_ptr<Material> Model::sDefaultMaterial = nullptr;
+std::unique_ptr<Material> Model::sDefaultMaterial_ = nullptr;
 
 /// <summary>
 /// 静的初期化
@@ -26,12 +26,12 @@ void Model::StaticInitialize(ID3D12Device* device) {
 	assert(device);
 
 	// デバイス
-	sDevice = device;
+	sDevice_ = device;
 
 	// デフォルトマテリアル
-	sDefaultMaterial.reset(Material::Create());
+	sDefaultMaterial_.reset(Material::Create());
 
-	Mesh::StaticInitialize(sDevice);
+	Mesh::StaticInitialize(sDevice_);
 
 }
 
@@ -57,7 +57,7 @@ Model* Model::Create(const std::string& directoryPath, const std::string& filena
 /// </summary>
 void Model::Initialize(const std::string& directoryPath, const std::string& filename, DirectXCommon* dxCommon) {
 
-	assert(sDevice);
+	assert(sDevice_);
 
 	// モデル読み込み
 	modelData_ = ModelLoader::LoadModelFile(directoryPath, filename);
@@ -67,7 +67,7 @@ void Model::Initialize(const std::string& directoryPath, const std::string& file
 
 	//メッシュ生成
 	mesh_ = std::make_unique<Mesh>();
-	mesh_->CreateMesh(sDevice,modelData_.vertices,modelData_.vertexInfluences, dxCommon->GetCommadListLoad());
+	mesh_->CreateMesh(sDevice_,modelData_.vertices,modelData_.vertexInfluences, dxCommon->GetCommadListLoad());
 
 	for (size_t i = 0; i < modelData_.material.textureFilePaths.size(); ++i) {
 		// テクスチャハンドル

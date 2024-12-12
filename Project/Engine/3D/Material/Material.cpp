@@ -10,7 +10,7 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* Material::sDevice = nullptr;
+ID3D12Device* Material::sDevice_ = nullptr;
 
 /// <summary>
 /// 静的初期化
@@ -20,7 +20,7 @@ void Material::StaticInitialize(ID3D12Device* device) {
 
 	assert(device);
 
-	sDevice = device;
+	sDevice_ = device;
 
 }
 
@@ -57,7 +57,7 @@ void Material::Initialize() {
 	environmentCoefficient_ = 0.0f;
 
 	//Sprite用のマテリアルリソースを作る
-	materialBuff_ = BufferResource::CreateBufferResource(sDevice, (sizeof(MaterialData) + 0xff) & ~0xff);
+	materialBuff_ = BufferResource::CreateBufferResource(sDevice_, (sizeof(MaterialData) + 0xff) & ~0xff);
 	//書き込むためのアドレスを取得
 	materialBuff_->Map(0, nullptr, reinterpret_cast<void**>(&materialMap_));
 	//白を書き込んでみる

@@ -72,7 +72,7 @@ public: // メンバ定数
 	// フレームカウント
 	const uint32_t kFrameCount_ = 4;
 	// クエリカウント
-	const uint32_t kQueryCount = 2;
+	const uint32_t kQueryCount_ = 2;
 
 public: // メンバ変数
 

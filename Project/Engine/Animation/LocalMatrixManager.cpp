@@ -6,7 +6,7 @@
 #include "../base/DescriptorHerpManager/SRVDescriptorHerpManager.h"
 
 // コマンドリスト
-ID3D12GraphicsCommandList* LocalMatrixManager::sCommandList = nullptr;
+ID3D12GraphicsCommandList* LocalMatrixManager::sCommandList_ = nullptr;
 
 LocalMatrixManager::~LocalMatrixManager()
 {
@@ -81,14 +81,14 @@ void LocalMatrixManager::Map2()
 void LocalMatrixManager::SetGraphicsRootDescriptorTable(ID3D12GraphicsCommandList* cmdList, uint32_t rootParameterIndex)
 {
 
-	assert(sCommandList == nullptr);
+	assert(sCommandList_ == nullptr);
 
-	sCommandList = cmdList;
+	sCommandList_ = cmdList;
 
-	sCommandList->SetGraphicsRootDescriptorTable(rootParameterIndex, localMatrixesHandleGPU_);
+	sCommandList_->SetGraphicsRootDescriptorTable(rootParameterIndex, localMatrixesHandleGPU_);
 
 	// コマンドリストを解除
-	sCommandList = nullptr;
+	sCommandList_ = nullptr;
 
 }
 

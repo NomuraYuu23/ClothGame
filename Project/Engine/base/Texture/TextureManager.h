@@ -26,17 +26,17 @@ public: // サブクラス
 	/// </summary>
 	struct Texture{
 		// テクスチャリソース
-		Microsoft::WRL::ComPtr<ID3D12Resource> resource_;
+		Microsoft::WRL::ComPtr<ID3D12Resource> resource;
 		// シェーダーリソースビューのハンドル(CPU)
-		CD3DX12_CPU_DESCRIPTOR_HANDLE cpuDescHandleSRV_;
+		CD3DX12_CPU_DESCRIPTOR_HANDLE cpuDescHandleSRV;
 		// シェーダーリソースビューのハンドル(GPU)
-		CD3DX12_GPU_DESCRIPTOR_HANDLE gpuDescHandleSRV_;
+		CD3DX12_GPU_DESCRIPTOR_HANDLE gpuDescHandleSRV;
 		//  SRVのインデックス
-		uint32_t indexDescriptorHeap_;
+		uint32_t indexDescriptorHeap;
 		//名前
-		std::string name_;
+		std::string name;
 		// 使っているか
-		bool used_;
+		bool used;
 	};
 
 public: // メンバ関数

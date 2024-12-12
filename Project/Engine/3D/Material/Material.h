@@ -39,7 +39,7 @@ public:
 private:
 
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 
 public:
 	/// <summary>

@@ -7,10 +7,8 @@
 /// <summary>
 /// モデルのノード
 /// </summary>
-class ModelNode
+struct ModelNode
 {
-
-public: //メンバ関数
 
 	Matrix4x4 localMatrix; // ローカル行列
 	Matrix4x4 offsetMatrix; // オフセット行列
