@@ -23,30 +23,30 @@ void MyFramework::Initialize()
 
 	// スプライト静的初期化
 	Sprite::StaticInitialize(dxCommon->GetDevice(), 
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexSprite].Get(), 
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexSprite].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexSprite].Get(), 
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexSprite].Get());
 
 	// Windowサイズのスプライト
 	WindowSprite::GetInstance()->Initialize(dxCommon->GetDevice(), dxCommon->GetCommadList());
 
 	// モデル静的初期化
 	std::array<ID3D12RootSignature*, ModelDraw::PipelineStateIndex::kPipelineStateIndexOfCount> rootSignature = {
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexModel].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexAnimModel].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexAnimInverseModel].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexManyModels].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexAnimManyModels].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexAnimModelRT2].Get(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexAnimInverseModelRT2].Get() };
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexModel].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexAnimModel].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexAnimInverseModel].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexManyModels].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexAnimManyModels].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexAnimModelRT2].Get(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexAnimInverseModelRT2].Get() };
 
 	std::array<ID3D12PipelineState*, ModelDraw::PipelineStateIndex::kPipelineStateIndexOfCount> pipelineState = {
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexModel].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexAnimModel].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexAnimInverseModel].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexManyModels].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexAnimManyModels].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexAnimModelRT2].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexAnimInverseModelRT2].Get() };
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexModel].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexAnimModel].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexAnimInverseModel].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexManyModels].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexAnimManyModels].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexAnimModelRT2].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexAnimInverseModelRT2].Get() };
 	
 	Model::StaticInitialize(dxCommon->GetDevice());
 	ModelManager::GetInstance()->Initialize(dxCommon);

@@ -112,14 +112,18 @@ enum RootParameterIndex {
 	kRootParameterIndexOfCount,
 };
 
+/// <summary>
+/// ルートパラメータ
+/// </summary>
 class RootParameterManager
 {
 
-private:
+private: // サブクラス
 
+	// ルートパラメータ種類
 	using Item = std::variant<SRV_PSIndex, SRV_VSIndex, CBV_PSIndex, CBV_VSIndex, UAV_PSIndex, UAV_VSIndex>;
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// シングルトンインスタンスの取得
@@ -132,7 +136,7 @@ public: // 関数
 	/// </summary>
 	static void Initialize();
 
-private: // 関数
+private: // メンバ関数
 
 	/// <summary>
 	/// ディスクリプタレンジの初期化

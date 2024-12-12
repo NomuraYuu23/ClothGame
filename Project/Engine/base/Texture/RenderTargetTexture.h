@@ -12,6 +12,9 @@
 
 #include "../GraphicsPipelineState/GraphicsPipelineState.h"
 
+/// <summary>
+/// レンダーターゲットテクスチャ
+/// </summary>
 class RenderTargetTexture
 {
 
@@ -37,12 +40,14 @@ public: // サブクラス
 		kDepthTextureResouceStateIndexOfCount // 数を数える
 	};
 
-public: 
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
 	/// <param name="device">デバイス</param>
+	/// <param name="backBufferWidth">幅</param>
+	/// <param name="backBufferHeight">高さ</param>
 	void Initialize(ID3D12Device* device,
 		int32_t backBufferWidth,
 		int32_t backBufferHeight);
@@ -61,6 +66,7 @@ public:
 	/// <summary>
 	/// レンダーターゲットをクリア
 	/// </summary>
+	/// <param name="resourceIndex">リソース番号</param>
 	void ClearRenderTarget(uint32_t resourceIndex);
 
 	/// <summary>
@@ -73,6 +79,7 @@ public:
 	/// </summary>
 	/// <param name="commandList">コマンドリスト</param>
 	/// <param name="rootParameterIndex">ルートパラメータインデックス</param>
+	/// <param name="resourceIndex">リソース番号</param>
 	void SetGraphicsRootDescriptorTable(ID3D12GraphicsCommandList* commandList, uint32_t rootParameterIndex, uint32_t resourceIndex);
 
 	/// <summary>
@@ -117,7 +124,7 @@ public:
 	/// <summary>
 	/// GPUハンドル入手
 	/// </summary>
-	/// <param name="index"></param>
+	/// <param name="index">番号</param>
 	/// <returns></returns>
 	CD3DX12_GPU_DESCRIPTOR_HANDLE GetSrvGPUHandle(uint32_t index) { return srvGPUHandles_[index]; }
 
@@ -127,12 +134,12 @@ public:
 	/// <returns></returns>
 	CD3DX12_GPU_DESCRIPTOR_HANDLE GetDepthSrvGPUHandle() { return depthSrvGPUHandles_; }
 
-private: // 関数
+private: // メンバ関数
 
 	/// <summary>
 	/// 遷移前（現在）のResouceState取得
 	/// </summary>
-	/// <param name="resourceIndex">リソースインデックス</param>
+	/// <param name="resourceIndex">リソース番号</param>
 	/// <returns></returns>
 	D3D12_RESOURCE_STATES GetStateBefore(uint32_t resourceIndex);
 
@@ -142,7 +149,7 @@ private: // 関数
 	/// <returns></returns>
 	D3D12_RESOURCE_STATES GetDepthTextureStateBefore();
 
-private: // 変数
+private: // メンバ変数
 
 	// リソースの数
 	static const uint32_t kResourceNum_ = 8;
@@ -189,6 +196,7 @@ private: // 変数
 	// リソースステート
 	ResouceStateIndex resouceStates_[kResourceNum_];
 
+	// depth版 リソースステート
 	DepthTextureResouceStateIndex depthTextureResouceStateIndex_;
 
 };

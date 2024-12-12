@@ -616,8 +616,8 @@ void ClothGPU::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 	ResouseBarrierToNonPixelShader(commandList);
 
 	// パイプライン設定
-	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());//PS0を設定
-	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());
+	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());//PS0を設定
+	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());
 
 	//マテリアルCBufferの場所を設定
 	commandList->SetGraphicsRootConstantBufferView(0, material_->GetMaterialBuff()->GetGPUVirtualAddress());

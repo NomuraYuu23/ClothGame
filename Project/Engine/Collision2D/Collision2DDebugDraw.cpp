@@ -24,7 +24,7 @@ void Collision2DDebugDraw::Initialize(ID3D12Device* device,
 	isInvisible_ = true;
 
 	viewMatrix_ = Matrix4x4::MakeIdentity4x4();
-	projectionMatrix_ = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth), float(WinApp::kWindowHeight), 0.0f, 100.0f);
+	projectionMatrix_ = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth_), float(WinApp::kWindowHeight_), 0.0f, 100.0f);
 
 	// 頂点
 	//Sprite用の頂点リソースを作る

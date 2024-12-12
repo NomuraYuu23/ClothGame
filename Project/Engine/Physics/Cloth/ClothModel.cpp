@@ -191,8 +191,8 @@ void ClothModel::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera
 	wvpMap_->matrix_ = camera->GetViewProjectionMatrix();
 
 	// パイプライン設定
-	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexCloth].Get());//PS0を設定
-	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexCloth].Get());
+	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexCloth].Get());//PS0を設定
+	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexCloth].Get());
 
 	// 頂点バッファの設定
 	commandList->IASetVertexBuffers(0, 1, &vbView_);

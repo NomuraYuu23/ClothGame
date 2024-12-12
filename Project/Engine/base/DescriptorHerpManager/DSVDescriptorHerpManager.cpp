@@ -7,7 +7,7 @@ ID3D12Device* DSVDescriptorHerpManager::device_ = nullptr;
 // 次のディスクリプタヒープの場所
 uint32_t DSVDescriptorHerpManager::nextIndexDescriptorHeap_ = 0u;
 // ディスクリプタヒープのどこが空いているか
-std::array<bool, DSVDescriptorHerpManager::kNumDescriptors> DSVDescriptorHerpManager::isNullDescriptorHeaps_;
+std::array<bool, DSVDescriptorHerpManager::kNumDescriptors_> DSVDescriptorHerpManager::isNullDescriptorHeaps_;
 
 DSVDescriptorHerpManager* DSVDescriptorHerpManager::GetInstance()
 {
@@ -28,7 +28,7 @@ void DSVDescriptorHerpManager::Initialize(ID3D12Device* device)
 	D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = {};
 	descHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 	descHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
-	descHeapDesc.NumDescriptors = kNumDescriptors;
+	descHeapDesc.NumDescriptors = kNumDescriptors_;
 	result = device_->CreateDescriptorHeap(&descHeapDesc, IID_PPV_ARGS(&descriptorHeap_));
 	assert(SUCCEEDED(result));
 

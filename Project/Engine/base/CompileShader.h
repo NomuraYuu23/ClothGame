@@ -4,10 +4,13 @@
 #include <dxcapi.h>
 #include <format>
 
+/// <summary>
+/// コンパイルシェーダ
+/// </summary>
 class CompileShader
 {
 
-public:
+public: // サブクラス
 
 	/// <summary>
 	/// シェーダーコンパイル用
@@ -18,14 +21,15 @@ public:
 		IDxcIncludeHandler* includeHandler = nullptr;
 	};
 
+public: // 静的メンバ変数
+
 	// シェーダーコンパイル用
 	static CompileShaderStruct compileShaderStruct_;
 
 	// デバイス
 	static ID3D12Device* sDevice_;
 
-public:
-
+public: // メンバ関数
 
 	/// <summary>
 	/// dxcCompilerを初期化

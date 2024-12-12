@@ -47,8 +47,8 @@ void IScene::StaticInitialize(LevelDataManager* levelDataManager)
 	// 線描画
 	drawLine_ = DrawLine::GetInstance();
 	drawLine_->Initialize(dxCommon_->GetDevice(), 
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexLine].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexLine].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexLine].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexLine].Get());
 
 	// レベルデータマネージャー
 	levelDataManager_ = levelDataManager;

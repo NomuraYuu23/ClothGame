@@ -2,16 +2,23 @@
 #include <Windows.h>
 #include <cstdint>
 
+/// <summary>
+/// ウインドウアプリケーション
+/// </summary>
 class WinApp
 {
-public: 
-	//ウィンドウサイズ
-	static const int kWindowWidth = 1280;
-	static const int kWindowHeight = 720;
-	//ウィンドウクラス名
-	static const wchar_t kWindowClassName[];
 
-public:
+public: // 定数
+	
+	// ウィンドウ幅
+	static const int kWindowWidth_ = 1280;
+	// ウインドウ高さ
+	static const int kWindowHeight_ = 720;
+	//ウィンドウクラス名
+	static const wchar_t kWindowClassName_[];
+
+public: // メンバ関数
+
 	/// <summary>
 	///	シングルトンインスタンスの取得
 	/// </summary>
@@ -29,7 +36,8 @@ public:
 	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg,
 		WPARAM wparam, LPARAM lparam);
 
-public:
+public: // メンバ関数
+
 	/// <summary>
 	/// ゲームウィンドウの作成
 	/// </summary>
@@ -39,7 +47,7 @@ public:
 	/// <param name="clientHeight">ウィンドウのクライアント領域の初期高さ</param>
 	void CreateGameWindow(const wchar_t* title = L"DirectXGame",
 		UINT windowStyle = WS_OVERLAPPEDWINDOW,
-		int32_t clientWidth = kWindowWidth, int32_t clientHeight = kWindowHeight);
+		int32_t clientWidth = kWindowWidth_, int32_t clientHeight = kWindowHeight_);
 
 	/// <summary>
 	/// ゲームウィンドウの破棄
@@ -58,15 +66,20 @@ public:
 	/// <returns></returns>
 	HWND GetHwnd() const { return hwnd_; }
 
+	/// <summary>
+	/// インスタンス取得
+	/// </summary>
+	/// <returns></returns>
 	HINSTANCE GetHInstance() const { return wndClass_.hInstance; }
 
-private:
+private: // シングルトン
 	WinApp() = default;
 	~WinApp() = default;
 	WinApp(const WinApp&) = delete;
 	const WinApp& operator=(const WinApp&) = delete;
 
-private:
+private: // メンバ変数
+
 	HWND hwnd_ = nullptr;//ウィンドウハンドル
 	WNDCLASS wndClass_{};//ウィンドウクラス
 	UINT windowStyle_;//ウィンドウスタイル

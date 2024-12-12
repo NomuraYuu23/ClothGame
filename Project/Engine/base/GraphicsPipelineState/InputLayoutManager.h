@@ -19,10 +19,13 @@ enum InputLayoutIndex {
 	kInputLayoutIndexOfCount,
 };
 
+/// <summary>
+/// インプットレイアウトマネージャー
+/// </summary>
 class InputLayoutManager
 {
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// シングルトンインスタンスの取得
@@ -35,7 +38,7 @@ public: // 関数
 	/// </summary>
 	static void Initialize();
 
-public: // 変数
+public: // メンバ変数
 
 	// インプットレイアウト
 	static std::array<D3D12_INPUT_LAYOUT_DESC, kInputLayoutIndexOfCount> inputLayouts_;

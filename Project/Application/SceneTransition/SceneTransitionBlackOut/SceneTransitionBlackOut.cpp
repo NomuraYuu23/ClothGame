@@ -18,9 +18,9 @@ void SceneTransitionBlackOut::Initialize()
 	// テクスチャ読み込み
 	textureHandle_ = TextureManager::Load("Resources/default/white2x2.png", DirectXCommon::GetInstance());
 	color_ = { 0.0f,0.0f,0.0f,0.0f };
-	Vector2 position = { static_cast<float>(WinApp::kWindowWidth) / 2.0f, static_cast<float>(WinApp::kWindowHeight) / 2.0f };
+	Vector2 position = { static_cast<float>(WinApp::kWindowWidth_) / 2.0f, static_cast<float>(WinApp::kWindowHeight_) / 2.0f };
 	sprite_.reset(Sprite::Create(textureHandle_, position, color_));
-	sprite_->SetSize(Vector2{ static_cast<float>(WinApp::kWindowWidth), static_cast<float>(WinApp::kWindowHeight) });
+	sprite_->SetSize(Vector2{ static_cast<float>(WinApp::kWindowWidth_), static_cast<float>(WinApp::kWindowHeight_) });
 
 	// テクスチャ読み込み
 	loadTextureHandle_ = TextureManager::Load("Resources/default/load.png", DirectXCommon::GetInstance());

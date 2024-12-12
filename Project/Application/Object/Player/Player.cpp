@@ -59,8 +59,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	runDustParticle_->Initialize(
 		dxCommon->GetDevice(),
 		dxCommon->GetCommadListLoad(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
 
 	// エミッタ設定
 	const EmitterCS kEmitter =

@@ -10,14 +10,20 @@
 
 #include "../DxCommon/DxCommand.h"
 
+/// <summary>
+/// クエリタイムスタンプ
+/// </summary>
 class QueryTimestamp
 {
 
 public: 
 
+	/// <summary>
+	/// uint64型
+	/// </summary>
 	typedef unsigned long long UI64;
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// インスタンス取得
@@ -61,14 +67,14 @@ public: // アクセッサ
 	/// <param name="used">使用するか</param>
 	void SetUsed(bool used) { used_ = used; }
 
-public: // 定数
+public: // メンバ定数
 
 	// フレームカウント
 	const uint32_t kFrameCount_ = 4;
 	// クエリカウント
 	const uint32_t kQueryCount = 2;
 
-public: // 変数
+public: // メンバ変数
 
 	// クエリ
 	Microsoft::WRL::ComPtr<ID3D12QueryHeap> query_ = nullptr;

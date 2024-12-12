@@ -210,9 +210,9 @@ private: // 定数
 	};
 
 	// 画像の幅
-	static const uint32_t kTextureWidth = WinApp::kWindowWidth;
+	static const uint32_t kTextureWidth = WinApp::kWindowWidth_;
 	// 画像の高さ
-	static const uint32_t kTextureHeight = WinApp::kWindowHeight;
+	static const uint32_t kTextureHeight = WinApp::kWindowHeight_;
 	// 編集する画像の数
 	static const uint32_t kNumEditTexture = 2;
 	// スレッド数X

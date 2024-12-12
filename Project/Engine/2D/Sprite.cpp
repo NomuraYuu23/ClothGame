@@ -244,7 +244,7 @@ void Sprite::Draw() {
 	
 	//Sprite用のWorldViewProjectionMatrixを作る
 	Matrix4x4 viewMatrixSprite = Matrix4x4::MakeIdentity4x4();
-	Matrix4x4 projectionMatrixSprite = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth), float(WinApp::kWindowHeight), 0.0f, 100.0f);
+	Matrix4x4 projectionMatrixSprite = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth_), float(WinApp::kWindowHeight_), 0.0f, 100.0f);
 	Matrix4x4 worldViewProjectionMatrixSprite = Matrix4x4::Multiply(transformMatrix_, Matrix4x4::Multiply(viewMatrixSprite, projectionMatrixSprite));
 	spriteForGPUMap_->WVP = worldViewProjectionMatrixSprite;
 	spriteForGPUMap_->World = transformMatrix_;

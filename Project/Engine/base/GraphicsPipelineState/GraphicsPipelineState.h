@@ -13,6 +13,9 @@
 #include "InputLayoutManager.h"
 #include "BlendStateManager.h"
 
+/// <summary>
+/// グラフィックスパイプラインステート
+/// </summary>
 class GraphicsPipelineState
 {
 
@@ -48,28 +51,28 @@ public: // サブクラス
 
 	// 作成用引数
 	struct CreateDesc {
-		PipelineStateIndex pipelineStateIndex; // パイプラインステートの名前
-		RootParameterIndex rootParameterIndex; // ルートパラメータの名前
-		SamplerIndex samplerIndex; // サンプラーの名前
-		bool depthEnable; // 深度値をとるか
-		D3D12_DEPTH_WRITE_MASK  depthWriteMask; // 深度値マスク
-		InputLayoutIndex inputLayoutIndex; // インプットレイアウトの名前
-		BlendStateIndex blendStateIndex; // ブレンドの名前
-		D3D12_CULL_MODE cullMode; // カリング情報
-		D3D12_FILL_MODE fillMode; // ワイヤーフレームかどうか
-		std::wstring filePathVS; // 頂点シェーダの名前
-		std::wstring filePathPS; // ピクセルシェーダの名前
-		D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType; // 描き方（線とか三角形）
-		uint32_t numRenderTargets; //RTVの数
-		DXGI_FORMAT RTVFormats; //RTVの情報
+		PipelineStateIndex pipelineStateIndex_; // パイプラインステートの名前
+		RootParameterIndex rootParameterIndex_; // ルートパラメータの名前
+		SamplerIndex samplerIndex_; // サンプラーの名前
+		bool depthEnable_; // 深度値をとるか
+		D3D12_DEPTH_WRITE_MASK  depthWriteMask_; // 深度値マスク
+		InputLayoutIndex inputLayoutIndex_; // インプットレイアウトの名前
+		BlendStateIndex blendStateIndex_; // ブレンドの名前
+		D3D12_CULL_MODE cullMode_; // カリング情報
+		D3D12_FILL_MODE fillMode_; // ワイヤーフレームかどうか
+		std::wstring filePathVS_; // 頂点シェーダの名前
+		std::wstring filePathPS_; // ピクセルシェーダの名前
+		D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType_; // 描き方（線とか三角形）
+		uint32_t numRenderTargets_; //RTVの数
+		DXGI_FORMAT RTVFormats_; //RTVの情報
 	};
 
 public: // 変数
 
 	// ルートシグネチャ
-	static Microsoft::WRL::ComPtr<ID3D12RootSignature> sRootSignature[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+	static Microsoft::WRL::ComPtr<ID3D12RootSignature> sRootSignature_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 	// パイプラインステートオブジェクト
-	static Microsoft::WRL::ComPtr<ID3D12PipelineState> sPipelineState[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+	static Microsoft::WRL::ComPtr<ID3D12PipelineState> sPipelineState_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 
 public: // 関数
 
@@ -88,19 +91,19 @@ private: // 以下パイプラインの変数やenum
 	/// PSO用
 	/// </summary>
 	struct CreatePSODesc {
-		PipelineStateIndex pipelineStateIndex; // パイプラインステートの名前
-		D3D12_INPUT_LAYOUT_DESC inputLayoutDesc{}; //InputLayout
-		IDxcBlob* vertexShaderBlob = nullptr; //VertexShader
-		IDxcBlob* pixelShaderBlob = nullptr; //PixelShader
-		D3D12_BLEND_DESC blendDesc{};//BlendStateの設定
-		D3D12_RASTERIZER_DESC rasterizerDesc{};	//ResiterzerStateの設定
-		uint32_t numRenderTargets; //RTVの情報
-		DXGI_FORMAT RTVFormats; //RTVの情報
-		D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType; //利用するトポロジ(形状)のタイプ。
-		uint32_t sampleDescCount; //どのように画面に色を打ち込むのかの設定
-		uint32_t sampleMask; //どのように画面に色を打ち込むのかの設定
-		D3D12_DEPTH_STENCIL_DESC depthStencilState{}; //DepthStencilの設定
-		DXGI_FORMAT DSVFormat; //DepthStencilの設定
+		PipelineStateIndex pipelineStateIndex_; // パイプラインステートの名前
+		D3D12_INPUT_LAYOUT_DESC inputLayoutDesc_{}; //InputLayout
+		IDxcBlob* vertexShaderBlob_ = nullptr; //VertexShader
+		IDxcBlob* pixelShaderBlob_ = nullptr; //PixelShader
+		D3D12_BLEND_DESC blendDesc_{};//BlendStateの設定
+		D3D12_RASTERIZER_DESC rasterizerDesc_{};	//ResiterzerStateの設定
+		uint32_t numRenderTargets_; //RTVの情報
+		DXGI_FORMAT RTVFormats_; //RTVの情報
+		D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType_; //利用するトポロジ(形状)のタイプ。
+		uint32_t sampleDescCount_; //どのように画面に色を打ち込むのかの設定
+		uint32_t sampleMask_; //どのように画面に色を打ち込むのかの設定
+		D3D12_DEPTH_STENCIL_DESC depthStencilState_{}; //DepthStencilの設定
+		DXGI_FORMAT DSVFormat_; //DepthStencilの設定
 	};
 
 private: // パイプラインステートオブジェクト作成
@@ -114,6 +117,7 @@ private: // パイプラインステートオブジェクト作成
 	/// RootSignature設定
 	/// </summary>
 	/// <param name="pipelineStateName">パイプラインステートの名前</param>
+	/// <param name="rootsignatureFlags">シグネチャフラッグ</param>
 	/// <param name="rootParameterIndex">ルートパラメータの名前</param>
 	/// <param name="samplerIndex">サンプラーの名前</param>
 	static void RootsignatureSetting(PipelineStateIndex pipelineStateName, D3D12_ROOT_SIGNATURE_FLAGS rootsignatureFlags,

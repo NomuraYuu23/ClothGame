@@ -12,10 +12,13 @@
 
 using namespace DirectX;
 
+/// <summary>
+/// テクスチャUAV
+/// </summary>
 class TextureUAV
 {
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// デストラクタ
@@ -70,7 +73,7 @@ public:
 	/// <returns></returns>
 	CD3DX12_GPU_DESCRIPTOR_HANDLE GetSrvHandleGPU() { return srvHandleGPU_; }
 
-private: // 変数
+private: // メンバ変数
 	
 	// テクスチャリソース
 	Microsoft::WRL::ComPtr<ID3D12Resource> resource_;

@@ -27,9 +27,9 @@ void WindowSprite::DrawSRV(const CD3DX12_GPU_DESCRIPTOR_HANDLE& srvGPUHandle)
 
 	//RootSignatureを設定。
 	commandList_->SetPipelineState(
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());//PS0を設定
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());//PS0を設定
 	commandList_->SetGraphicsRootSignature(
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());
 
 	// SRV
 	ID3D12DescriptorHeap* ppHeaps[] = { SRVDescriptorHerpManager::descriptorHeap_.Get() };
@@ -42,7 +42,7 @@ void WindowSprite::DrawSRV(const CD3DX12_GPU_DESCRIPTOR_HANDLE& srvGPUHandle)
 	commandList_->SetGraphicsRootDescriptorTable(0, srvGPUHandle);
 
 	//描画
-	commandList_->DrawInstanced(kVertNum, 1, 0, 0);
+	commandList_->DrawInstanced(kVertNum_, 1, 0, 0);
 
 }
 
@@ -54,9 +54,9 @@ void WindowSprite::DrawSRV(TextureUAV* textureUAV)
 
 	//RootSignatureを設定。
 	commandList_->SetPipelineState(
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());//PS0を設定
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());//PS0を設定
 	commandList_->SetGraphicsRootSignature(
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexWindowSpriteSRV].Get());
 
 	// SRV
 	ID3D12DescriptorHeap* ppHeaps[] = { SRVDescriptorHerpManager::descriptorHeap_.Get() };
@@ -69,7 +69,7 @@ void WindowSprite::DrawSRV(TextureUAV* textureUAV)
 	commandList_->SetGraphicsRootDescriptorTable(0, textureUAV->GetSrvHandleGPU());
 
 	//描画
-	commandList_->DrawInstanced(kVertNum, 1, 0, 0);
+	commandList_->DrawInstanced(kVertNum_, 1, 0, 0);
 
 	// 描画後処理
 	textureUAV->ChangeUnorderedAccessResource(commandList_);

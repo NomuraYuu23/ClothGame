@@ -15,7 +15,7 @@ void BaseCamera::Initialize()
 	targetFovY_ = 0.45f;
 	zoomT_ = 0.05f;
 
-	aspectRatio_ = float(WinApp::kWindowWidth) / float(WinApp::kWindowHeight);
+	aspectRatio_ = float(WinApp::kWindowWidth_) / float(WinApp::kWindowHeight_);
 
 	nearClip_ = 0.1f;
 
