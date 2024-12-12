@@ -42,7 +42,7 @@ public: // 関数
     /// パーティクル描画
     /// </summary>
     /// <param name="camera">カメラ</param>
-    virtual void ParticleDraw(BaseCamera& camera){}
+    virtual void ParticleDraw(BaseCamera& camera) { camera; }
 
     /// <summary>
     /// コライダー登録

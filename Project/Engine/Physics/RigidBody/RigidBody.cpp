@@ -38,6 +38,8 @@ void RigidBody::CollisionPositionConfirmation(
 	float power)
 {
 
+	pairObb;
+
 	// 地面に近い点を2点求める
 	Vector3 obbVertex[8];
 

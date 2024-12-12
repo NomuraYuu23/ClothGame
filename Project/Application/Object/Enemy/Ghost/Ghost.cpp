@@ -86,10 +86,13 @@ void Ghost::ImGuiDraw()
 
 void Ghost::ParticleDraw(BaseCamera& camera)
 {
+	camera;
 }
 
 void Ghost::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+
+	collisionData;
 
 	// プレイヤー
 	if (std::holds_alternative<Player*>(colliderPartner) && conflictWithPlayer_) {
@@ -189,7 +192,7 @@ void Ghost::ClothUpdate()
 	cloth_->SetWind(wind);
 
 	// 布更新
-	cloth_->Update(dxCommon_->GetCommadList());
+	cloth_->Update();
 
 	// 固定部分
 

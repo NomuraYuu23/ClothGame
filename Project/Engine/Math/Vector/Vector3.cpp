@@ -221,7 +221,6 @@ float Vector3::GetAbsMax(const Vector3& v)
 		}
 	}
 
-	return 0.0f;
 }
 
 Vector3 Vector3::operator+(const Vector3& v)

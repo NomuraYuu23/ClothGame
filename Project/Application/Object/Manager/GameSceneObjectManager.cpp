@@ -105,7 +105,7 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 {
 
 	// レベルデータの取得
-	LevelData* levelData = levelDataManager_->GetLevelDatas(levelIndex);
+	LevelData* levelData = levelDataManager->GetLevelDatas(levelIndex);
 
 	// レベルデータのオブジェクトを走査
 	for (std::vector<LevelData::ObjectData>::iterator it = levelData->objectsData_.begin();

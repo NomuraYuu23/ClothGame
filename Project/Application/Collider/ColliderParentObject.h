@@ -27,6 +27,9 @@ public:
 	/// </summary>
 	/// <param name="colliderPartner"></param>
 	/// <param name="collisionData"></param>
-	void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) {}
+	void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) {
+		colliderPartner;
+		collisionData;
+	}
 
 };

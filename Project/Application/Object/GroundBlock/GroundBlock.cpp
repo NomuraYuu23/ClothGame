@@ -51,4 +51,6 @@ void GroundBlock::Update()
 
 void GroundBlock::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+	colliderPartner;
+	collisionData;
 }

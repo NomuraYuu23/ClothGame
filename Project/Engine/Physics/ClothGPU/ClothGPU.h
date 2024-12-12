@@ -325,8 +325,7 @@ public: // メンバ関数
 	/// <summary>
 	/// 更新
 	/// </summary>
-	/// <param name="commandList">コマンドリスト</param>
-	void Update(ID3D12GraphicsCommandList* commandList);
+	void Update();
 
 	/// <summary>
 	/// 描画
@@ -362,11 +361,9 @@ private: // バッファの初期化、設定
 	/// バッファの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	/// <param name="commandList"></param>
 	/// <param name="scale"></param>
 	/// <param name="div"></param>
 	void BufferInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList, 
 		const Vector2& scale, 
 		const Vector2& div);
 
@@ -380,15 +377,13 @@ private: // バッファの初期化、設定
 	///	頂点バッファの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	void VertexBufferInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList);
+	void VertexBufferInitialize(ID3D12Device* device);
 
 	/// <summary>
 	/// UAVの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	void UAVInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList);
+	void UAVInitialize(ID3D12Device* device);
 
 	/// <summary>
 	/// SRVの初期化

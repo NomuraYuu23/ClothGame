@@ -150,7 +150,7 @@ void SideCloth::ClothUpdate()
 	cloth_->SetWind(wind);
 
 	// 布更新
-	cloth_->Update(dxCommon_->GetCommadList());
+	cloth_->Update();
 
 	// 固定部分
 

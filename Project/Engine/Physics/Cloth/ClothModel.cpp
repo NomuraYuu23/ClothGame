@@ -144,7 +144,7 @@ void ClothModel::Update(const std::vector<Vector3>& positions)
 
 		for (uint32_t j = 0; j < surfaces.size(); ++j) {
 			for (uint32_t k = 0; k < 4; ++k) {
-				if (surfaces[j].indexes_[k] == i) {
+				if (static_cast<uint32_t>(surfaces[j].indexes_[k]) == i) {
 					normals[normalNum] = surfaces[j].normal_;
 					normalNum++;
 					break;

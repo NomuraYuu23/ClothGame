@@ -552,7 +552,7 @@ void ClothGPU::Initialize(
 	NumInitialize(device, div);
 
 	// バッファ初期化
-	BufferInitialize(device, commandList, scale, div);
+	BufferInitialize(device, scale, div);
 
 	// CSでUAV初期化
 	InitializeCS(commandList);
@@ -568,7 +568,7 @@ void ClothGPU::Initialize(
 
 }
 
-void ClothGPU::Update(ID3D12GraphicsCommandList* commandList)
+void ClothGPU::Update()
 {
 
 	// 外部操作リセット
@@ -775,7 +775,6 @@ void ClothGPU::MaterialInitialize(const std::string textureName)
 }
 
 void ClothGPU::BufferInitialize(ID3D12Device* device,
-	ID3D12GraphicsCommandList* commandList,
 	const Vector2& scale,
 	const Vector2& div)
 {
@@ -790,10 +789,10 @@ void ClothGPU::BufferInitialize(ID3D12Device* device,
 	SpringBufferInitialize(device);
 
 	// 頂点バッファ
-	VertexBufferInitialize(device, commandList);
+	VertexBufferInitialize(device);
 
 	// UAV
-	UAVInitialize(device, commandList);
+	UAVInitialize(device);
 
 }
 
@@ -841,7 +840,7 @@ void ClothGPU::SpringBufferInitialize(ID3D12Device* device)
 
 }
 
-void ClothGPU::VertexBufferInitialize(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+void ClothGPU::VertexBufferInitialize(ID3D12Device* device)
 {
 
 	// UAVデータ
@@ -882,7 +881,7 @@ void ClothGPU::VertexBufferInitialize(ID3D12Device* device, ID3D12GraphicsComman
 
 }
 
-void ClothGPU::UAVInitialize(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+void ClothGPU::UAVInitialize(ID3D12Device* device)
 {
 
 	// 面情報

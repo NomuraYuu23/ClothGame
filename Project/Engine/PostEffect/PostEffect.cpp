@@ -210,11 +210,11 @@ void PostEffect::Execution(
 		commandList_->SetComputeRootConstantBufferView(rootParameterIndex, computeParametersBuff_->GetGPUVirtualAddress());
 		rootParameterIndex++;
 
-		// 速度パラメータ
-		for (uint32_t i = 0; i < 4; ++i) {
+		// 速度パラメータj
+		for (uint32_t j = 0; j < 4; ++j) {
 			if (executionAdditionalDesc) {
-				if (executionAdditionalDesc->velocity2DManagers[i]) {
-					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->velocity2DManagers[i]->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
+				if (executionAdditionalDesc->velocity2DManagers[j]) {
+					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->velocity2DManagers[j]->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
 				}
 				else {
 					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, velocity2DManager_->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
@@ -227,10 +227,10 @@ void PostEffect::Execution(
 		}
 
 		// 衝撃波パラメータ
-		for (uint32_t i = 0; i < 4; ++i) {
+		for (uint32_t j = 0; j < 4; ++j) {
 			if (executionAdditionalDesc) {
-				if (executionAdditionalDesc->shockWaveManagers[i]) {
-					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->shockWaveManagers[i]->GetShockWaveDataBuff()->GetGPUVirtualAddress());
+				if (executionAdditionalDesc->shockWaveManagers[j]) {
+					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->shockWaveManagers[j]->GetShockWaveDataBuff()->GetGPUVirtualAddress());
 				}
 				else {
 					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, shockWaveManager_->GetShockWaveDataBuff()->GetGPUVirtualAddress());
@@ -243,8 +243,8 @@ void PostEffect::Execution(
 		}
 
 		// ソース
-		for (uint32_t i = 0; i < 8; ++i) {
-			commandList_->SetComputeRootDescriptorTable(rootParameterIndex, renderTargetTexture->GetSrvGPUHandle(i));
+		for (uint32_t j = 0; j < 8; ++j) {
+			commandList_->SetComputeRootDescriptorTable(rootParameterIndex, renderTargetTexture->GetSrvGPUHandle(j));
 			rootParameterIndex++;
 		}
 
@@ -257,8 +257,8 @@ void PostEffect::Execution(
 		rootParameterIndex++;
 
 		// 行先
-		for (uint32_t i = 0; i < kNumEditTexture; ++i) {
-			editTextures_[i]->SetRootDescriptorTable(commandList_, rootParameterIndex);
+		for (uint32_t j = 0; j < kNumEditTexture; ++j) {
+			editTextures_[j]->SetRootDescriptorTable(commandList_, rootParameterIndex);
 			rootParameterIndex++;
 		}
 

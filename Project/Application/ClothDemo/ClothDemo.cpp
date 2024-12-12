@@ -52,7 +52,7 @@ void ClothDemo::Initilalize(
 void ClothDemo::Update()
 {
 	// 布CPU側処理
-	clothGPU_->Update(dxCommon_->GetCommadList());
+	clothGPU_->Update();
 
 	// 平面
 	plane_->Update();
