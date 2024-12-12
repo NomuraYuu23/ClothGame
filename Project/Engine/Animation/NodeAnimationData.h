@@ -8,6 +8,9 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+/// <summary>
+/// アニメーションキーVector3
+/// </summary>
 struct AnimationVector3Key
 {
 
@@ -18,6 +21,9 @@ struct AnimationVector3Key
 
 };
 
+/// <summary>
+/// アニメーションキーQuaternion
+/// </summary>
 struct AnimationQuaternionKey
 {
 
@@ -28,11 +34,15 @@ struct AnimationQuaternionKey
 
 };
 
+/// <summary>
+/// ノードアニメーションデータ
+/// </summary>
 class NodeAnimationData
 {
 
 public:
 
+	// 秒に変換するための値
 	static const double kSecondsConversion;
 
 public: // 読み込み

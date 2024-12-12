@@ -1,6 +1,9 @@
 #pragma once
 #include "NodeAnimationData.h"
 
+/// <summary>
+/// アニメーションデータ
+/// </summary>
 class AnimationData
 {
 

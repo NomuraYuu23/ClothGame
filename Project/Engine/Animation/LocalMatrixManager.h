@@ -5,6 +5,9 @@
 #include "../3D/Model/ModelNodeData.h"
 #include "../3D/Model/ModelNode.h"
 
+/// <summary>
+/// ローカル行列マネージャー
+/// </summary>
 class LocalMatrixManager
 {
 
