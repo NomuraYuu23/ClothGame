@@ -13,7 +13,7 @@ void BillboardEffect::Initialize(Model* model, uint32_t textureHandle, float lif
 	material_.reset(Material::Create());
 
 	// ワールドトランスフォーム
-	worldTransform_.Initialize(model_->GetRootNode());
+	worldTransform_.Initialize(true);
 
 	// テクスチャハンドル
 	textureHnadle_ = textureHandle;

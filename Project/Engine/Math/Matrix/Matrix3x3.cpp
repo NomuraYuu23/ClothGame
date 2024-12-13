@@ -55,10 +55,6 @@ Matrix3x3 Matrix3x3::MakeRotateMatrix(float theta) {
 Matrix3x3 Matrix3x3::Multiply(Matrix3x3 matrix1, Matrix3x3 matrix2) {
 
 	Matrix3x3 result = { 0 };
-	int matrix1Y = 0;
-	int matrix1X = 0;
-	int matrix2Y = 0;
-	int matrix2X = 0;
 
 	for (int y = 0; y < 3; y++) {
 		for (int x = 0; x < 3; x++) {

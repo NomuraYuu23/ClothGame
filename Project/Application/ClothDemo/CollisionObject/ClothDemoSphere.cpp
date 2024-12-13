@@ -22,7 +22,7 @@ void ClothDemoSphere::Initialize(const std::string& name)
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
     data_.position_ = { 0.0f, 0.0f, 0.0f };

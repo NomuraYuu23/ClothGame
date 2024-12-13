@@ -220,7 +220,6 @@ void Cloth::SpringInitialize()
 	springs_.clear();
 
 	// 登録
-	uint32_t index = 0;
 	for (uint32_t y = 0; y < static_cast<uint32_t>(div_.y) + 1; ++y) {
 		for (uint32_t x = 0; x < static_cast<uint32_t>(div_.x) + 1; ++x) {
 			

@@ -27,15 +27,10 @@ public:
 	~WorldTransform();
 
 	/// <summary>
-	/// 初期化(モデル表示で使わない)
-	/// </summary>
-	void Initialize();
-
-	/// <summary>
 	/// 初期化
 	/// </summary>
-	/// <param name="modelNode">モデルノード</param>
-	void Initialize(const ModelNode& modelNode);
+	/// <param name="isModelDraw">モデル表示するか</param>
+	void Initialize(bool isModelDraw = false);
 
 	/// <summary>
 	/// 行列更新

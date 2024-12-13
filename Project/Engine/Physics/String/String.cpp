@@ -58,7 +58,7 @@ void String::Initialize(Model* model, const Vector3& anchor, float naturalLength
 
 	material_.reset(Material::Create());
 
-	worldTransform_.Initialize(model_->GetRootNode());
+	worldTransform_.Initialize(true);
 
 	localMatrixManager_ = std::make_unique<LocalMatrixManager>();
 	localMatrixManager_->Initialize(model_->GetRootNode());

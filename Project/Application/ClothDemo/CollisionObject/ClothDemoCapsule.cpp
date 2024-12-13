@@ -24,7 +24,7 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
     data_.origin_ = { 0.0f, -0.5f, 0.0f };
@@ -44,7 +44,7 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     textureHandle_ = TextureManager::Load("Resources/default/white2x2.png", dxCommon);
 
     // トランスフォーム、カプセルの下用
-    diffWorldTransform_.Initialize(model_->GetRootNode());
+    diffWorldTransform_.Initialize(true);
 
     // 円柱モデルファイル名前
     cylinderFileName_ = "Cylinder.obj";
@@ -53,7 +53,7 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     cylinderModel_.reset(Model::Create(directoryPath_, cylinderFileName_, dxCommon));
 
     // トランスフォーム、円柱
-    cylinderWorldTransform_.Initialize(cylinderModel_->GetRootNode());
+    cylinderWorldTransform_.Initialize(true);
 
 }
 

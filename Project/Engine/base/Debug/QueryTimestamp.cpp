@@ -78,13 +78,13 @@ void QueryTimestamp::Postprocessing(ID3D12GraphicsCommandList* commandList)
 	}
 
 	// 実行中のクエリを終了
-	command_->GetCommadList()->EndQuery(
+	commandList->EndQuery(
 		query_.Get(),
 		D3D12_QUERY_TYPE_TIMESTAMP,
 		offset_ + 1);
 
 	// クエリデータをバッファに取り出す
-	command_->GetCommadList()->ResolveQueryData(
+	commandList->ResolveQueryData(
 		query_.Get(),
 		D3D12_QUERY_TYPE_TIMESTAMP,
 		offset_,
@@ -93,10 +93,10 @@ void QueryTimestamp::Postprocessing(ID3D12GraphicsCommandList* commandList)
 		offset_ * sizeof(UI64));
 
 	//コマンドリストの内容を確定させる。すべてのコマンドを積んでからCloseすること
-	HRESULT hr = command_->GetCommadList()->Close();
+	HRESULT hr = commandList->Close();
 	assert(SUCCEEDED(hr));
 	//GPUにコマンドリストの実行を行わせる
-	ID3D12CommandList* commandLists[] = { command_->GetCommadList() };
+	ID3D12CommandList* commandLists[] = { commandList };
 	DxCommand::GetCommandQueue()->ExecuteCommandLists(1, commandLists);
 
 	//Fenceの値を更新

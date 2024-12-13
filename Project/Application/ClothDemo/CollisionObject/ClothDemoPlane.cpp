@@ -22,7 +22,7 @@ void ClothDemoPlane::Initialize(const std::string& name)
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
     data_.distance_ = 0.0f;

@@ -27,7 +27,7 @@ void MeshObject::Initialize(LevelData::MeshData* data)
 	model_ = ModelManager::GetInstance()->GetModel(directoryPath_, fileName_);
 
 	// ワールドトランスフォーム
-	worldTransform_.Initialize(model_->GetRootNode());
+	worldTransform_.Initialize(true);
 	worldTransform_.transform_ = data->transform;
 	worldTransform_.UpdateMatrix();
 
