@@ -24,6 +24,8 @@ ID3D12Resource* BufferResource::CreateBufferResource(ID3D12Device* device, const
 	HRESULT hr = device->CreateCommittedResource(&uploadHeapProperties, D3D12_HEAP_FLAG_NONE,
 		&resourceDesc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr,
 		IID_PPV_ARGS(&resource));
+	// リリース版警告回避
+	hr;
 	assert(SUCCEEDED(hr));
 
 	return resource;
@@ -55,6 +57,8 @@ ID3D12Resource* BufferResource::CreateBufferResourceUAV(ID3D12Device* device, co
 	HRESULT hr = device->CreateCommittedResource(&uploadHeapProperties, D3D12_HEAP_FLAG_NONE,
 		&resourceDesc, D3D12_RESOURCE_STATE_COMMON, nullptr,
 		IID_PPV_ARGS(&resource));
+	// リリース版警告回避
+	hr;
 	assert(SUCCEEDED(hr));
 
 	return resource;

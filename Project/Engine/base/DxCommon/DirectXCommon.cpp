@@ -165,10 +165,15 @@ void DirectXCommon::CreateFence() {
 
 	//初期化0でFenceを作る
 	HRESULT hr = dxgiDevice_->GetDevice()->CreateFence(fenceVal_, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence_));
+	// リリース版警告回避
+	hr;
 	assert(SUCCEEDED(hr));
 
 	//FrenceのSignalを持つためのイベントを作成する
 	HANDLE fenceEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+	// リリース版警告回避
+	fenceEvent;
+	// フェンスイベント確認
 	assert(fenceEvent != nullptr);
 
 }

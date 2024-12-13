@@ -456,6 +456,8 @@ void PostEffect::CreatePipline()
 		desc.pRootSignature = rootSignature_.Get();
 
 		HRESULT hr = device_->CreateComputePipelineState(&desc, IID_PPV_ARGS(&pipelineStates_[i]));
+		// リリース版警告回避
+		hr;
 		assert(SUCCEEDED(hr));
 	}
 

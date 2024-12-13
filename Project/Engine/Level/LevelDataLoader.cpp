@@ -33,6 +33,8 @@ LevelData* LevelDataLoader::Load(const std::string& fileName)
 
 	// ファイルのデータ読み込み(失敗したらエラー)
 	bool success = FileLoad(deserialized, fileName);
+	// リリース版警告回避
+	success;
 	assert(success);
 
 	// オブジェクトの走査

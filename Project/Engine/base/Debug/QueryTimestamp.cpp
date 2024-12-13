@@ -51,6 +51,8 @@ void QueryTimestamp::Initialize(ID3D12Device* device)
 
 	//FrenceのSignalを持つためのイベントを作成する
 	HANDLE fenceEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+	// リリース版警告回避
+	fenceEvent;
 	assert(fenceEvent != nullptr);
 
 }
