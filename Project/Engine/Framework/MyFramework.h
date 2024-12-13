@@ -59,29 +59,44 @@
 // タイムスタンプ
 #include "../base/Debug/QueryTimestamp.h"
 
+/// <summary>
+/// フレームワーク
+/// </summary>
 class MyFramework
 {
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	virtual ~MyFramework() = default;
 
-	// 初期化
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	virtual void Initialize();
 
-	// 終了
+	/// <summary>
+	/// 終了処理
+	/// </summary>
 	virtual void Finalize();
 
-	// 毎フレーム更新
+	/// <summary>
+	/// 更新処理
+	/// </summary>
 	virtual void Update();
 
-	// 描画
+	/// <summary>
+	/// 描画処理
+	/// </summary>
 	virtual void Draw() = 0;
 
-	// 終了チェック
+	/// <summary>
+	/// 終了チェック
+	/// </summary>
+	/// <returns></returns>
 	virtual bool IsEndRequst() { return endRequst_; }
-
-public: 
 
 	/// <summary>
 	/// ラン
@@ -90,15 +105,22 @@ public:
 
 protected: // メンバ変数
 
-
+	// ウインドウアプリケーション
 	WinApp* win = nullptr;
+	
+	// DirectXCommon
 	DirectXCommon* dxCommon = nullptr;
 
+	// オーディオ
 	Audio* audio = nullptr;
+	
+	// 入力
 	Input* input = nullptr;
 
+	// ImGUiマネージャー
 	ImGuiManager* imGuiManager = nullptr;
 
+	// 終了リクエスト
 	bool endRequst_;
 
 };

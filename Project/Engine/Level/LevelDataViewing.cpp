@@ -2,7 +2,7 @@
 #include "../2D/ImguiManager.h"
 #include "../Collider/OBB/OBB.h"
 
-const std::array<const std::string, LevelIndex::kLevelIndexOfCount>* LevelDataViewing::fileNames_ = nullptr;
+const std::array<const std::string, LevelIndex::kLevelIndexOfCount>* LevelDataViewing::kFileNames_ = nullptr;
 
 std::array<std::unique_ptr<LevelData>, LevelIndex::kLevelIndexOfCount>* LevelDataViewing::levelDatas_ = nullptr;
 
@@ -13,7 +13,7 @@ void LevelDataViewing::Initialize(std::array<std::unique_ptr<LevelData>, LevelIn
 {
 
 	levelDatas_ = levelDatas;
-	fileNames_ = fileNames;
+	kFileNames_ = fileNames;
 	viewingIndex_ = LevelIndex::kLevelIndexTutorial;
 
 }
@@ -40,7 +40,7 @@ void LevelDataViewing::ViewingIndexChange()
 
 	for (uint32_t i = 0; i < LevelIndex::kLevelIndexOfCount; ++i) {
 
-		ImGui::RadioButton(fileNames_->at(i).c_str(), &index, i);
+		ImGui::RadioButton(kFileNames_->at(i).c_str(), &index, i);
 		ImGui::SameLine();
 
 	}
