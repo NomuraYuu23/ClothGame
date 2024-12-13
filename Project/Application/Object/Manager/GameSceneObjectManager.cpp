@@ -72,6 +72,7 @@ void GameSceneObjectManager::Draw(BaseCamera& camera, DrawLine* drawLine)
 void GameSceneObjectManager::LevelChange()
 {
 
+	// 最大レベル
 	const uint32_t kLevelMax = 1;
 
 	// レベルアップ
@@ -153,7 +154,7 @@ void GameSceneObjectManager::ShadowUpdate()
 		}
 		// 影が写るオブジェクト
 		else if (objectIndex == kCreateObjectIndexGroundBlock) {
-
+			// 大きさの加算分
 			const Vector3 kAddSize = { -0.5f, 0.0f, -0.5f };
 			shadowManager_->ShadowAppearsObjListRegister(static_cast<MeshObject*>(it->second.get()), kAddSize);
 		}

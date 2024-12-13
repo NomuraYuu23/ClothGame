@@ -44,6 +44,7 @@ uint32_t PlayerCommand::Command()
 void PlayerCommand::DashReset()
 {
 
+	// 経過時間を最大に
 	dashElapsedTime_ = KDashCoolTime_;
 
 }

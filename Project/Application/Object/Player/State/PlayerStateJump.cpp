@@ -24,7 +24,9 @@ void PlayerStateJump::Update()
 {
 
 	// 重力で速度を変更する
-	moveVelocity_ += Gravity::Execute() * 0.5f;
+	// 重力倍率
+	const float kGravityMagnification = 0.5f;
+	moveVelocity_ += Gravity::Execute() * kGravityMagnification;
 	// 速度制限
 	const float kJumpSpeedMin = 0.0f;
 	// 落下状態へ

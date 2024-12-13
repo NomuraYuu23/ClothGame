@@ -8,6 +8,7 @@ void GroundBlock::Initialize(LevelData::MeshData* data)
 
 	// マテリアル
 	material_->SetEnableLighting(BlinnPhongReflection);
+	// UVトランスフォーム
 	const EulerTransform uvTransform = {
 	worldTransform_.transform_.scale.x / 4.0f,
 	worldTransform_.transform_.scale.z / 4.0f,
