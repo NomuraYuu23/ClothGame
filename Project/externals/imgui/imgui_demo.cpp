@@ -1909,7 +1909,7 @@ static void ShowDemoWindowWidgets()
         ImGui::Text("Set defaults in code:");
         ImGui::SameLine(); HelpMarker(
             "SetColorEditOptions() is designed to allow you to set boot-time default.\n"
-            "We don't have Push/Pop functions because you can force options on a per-widget basis if needed,"
+            "We don't have Push/Pop functions because you can force_ options on a per-widget basis if needed,"
             "and the user can change non-forced ones with the options menu.\nWe don't have a getter to avoid"
             "encouraging you to persistently save values that aren't forward-compatible.");
         if (ImGui::Button("Default: Uint8 + HSV + Hue Bar"))

@@ -19,6 +19,9 @@
 #include "../../Light/SpotLight/SpotLightManager.h"
 #include "../../3D/Fog/FogManager.h"
 
+/// <summary>
+/// 布モデル
+/// </summary>
 class ClothModel
 {
 
@@ -28,24 +31,24 @@ public:
 	/// 頂点
 	/// </summary>
 	struct VertexData {
-		Vector4 position_; // 位置
-		Vector2 texcoord_; // テクスチャ座標
-		Vector3 normal_; // 法線
+		Vector4 position; // 位置
+		Vector2 texcoord; // テクスチャ座標
+		Vector3 normal; // 法線
 	};
 
 	/// <summary>
 	/// WVP
 	/// </summary>
 	struct WVP {
-		Matrix4x4 matrix_; // 行列
+		Matrix4x4 matrix; // 行列
 	};
 
 	/// <summary>
 	/// 面情報
 	/// </summary>
 	struct Surface {
-		Vector3 normal_; // 法線
-		std::array<int32_t, 4> indexes_; // 頂点
+		Vector3 normal; // 法線
+		std::array<int32_t, 4> indexes; // 頂点
 	};
 
 private:

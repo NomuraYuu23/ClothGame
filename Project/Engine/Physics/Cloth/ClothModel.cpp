@@ -88,7 +88,7 @@ void ClothModel::Initialize(const Vector2& div)
 	wvpBuff_->Map(0, nullptr, reinterpret_cast<void**>(&wvpMap_));
 
 	// トランスフォームマップ
-	wvpMap_->matrix_ = Matrix4x4::MakeIdentity4x4();
+	wvpMap_->matrix = Matrix4x4::MakeIdentity4x4();
 
 }
 
@@ -103,17 +103,17 @@ void ClothModel::Update(const std::vector<Vector3>& positions)
 			Surface surface{};
 
 			// 左上
-			surface.indexes_[0] = y * (static_cast<uint32_t>(div_.x) + 1) + x;
-			Vector3 leftTop = positions[surface.indexes_[0]];
+			surface.indexes[0] = y * (static_cast<uint32_t>(div_.x) + 1) + x;
+			Vector3 leftTop = positions[surface.indexes[0]];
 			// 右上
-			surface.indexes_[1] = y * (static_cast<uint32_t>(div_.x) + 1) + x + 1;
-			Vector3 rightTop = positions[surface.indexes_[1]];
+			surface.indexes[1] = y * (static_cast<uint32_t>(div_.x) + 1) + x + 1;
+			Vector3 rightTop = positions[surface.indexes[1]];
 			// 左下
-			surface.indexes_[2] = (y + 1) * (static_cast<uint32_t>(div_.x) + 1) + x;
-			Vector3 leftBottom = positions[surface.indexes_[2]];
+			surface.indexes[2] = (y + 1) * (static_cast<uint32_t>(div_.x) + 1) + x;
+			Vector3 leftBottom = positions[surface.indexes[2]];
 			// 右下
-			surface.indexes_[3] = (y + 1) * (static_cast<uint32_t>(div_.x) + 1) + x + 1;
-			Vector3 rightBottom = positions[surface.indexes_[3]];
+			surface.indexes[3] = (y + 1) * (static_cast<uint32_t>(div_.x) + 1) + x + 1;
+			Vector3 rightBottom = positions[surface.indexes[3]];
 
 			// 法線作成
 
@@ -125,7 +125,7 @@ void ClothModel::Update(const std::vector<Vector3>& positions)
 			Vector3	normal = cross0 + cross1;
 			// 単位ベクトルへ正則化
 			normal = Vector3::Normalize(normal);
-			surface.normal_ = normal;
+			surface.normal = normal;
 
 			surfaces.push_back(surface);
 
@@ -134,18 +134,18 @@ void ClothModel::Update(const std::vector<Vector3>& positions)
 
 	for (uint32_t i = 0; i < vertexNum_; ++i) {
 		// 頂点マッピング
-		vertMap_[i].position_.x = positions[i].x;
-		vertMap_[i].position_.y = positions[i].y;
-		vertMap_[i].position_.z = positions[i].z;
-		vertMap_[i].position_.w = 1.0f;
+		vertMap_[i].position.x = positions[i].x;
+		vertMap_[i].position.y = positions[i].y;
+		vertMap_[i].position.z = positions[i].z;
+		vertMap_[i].position.w = 1.0f;
 		// 法線マッピング
 		std::array<Vector3, 4> normals{};
 		uint32_t normalNum = 0;
 
 		for (uint32_t j = 0; j < surfaces.size(); ++j) {
 			for (uint32_t k = 0; k < 4; ++k) {
-				if (static_cast<uint32_t>(surfaces[j].indexes_[k]) == i) {
-					normals[normalNum] = surfaces[j].normal_;
+				if (static_cast<uint32_t>(surfaces[j].indexes[k]) == i) {
+					normals[normalNum] = surfaces[j].normal;
 					normalNum++;
 					break;
 				}
@@ -162,7 +162,7 @@ void ClothModel::Update(const std::vector<Vector3>& positions)
 			normal = normals[j];
 		}
 
-		vertMap_[i].normal_ = Vector3::Normalize(normal);
+		vertMap_[i].normal = Vector3::Normalize(normal);
 
 	}
 
@@ -188,7 +188,7 @@ void ClothModel::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera
 	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// マップ
-	wvpMap_->matrix_ = camera->GetViewProjectionMatrix();
+	wvpMap_->matrix = camera->GetViewProjectionMatrix();
 
 	// パイプライン設定
 	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexCloth].Get());//PS0を設定
@@ -233,9 +233,9 @@ void ClothModel::VertexMapping()
 	for (uint32_t y = 0; y < static_cast<uint32_t>(div_.y) + 1; ++y) {
 		for (uint32_t x = 0; x < static_cast<uint32_t>(div_.x) + 1; ++x) {
 			uint32_t index = y * (static_cast<uint32_t>(div_.x) + 1) + x;
-			vertMap_[index].position_ = { 0.0f,0.0f,0.0f,1.0f };
-			vertMap_[index].texcoord_ = { static_cast<float>(x) / (div_.x), static_cast<float>(y) / (div_.y) };
-			vertMap_[index].normal_ = { 0.0f, 0.0f, -1.0f };
+			vertMap_[index].position = { 0.0f,0.0f,0.0f,1.0f };
+			vertMap_[index].texcoord = { static_cast<float>(x) / (div_.x), static_cast<float>(y) / (div_.y) };
+			vertMap_[index].normal = { 0.0f, 0.0f, -1.0f };
 		}
 	}
 }

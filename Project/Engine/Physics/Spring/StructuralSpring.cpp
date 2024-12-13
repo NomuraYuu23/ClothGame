@@ -27,7 +27,7 @@ void StructuralSpring::Initialize(
 	fixPoint1_ = false;
 
 	// 最大距離
-	lengthMax_ = Vector3::Length(Vector3::Subtract(point0.position, point1.position));
+	lengthMax_ = Vector3::Length(Vector3::Subtract(point0.position_, point1.position_));
 
 }
 
@@ -41,67 +41,67 @@ void StructuralSpring::Update(
 
 	// point0_
 	if (!fixPoint0_) {
-		Vector3 diff = point0.position - point1.position;
+		Vector3 diff = point0.position_ - point1.position_;
 		float length = Vector3::Length(diff);
 		if (length != 0.0f) {
 			Vector3 direction = Vector3::Normalize(diff);
-			Vector3 restPosition = point1.position + direction * naturalLength_;
-			Vector3 displacement = Vector3::Multiply(length, (point0.position - restPosition));
+			Vector3 restPosition = point1.position_ + direction * naturalLength_;
+			Vector3 displacement = Vector3::Multiply(length, (point0.position_ - restPosition));
 			Vector3 restoringForce = Vector3::Multiply(-stiffness_, displacement);
-			Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_, point0.velocity);
+			Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_, point0.velocity_);
 			Vector3 force = restoringForce + dampingForce;
 
-			point0_.acceleration = Vector3::Multiply(force, 1.0f / point0_.mass)
-				+ (Vector3::Add(gravity, wind)) * point0_.mass;
+			point0_.acceleration_ = Vector3::Multiply(force, 1.0f / point0_.mass_)
+				+ (Vector3::Add(gravity, wind)) * point0_.mass_;
 		}
-		point0_.velocity = point0_.velocity + point0_.acceleration * kDeltaTime_;
+		point0_.velocity_ = point0_.velocity_ + point0_.acceleration_ * kDeltaTime_;
 	}
 	else {
-		point0_.velocity = { 0.0f,0.0f,0.0f };
+		point0_.velocity_ = { 0.0f,0.0f,0.0f };
 	}
 
 	// point1_
 	if (!fixPoint1_) {
-		Vector3 diff = point1.position - point0.position;
+		Vector3 diff = point1.position_ - point0.position_;
 		float length = Vector3::Length(diff);
 		if (length != 0.0f) {
 			Vector3 direction = Vector3::Normalize(diff);
-			Vector3 restPosition = point0.position + direction * naturalLength_;
-			Vector3 displacement = Vector3::Multiply(length, (point1.position - restPosition));
+			Vector3 restPosition = point0.position_ + direction * naturalLength_;
+			Vector3 displacement = Vector3::Multiply(length, (point1.position_ - restPosition));
 			Vector3 restoringForce = Vector3::Multiply(-stiffness_, displacement);
-			Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_, point1.velocity);
+			Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_, point1.velocity_);
 			Vector3 force = restoringForce + dampingForce;
 
-			point1_.acceleration = Vector3::Multiply(force, 1.0f / point1_.mass)
-				+ (Vector3::Add(gravity, wind)) * point1_.mass;
+			point1_.acceleration_ = Vector3::Multiply(force, 1.0f / point1_.mass_)
+				+ (Vector3::Add(gravity, wind)) * point1_.mass_;
 		}
-		point1_.velocity = point1_.velocity + point1_.acceleration * kDeltaTime_;
+		point1_.velocity_ = point1_.velocity_ + point1_.acceleration_ * kDeltaTime_;
 	}
 	else {
-		point1_.velocity = { 0.0f,0.0f,0.0f };
+		point1_.velocity_ = { 0.0f,0.0f,0.0f };
 	}
 
 	// 速度制限
 	const float velocityRestrictions = 64.0f;
 
-	point0_.velocity.x = std::clamp(point0_.velocity.x, -velocityRestrictions, velocityRestrictions);
-	point0_.velocity.y = std::clamp(point0_.velocity.y, -velocityRestrictions, velocityRestrictions);
-	point0_.velocity.z = std::clamp(point0_.velocity.z, -velocityRestrictions, velocityRestrictions);
+	point0_.velocity_.x = std::clamp(point0_.velocity_.x, -velocityRestrictions, velocityRestrictions);
+	point0_.velocity_.y = std::clamp(point0_.velocity_.y, -velocityRestrictions, velocityRestrictions);
+	point0_.velocity_.z = std::clamp(point0_.velocity_.z, -velocityRestrictions, velocityRestrictions);
 
-	point1_.velocity.x = std::clamp(point1_.velocity.x, -velocityRestrictions, velocityRestrictions);
-	point1_.velocity.y = std::clamp(point1_.velocity.y, -velocityRestrictions, velocityRestrictions);
-	point1_.velocity.z = std::clamp(point1_.velocity.z, -velocityRestrictions, velocityRestrictions);
+	point1_.velocity_.x = std::clamp(point1_.velocity_.x, -velocityRestrictions, velocityRestrictions);
+	point1_.velocity_.y = std::clamp(point1_.velocity_.y, -velocityRestrictions, velocityRestrictions);
+	point1_.velocity_.z = std::clamp(point1_.velocity_.z, -velocityRestrictions, velocityRestrictions);
 
 	// 位置変動
-	point0_.position = point0_.position + point0_.velocity * kDeltaTime_;
-	point1_.position = point1_.position + point1_.velocity * kDeltaTime_;
+	point0_.position_ = point0_.position_ + point0_.velocity_ * kDeltaTime_;
+	point1_.position_ = point1_.position_ + point1_.velocity_ * kDeltaTime_;
 
 }
 
 void StructuralSpring::PositionLimit()
 {
 
-	float length = Vector3::Length(Vector3::Subtract(point1_.position, point0_.position));
+	float length = Vector3::Length(Vector3::Subtract(point1_.position_, point0_.position_));
 
 	if (length <= lengthMax_) {
 		return;
@@ -111,9 +111,9 @@ void StructuralSpring::PositionLimit()
 
 	length = ratio * length;
 
-	Vector3 addPos = Vector3::Normalize(Vector3::Subtract(point1_.position, point0_.position)) * length;
+	Vector3 addPos = Vector3::Normalize(Vector3::Subtract(point1_.position_, point0_.position_)) * length;
 
-	point1_.position = point0_.position + addPos;
+	point1_.position_ = point0_.position_ + addPos;
 
 }
 

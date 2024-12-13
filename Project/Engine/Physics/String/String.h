@@ -4,13 +4,16 @@
 #include "../../3D/Line/DrawLine.h"
 #include "../../3D/Model/Model.h"
 
+/// <summary>
+/// 紐
+/// </summary>
 class String
 {
 
 public: // 定数
 
 	// 余分な行列
-	static const uint32_t kExtraMatrixNum = 2;
+	static const uint32_t kExtraMatrixNum_ = 2;
 
 public:
 
@@ -84,6 +87,7 @@ public:
 	
 public: // アクセッサ
 
+	// 構成バネ
 	std::vector<StructuralSpring> GetSpring() { return structuralSpring_; }
 
 private: // 変数

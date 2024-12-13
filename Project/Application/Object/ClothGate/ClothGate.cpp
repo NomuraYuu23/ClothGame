@@ -102,10 +102,10 @@ void ClothGate::ClothInitialize()
 	cloth_->SetRelaxation(kClothRelaxation);
 
 	// プレイヤーの衝突判定データ
-	playerCollider_.origin_ = { 0.0f,0.0f,0.0f };
-	playerCollider_.diff_ = { 0.0f,0.0f, 0.0f };
+	playerCollider_.origin = { 0.0f,0.0f,0.0f };
+	playerCollider_.diff = { 0.0f,0.0f, 0.0f };
 	const float playerColliderRadius = 2.0f;
-	playerCollider_.radius_ = playerColliderRadius;
+	playerCollider_.radius = playerColliderRadius;
 	// 登録
 	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
 
@@ -122,21 +122,21 @@ void ClothGate::ClothUpdate()
 
 	// 球
 	// プレイヤーの情報をいれる
-	playerCollider_.origin_ = player_->GetWorldTransformAdress()->GetWorldPosition();
+	playerCollider_.origin = player_->GetWorldTransformAdress()->GetWorldPosition();
 
 	// プレイヤーの衝突判定差分ベクトル通常版
 	if (player_->GetCurrentStateNo() == kPlayerStateIndexDash) {
 		const float kDashPlayerColliderDiffZ = -10.0f;
-		playerCollider_.diff_ = { 0.0f, 0.0f, kDashPlayerColliderDiffZ };
+		playerCollider_.diff = { 0.0f, 0.0f, kDashPlayerColliderDiffZ };
 	}
 	else {
 		const float kRootPlayerColliderDiffZ = -1.0f;
-		playerCollider_.diff_ = { 0.0f, 0.0f, kRootPlayerColliderDiffZ };
+		playerCollider_.diff = { 0.0f, 0.0f, kRootPlayerColliderDiffZ };
 	}
 
 	// プレイヤー近い
 	const float kCollisionDistance = 10.0f;
-	if (Vector3::Length(playerCollider_.origin_ - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
+	if (Vector3::Length(playerCollider_.origin - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
 		// 登録済み
 		if (registeringPlayer_) {
 			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;

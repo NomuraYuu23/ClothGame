@@ -3,6 +3,10 @@
 #include "../../Math/Vector/Vector2.h"
 #include "../../3D/Line/DrawLine.h"
 #include "ClothModel.h"
+
+/// <summary>
+/// 布CPU
+/// </summary>
 class Cloth
 {
 
@@ -22,11 +26,11 @@ public: // サブクラス
 	/// </summary>
 	struct ClothMassPoint
 	{
-		Vector3 position_; // 現在位置
-		Vector3 prePosition_; // 前フレ―ムの位置
-		float weight_; // 運動計算の重み (固定する場合は0.0f, それ以外は1.0f)
-		uint32_t y_; // y 検索用
-		uint32_t x_; // x 検索用
+		Vector3 position; // 現在位置
+		Vector3 prePosition; // 前フレ―ムの位置
+		float weight; // 運動計算の重み (固定する場合は0.0f, それ以外は1.0f)
+		uint32_t y; // y 検索用
+		uint32_t x; // x 検索用
 	};
 	
 	/// <summary>
@@ -34,10 +38,10 @@ public: // サブクラス
 	/// </summary>
 	struct ClothSpring
 	{
-		ClothMassPoint* point0_; // 質点0
-		ClothMassPoint* point1_; // 質点1
-		float naturalLength_; // 自然長
-		TypeOfSpring type_; // バネの種類
+		ClothMassPoint* point0; // 質点0
+		ClothMassPoint* point1; // 質点1
+		float naturalLength; // 自然長
+		TypeOfSpring type; // バネの種類
 	};
 
 public: // メンバ関数
@@ -157,7 +161,6 @@ private: // メンバ変数
 	bool structuralDebugDraw_; // 構成バネデバッグ描画
 	bool shearDebugDraw_; // せん断バネデバッグ描画
 	bool bendingDebugDraw_; // 曲げバネデバッグ描画
-
 
 	ClothModel model_; // モデル
 

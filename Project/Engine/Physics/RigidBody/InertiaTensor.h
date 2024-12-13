@@ -1,6 +1,9 @@
 #pragma once
 #include "../../Math/Matrix/Matrix4x4.h"
 
+/// <summary>
+/// 関数テンソル
+/// </summary>
 class InertiaTensor
 {
 

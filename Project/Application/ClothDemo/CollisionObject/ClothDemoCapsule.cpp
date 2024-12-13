@@ -27,9 +27,9 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     worldTransform_.Initialize(true);
 
     // データ
-    data_.origin_ = { 0.0f, -0.5f, 0.0f };
-    data_.diff_ = { 0.0f, 0.5f, 0.0f };
-    data_.radius_ = 0.5f;
+    data_.origin = { 0.0f, -0.5f, 0.0f };
+    data_.diff = { 0.0f, 0.5f, 0.0f };
+    data_.radius = 0.5f;
 
     // 画面ちらつかないようの値
     screenDoesNotFlickerValue_ = 0.01f;
@@ -62,9 +62,9 @@ void ClothDemoCapsule::Update()
 
     // 原点球
     // 位置
-    worldTransform_.transform_.translate = data_.origin_;
+    worldTransform_.transform_.translate = data_.origin;
     // 大きさ
-    float size = data_.radius_ - screenDoesNotFlickerValue_;
+    float size = data_.radius - screenDoesNotFlickerValue_;
     worldTransform_.transform_.scale = { size, size, size };
 
     // 行列更新
@@ -72,7 +72,7 @@ void ClothDemoCapsule::Update()
 
     // 線分球
     // 位置
-    diffWorldTransform_.transform_.translate = data_.origin_ + data_.diff_;
+    diffWorldTransform_.transform_.translate = data_.origin + data_.diff;
     // 大きさ
     diffWorldTransform_.transform_.scale = { size, size, size };
 
@@ -81,13 +81,13 @@ void ClothDemoCapsule::Update()
 
     // 円柱
     // 位置
-    cylinderWorldTransform_.transform_.translate = data_.diff_ * 0.5f + data_.origin_;
+    cylinderWorldTransform_.transform_.translate = data_.diff * 0.5f + data_.origin;
     // 大きさ
-    size = data_.radius_ - screenDoesNotFlickerValue_;
-    cylinderWorldTransform_.transform_.scale = { size, size, Vector3::Length(data_.diff_) * 0.5f };
+    size = data_.radius - screenDoesNotFlickerValue_;
+    cylinderWorldTransform_.transform_.scale = { size, size, Vector3::Length(data_.diff) * 0.5f };
     // 回転
     cylinderWorldTransform_.usedDirection_ = true;
-    cylinderWorldTransform_.direction_ = Vector3::Normalize(data_.diff_);
+    cylinderWorldTransform_.direction_ = Vector3::Normalize(data_.diff);
 
     // 行列更新
     cylinderWorldTransform_.UpdateMatrix();
@@ -131,10 +131,10 @@ void ClothDemoCapsule::ImGuiDraw()
 
     ImGui::Text("capsule");
     // 原点
-    ImGui::DragFloat3("capsule.origin", &data_.origin_.x, 0.01f);
+    ImGui::DragFloat3("capsule.origin", &data_.origin.x, 0.01f);
     // 終点までのベクトル
-    ImGui::DragFloat3("capsule.diff", &data_.diff_.x, 0.01f);
+    ImGui::DragFloat3("capsule.diff", &data_.diff.x, 0.01f);
     // 距離
-    ImGui::DragFloat("capsule.radius", &data_.radius_, 0.01f);
+    ImGui::DragFloat("capsule.radius", &data_.radius, 0.01f);
 
 }

@@ -25,8 +25,8 @@ void ClothDemoSphere::Initialize(const std::string& name)
     worldTransform_.Initialize(true);
 
     // データ
-    data_.position_ = { 0.0f, 0.0f, 0.0f };
-    data_.radius_ = 0.5f;
+    data_.position = { 0.0f, 0.0f, 0.0f };
+    data_.radius = 0.5f;
 
     // 画面ちらつかないようの値
     screenDoesNotFlickerValue_ = 0.01f;
@@ -46,8 +46,8 @@ void ClothDemoSphere::Update()
 {
 
     // 位置
-    worldTransform_.transform_.translate = data_.position_;
-    float size = data_.radius_ - screenDoesNotFlickerValue_;
+    worldTransform_.transform_.translate = data_.position;
+    float size = data_.radius - screenDoesNotFlickerValue_;
     worldTransform_.transform_.scale = { size, size, size };
 
     // 行列更新
@@ -60,8 +60,8 @@ void ClothDemoSphere::ImGuiDraw()
 
     ImGui::Text("sphere");
     // 法線
-    ImGui::DragFloat3("sphere.position", &data_.position_.x, 0.01f);
+    ImGui::DragFloat3("sphere.position", &data_.position.x, 0.01f);
     // 距離
-    ImGui::DragFloat("sphere.radius", &data_.radius_, 0.01f);
+    ImGui::DragFloat("sphere.radius", &data_.radius, 0.01f);
 
 }

@@ -17,17 +17,17 @@ void String::Initialize(
 	structuralSpring_.resize(springNum);
 
 	MassPoint initMassPoint{};
-	initMassPoint.position = anchor;
-	initMassPoint.mass = mass;
-	initMassPoint.acceleration = { 0.0f,0.0f,0.0f };
-	initMassPoint.velocity = { 0.0f,0.0f,0.0f };
-	initMassPoint.force = { 0.0f,0.0f,0.0f };
+	initMassPoint.position_ = anchor;
+	initMassPoint.mass_ = mass;
+	initMassPoint.acceleration_ = { 0.0f,0.0f,0.0f };
+	initMassPoint.velocity_ = { 0.0f,0.0f,0.0f };
+	initMassPoint.force_ = { 0.0f,0.0f,0.0f };
 	MassPoint initMassPoint1{};
-	initMassPoint1.position = Vector3::Add(anchor, distance);
-	initMassPoint1.mass = mass;
-	initMassPoint1.acceleration = { 0.0f,0.0f,0.0f };
-	initMassPoint1.velocity = { 0.0f,0.0f,0.0f };
-	initMassPoint1.force = { 0.0f,0.0f,0.0f };
+	initMassPoint1.position_ = Vector3::Add(anchor, distance);
+	initMassPoint1.mass_ = mass;
+	initMassPoint1.acceleration_ = { 0.0f,0.0f,0.0f };
+	initMassPoint1.velocity_ = { 0.0f,0.0f,0.0f };
+	initMassPoint1.force_ = { 0.0f,0.0f,0.0f };
 
 	structuralSpring_[0].Initialize(
 		initMassPoint,
@@ -37,8 +37,8 @@ void String::Initialize(
 		dampingCoefficient);
 
 	for (uint32_t i = 1; i < springNum; ++i) {
-		initMassPoint.position = structuralSpring_[0].GetPoint1().position;
-		initMassPoint1.position = Vector3::Add(initMassPoint.position, distance);
+		initMassPoint.position_ = structuralSpring_[0].GetPoint1().position_;
+		initMassPoint1.position_ = Vector3::Add(initMassPoint.position_, distance);
 		structuralSpring_[i].Initialize(
 			initMassPoint,
 			initMassPoint1,
@@ -64,24 +64,24 @@ void String::Initialize(Model* model, const Vector3& anchor, float naturalLength
 	localMatrixManager_->Initialize(model_->GetRootNode());
 
 
-	assert(localMatrixManager_->GetNum() > kExtraMatrixNum + 1);
+	assert(localMatrixManager_->GetNum() > kExtraMatrixNum_ + 1);
 
-	structuralSpring_.resize(localMatrixManager_->GetNum() - kExtraMatrixNum);
+	structuralSpring_.resize(localMatrixManager_->GetNum() - kExtraMatrixNum_);
 
 	Vector3 distance = { 0.0f,-naturalLength,0.0f };
 
 	MassPoint initMassPoint;
-	initMassPoint.position = anchor;
-	initMassPoint.mass = mass;
-	initMassPoint.acceleration = { 0.0f,0.0f,0.0f };
-	initMassPoint.velocity = { 0.0f,0.0f,0.0f };
-	initMassPoint.force = { 0.0f,0.0f,0.0f };
+	initMassPoint.position_ = anchor;
+	initMassPoint.mass_ = mass;
+	initMassPoint.acceleration_ = { 0.0f,0.0f,0.0f };
+	initMassPoint.velocity_ = { 0.0f,0.0f,0.0f };
+	initMassPoint.force_ = { 0.0f,0.0f,0.0f };
 	MassPoint initMassPoint1;
-	initMassPoint1.position = Vector3::Add(anchor, distance);
-	initMassPoint1.mass = mass;
-	initMassPoint1.acceleration = { 0.0f,0.0f,0.0f };
-	initMassPoint1.velocity = { 0.0f,0.0f,0.0f };
-	initMassPoint1.force = { 0.0f,0.0f,0.0f };
+	initMassPoint1.position_ = Vector3::Add(anchor, distance);
+	initMassPoint1.mass_ = mass;
+	initMassPoint1.acceleration_ = { 0.0f,0.0f,0.0f };
+	initMassPoint1.velocity_ = { 0.0f,0.0f,0.0f };
+	initMassPoint1.force_ = { 0.0f,0.0f,0.0f };
 
 	structuralSpring_[0].Initialize(
 		initMassPoint,
@@ -91,8 +91,8 @@ void String::Initialize(Model* model, const Vector3& anchor, float naturalLength
 		dampingCoefficient);
 
 	for (uint32_t i = 1; i < structuralSpring_.size(); ++i) {
-		initMassPoint.position = structuralSpring_[0].GetPoint1().position;
-		initMassPoint1.position = Vector3::Add(initMassPoint.position, distance);
+		initMassPoint.position_ = structuralSpring_[0].GetPoint1().position_;
+		initMassPoint1.position_ = Vector3::Add(initMassPoint.position_, distance);
 		structuralSpring_[i].Initialize(
 			initMassPoint,
 			initMassPoint1,
@@ -133,11 +133,11 @@ void String::Update(
 		massPoint1Tmp = structuralSpring_[i].GetPoint1();
 		massPoint0Tmp = structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) + 1].GetPoint0();
 
-		massPointTmp.position = (massPoint1Tmp.position + massPoint0Tmp.position) *  0.5f;
-		massPointTmp.acceleration = (massPoint1Tmp.acceleration + massPoint0Tmp.acceleration) * 0.5f;
-		massPointTmp.velocity = (massPoint1Tmp.velocity + massPoint0Tmp.velocity) * 0.5f;
-		massPointTmp.force = (massPoint1Tmp.force + massPoint0Tmp.force) * 0.5f;
-		massPointTmp.mass = (massPoint1Tmp.mass + massPoint0Tmp.mass) * 0.5f;
+		massPointTmp.position_ = (massPoint1Tmp.position_ + massPoint0Tmp.position_) *  0.5f;
+		massPointTmp.acceleration_ = (massPoint1Tmp.acceleration_ + massPoint0Tmp.acceleration_) * 0.5f;
+		massPointTmp.velocity_ = (massPoint1Tmp.velocity_ + massPoint0Tmp.velocity_) * 0.5f;
+		massPointTmp.force_ = (massPoint1Tmp.force_ + massPoint0Tmp.force_) * 0.5f;
+		massPointTmp.mass_ = (massPoint1Tmp.mass_ + massPoint0Tmp.mass_) * 0.5f;
 
 		structuralSpring_[i].SetPoint1(massPointTmp);
 		structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) + 1].SetPoint0(massPointTmp);
@@ -149,22 +149,22 @@ void String::Update(
 	matrixes.resize(localMatrixManager_->GetNum());
 
 	// 余分な部分
-	for (uint32_t i = 0; i < kExtraMatrixNum; ++i) {
+	for (uint32_t i = 0; i < kExtraMatrixNum_; ++i) {
 		matrixes[i] = Matrix4x4::MakeIdentity4x4();
 	}
 	// 基礎位置
-	Vector3 basePosition = structuralSpring_[0].GetPoint0().position;
+	Vector3 basePosition = structuralSpring_[0].GetPoint0().position_;
 
-	for (uint32_t i = kExtraMatrixNum; i < matrixes.size(); ++i) {
-		matrixes[i] = Matrix4x4::MakeTranslateMatrix(structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) - kExtraMatrixNum].GetPoint0().position - basePosition);
-		basePosition = structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) - kExtraMatrixNum].GetPoint0().position;
+	for (uint32_t i = kExtraMatrixNum_; i < matrixes.size(); ++i) {
+		matrixes[i] = Matrix4x4::MakeTranslateMatrix(structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) - kExtraMatrixNum_].GetPoint0().position_ - basePosition);
+		basePosition = structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(i) - kExtraMatrixNum_].GetPoint0().position_;
 	}
 
 	// ワールドトランスフォーム
 	localMatrixManager_->SetNodeLocalMatrix(matrixes);
 
 	localMatrixManager_->Map();
-	worldTransform_.transform_.translate = structuralSpring_[0].GetPoint0().position;
+	worldTransform_.transform_.translate = structuralSpring_[0].GetPoint0().position_;
 	worldTransform_.UpdateMatrix();
 
 }
@@ -189,8 +189,8 @@ void String::DebugDrawMap(DrawLine* drawLine)
 
 	for (uint32_t i = 0; i < structuralSpring_.size(); ++i) {
 
-		lineForGPU.position[0] = structuralSpring_[i].GetPoint0().position;
-		lineForGPU.position[1] = structuralSpring_[i].GetPoint1().position;
+		lineForGPU.position[0] = structuralSpring_[i].GetPoint0().position_;
+		lineForGPU.position[1] = structuralSpring_[i].GetPoint1().position_;
 		lineForGPU.color[0] = Vector4{ 1.0f,1.0f,1.0f,1.0f };
 		lineForGPU.color[1] = Vector4{ 1.0f,1.0f,1.0f,1.0f };
 
@@ -227,17 +227,17 @@ void String::SetPosition(uint32_t pointIndex, const Vector3& position)
 
 	if (pointIndex == 0) {
 		massPoint = structuralSpring_[pointIndex].GetPoint0();
-		massPoint.position = position;
+		massPoint.position_ = position;
 		structuralSpring_[pointIndex].SetPoint0(massPoint);
 	}
 	else if (pointIndex == structuralSpring_.size()) {
 		massPoint = structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(pointIndex) - 1].GetPoint1();
-		massPoint.position = position;
+		massPoint.position_ = position;
 		structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(pointIndex) - 1].SetPoint1(massPoint);
 	}
 	else {
 		massPoint = structuralSpring_[pointIndex].GetPoint0();
-		massPoint.position = position;
+		massPoint.position_ = position;
 		structuralSpring_[pointIndex].SetPoint0(massPoint);
 
 		//massPoint = structuralSpring_[static_cast<std::vector<StructuralSpring, std::allocator<StructuralSpring>>::size_type>(pointIndex) - 1].GetPoint1();

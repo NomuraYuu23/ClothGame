@@ -3,6 +3,9 @@
 #include "../../Math/Vector/Vector3.h"
 #include "../../Physics/MassPoint/MassPoint.h"
 
+/// <summary>
+/// バネ
+/// </summary>
 class Spring {
 
 public: // 関数
@@ -29,21 +32,25 @@ public: // 関数
 
 public: // アクセッサ
 
+	// アンカー。固定された端の位置
 	void SetAnchor(const Vector3& anchor) { anchor_ = anchor; }
-	void SetNaturalLength(float naturalLength) { naturalLength_ = naturalLength; }
-	void SetStiffness(float stiffness) { stiffness_ = stiffness; }
-	void SetDampingCoefficient(float dampingCoefficient) { dampingCoefficient_ = dampingCoefficient; }
-	void GetMassPoint(const MassPoint& massPoint ) { massPoint_ = massPoint; }
-	
 	Vector3 GetAnchor() { return anchor_; }
+	// 自然長
+	void SetNaturalLength(float naturalLength) { naturalLength_ = naturalLength; }
 	float GetNaturalLength() { return naturalLength_; }
+	// 剛性。バネ定数k
+	void SetStiffness(float stiffness) { stiffness_ = stiffness; }
 	float GetStiffness() { return stiffness_; }
+	// 減衰係数
+	void SetDampingCoefficient(float dampingCoefficient) { dampingCoefficient_ = dampingCoefficient; }
 	float GetDampingCoefficient() { return dampingCoefficient_; }
+	// 質点
+	void GetMassPoint(const MassPoint& massPoint ) { massPoint_ = massPoint; }
 	MassPoint GetMassPoint() { return massPoint_; }
 
 private: // 変数
 
-	//アンカー。固定された端の位置
+	// アンカー。固定された端の位置
 	Vector3 anchor_{};
 	// 自然長
 	float naturalLength_ = 0.0f;

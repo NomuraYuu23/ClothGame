@@ -165,9 +165,9 @@ void Ghost::ClothInitialize()
 
 	// プレイヤーの衝突判定データ
 	const float playerColliderRadius = 0.6f;
-	collider_.radius_ = playerColliderRadius;
-	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixedTop_.y - playerColliderRadius;
+	collider_.radius = playerColliderRadius;
+	collider_.position = worldTransform_.GetWorldPosition();
+	collider_.position.y += kBaseFixedTop_.y - playerColliderRadius;
 	// 登録
 	cloth_->CollisionDataRegistration(kMyColliderName_, ClothGPUCollision::kCollisionTypeIndexSphere);
 
@@ -223,8 +223,8 @@ void Ghost::ClothUpdate()
 
 	// 球
 	// 情報をいれる
-	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixedTop_.y - collider_.radius_;
+	collider_.position = worldTransform_.GetWorldPosition();
+	collider_.position.y += kBaseFixedTop_.y - collider_.radius;
 	ClothGPUCollision::CollisionDataMap colliderData = collider_;
 	cloth_->CollisionDataUpdate(kMyColliderName_, colliderData);
 
