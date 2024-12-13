@@ -1,10 +1,14 @@
 #pragma once
 #include "BaseCamera.h"
 
-class DebugCamera : public BaseCamera
+/// <summary>
+/// デバッグカメラ
+/// </summary>
+class DebugCamera : 
+	public BaseCamera
 {
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
@@ -22,7 +26,7 @@ public:
 	/// </summary>
 	void ImGuiDraw();
 
-private:
+private: // メンバ変数
 
 	// 移動速度
 	float moveSpeed_;

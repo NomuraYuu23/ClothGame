@@ -1,5 +1,9 @@
 #pragma once
 #include "../Collider.h"
+
+/// <summary>
+/// 衝突オブジェクト 平面
+/// </summary>
 class Plane :
     public Collider
 {
@@ -20,7 +24,9 @@ public: // メンバ関数
 
 public: // メンバ変数
 
-	Vector3 normal_;//法線
-	float distance_;//距離
+	// 法線
+	Vector3 normal_;
+	// 距離
+	float distance_;
 
 };

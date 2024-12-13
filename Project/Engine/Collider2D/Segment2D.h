@@ -1,6 +1,10 @@
 #pragma once
 #include "Collider2D.h"
-class Segment2D : public Collider2D
+/// <summary>
+/// 2D衝突オブジェクト 線分
+/// </summary>
+class Segment2D : 
+	public Collider2D
 {
 
 public: // メンバ関数
@@ -22,9 +26,10 @@ public: // メンバ関数
 
 public: // メンバ変数
 
-	Vector2 origin_{}; // 原点
-	
-	Vector2 length_{}; // 長さ
+	// 原点
+	Vector2 origin_{};
+	// 長さ
+	Vector2 length_{};
 
 };
 

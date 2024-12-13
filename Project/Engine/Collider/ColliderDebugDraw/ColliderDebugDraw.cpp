@@ -174,23 +174,23 @@ void ColliderDebugDraw::InitializeSphere()
 	const float kPi = static_cast<float>(std::numbers::pi);
 
 	// 経度分割1つ分の角度
-	float kLonEvery = 2.0f * kPi / static_cast<float>(kSubdivision);
+	float kLonEvery = 2.0f * kPi / static_cast<float>(kSubdivision_);
 	// 緯度分割1つ分の角度
-	float kLatEvery = kPi / static_cast<float>(kSubdivision);
+	float kLatEvery = kPi / static_cast<float>(kSubdivision_);
 
 	// 緯度の方向に分割
-	for (uint32_t latIndex = 0; latIndex < kSubdivision; ++latIndex) {
+	for (uint32_t latIndex = 0; latIndex < kSubdivision_; ++latIndex) {
 
 		// 現在の緯度
 		float lat = -1.0f * kPi / 2.0f + kLatEvery * static_cast<float>(latIndex);
 
 		// 経度の方向に分割
-		for (uint32_t lonIndex = 0; lonIndex < kSubdivision; ++lonIndex) {
+		for (uint32_t lonIndex = 0; lonIndex < kSubdivision_; ++lonIndex) {
 		
 			// 現在の経度
 			float lon = static_cast<float>(lonIndex) * kLonEvery;
 
-			sphereOffsetPoints_[latIndex * kSubdivision + lonIndex] = {
+			sphereOffsetPoints_[latIndex * kSubdivision_ + lonIndex] = {
 				std::cosf(lat) * std::cosf(lon),
 				std::sinf(lat),
 				std::cosf(lat)* std::sinf(lon)
@@ -201,14 +201,14 @@ void ColliderDebugDraw::InitializeSphere()
 	}
 
 	// ラスト一個
-	sphereOffsetPoints_[kSubdivision * kSubdivision] = { 0.0f, std::sinf(kPi / 2.0f), 0.0f };
+	sphereOffsetPoints_[kSubdivision_ * kSubdivision_] = { 0.0f, std::sinf(kPi / 2.0f), 0.0f };
 
 }
 
 void ColliderDebugDraw::DrawMapSphere(DrawLine* drawLine, const Sphere& collider)
 {
 
-	std::array<Vector3, kSubdivision * kSubdivision + 1> points = {};
+	std::array<Vector3, kSubdivision_ * kSubdivision_ + 1> points = {};
 
 	Vector3 center = collider.center_;
 	float raidus = collider.radius_;
@@ -227,12 +227,12 @@ void ColliderDebugDraw::DrawMapSphere(DrawLine* drawLine, const Sphere& collider
 	lineForGPU.color[0] = { 1.0f,1.0f,1.0f,1.0f };
 	lineForGPU.color[1] = { 1.0f,1.0f,1.0f,1.0f };
 
-	for (uint32_t i = 0; i < kSubdivision * kSubdivision; ++i) {
+	for (uint32_t i = 0; i < kSubdivision_ * kSubdivision_; ++i) {
 
 		// kSubdivisionの倍数なら
-		if (i % kSubdivision == 0) {
+		if (i % kSubdivision_ == 0) {
 			lineForGPU.position[0] = points[i];
-			lineForGPU.position[1] = points[i + kSubdivision - 1];
+			lineForGPU.position[1] = points[i + kSubdivision_ - 1];
 		}
 		else {
 			lineForGPU.position[0] = points[i];
@@ -241,13 +241,13 @@ void ColliderDebugDraw::DrawMapSphere(DrawLine* drawLine, const Sphere& collider
 
 		drawLine->Map(lineForGPU);
 
-		if (i >= kSubdivision * (kSubdivision - 1)) {
+		if (i >= kSubdivision_ * (kSubdivision_ - 1)) {
 			lineForGPU.position[0] = points[i];
-			lineForGPU.position[1] = points[kSubdivision * kSubdivision];
+			lineForGPU.position[1] = points[kSubdivision_ * kSubdivision_];
 		}
 		else {
 			lineForGPU.position[0] = points[i];
-			lineForGPU.position[1] = points[i + kSubdivision];
+			lineForGPU.position[1] = points[i + kSubdivision_];
 		}
 
 		drawLine->Map(lineForGPU);

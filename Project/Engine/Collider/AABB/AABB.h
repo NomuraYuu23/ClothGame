@@ -1,6 +1,11 @@
 #pragma once
 #include "../Collider.h"
-class AABB : public Collider
+
+/// <summary>
+/// AABB
+/// </summary>
+class AABB : 
+	public Collider
 {
 
 public: // メンバ関数
@@ -8,8 +13,9 @@ public: // メンバ関数
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	/// <param name="center">センター</param>
-	/// <param name="radius">半径</param>
+	/// <param name="min">最小</param>
+	/// <param name="max">最大</param>
+	/// <param name="parentObject">親オブジェクト</param>
 	void Initialize(const Vector3& min, const Vector3& max, ColliderParentObject parentObject);
 
 	/// <summary>
@@ -19,8 +25,10 @@ public: // メンバ関数
 
 public: // メンバ変数
 
-	Vector3 min_; // 最小
-	Vector3 max_; // 最大
+	// 最小
+	Vector3 min_;
+	// 最大
+	Vector3 max_;
 
 };
 

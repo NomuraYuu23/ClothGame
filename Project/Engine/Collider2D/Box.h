@@ -1,7 +1,11 @@
 #pragma once
 #include "Collider2D.h"
 
-class Box : public Collider2D
+/// <summary>
+/// 2D衝突オブジェクト 四角形
+/// </summary>
+class Box : 
+	public Collider2D
 {
 
 public: // メンバ関数
@@ -26,6 +30,6 @@ public: // メンバ関数
 public: // メンバ変数
 
 	// 回転
-	float rotation_ = 0.0f; // ディグリー
+	float rotation_ = 0.0f;
 
 };
