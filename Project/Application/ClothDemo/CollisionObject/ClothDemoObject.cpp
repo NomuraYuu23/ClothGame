@@ -12,7 +12,9 @@ void ClothDemoObject::Draw(BaseCamera& camera)
         return;
     }
 
+    // 描画引数
     ModelDraw::NormalObjectDesc desc;
+    // テクスチャハンドル
     std::vector<UINT> textureHandles;
     textureHandles.push_back(textureHandle_);
 
@@ -22,6 +24,7 @@ void ClothDemoObject::Draw(BaseCamera& camera)
     desc.worldTransform = &worldTransform_;
     desc.textureHandles = textureHandles;
 
+    // 描画
     ModelDraw::NormalObjectDraw(desc);
 
 }

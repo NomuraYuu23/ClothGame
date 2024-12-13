@@ -17,19 +17,25 @@ void ClothDemoSphere::Initialize(const std::string& name)
     model_.reset(Model::Create(directoryPath_, fileName_, dxCommon));
 
     // マテリアル
+    const Vector4 kMaterialColor = { 1.0f,0.5f,0.5f,1.0f };
     material_.reset(Material::Create());
-    material_->SetColor(Vector4{ 1.0f,0.5f,0.5f,1.0f });
+    material_->SetColor(kMaterialColor);
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
     worldTransform_.Initialize(true);
 
     // データ
-    data_.position = { 0.0f, 0.0f, 0.0f };
-    data_.radius = 0.5f;
+    const ClothGPUCollision::Sphere kInitData =
+    {
+        Vector3{ 0.0f, 0.0f, 0.0f },
+        0.5f
+    };
+    data_ = kInitData;
 
     // 画面ちらつかないようの値
-    screenDoesNotFlickerValue_ = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
 
     // デモに存在するか
     exist_ = false;
@@ -65,11 +71,14 @@ void ClothDemoSphere::Update()
 void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
 {
 
+    // ImGui速度
+    const float kImGuiSpeed = 0.01f;
+
     ImGui::Text("球");
     // 法線
-    ImGui::DragFloat3("球_位置", &data_.position.x, 0.01f);
+    ImGui::DragFloat3("球_位置", &data_.position.x, kImGuiSpeed);
     // 距離
-    ImGui::DragFloat("球_半径", &data_.radius, 0.01f, 0.01f, 1000.0f);
+    ImGui::DragFloat("球_半径", &data_.radius, kImGuiSpeed);
 
     // ギズモ
 

@@ -19,20 +19,26 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     model_.reset(Model::Create(directoryPath_, fileName_, dxCommon));
 
     // マテリアル
+    const Vector4 kMaterialColor = { 0.5f,1.0f,0.5f,1.0f };
     material_.reset(Material::Create());
-    material_->SetColor(Vector4{ 0.5f,1.0f,0.5f,1.0f });
+    material_->SetColor(kMaterialColor);
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
     worldTransform_.Initialize(true);
 
     // データ
-    data_.origin = { 0.0f, -0.5f, 0.0f };
-    data_.diff = { 0.0f, 0.5f, 0.0f };
-    data_.radius = 0.5f;
+    const ClothGPUCollision::Capsule kInitData =
+    {
+        0.5f,
+        Vector3{ 0.0f, -0.5f, 0.0f },
+        Vector3{ 0.0f, 0.5f, 0.0f },
+    };
+    data_ = kInitData;
 
     // 画面ちらつかないようの値
-    screenDoesNotFlickerValue_ = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
 
     // デモに存在するか
     exist_ = false;
@@ -136,13 +142,16 @@ void ClothDemoCapsule::Draw(BaseCamera& camera)
 void ClothDemoCapsule::ImGuiDraw(BaseCamera& camera)
 {
 
+    // ImGui速度
+    const float kImGuiSpeed = 0.01f;
+
     ImGui::Text("カプセル");
     // 原点
-    ImGui::DragFloat3("カプセル_原点", &data_.origin.x, 0.01f);
+    ImGui::DragFloat3("カプセル_原点", &data_.origin.x, kImGuiSpeed);
     // 終点までのベクトル
-    ImGui::DragFloat3("カプセル_終点までのベクトル", &data_.diff.x, 0.01f);
+    ImGui::DragFloat3("カプセル_終点までのベクトル", &data_.diff.x, kImGuiSpeed);
     // 半径
-    ImGui::DragFloat("カプセル_半径", &data_.radius, 0.01f);
+    ImGui::DragFloat("カプセル_半径", &data_.radius, kImGuiSpeed);
 
     // ギズモ
 

@@ -21,25 +21,34 @@ void ClothDemo::Initilalize(
 	clothFixedFunctions_[kFixedIndexEnd] = std::bind(&ClothDemo::ClothFixedEnd, this);
 	clothFixedFunctions_[kFixedIndexTop] = std::bind(&ClothDemo::ClothFixedTop, this);
 
-	// 布の大きさ
-	clothScale_ = { 2.0f, 2.0f };
-	// 布の分割数
-	clothDiv_ = { 63.0f, 63.0f };
+	// 布の初期の大きさ
+	const Vector2 kInitClothScale = { 2.0f, 2.0f };
+	clothScale_ = kInitClothScale;
+	// 布の初期の分割数
+	const Vector2 kInitClothDiv = { 63.0f, 63.0f };
+	clothDiv_ = kInitClothDiv;
 	// リセット位置
-	resetPosition_ = { 0.0f,3.0f,0.0f };
+	const Vector3 kInitResetPosition = { 0.0f,3.0f,0.0f };
+	resetPosition_ = kInitResetPosition;
 
 	// 衝突オブジェクト
 	// 平面
 	plane_ = std::make_unique<ClothDemoPlane>();
-	plane_->Initialize("plane");
+	// 名前
+	const std::string kPlane = "plane";
+	plane_->Initialize(kPlane);
 
 	// 球
 	sphere_ = std::make_unique<ClothDemoSphere>();
-	sphere_->Initialize("sphere");
+	// 名前
+	const std::string kSphere = "sphere";
+	sphere_->Initialize(kSphere);
 
 	// カプセル
 	capsule_ = std::make_unique<ClothDemoCapsule>();
-	capsule_->Initialize("capsule");
+	// 名前
+	const std::string kCapsule = "capsule";
+	capsule_->Initialize(kCapsule);
 
 	// 布の初期化
 	ClothReset(dxCommon_->GetCommadListLoad());
@@ -86,8 +95,17 @@ void ClothDemo::ImGuiDraw(BaseCamera& camera)
 	ImGui::Begin("クロスシミュレーションデモ");
 	// 布
 	ImGui::Text("布");
-	ImGui::DragFloat2("分割数", &clothDiv_.x, 1.0f, 4.0f, 256.0f);
-	ImGui::DragFloat2("大きさ", &clothScale_.x, 0.01f, 1.0f);
+
+	// 分割数
+	const float kImGuiSpeedDiv = 1.0f;
+	const float kImGuiMinDiv = 4.0f;
+	const float kImGuiMaxDiv = 256.0f;
+	ImGui::DragFloat2("分割数", &clothDiv_.x, kImGuiSpeedDiv, kImGuiMinDiv, kImGuiMaxDiv);
+	// 分割数
+	const float kImGuiSpeedScale = 0.01f;
+	const float kImGuiMinScale = 1.0f;
+	const float kImGuiMaxScale = 100.0f;
+	ImGui::DragFloat2("大きさ", &clothScale_.x, kImGuiSpeedScale, kImGuiMinScale, kImGuiMaxScale);
 
 	if (ImGui::Button("リセット(作成し直す)")) {
 		// 布の初期化
@@ -95,7 +113,11 @@ void ClothDemo::ImGuiDraw(BaseCamera& camera)
 		// リセット
 		ClothPositionReset(kFixedIndexTop);
 	}
-	ImGui::DragFloat3("リセット位置", &resetPosition_.x, 0.01f);
+	
+	// リセット位置
+	const float kImGuiSpeedResetPosition = 0.01f;
+	ImGui::DragFloat3("リセット位置", &resetPosition_.x, kImGuiSpeedResetPosition);
+	
 	if (ImGui::Button("固定部分を解除する")) {
 		RemoveFixation();
 	}
@@ -217,22 +239,34 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 		relaxation = clothGPU_->GetRelaxation();
 	}
 	else {
-		mass = 1.0f;
+		// 初期化
+		mass = 1.0f; // 質量
 		gravity = {0.0f,-9.8f, 0.0f}; // 重力
 		wind = { 0.0f, 0.0f, 0.0f }; // 風力
-		stiffness = 100.0f; // 剛性。バネ定数k
 		speedResistance = 0.0f; // 速度抵抗
-		// 抵抗 (structural > shear >= bending)の大きさが酔良い
-		structuralShrink = 100.0f;
-		structuralStretch = 100.0f;
-		shearShrink = 80.0f;
-		shearStretch = 80.0f;
-		bendingShrink = 60.0f;
-		bendingStretch = 60.0f;
+
+		// 剛性。バネ定数k
+		const float kInitStiffness = 100.0f;
+		stiffness = kInitStiffness;
+
+		// 抵抗 (structural > shear >= bending)の大きさが良い
+		const float kInitStructural = 100.0f; //構成
+		const float kInitShear = 80.0f; // せん断
+		const float kInitBending = 60.0f; // 曲げ
+		structuralShrink = kInitStructural;
+		structuralStretch = kInitStructural;
+		shearShrink = kInitShear;
+		shearStretch = kInitShear;
+		bendingShrink = kInitBending;
+		bendingStretch = kInitBending;
+		
 		// 速度制限
-		velocityLimit = 1000.0f;
+		const float kInitVelocityLimit = 1000.0f;
+		velocityLimit = kInitVelocityLimit;
+		
 		// 更新回数
-		relaxation = 6; // 最大数
+		const uint32_t kInitRelaxation = 6;
+		relaxation = kInitRelaxation; // 最大数
 	}
 
 	// 布の初期化
