@@ -6,7 +6,9 @@
 #include "../../Engine/Collider/Capsule/Capsule.h"
 #include "../../Engine/Math/Matrix/Matrix4x4.h"
 
-
+/// <summary>
+/// 衝突判定
+/// </summary>
 class Collision
 {
 

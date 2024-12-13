@@ -38,7 +38,7 @@ void Collision2DDebugDraw::Initialize(ID3D12Device* device,
 	vbView_.StrideInBytes = sizeof(VertexData);
 
 	//書き込むためのアドレスを取得
-	vertBuff_->Map(0, nullptr, reinterpret_cast<void**>(&vertMap));
+	vertBuff_->Map(0, nullptr, reinterpret_cast<void**>(&vertMap_));
 
 	//インデックスリソースを作る
 	indexBuff_ = BufferResource::CreateBufferResource(device_, sizeof(uint32_t) * 6);
@@ -52,41 +52,41 @@ void Collision2DDebugDraw::Initialize(ID3D12Device* device,
 	ibView_.Format = DXGI_FORMAT_R32_UINT;
 
 	//インデックスリソースにデータを書き込む
-	indexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&indexMap));
+	indexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&indexMap_));
 
-	float left = -0.5f * textureScale.x;
-	float right = 0.5f * textureScale.x;
-	float top = -0.5f * textureScale.y;
-	float bottom = 0.5f * textureScale.y;
+	float left = -0.5f * kTextureScale_.x;
+	float right = 0.5f * kTextureScale_.x;
+	float top = -0.5f * kTextureScale_.y;
+	float bottom = 0.5f * kTextureScale_.y;
 
 	//一枚目の三角形
-	vertMap[0].position = { left, bottom, 0.0f, 1.0f };//左下
-	vertMap[0].texcoord = { 0.0f, 1.0f };
-	vertMap[0].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[1].position = { left, top, 0.0f, 1.0f };//左上
-	vertMap[1].texcoord = { 0.0f, 0.0f };
-	vertMap[1].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[2].position = { right, bottom, 0.0f, 1.0f };//右下
-	vertMap[2].texcoord = { 1.0f, 1.0f };
-	vertMap[2].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[0].position = { left, bottom, 0.0f, 1.0f };//左下
+	vertMap_[0].texcoord = { 0.0f, 1.0f };
+	vertMap_[0].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[1].position = { left, top, 0.0f, 1.0f };//左上
+	vertMap_[1].texcoord = { 0.0f, 0.0f };
+	vertMap_[1].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[2].position = { right, bottom, 0.0f, 1.0f };//右下
+	vertMap_[2].texcoord = { 1.0f, 1.0f };
+	vertMap_[2].normal = { 0.0f, 0.0f, -1.0f };
 	//ニ枚目の三角形
-	vertMap[3].position = { right, top, 0.0f, 1.0f };//右上
-	vertMap[3].texcoord = { 1.0f, 0.0f };
-	vertMap[3].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[4].position = { left, top, 0.0f, 1.0f };//左上
-	vertMap[4].texcoord = { 0.0f, 0.0f };
-	vertMap[4].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[5].position = { right, bottom, 0.0f, 1.0f };//右下
-	vertMap[5].texcoord = { 1.0f, 1.0f };
-	vertMap[5].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[3].position = { right, top, 0.0f, 1.0f };//右上
+	vertMap_[3].texcoord = { 1.0f, 0.0f };
+	vertMap_[3].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[4].position = { left, top, 0.0f, 1.0f };//左上
+	vertMap_[4].texcoord = { 0.0f, 0.0f };
+	vertMap_[4].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[5].position = { right, bottom, 0.0f, 1.0f };//右下
+	vertMap_[5].texcoord = { 1.0f, 1.0f };
+	vertMap_[5].normal = { 0.0f, 0.0f, -1.0f };
 
 	//インデックスリソースにデータを書き込む
-	indexMap[0] = 0;
-	indexMap[1] = 1;
-	indexMap[2] = 2;
-	indexMap[3] = 1;
-	indexMap[4] = 3;
-	indexMap[5] = 2;
+	indexMap_[0] = 0;
+	indexMap_[1] = 1;
+	indexMap_[2] = 2;
+	indexMap_[3] = 1;
+	indexMap_[4] = 3;
+	indexMap_[5] = 2;
 
 	// テクスチャ
 	textureHandles_ = textureHandles;
@@ -138,8 +138,8 @@ void Collision2DDebugDraw::Register(ColliderShape2D collider)
 		// 回転
 		roate.z = obj->rotation_ * static_cast<float>(std::numbers::pi) / 180.0f;
 		// スケール
-		scale.x = obj->scale_.x / textureScale.x;
-		scale.y = obj->scale_.y / textureScale.y;
+		scale.x = obj->scale_.x / kTextureScale_.x;
+		scale.y = obj->scale_.y / kTextureScale_.y;
 
 		collider2DDebugDrawForGPUMap_[collider2DDebugDrawForGPUNumCount_].textureNum = 0;
 
@@ -152,8 +152,8 @@ void Collision2DDebugDraw::Register(ColliderShape2D collider)
 		traslate.x = obj->position_.x;
 		traslate.y = obj->position_.y;
 		// スケール
-		scale.x = obj->scale_.x / textureScale.x;
-		scale.y = obj->scale_.y / textureScale.y;
+		scale.x = obj->scale_.x / kTextureScale_.x;
+		scale.y = obj->scale_.y / kTextureScale_.y;
 
 		collider2DDebugDrawForGPUMap_[collider2DDebugDrawForGPUNumCount_].textureNum = 1;
 		
