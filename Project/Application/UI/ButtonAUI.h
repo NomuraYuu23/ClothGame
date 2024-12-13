@@ -28,7 +28,5 @@ public: // メンバ関数
 	/// </summary>
 	void ImGuiDraw();
 
-private: // メンバ変数
-
 };
 

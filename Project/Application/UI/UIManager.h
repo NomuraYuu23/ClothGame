@@ -49,10 +49,10 @@ public: // サブクラス
 	// UI作成データ構造体
 	struct UICreateData
 	{
-		TextureIndex textureIndex_; // テクスチャ
-		ClassIndex classIndex_; // クラス
-		Vector2 position_; // 位置
-		Vector2 size_; // 大きさ
+		TextureIndex textureIndex; // テクスチャ
+		ClassIndex classIndex; // クラス
+		Vector2 position; // 位置
+		Vector2 size; // 大きさ
 	};
 
 private: // 定数

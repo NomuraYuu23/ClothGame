@@ -19,8 +19,8 @@ void UIManager::Initialize()
 
 	// UI初期化
 	for (uint32_t i = 0; i < UIIndex::kUIIndexOfCount; ++i) {
-		uis_[i].reset(CreateUI(kUICreateDatas_[i].classIndex_));
-		uis_[i]->Initialize(textureHandles_[kUICreateDatas_[i].textureIndex_], kUICreateDatas_[i].position_, kUICreateDatas_[i].size_);
+		uis_[i].reset(CreateUI(kUICreateDatas_[i].classIndex));
+		uis_[i]->Initialize(textureHandles_[kUICreateDatas_[i].textureIndex], kUICreateDatas_[i].position, kUICreateDatas_[i].size);
 	}
 
 	imGuiMode_ = 0;

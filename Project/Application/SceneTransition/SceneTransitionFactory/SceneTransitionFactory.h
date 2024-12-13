@@ -17,10 +17,15 @@ public: // 静的メンバ関数
 
 public: // メンバ関数
 
-	// シーン生成
+	/// <summary>
+	/// シーン遷移生成
+	/// </summary>
+	/// <param name="sceneName">シーンの名前</param>
+	/// <param name="requestSeneName">リクエストシーンの名前</param>
+	/// <returns></returns>
 	ISceneTransition* CreateSceneTransition(int sceneName, int requestSeneName) override;
 
-private:
+private: // シングルトン
 	SceneTransitionFactory() = default;
 	~SceneTransitionFactory() = default;
 	SceneTransitionFactory(const SceneTransitionFactory&) = delete;

@@ -9,17 +9,17 @@ class ShadowManager :
     public LargeNumberOfObjects
 {
 
-public:
+public: // サブクラス
 
 	/// <summary>
 	/// 影候補
 	/// </summary>
 	struct ShadowCandidate {
-		Vector3 position_; // 位置
-		Vector3 size_; // 大きさ,コライダーサイズいれとく
+		Vector3 position; // 位置
+		Vector3 size; // 大きさ,コライダーサイズいれとく
 	};
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
@@ -51,7 +51,7 @@ public:
 	/// <param name="sizeAdd">大きさ加算分</param>
 	void ShadowAppearsObjListRegister(MeshObject* object, const Vector3& sizeAdd = { 0.0f,0.0f,0.0f });
 
-private:
+private: // メンバ関数
 
 	/// <summary>
 	/// 影が見えるか
@@ -85,7 +85,7 @@ private:
 	/// </summary>
 	void ShadowLimit();
 
-private:
+private: // メンバ変数
 
 	// 影を発生させるオブジェクトリスト
 	std::list<ShadowCandidate> castsShadowObjList_;
