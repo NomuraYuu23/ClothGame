@@ -124,18 +124,19 @@ void ClothGate::ClothUpdate()
 	// プレイヤーの情報をいれる
 	playerCollider_.origin = player_->GetWorldTransformAdress()->GetWorldPosition();
 
-	// プレイヤーの衝突判定差分ベクトル通常版
+	// プレイヤーの衝突判定差分ベクトルダッシュ版(大きくなる)
 	if (player_->GetCurrentStateNo() == kPlayerStateIndexDash) {
 		const float kDashPlayerColliderDiffZ = -10.0f;
 		playerCollider_.diff = { 0.0f, 0.0f, kDashPlayerColliderDiffZ };
 	}
+	// プレイヤーの衝突判定差分ベクトル通常版
 	else {
 		const float kRootPlayerColliderDiffZ = -1.0f;
 		playerCollider_.diff = { 0.0f, 0.0f, kRootPlayerColliderDiffZ };
 	}
 
-	// プレイヤー近い
-	const float kCollisionDistance = 10.0f;
+	// プレイヤー近いなら更新
+	const float kCollisionDistance = 10.0f; // 距離判定
 	if (Vector3::Length(playerCollider_.origin - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
 		// 登録済み
 		if (registeringPlayer_) {
@@ -150,7 +151,7 @@ void ClothGate::ClothUpdate()
 			registeringPlayer_ = true;
 		}
 	}
-	// プレイヤー遠い
+	// プレイヤー遠い時の処理
 	else {
 		// 登録解除
 		if (registeringPlayer_) {
@@ -158,6 +159,7 @@ void ClothGate::ClothUpdate()
 			registeringPlayer_ = false;
 			updateSeconds_ = 0.0f;
 		}
+		// 3秒猶予を持たせる
 		const float kUpdateEndSeconds = 3.0f;
 		// 更新フレーム
 		updateSeconds_ += kDeltaTime_;
