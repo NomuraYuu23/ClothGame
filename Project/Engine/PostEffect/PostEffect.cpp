@@ -28,7 +28,7 @@ void PostEffect::Initialize()
 
 	// 定数バッファに渡す値の設定
 	computeParametersMap_->threadIdOffsetX = 0; // スレッドのオフセットX
-	computeParametersMap_->threadIdTotalX = kTextureWidth; // スレッドの総数X
+	computeParametersMap_->threadIdTotalX = kTextureWidth_; // スレッドの総数X
 	computeParametersMap_->threadIdOffsetY = 0; // スレッドのオフセットY
 	computeParametersMap_->threadIdTotalY = kTextureHeight_; // スレッドの総数Y
 	computeParametersMap_->threadIdOffsetZ = 0; // スレッドのオフセットZ
@@ -103,7 +103,7 @@ void PostEffect::Initialize()
 		editTextures_[i] = std::make_unique<TextureUAV>();
 		editTextures_[i]->Initialize(
 			device_,
-			kTextureWidth,
+			kTextureWidth_,
 			kTextureHeight_);
 	}
 
@@ -183,7 +183,7 @@ void PostEffect::Execution(
 	commandList_->SetComputeRootSignature(rootSignature_.Get());
 
 	// ディスパッチ数
-	uint32_t x = (kTextureWidth + kNumThreadX_ - 1) / kNumThreadX_;
+	uint32_t x = (kTextureWidth_ + kNumThreadX_ - 1) / kNumThreadX_;
 	uint32_t y = (kTextureHeight_ + kNumThreadY_ - 1) / kNumThreadY_;
 	uint32_t z = 1;
 
