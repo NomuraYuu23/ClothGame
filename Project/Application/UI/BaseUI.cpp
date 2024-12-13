@@ -38,11 +38,11 @@ void BaseUI::Draw()
 void BaseUI::ImGuiDraw()
 {
 
-	const float kImguiSpeed = 0.05f;
-	ImGui::DragFloat2("Position", &position_.x, kImguiSpeed);
-	ImGui::DragFloat2("Size", &size_.x, kImguiSpeed);
-	ImGui::DragFloat2("TextureSize", &textureSize_.x, kImguiSpeed);
-	ImGui::DragFloat2("TextureLeftTop", &textureLeftTop_.x, kImguiSpeed);
+	const float kImGuiSpeed = 0.05f;
+	ImGui::DragFloat2("Position", &position_.x, kImGuiSpeed);
+	ImGui::DragFloat2("Size", &size_.x, kImGuiSpeed);
+	ImGui::DragFloat2("TextureSize", &textureSize_.x, kImGuiSpeed);
+	ImGui::DragFloat2("TextureLeftTop", &textureLeftTop_.x, kImGuiSpeed);
 
 	// 更新
 	sprite_->SetPosition(position_);

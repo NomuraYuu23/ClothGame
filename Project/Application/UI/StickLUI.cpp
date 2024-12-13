@@ -12,9 +12,10 @@ void StickLUI::Update()
 
 	BaseUI::Update();
 
-
+	// 位置に加算する値
 	Vector2 addPosition = { 0.0f,0.0f };
 
+	// スティックの値を割る値(移動距離調整)
 	const float kDenominator = 3276.7f;
 	addPosition.x = input_->GetLeftAnalogstick().x / kDenominator;
 

@@ -1,20 +1,18 @@
 #include "ShadowManager.h"
 #include "Shadow.h"
 
+const float ShadowManager::kPosYAdd_ = 0.1f;
+
 void ShadowManager::Initialize(Model* model)
 {
 
 	LargeNumberOfObjects::Initialize(model);
-
 
 	// 影を出す数
 	shadowCount_ = 0u;
 
 	// 影が最大か
 	isShadowMax_ = false;
-
-	// 影の位置追加分
-	posYAdd_ = 0.1f;
 
 }
 
@@ -146,7 +144,7 @@ void ShadowManager::CompriseOnCollision(const ShadowCandidate& castsShadow, cons
 	
 	// ワールドトランスフォーム
 	obj->transform_.translate.x = castsShadow.position.x;
-	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + posYAdd_;
+	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + kPosYAdd_;
 	obj->transform_.translate.z = castsShadow.position.z;
 	obj->transform_.scale = castsShadow.size;
 	obj->transform_.scale.y = 1.0f;
@@ -173,7 +171,7 @@ void ShadowManager::NotCompriseOnCollision(const ShadowCandidate& castsShadow, c
 
 	// ワールドトランスフォーム
 	obj->transform_.translate.x = castsShadow.position.x;
-	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + posYAdd_;
+	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + kPosYAdd_;
 	obj->transform_.translate.z = castsShadow.position.z;
 	obj->transform_.scale = castsShadow.size;
 	obj->transform_.scale.y = 1.0f;

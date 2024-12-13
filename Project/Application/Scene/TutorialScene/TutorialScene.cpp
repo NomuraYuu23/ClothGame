@@ -26,7 +26,7 @@ void TutorialScene::Initialize() {
 	TextureLoad();
 
 	// ビュープロジェクション
-	EulerTransform baseCameraTransform = {
+	const EulerTransform baseCameraTransform = {
 		1.0f, 1.0f, 1.0f,
 		0.58f,0.0f,0.0f,
 		0.0f, 23.0f, -35.0f };
@@ -103,14 +103,6 @@ void TutorialScene::Update() {
 /// </summary>
 void TutorialScene::Draw() {
 
-
-	// ポストエフェクト設定
-	PostEffect::GetInstance()->SetKernelSize(33);
-	PostEffect::GetInstance()->SetGaussianSigma(33.0f);
-	PostEffect::GetInstance()->SetProjectionInverse(Matrix4x4::Inverse(camera_.GetProjectionMatrix()));
-	PostEffect::GetInstance()->SetRadialBlurStrength(0.2f);
-	PostEffect::GetInstance()->SetThreshold(0.25f);
-
 	//ゲームの処理 
 
 #pragma region 背景スプライト描画
@@ -140,22 +132,6 @@ void TutorialScene::Draw() {
 
 	// オブジェクトマネージャー
 	objectManager_->Draw(camera_, drawLine_);
-
-	// アウトライン
-	PostEffect::GetInstance()->Execution(
-		dxCommon_->GetCommadList(),
-		renderTargetTexture_,
-		PostEffect::kCommandIndexOutline
-	);
-	WindowSprite::GetInstance()->DrawSRV(PostEffect::GetInstance()->GetEditTextures(0));
-	// ブルーム
-	PostEffect::GetInstance()->Execution(
-		dxCommon_->GetCommadList(),
-		renderTargetTexture_,
-		PostEffect::kCommandIndexBloom
-	);
-	WindowSprite::GetInstance()->DrawSRV(PostEffect::GetInstance()->GetEditTextures(0));
-	renderTargetTexture_->ClearDepthBuffer();
 
 	// エフェクトマネージャー
 	effectManager_->Draw(camera_);

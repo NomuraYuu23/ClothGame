@@ -62,7 +62,7 @@ void StartCountDown::Update()
 	// 一回目
 	if (countDownTime_ == 100.0f) {
 		countdownEnded_ = true;
-		const float kCountDownTime = 4.0f;
+		const float kCountDownTime = 4.0f; // 4秒行う
 		countDownTime_ = kCountDownTime;
 	}
 	else {

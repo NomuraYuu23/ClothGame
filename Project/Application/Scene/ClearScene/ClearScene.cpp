@@ -17,13 +17,19 @@ void ClearScene::Initialize()
 	ModelCreate();
 	TextureLoad();
 
-	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, { 400.0f, 540.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
-	buttonAlphaT_ = 0.0f;
-	buttonAlphaTSpeed_ = 0.01f;
-	buttonItIncreaseAlphaT_ = true;
+	// ボタンスプライト位置
+	const Vector2 kButtonSpritePosition = { 400.0f, 540.0f };
 	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
+	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, kButtonSpritePosition, buttonColor_));
+	buttonAlphaT_ = 0.0f;
+	// α値変更速度
+	const float kButtonAlphaTSpeed = 0.01f;
+	buttonAlphaTSpeed_ = kButtonAlphaTSpeed;
+	buttonItIncreaseAlphaT_ = true;
 
-	clearSprite_.reset(Sprite::Create(clearTextureHandle_, { 640.0f, 360.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
+	// クリアスプライト位置
+	const Vector2 kClearSpritePosition = { 640.0f, 360.0f };
+	clearSprite_.reset(Sprite::Create(clearTextureHandle_, kClearSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
 
 }
 

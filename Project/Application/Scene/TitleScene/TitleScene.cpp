@@ -24,53 +24,7 @@ void TitleScene::Initialize()
 	objectManager_ = std::make_unique<TitleSceneObjectManager>();
 	objectManager_->Initialize(kLevelIndexTitle, levelDataManager_);
 
-	// 平行光源
-	directionalLight_ = std::make_unique<DirectionalLight>();
-	directionalLight_->Initialize();
-
-	DirectionalLightData directionalLightData;
-	directionalLightData.color = {1.0f,1.0f,1.0f,1.0f};
-	directionalLightData.direction = { 0.0f, -1.0f, 0.0f };
-	directionalLightData.intencity = 0.0f;
-
-	directionalLight_->Update(directionalLightData);
-
-	// 点光源
-	pointLightManager_ = std::make_unique<PointLightManager>();
-	pointLightManager_->Initialize();
-	for (size_t i = 0; i < pointLightDatas_.size(); ++i) {
-		pointLightDatas_[i].color = { 1.0f,1.0f,1.0f,1.0f };
-		pointLightDatas_[i].position = { 0.0f, -1.0f, 0.0f };
-		pointLightDatas_[i].intencity = 1.0f;
-		pointLightDatas_[i].radius = 10.0f;
-		pointLightDatas_[i].decay = 10.0f;
-		pointLightDatas_[i].used = false;
-	}
-
-	pointLightDatas_[0].color = { 0.93f, 0.47f, 0.0f, 1.0f };
-	pointLightDatas_[0].position = { 0.0f, 0.0f, 0.0f };
-	pointLightDatas_[0].intencity = 1.0f;
-	pointLightDatas_[0].radius = 50.0f;
-	pointLightDatas_[0].decay = 10.0f;
-	pointLightDatas_[0].used = true;
-
-	pointLightManager_->Update(pointLightDatas_);
-
-	spotLightManager_ = std::make_unique<SpotLightManager>();
-	spotLightManager_->Initialize();
-	for (size_t i = 0; i < spotLightDatas_.size(); ++i) {
-		spotLightDatas_[i].color = { 1.0f,1.0f,1.0f,1.0f };
-		spotLightDatas_[i].position = { 0.0f, -1.0f, 0.0f };
-		spotLightDatas_[i].intencity = 1.0f;
-		spotLightDatas_[i].direction = { 0.0f, -1.0f, 0.0f }; // ライトの方向
-		spotLightDatas_[i].distance = 10.0f; // ライトの届く距離
-		spotLightDatas_[i].decay = 2.0f; // 減衰率
-		spotLightDatas_[i].cosAngle = 2.0f; // スポットライトの余弦
-		spotLightDatas_[i].cosFalloffStart = 1.0f; // フォールオフ開始位置
-		spotLightDatas_[i].used = false; // 使用している
-	}
-
-	EulerTransform cameraTransform = {
+	const EulerTransform cameraTransform = {
 		1.0f,1.0f,1.0f,
 		0.03f, -0.45f, 0.0f,
 		6.0f, 1.7f, -9.5f};
@@ -87,13 +41,19 @@ void TitleScene::Initialize()
 	shockWaveManager_->SetRadiusMax(2.0f);
 	isShockWave_ = false;
 
-	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, { 400.0f, 540.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
-	buttonAlphaT_ = 0.0f;
-	buttonAlphaTSpeed_ = 0.01f;
-	buttonItIncreaseAlphaT_ = true;
+	// ボタンスプライト位置
+	const Vector2 kButtonSpritePosition = { 400.0f, 540.0f };
 	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
+	buttonSprite_.reset(Sprite::Create(buttonTextureHandle_, kButtonSpritePosition, buttonColor_));
+	buttonAlphaT_ = 0.0f;
+	// α値変更速度
+	const float kButtonAlphaTSpeed = 0.01f;
+	buttonAlphaTSpeed_ = kButtonAlphaTSpeed;
+	buttonItIncreaseAlphaT_ = true;
 
-	titleSprite_.reset(Sprite::Create(titleTextureHandle_, { 640.0f, 360.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }));
+	// クリアスプライト位置
+	const Vector2 kTitleSpritePosition = { 640.0f, 360.0f };
+	titleSprite_.reset(Sprite::Create(titleTextureHandle_, kTitleSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
 
 	IScene::InitilaizeCheck();
 

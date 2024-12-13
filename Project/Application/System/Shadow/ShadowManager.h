@@ -19,6 +19,11 @@ public: // サブクラス
 		Vector3 size; // 大きさ,コライダーサイズいれとく
 	};
 
+private: // 静的メンバ定数
+
+	// 影の位置追加分
+	static const float kPosYAdd_;
+
 public: // メンバ関数
 
 	/// <summary>
@@ -98,9 +103,6 @@ private: // メンバ変数
 
 	// 影が最大か
 	bool isShadowMax_;
-
-	// 影の位置追加分
-	float posYAdd_;
 
 };
 
