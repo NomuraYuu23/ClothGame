@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// フレーム時間
+/// </summary>
 struct PerFrame
 {
 

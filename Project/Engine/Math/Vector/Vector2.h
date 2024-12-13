@@ -1,15 +1,18 @@
 #pragma once
 #include "../../../externals/nlohmann/json.hpp"
 
+/// <summary>
+/// 2次元ベクトル
+/// </summary>
 class Vector2
 {
 
-public: // 変数
+public: // メンバ変数
 
 	float x;
 	float y;
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// 加算

@@ -2,16 +2,19 @@
 #include <vector>
 #include "../../../externals/nlohmann/json.hpp"
 
+/// <summary>
+/// 3次元ベクトル
+/// </summary>
 class Vector3
 {
 
-public: // 変数
+public: // メンバ変数
 
 	float x;
 	float y;
 	float z;
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// 加算
