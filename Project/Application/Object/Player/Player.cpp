@@ -24,8 +24,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	material_->SetEnableLighting(HalfLambert);
 
 	// 衝突マスク
-	collisionAttribute_ = kCollisionAttributePlayer;
-	collisionMask_ -= kCollisionAttributePlayer;
+	collisionAttribute_ = kCollisionAttributePlayer_;
+	collisionMask_ -= kCollisionAttributePlayer_;
 
 	// コライダー
 	OBB obb = std::get<OBB>(*collider_.get());

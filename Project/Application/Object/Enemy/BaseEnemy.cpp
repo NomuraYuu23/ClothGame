@@ -15,8 +15,8 @@ void BaseEnemy::Initialize(LevelData::MeshData* data)
 	MeshObject::Initialize(data);
 
 	// 衝突マスク
-	collisionAttribute_ = kCollisionAttributeEnemy;
-	collisionMask_ -= kCollisionAttributeEnemy;
+	collisionAttribute_ = kCollisionAttributeEnemy_;
+	collisionMask_ -= kCollisionAttributeEnemy_;
 
 	// コライダー
 	OBB obb = std::get<OBB>(*collider_.get());

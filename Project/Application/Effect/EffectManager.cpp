@@ -2,7 +2,7 @@
 #include "../../Engine/base/Texture/TextureManager.h"
 
 // テクスチャパス
-const std::string EffectManager::texturePath = "Resources/Sprite/Effect/";
+const std::string EffectManager::texturePath_ = "Resources/Sprite/Effect/";
 
 // テクスチャ名前
 const std::array<std::string, EffectManager::EffectTextureIndexOfCount> EffectManager::effectTextureNames_ =
@@ -33,7 +33,7 @@ void EffectManager::Initialize(Model* model)
 
 	// テクスチャハンドル
 	for (uint32_t i = 0; i < EffectTextureIndexOfCount; ++i) {
-		std::string fileName = texturePath + effectTextureNames_[i];
+		std::string fileName = texturePath_ + effectTextureNames_[i];
 		effectTextureHandles_[i] = TextureManager::Load(fileName, dxCommon);
 	}
 

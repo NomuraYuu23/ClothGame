@@ -37,7 +37,7 @@ private:
 	/// <summary>
 	/// バッファの初期化
 	/// </summary>
-	/// <param name="device"></param>
+	/// <param name="device">デバイス</param>
 	void UAVBufferInitialize(ID3D12Device* device,
 		ID3D12GraphicsCommandList* commandList) override;
 
@@ -64,19 +64,19 @@ private: // パイプラインステートの初期化CS
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	/// <param name="device"></param>
+	/// <param name="device">デバイス</param>
 	void PipelineStateCSInitializeForInitialize(ID3D12Device* device) override;
 
 	/// <summary>
 	/// エミット
 	/// </summary>
-	/// <param name="device"></param>
+	/// <param name="device">デバイス</param>
 	void PipelineStateCSInitializeForEmit(ID3D12Device* device) override;
 
 	/// <summary>
 	/// 更新
 	/// </summary>
-	/// <param name="device"></param>
+	/// <param name="device">デバイス</param>
 	void PipelineStateCSInitializeForUpdate(ID3D12Device* device) override;
 
 };

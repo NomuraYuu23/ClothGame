@@ -28,6 +28,7 @@ public:
 	/// <param name="colliderPartner"></param>
 	/// <param name="collisionData"></param>
 	void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) {
+		// 警告回避
 		colliderPartner;
 		collisionData;
 	}
