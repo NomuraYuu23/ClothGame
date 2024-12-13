@@ -40,6 +40,13 @@ void ClothDemoSphere::Initialize(const std::string& name)
     // テクスチャハンドル
     textureHandle_ = TextureManager::Load("Resources/default/white2x2.png", dxCommon);
 
+    // ギズモ操作番号
+    guizmoOperation_ = ImGuizmo::TRANSLATE;
+
+    // ギズモID
+    guizmoID_ = nextGuizmoID_;
+    nextGuizmoID_++;
+
 }
 
 void ClothDemoSphere::Update()
@@ -55,13 +62,54 @@ void ClothDemoSphere::Update()
 
 }
 
-void ClothDemoSphere::ImGuiDraw()
+void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
 {
 
-    ImGui::Text("sphere");
+    ImGui::Text("球");
     // 法線
-    ImGui::DragFloat3("sphere.position", &data_.position.x, 0.01f);
+    ImGui::DragFloat3("球_位置", &data_.position.x, 0.01f);
     // 距離
-    ImGui::DragFloat("sphere.radius", &data_.radius, 0.01f);
+    ImGui::DragFloat("球_半径", &data_.radius, 0.01f, 0.01f, 1000.0f);
+
+    // ギズモ
+
+    // 変数
+    EulerTransform transform = 
+    {
+        Vector3{ data_.radius, data_.radius, data_.radius },
+        Vector3{ 0.0f,0.0f,0.0f },
+        data_.position
+    };
+    Matrix4x4 matrix = Matrix4x4::MakeAffineMatrix(transform.scale, transform.rotate, transform.translate);
+
+    // モード
+    std::string modeName = "球位置_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::TRANSLATE)) {
+        guizmoOperation_ = ImGuizmo::TRANSLATE;
+    }
+    ImGui::SameLine();
+    modeName = "球半径_" + std::to_string(guizmoID_);
+    if (ImGui::RadioButton(modeName.c_str(), guizmoOperation_ == ImGuizmo::SCALE_X)) {
+        guizmoOperation_ = ImGuizmo::SCALE_X;
+    }
+
+    // 操作部分
+    ImGuizmo::PushID(guizmoID_);
+    ImGuiIO& io = ImGui::GetIO();
+    ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
+    ImGuizmo::Manipulate(
+        &camera.GetViewMatrix().m[0][0], &camera.GetProjectionMatrix().m[0][0], static_cast<ImGuizmo::OPERATION>(guizmoOperation_), ImGuizmo::LOCAL, &matrix.m[0][0], NULL, NULL);
+    // ID
+    ImGuizmo::PopID();
+
+    // 位置と半径を取り出す
+    ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
+
+    // データを代入
+    data_.position = transform.translate;
+    data_.radius = transform.scale.x;
+
+    // 更新
+    Update();
 
 }

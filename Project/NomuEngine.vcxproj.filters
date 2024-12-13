@@ -931,6 +931,9 @@
     <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
       <Filter>Application\Object\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="externals\imgui\ImGuizmo.cpp">
+      <Filter>externals\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1598,6 +1601,9 @@
     </ClInclude>
     <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h">
       <Filter>Application\Collider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="externals\imgui\ImGuizmo.h">
+      <Filter>externals\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -662,9 +662,9 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 	ImGui::DragInt("バネの更新の反復の回数", &relaxation_, 0.2f, 1, 6);
 
 	//clothCalcDataMap_
-	ImGui::DragFloat("質量", &clothCalcDataMap_->mass, 0.01f, 0.1f, 10.0f);
-	ImGui::DragFloat3("重力", &clothCalcDataMap_->gravity.x, 0.01f, -100.0f, 100.0f);
-	ImGui::DragFloat3("風力", &clothCalcDataMap_->wind.x, 0.01f, -100.0f, 100.0f);
+	ImGui::DragFloat("質量", &clothCalcDataMap_->mass, 0.01f, 1.0f, 1000.0f);
+	ImGui::DragFloat3("重力", &clothCalcDataMap_->gravity.x, 0.01f, -1000.0f, 1000.0f);
+	ImGui::DragFloat3("風力", &clothCalcDataMap_->wind.x, 0.01f, -1000.0f, 1000.0f);
 	ImGui::DragFloat("抵抗", &clothCalcDataMap_->speedResistance, 0.01f, 0.0f, 1.0f);
 	ImGui::DragFloat("バネの強度", &clothCalcDataMap_->stiffness, 0.1f, 1.0f, 1000.0f);
 	ImGui::DragFloat("構成バネ伸び抵抗", &clothCalcDataMap_->structuralShrink, 0.1f, 0.0f, 1000.0f);
@@ -673,7 +673,7 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 	ImGui::DragFloat("せん断バネ縮み抵抗", &clothCalcDataMap_->shearStretch, 0.1f, 0.0f, 1000.0f);
 	ImGui::DragFloat("曲げバネ伸び抵抗", &clothCalcDataMap_->bendingShrink, 0.1f, 0.0f, 1000.0f);
 	ImGui::DragFloat("曲げバネ縮み抵抗", &clothCalcDataMap_->bendingStretch, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("速度制限", &clothCalcDataMap_->velocityLimit, 0.01f, 0.0f, 100.0f);
+	ImGui::DragFloat("速度制限", &clothCalcDataMap_->velocityLimit, 0.01f, 0.0f,1000.0f);
 
 	ImGui::End();
 
@@ -1069,14 +1069,14 @@ void ClothGPU::CBVInitialize(
 	clothCalcDataMap_->gravity = { 0.0f, -9.8f, 0.0f};// 重力
 	clothCalcDataMap_->wind = { 0.0f, 0.0f, 0.0f };// 風力
 	clothCalcDataMap_->stiffness = 100.0f; // 剛性。バネ定数k
-	clothCalcDataMap_->speedResistance = 0.2f; // 速度抵抗
+	clothCalcDataMap_->speedResistance = 0.0f; // 速度抵抗
 	clothCalcDataMap_->structuralShrink = 10.0f; // 構成バネ伸び抵抗
 	clothCalcDataMap_->structuralStretch = 10.0f; // 構成バネ縮み抵抗
 	clothCalcDataMap_->shearShrink = 10.0f; // せん断バネ伸び抵抗
 	clothCalcDataMap_->shearStretch = 10.0f; // せん断バネ縮み抵抗
 	clothCalcDataMap_->bendingShrink = 10.0f; // 曲げバネ伸び抵抗
 	clothCalcDataMap_->bendingStretch = 10.0f; // 曲げバネ縮み抵抗
-	clothCalcDataMap_->velocityLimit = 1.0f; // 速度制限
+	clothCalcDataMap_->velocityLimit = 1000.0f; // 速度制限
 
 	// 時間バッファ
 	perFrameBuff_ = BufferResource::CreateBufferResource(device, (sizeof(PerFrame) + 0xff) & ~0xff);

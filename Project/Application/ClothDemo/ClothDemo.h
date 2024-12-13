@@ -51,7 +51,8 @@ public: // メンバ関数
 	/// <summary>
 	/// ImGui描画
 	/// </summary>
-	void ImGuiDraw();
+	/// <param name="camera"></param>
+	void ImGuiDraw(BaseCamera& camera);
 
 	/// <summary>
 	/// 衝突オブジェクト描画

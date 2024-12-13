@@ -26,6 +26,8 @@ void DebugScene::Initialize()
 	clothDemo_ = std::make_unique<ClothDemo>();
 	clothDemo_->Initilalize(directionalLight_.get(), pointLightManager_.get(), spotLightManager_.get());
 
+	isDebugCameraActive_ = true;
+
 	IScene::InitilaizeCheck();
 
 }
@@ -74,7 +76,7 @@ void DebugScene::Draw()
 void DebugScene::ImguiDraw()
 {
 
-	clothDemo_->ImGuiDraw();
+	clothDemo_->ImGuiDraw(camera_);
 
 	debugCamera_->ImGuiDraw();
 
@@ -82,15 +84,6 @@ void DebugScene::ImguiDraw()
 
 void DebugScene::DebugCameraUpdate()
 {
-
-	if (input_->TriggerKey(DIK_RSHIFT)) {
-		if (isDebugCameraActive_) {
-			isDebugCameraActive_ = false;
-		}
-		else {
-			isDebugCameraActive_ = true;
-		}
-	}
 
 	// カメラの処理
 	if (isDebugCameraActive_) {

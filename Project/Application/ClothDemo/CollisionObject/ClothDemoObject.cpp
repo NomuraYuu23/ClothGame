@@ -1,6 +1,9 @@
 #include "ClothDemoObject.h"
 #include "../../../Engine/3D/Model/ModelDraw.h"
 
+// 次のギズモID
+uint32_t ClothDemoObject::nextGuizmoID_ = 0;
+
 void ClothDemoObject::Draw(BaseCamera& camera)
 {
 
