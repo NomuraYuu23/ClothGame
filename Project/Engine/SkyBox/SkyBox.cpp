@@ -3,8 +3,8 @@
 #include "../base/BufferResource.h"
 #include "../base/Texture/TextureManager.h"
 
-const size_t Skybox::kVertNum = 8;
-const size_t Skybox::kIndexNum = 36;
+const size_t Skybox::kVertNum_ = 8;
+const size_t Skybox::kIndexNum_ = 36;
 
 void Skybox::Initialize(uint32_t textureHandle, ID3D12RootSignature* rootSignature, ID3D12PipelineState* pipelineState)
 {
@@ -13,11 +13,11 @@ void Skybox::Initialize(uint32_t textureHandle, ID3D12RootSignature* rootSignatu
 
 	// 頂点バッファ
 	vertBuff_ = BufferResource::CreateBufferResource(
-		device, ((sizeof(Skybox::VertexData) + 0xff) & ~0xff) * kVertNum);
+		device, ((sizeof(Skybox::VertexData) + 0xff) & ~0xff) * kVertNum_);
 	//リソースの先頭のアドレスから使う
 	vbView_.BufferLocation = vertBuff_->GetGPUVirtualAddress();
 	//使用するリソースのサイズ
-	vbView_.SizeInBytes = UINT(sizeof(Skybox::VertexData) * kVertNum);
+	vbView_.SizeInBytes = UINT(sizeof(Skybox::VertexData) * kVertNum_);
 	//1頂点あたりのサイズ
 	vbView_.StrideInBytes = sizeof(Skybox::VertexData);
 	//書き込むためのアドレスを取得
@@ -27,11 +27,11 @@ void Skybox::Initialize(uint32_t textureHandle, ID3D12RootSignature* rootSignatu
 
 	//インデックスリソースを作る
 	indexBuff_ = BufferResource::CreateBufferResource(
-		device, ((sizeof(uint32_t) + 0xff) & ~0xff) * kIndexNum);
+		device, ((sizeof(uint32_t) + 0xff) & ~0xff) * kIndexNum_);
 	//リソースの先頭のアドレスから使う
 	ibView_.BufferLocation = indexBuff_->GetGPUVirtualAddress();
 	//使用するリソースのサイズ
-	ibView_.SizeInBytes = sizeof(uint32_t) * kIndexNum;
+	ibView_.SizeInBytes = sizeof(uint32_t) * kIndexNum_;
 	//インデックスはuint32_tとする
 	ibView_.Format = DXGI_FORMAT_R32_UINT;
 	//インデックスリソースにデータを書き込む
@@ -104,7 +104,7 @@ void Skybox::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 	commandList->SetGraphicsRootConstantBufferView(2, skyboxForGPUBuff_->GetGPUVirtualAddress());
 
 	//描画
-	commandList->DrawIndexedInstanced(kIndexNum, 1, 0, 0, 0);
+	commandList->DrawIndexedInstanced(kIndexNum_, 1, 0, 0, 0);
 
 }
 

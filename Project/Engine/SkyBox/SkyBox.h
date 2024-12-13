@@ -13,18 +13,26 @@
 #include "../3D/Material/Material.h"
 #include "../Camera/BaseCamera.h"
 
+/// <summary>
+/// スカイボックス
+/// </summary>
 class Skybox
 {
 
 public: // サブクラス
 
+	/// <summary>
+	/// 頂点データ
+	/// </summary>
 	struct VertexData {
-		Vector4 position;
+		Vector4 position; // 位置
 	};
 
-	// トランスフォーム行列
+	/// <summary>
+	/// GPUに送るデータ
+	/// </summary>
 	struct SkyboxForGPU {
-		Matrix4x4 WVP;
+		Matrix4x4 WVP; // ワールドビュープロジェクション
 	};
 
 public: // 関数
@@ -67,9 +75,9 @@ public: // アクセッサ
 private: // 定数
 
 	// 頂点数
-	static const size_t kVertNum;
+	static const size_t kVertNum_;
 	// index数
-	static const size_t kIndexNum;
+	static const size_t kIndexNum_;
 
 private: // 変数
 

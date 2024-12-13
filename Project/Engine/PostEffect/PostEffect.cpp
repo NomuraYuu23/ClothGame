@@ -30,7 +30,7 @@ void PostEffect::Initialize()
 	computeParametersMap_->threadIdOffsetX = 0; // スレッドのオフセットX
 	computeParametersMap_->threadIdTotalX = kTextureWidth; // スレッドの総数X
 	computeParametersMap_->threadIdOffsetY = 0; // スレッドのオフセットY
-	computeParametersMap_->threadIdTotalY = kTextureHeight; // スレッドの総数Y
+	computeParametersMap_->threadIdTotalY = kTextureHeight_; // スレッドの総数Y
 	computeParametersMap_->threadIdOffsetZ = 0; // スレッドのオフセットZ
 	computeParametersMap_->threadIdTotalZ = 1; // スレッドの総数Z
 
@@ -99,12 +99,12 @@ void PostEffect::Initialize()
 	CreatePipline();
 
 	// 編集する画像初期化
-	for (uint32_t i = 0; i < kNumEditTexture; ++i) {
+	for (uint32_t i = 0; i < kNumEditTexture_; ++i) {
 		editTextures_[i] = std::make_unique<TextureUAV>();
 		editTextures_[i]->Initialize(
 			device_,
 			kTextureWidth,
-			kTextureHeight);
+			kTextureHeight_);
 	}
 
 	// デフォルト速度バッファ
@@ -183,8 +183,8 @@ void PostEffect::Execution(
 	commandList_->SetComputeRootSignature(rootSignature_.Get());
 
 	// ディスパッチ数
-	uint32_t x = (kTextureWidth + kNumThreadX - 1) / kNumThreadX;
-	uint32_t y = (kTextureHeight + kNumThreadY - 1) / kNumThreadY;
+	uint32_t x = (kTextureWidth + kNumThreadX_ - 1) / kNumThreadX_;
+	uint32_t y = (kTextureHeight_ + kNumThreadY_ - 1) / kNumThreadY_;
 	uint32_t z = 1;
 
 	//ソース
@@ -257,7 +257,7 @@ void PostEffect::Execution(
 		rootParameterIndex++;
 
 		// 行先
-		for (uint32_t j = 0; j < kNumEditTexture; ++j) {
+		for (uint32_t j = 0; j < kNumEditTexture_; ++j) {
 			editTextures_[j]->SetRootDescriptorTable(commandList_, rootParameterIndex);
 			rootParameterIndex++;
 		}
@@ -414,9 +414,9 @@ void PostEffect::CreateHeaderHLSL()
 	assert(file);
 
 	// スレッド数
-	file << "#define" << " " << "THREAD_X" << " " << kNumThreadX << "\n";
-	file << "#define" << " " << "THREAD_Y" << " " << kNumThreadY << "\n";
-	file << "#define" << " " << "THREAD_Z" << " " << kNumThreadZ << "\n";
+	file << "#define" << " " << "THREAD_X" << " " << kNumThreadX_ << "\n";
+	file << "#define" << " " << "THREAD_Y" << " " << kNumThreadY_ << "\n";
+	file << "#define" << " " << "THREAD_Z" << " " << kNumThreadZ_ << "\n";
 	file << "#define" << " " << "PI" << " " << 3.14159265 << "\n";
 
 	// ファイルを閉じる

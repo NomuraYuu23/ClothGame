@@ -8,6 +8,9 @@
 #include "ShockWave/ShockWaveManager.h"
 #include "../base/Texture/TextureManager.h"
 
+/// <summary>
+/// ポストエフェクト
+/// </summary>
 class PostEffect
 {
 
@@ -210,17 +213,17 @@ private: // 定数
 	};
 
 	// 画像の幅
-	static const uint32_t kTextureWidth = WinApp::kWindowWidth_;
+	static const uint32_t kTextureWidth_ = WinApp::kWindowWidth_;
 	// 画像の高さ
-	static const uint32_t kTextureHeight = WinApp::kWindowHeight_;
+	static const uint32_t kTextureHeight_ = WinApp::kWindowHeight_;
 	// 編集する画像の数
-	static const uint32_t kNumEditTexture = 2;
+	static const uint32_t kNumEditTexture_ = 2;
 	// スレッド数X
-	static const uint32_t kNumThreadX = 32;
+	static const uint32_t kNumThreadX_ = 32;
 	// スレッド数Y
-	static const uint32_t kNumThreadY = 32;
+	static const uint32_t kNumThreadY_ = 32;
 	// スレッド数Z
-	static const uint32_t kNumThreadZ = 1;
+	static const uint32_t kNumThreadZ_ = 1;
 
 public: // 関数
 
@@ -525,7 +528,7 @@ private: // 変数
 	ID3D12GraphicsCommandList* commandList_ = nullptr;
 
 	// 編集する画像
-	std::unique_ptr<TextureUAV> editTextures_[kNumEditTexture];
+	std::unique_ptr<TextureUAV> editTextures_[kNumEditTexture_];
 
 	//computeParameters用のリソースを作る。
 	Microsoft::WRL::ComPtr<ID3D12Resource> computeParametersBuff_;

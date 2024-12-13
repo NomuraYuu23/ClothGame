@@ -1,6 +1,10 @@
 #pragma once
 
 #include "../ISceneTransition/ISceneTransition.h"
+
+/// <summary>
+/// シーン遷移の基盤
+/// </summary>
 class AbstractSceneTransitionFactory
 {
 

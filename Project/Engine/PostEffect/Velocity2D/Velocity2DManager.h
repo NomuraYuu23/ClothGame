@@ -3,6 +3,9 @@
 #include <wrl/client.h>
 #include <d3d12.h>
 
+/// <summary>
+/// モーションブラーで使用する速度2Dのマネージャー
+/// </summary>
 class Velocity2DManager
 {
 

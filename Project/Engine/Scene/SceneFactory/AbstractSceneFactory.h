@@ -2,6 +2,9 @@
 
 #include "../IScene/IScene.h"
 
+/// <summary>
+/// シーンファクトリーの基盤
+/// </summary>
 class AbstractSceneFactory {
 
 public: //メンバ関数

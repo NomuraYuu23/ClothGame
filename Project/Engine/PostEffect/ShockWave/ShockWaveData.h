@@ -1,6 +1,9 @@
 #pragma once
 #include "../../Math/Vector/Vector2.h"
 
+/// <summary>
+/// 衝撃波データ
+/// </summary>
 struct ShockWaveData
 {
 
