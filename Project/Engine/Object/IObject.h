@@ -10,13 +10,18 @@
 
 #include "../3D/Transform/WorldTransform.h"
 
+/// <summary>
+/// オブジェクトの基盤
+/// </summary>
 class IObject
 {
 
 protected: 
 
+	// コマンドリスト
 	static ID3D12GraphicsCommandList* commandList_;
 
+	// 新しいシリアルナンバー
 	static uint32_t newSerialNumber_;
 
 public:
@@ -61,11 +66,28 @@ public: // 関数
 	/// <returns></returns>
 	std::string GetClassNameString() { return className_; }
 
+	/// <summary>
+	/// 死んでるか設定
+	/// </summary>
+	/// <param name="isDead"></param>
 	void SetIsDead(bool isDead) { isDead_ = isDead; }
+	
+	/// <summary>
+	/// 死んでるか取得
+	/// </summary>
+	/// <returns></returns>
 	bool GetIsDead() { return isDead_; }
 
+	/// <summary>
+	/// シリアルナンバー取得
+	/// </summary>
+	/// <returns></returns>
 	uint32_t GetSerialNumber() { return serialNumber_; }
 
+	/// <summary>
+	/// ワールドトランスフォームアドレス取得
+	/// </summary>
+	/// <returns></returns>
 	WorldTransform* GetWorldTransformAdress() { return &worldTransform_; }
 
 protected: // 変数

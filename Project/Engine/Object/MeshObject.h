@@ -5,6 +5,9 @@
 #include "../Collision/BaseCollisionManager.h"
 #include "../Collider/ColliderDebugDraw/ColliderDebugDraw.h"
 
+/// <summary>
+/// メッシュオブジェクト
+/// </summary>
 class MeshObject :
     public IObject
 {
@@ -47,14 +50,14 @@ public: // 関数
     /// <summary>
     /// コライダー登録
     /// </summary>
-    /// <param name="collisionManager"></param>
+    /// <param name="collisionManager">衝突マネージャー</param>
     virtual void CollisionListRegister(BaseCollisionManager* collisionManager);
 
     /// <summary>
     /// コライダー登録
     /// </summary>
-    /// <param name="collisionManager"></param>
-    /// <param name="colliderDebugDraw"></param>
+    /// <param name="collisionManager">衝突マネージャー</param>
+    /// <param name="colliderDebugDraw">衝突デバッグ描画</param>
     virtual void CollisionListRegister(BaseCollisionManager* collisionManager, ColliderDebugDraw* colliderDebugDraw);
 
 protected: // 関数
@@ -72,7 +75,16 @@ protected: // 関数
 
 public: // アクセッサ
 
+    /// <summary>
+    /// コライダー取得
+    /// </summary>
+    /// <returns></returns>
     ColliderShape* GetCollider() { return collider_.get(); };
+    
+    /// <summary>
+    /// コライダー設定
+    /// </summary>
+    /// <param name="collider"></param>
     void SetCollider(ColliderShape* collider) { collider_.reset(collider); };
 
     /// <summary>
@@ -87,6 +99,10 @@ public: // アクセッサ
     /// <returns></returns>
     Vector3 GetSaveVelocity() { return saveVelocity_; }
 
+    /// <summary>
+    /// マテリアル色設定
+    /// </summary>
+    /// <param name="color"></param>
     void SetMaterialColor(const Vector4 color) { return material_->SetColor(color); }
 
 protected: // 変数

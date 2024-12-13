@@ -9,13 +9,13 @@
 #include "../Math/DeltaTime.h"
 
 // パーティクルの最大数
-const uint32_t GPUParticle::kParticleMax = 1024;
+const uint32_t GPUParticle::kParticleMax_ = 1024;
 // モデルのディレクトリパス
-const std::string GPUParticle::kModelDirectoryPath = "Resources/Particle/";
+const std::string GPUParticle::kModelDirectoryPath_ = "Resources/Particle/";
 // モデルのディレクトリパス
-const std::string GPUParticle::kTextureDirectoryPath = "Resources/Particle/";
+const std::string GPUParticle::kTextureDirectoryPath_ = "Resources/Particle/";
 // モデルのファイルの名前
-const std::string GPUParticle::kFilename = "plane.obj";
+const std::string GPUParticle::kFilename_ = "plane.obj";
 // モデル
 std::unique_ptr<Model> GPUParticle::model_ = nullptr;
 
@@ -23,8 +23,8 @@ void GPUParticle::StaticInitialzie()
 {
 
 	model_.reset(Model::Create(
-		kModelDirectoryPath,
-		kFilename,
+		kModelDirectoryPath_,
+		kFilename_,
 		DirectXCommon::GetInstance()));
 
 }
@@ -126,7 +126,7 @@ void GPUParticle::Draw(
 	// マテリアル
 	commandList->SetGraphicsRootConstantBufferView(3, material_->GetMaterialBuff()->GetGPUVirtualAddress());
 	// 描画
-	commandList->DrawInstanced(6, kParticleMax, 0, 0);
+	commandList->DrawInstanced(6, kParticleMax_, 0, 0);
 
 	// リソースバリア
 	ResouseBarrierToUnorderedAccess(commandList);
@@ -165,7 +165,7 @@ void GPUParticle::UAVBufferInitialize(ID3D12Device* device,
 {
 
 	// バッファ
-	buff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(ParticleCS) + 0xff) & ~0xff) * kParticleMax);
+	buff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(ParticleCS) + 0xff) & ~0xff) * kParticleMax_);
 
 	/// UAV
 
@@ -174,7 +174,7 @@ void GPUParticle::UAVBufferInitialize(ID3D12Device* device,
 	uavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	uavDesc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 	uavDesc.Buffer.FirstElement = 0;
-	uavDesc.Buffer.NumElements = kParticleMax;
+	uavDesc.Buffer.NumElements = kParticleMax_;
 	uavDesc.Buffer.CounterOffsetInBytes = 0;
 	uavDesc.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 	uavDesc.Buffer.StructureByteStride = sizeof(ParticleCS);
@@ -196,7 +196,7 @@ void GPUParticle::UAVBufferInitialize(ID3D12Device* device,
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
 	srvDesc.Buffer.FirstElement = 0;
 	srvDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
-	srvDesc.Buffer.NumElements = kParticleMax;
+	srvDesc.Buffer.NumElements = kParticleMax_;
 	srvDesc.Buffer.StructureByteStride = sizeof(ParticleCS);
 
 	srvHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
@@ -230,14 +230,14 @@ void GPUParticle::UAVBufferInitialize(ID3D12Device* device,
 
 
 	// フリーリストUAVバッファ
-	freeListBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(uint32_t) + 0xff) & ~0xff) * kParticleMax);
+	freeListBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(uint32_t) + 0xff) & ~0xff) * kParticleMax_);
 
 	D3D12_UNORDERED_ACCESS_VIEW_DESC freeListUavDesc{};
 
 	freeListUavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	freeListUavDesc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 	freeListUavDesc.Buffer.FirstElement = 0;
-	freeListUavDesc.Buffer.NumElements = kParticleMax;
+	freeListUavDesc.Buffer.NumElements = kParticleMax_;
 	freeListUavDesc.Buffer.CounterOffsetInBytes = 0;
 	freeListUavDesc.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 	freeListUavDesc.Buffer.StructureByteStride = sizeof(uint32_t);
@@ -263,7 +263,7 @@ void GPUParticle::MaterialInitialize()
 		textureHandle_ = model_->GetTextureHandles()[0];
 	}
 	else {
-		textureHandle_ = TextureManager::Load(kTextureDirectoryPath + textureFilename_, DirectXCommon::GetInstance());
+		textureHandle_ = TextureManager::Load(kTextureDirectoryPath_ + textureFilename_, DirectXCommon::GetInstance());
 	}
 
 }

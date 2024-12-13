@@ -10,6 +10,9 @@
 #include "../Collision/BaseCollisionManager.h"
 #include "AbstractObjectFactory.h"
 
+/// <summary>
+/// オブジェクトマネージャーの基盤
+/// </summary>
 class BaseObjectManager
 {
 
@@ -56,14 +59,14 @@ public: //virtualではない
 	/// <summary>
 	/// オブジェクト検索
 	/// </summary>
-	/// <param name="name"></param>
+	/// <param name="name">名前</param>
 	/// <returns></returns>
 	IObject* GetObjectPointer(const std::string name);
 
 	/// <summary>
 	/// コライダー登録
 	/// </summary>
-	/// <param name="collisionManager"></param>
+	/// <param name="collisionManager">衝突マネージャー</param>
 	void CollisionListRegister(BaseCollisionManager* collisionManager);
 
 	/// <summary>
@@ -81,6 +84,7 @@ public: //virtualではない
 
 protected:
 
+	// 名前とオブジェクトデータのペア
 	using ObjectPair = std::pair<std::string, std::unique_ptr<IObject>>;
 
 	// オブジェクト

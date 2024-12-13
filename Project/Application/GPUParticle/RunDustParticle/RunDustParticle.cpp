@@ -79,7 +79,7 @@ void RunDustParticle::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera& c
 	commandList->SetGraphicsRootConstantBufferView(3, material_->GetMaterialBuff()->GetGPUVirtualAddress());
 
 	// 描画
-	commandList->DrawInstanced(6, kParticleMax, 0, 0);
+	commandList->DrawInstanced(6, kParticleMax_, 0, 0);
 
 	// リソースバリア
 	ResouseBarrierToUnorderedAccess(commandList);

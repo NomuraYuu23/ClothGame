@@ -1,6 +1,10 @@
 #pragma once
 #include "../Math/Matrix/Matrix4x4.h"
 #include "../Camera/BaseCamera.h"
+
+/// <summary>
+/// ビルボード行列
+/// </summary>
 class BillBoardMatrix
 {
 
