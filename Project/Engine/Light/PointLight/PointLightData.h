@@ -2,6 +2,9 @@
 #include "../../Math/Vector/Vector4.h"
 #include "../../Math/Vector/Vector3.h"
 
+/// <summary>
+/// ポイントライトデータ
+/// </summary>
 struct PointLightData{
 	Vector4 color; // ライト色
 	Vector3 position; // ライトの位置

@@ -7,16 +7,16 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* SpotLightManager::sDevice = nullptr;
+ID3D12Device* SpotLightManager::sDevice_ = nullptr;
 // コマンドリスト
-ID3D12GraphicsCommandList* SpotLightManager::sCommandList = nullptr;
+ID3D12GraphicsCommandList* SpotLightManager::sCommandList_ = nullptr;
 
 void SpotLightManager::StaticInitialize(ID3D12Device* device)
 {
 
 	assert(device);
 
-	sDevice = device;
+	sDevice_ = device;
 
 }
 
@@ -31,7 +31,7 @@ void SpotLightManager::Initialize()
 {
 
 	//平行光源リソースを作る
-	spotLightDataBuff_ = BufferResource::CreateBufferResource(sDevice, ((sizeof(SpotLightData) + 0xff) & ~0xff) * kNumInstanceMax_);
+	spotLightDataBuff_ = BufferResource::CreateBufferResource(sDevice_, ((sizeof(SpotLightData) + 0xff) & ~0xff) * kNumInstanceMax_);
 
 	//書き込むためのアドレスを取得
 	spotLightDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&spotLightDataMap_));
@@ -91,13 +91,13 @@ void SpotLightManager::Update(const std::array<SpotLightData, SpotLightManager::
 void SpotLightManager::Draw(ID3D12GraphicsCommandList* cmdList, uint32_t rootParameterIndex)
 {
 
-	assert(sCommandList == nullptr);
+	assert(sCommandList_ == nullptr);
 
-	sCommandList = cmdList;
+	sCommandList_ = cmdList;
 
-	sCommandList->SetGraphicsRootDescriptorTable(rootParameterIndex, instancingSrvHandleGPU_);
+	sCommandList_->SetGraphicsRootDescriptorTable(rootParameterIndex, instancingSrvHandleGPU_);
 
 	// コマンドリストを解除
-	sCommandList = nullptr;
+	sCommandList_ = nullptr;
 
 }

@@ -10,10 +10,13 @@
 
 #include "DirectionalLightData.h"
 
+/// <summary>
+/// 平行光源
+/// </summary>
 class DirectionalLight
 {
 
-public:
+public: // 静的メンバ関数
 
 	/// <summary>
 	/// 静的初期化
@@ -27,14 +30,14 @@ public:
 	/// <returns></returns>
 	static DirectionalLight* Create();
 
-private:
+private: // 静的メンバ変数
 
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
@@ -44,18 +47,23 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
+	/// <param name="directionalLightData">平行光源データ</param>
 	void Update(const DirectionalLightData& directionalLightData);
 
 	/// <summary>
 	/// 描画
 	/// </summary>
+	/// <param name="cmdList">コマンドリスト</param>
+	/// <param name="rootParameterIndex">ルートパラメータ番号</param>
 	void Draw(ID3D12GraphicsCommandList* cmdList, uint32_t rootParameterIndex);
 
-private:
+private: // メンバ変数
 
+	// バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> directionalLightBuff_;
 
-	DirectionalLightData* directionalLightMap = nullptr;
+	// マップ
+	DirectionalLightData* directionalLightMap_ = nullptr;
 
 };
 

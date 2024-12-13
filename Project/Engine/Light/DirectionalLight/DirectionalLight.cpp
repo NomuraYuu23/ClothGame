@@ -12,9 +12,9 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* DirectionalLight::sDevice = nullptr;
+ID3D12Device* DirectionalLight::sDevice_ = nullptr;
 // コマンドリスト
-ID3D12GraphicsCommandList* DirectionalLight::sCommandList = nullptr;
+ID3D12GraphicsCommandList* DirectionalLight::sCommandList_ = nullptr;
 
 /// <summary>
 /// 静的初期化
@@ -25,7 +25,7 @@ void DirectionalLight::StaticInitialize(
 
 	assert(device);
 
-	sDevice = device;
+	sDevice_ = device;
 
 }
 
@@ -52,15 +52,15 @@ DirectionalLight* DirectionalLight::Create() {
 void DirectionalLight::Initialize() {
 
 	//平行光源リソースを作る
-	directionalLightBuff_ = BufferResource::CreateBufferResource(sDevice, (sizeof(DirectionalLightData) + 0xff) & ~0xff);
+	directionalLightBuff_ = BufferResource::CreateBufferResource(sDevice_, (sizeof(DirectionalLightData) + 0xff) & ~0xff);
 
 	//書き込むためのアドレスを取得
-	directionalLightBuff_->Map(0, nullptr, reinterpret_cast<void**>(&directionalLightMap));
+	directionalLightBuff_->Map(0, nullptr, reinterpret_cast<void**>(&directionalLightMap_));
 
 	//デフォルト値
-	directionalLightMap->color = { 1.0f,1.0f,1.0f,1.0f };
-	directionalLightMap->direction = { 0.0f, -1.0f, 0.0f };
-	directionalLightMap->intencity = 1.0f;
+	directionalLightMap_->color = { 1.0f,1.0f,1.0f,1.0f };
+	directionalLightMap_->direction = { 0.0f, -1.0f, 0.0f };
+	directionalLightMap_->intencity = 1.0f;
 
 }
 
@@ -69,9 +69,9 @@ void DirectionalLight::Initialize() {
 /// </summary>
 void DirectionalLight::Update(const DirectionalLightData& directionalLightData) {
 
-	directionalLightMap->color = directionalLightData.color;
-	directionalLightMap->direction = Vector3::Normalize(directionalLightData.direction);
-	directionalLightMap->intencity = directionalLightData.intencity;
+	directionalLightMap_->color = directionalLightData.color;
+	directionalLightMap_->direction = Vector3::Normalize(directionalLightData.direction);
+	directionalLightMap_->intencity = directionalLightData.intencity;
 
 }
 
@@ -80,15 +80,15 @@ void DirectionalLight::Update(const DirectionalLightData& directionalLightData) 
 /// </summary>
 void DirectionalLight::Draw(ID3D12GraphicsCommandList* cmdList, uint32_t rootParameterIndex) {
 
-	assert(sCommandList == nullptr);
+	assert(sCommandList_ == nullptr);
 
-	sCommandList = cmdList;
+	sCommandList_ = cmdList;
 
 	//光源
-	sCommandList->SetGraphicsRootConstantBufferView(rootParameterIndex, directionalLightBuff_->GetGPUVirtualAddress());
+	sCommandList_->SetGraphicsRootConstantBufferView(rootParameterIndex, directionalLightBuff_->GetGPUVirtualAddress());
 
 	// コマンドリストを解除
-	sCommandList = nullptr;
+	sCommandList_ = nullptr;
 
 }
 
