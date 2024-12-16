@@ -1,20 +1,18 @@
 #include "ShadowManager.h"
 #include "Shadow.h"
 
+const float ShadowManager::kPosYAdd_ = 0.1f;
+
 void ShadowManager::Initialize(Model* model)
 {
 
 	LargeNumberOfObjects::Initialize(model);
-
 
 	// 影を出す数
 	shadowCount_ = 0u;
 
 	// 影が最大か
 	isShadowMax_ = false;
-
-	// 影の位置追加分
-	posYAdd_ = 0.1f;
 
 }
 
@@ -105,21 +103,21 @@ bool ShadowManager::CollisionCheck(const ShadowCandidate& castsShadow, const Sha
 {
 
 	// 高さ確認
-	if (castsShadow.position_.y + castsShadow.size_.y >= shadowAppears.position_.y + shadowAppears.size_.y) {
+	if (castsShadow.position.y + castsShadow.size.y >= shadowAppears.position.y + shadowAppears.size.y) {
 
 		// 完全に内包している
-		if (castsShadow.position_.x - castsShadow.size_.x >= shadowAppears.position_.x - shadowAppears.size_.x &&
-			castsShadow.position_.x + castsShadow.size_.x <= shadowAppears.position_.x + shadowAppears.size_.x &&
-			castsShadow.position_.z - castsShadow.size_.z >= shadowAppears.position_.z - shadowAppears.size_.z &&
-			castsShadow.position_.z + castsShadow.size_.z <= shadowAppears.position_.z + shadowAppears.size_.z) {
+		if (castsShadow.position.x - castsShadow.size.x >= shadowAppears.position.x - shadowAppears.size.x &&
+			castsShadow.position.x + castsShadow.size.x <= shadowAppears.position.x + shadowAppears.size.x &&
+			castsShadow.position.z - castsShadow.size.z >= shadowAppears.position.z - shadowAppears.size.z &&
+			castsShadow.position.z + castsShadow.size.z <= shadowAppears.position.z + shadowAppears.size.z) {
 			CompriseOnCollision(castsShadow, shadowAppears);
 		}
 		// 完全に内包していないが衝突
 		else if (
-			castsShadow.position_.x + castsShadow.size_.x >= shadowAppears.position_.x - shadowAppears.size_.x &&
-			castsShadow.position_.x - castsShadow.size_.x <= shadowAppears.position_.x + shadowAppears.size_.x &&
-			castsShadow.position_.z + castsShadow.size_.z >= shadowAppears.position_.z - shadowAppears.size_.z &&
-			castsShadow.position_.z - castsShadow.size_.z <= shadowAppears.position_.z + shadowAppears.size_.z) {
+			castsShadow.position.x + castsShadow.size.x >= shadowAppears.position.x - shadowAppears.size.x &&
+			castsShadow.position.x - castsShadow.size.x <= shadowAppears.position.x + shadowAppears.size.x &&
+			castsShadow.position.z + castsShadow.size.z >= shadowAppears.position.z - shadowAppears.size.z &&
+			castsShadow.position.z - castsShadow.size.z <= shadowAppears.position.z + shadowAppears.size.z) {
 			NotCompriseOnCollision(castsShadow, shadowAppears);
 		}
 		// 衝突していない
@@ -145,10 +143,10 @@ void ShadowManager::CompriseOnCollision(const ShadowCandidate& castsShadow, cons
 	obj->Initialize();
 	
 	// ワールドトランスフォーム
-	obj->transform_.translate.x = castsShadow.position_.x;
-	obj->transform_.translate.y = shadowAppears.position_.y + shadowAppears.size_.y + posYAdd_;
-	obj->transform_.translate.z = castsShadow.position_.z;
-	obj->transform_.scale = castsShadow.size_;
+	obj->transform_.translate.x = castsShadow.position.x;
+	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + kPosYAdd_;
+	obj->transform_.translate.z = castsShadow.position.z;
+	obj->transform_.scale = castsShadow.size;
 	obj->transform_.scale.y = 1.0f;
 	obj->Update();
 
@@ -172,10 +170,10 @@ void ShadowManager::NotCompriseOnCollision(const ShadowCandidate& castsShadow, c
 	obj->Initialize();
 
 	// ワールドトランスフォーム
-	obj->transform_.translate.x = castsShadow.position_.x;
-	obj->transform_.translate.y = shadowAppears.position_.y + shadowAppears.size_.y + posYAdd_;
-	obj->transform_.translate.z = castsShadow.position_.z;
-	obj->transform_.scale = castsShadow.size_;
+	obj->transform_.translate.x = castsShadow.position.x;
+	obj->transform_.translate.y = shadowAppears.position.y + shadowAppears.size.y + kPosYAdd_;
+	obj->transform_.translate.z = castsShadow.position.z;
+	obj->transform_.scale = castsShadow.size;
 	obj->transform_.scale.y = 1.0f;
 
 	// マテリアル
@@ -183,30 +181,30 @@ void ShadowManager::NotCompriseOnCollision(const ShadowCandidate& castsShadow, c
 	float move = 0.0f;
 
 	// x
-	if (castsShadow.position_.x + castsShadow.size_.x > shadowAppears.position_.x - shadowAppears.size_.x &&
-		castsShadow.position_.x - castsShadow.size_.x < shadowAppears.position_.x - shadowAppears.size_.x) {
-		obj->transform_.translate.x = shadowAppears.position_.x - shadowAppears.size_.x + castsShadow.size_.x;
-		move = 0.33f * (std::fabsf((shadowAppears.position_.x - shadowAppears.size_.x) - (castsShadow.position_.x - castsShadow.size_.x)) / castsShadow.size_.x / 2.0f);
+	if (castsShadow.position.x + castsShadow.size.x > shadowAppears.position.x - shadowAppears.size.x &&
+		castsShadow.position.x - castsShadow.size.x < shadowAppears.position.x - shadowAppears.size.x) {
+		obj->transform_.translate.x = shadowAppears.position.x - shadowAppears.size.x + castsShadow.size.x;
+		move = 0.33f * (std::fabsf((shadowAppears.position.x - shadowAppears.size.x) - (castsShadow.position.x - castsShadow.size.x)) / castsShadow.size.x / 2.0f);
 		materialPosition.x = 0.33f - move;
 	}
-	else if (castsShadow.position_.x - castsShadow.size_.x < shadowAppears.position_.x + shadowAppears.size_.x &&
-		castsShadow.position_.x + castsShadow.size_.x > shadowAppears.position_.x + shadowAppears.size_.x) {
-		obj->transform_.translate.x = shadowAppears.position_.x + shadowAppears.size_.x - castsShadow.size_.x;
-		move = 0.33f * (std::fabsf((shadowAppears.position_.x + shadowAppears.size_.x) - (castsShadow.position_.x + castsShadow.size_.x)) / castsShadow.size_.x / 2.0f);
+	else if (castsShadow.position.x - castsShadow.size.x < shadowAppears.position.x + shadowAppears.size.x &&
+		castsShadow.position.x + castsShadow.size.x > shadowAppears.position.x + shadowAppears.size.x) {
+		obj->transform_.translate.x = shadowAppears.position.x + shadowAppears.size.x - castsShadow.size.x;
+		move = 0.33f * (std::fabsf((shadowAppears.position.x + shadowAppears.size.x) - (castsShadow.position.x + castsShadow.size.x)) / castsShadow.size.x / 2.0f);
 		materialPosition.x = 0.33f + move;
 	}
 
 	// z
-	if (castsShadow.position_.z + castsShadow.size_.z > shadowAppears.position_.z - shadowAppears.size_.z &&
-		castsShadow.position_.z - castsShadow.size_.z < shadowAppears.position_.z - shadowAppears.size_.z) {
-		obj->transform_.translate.z = shadowAppears.position_.z - shadowAppears.size_.z + castsShadow.size_.z;
-		move = 0.33f * (std::fabsf((shadowAppears.position_.z - shadowAppears.size_.z) - (castsShadow.position_.z - castsShadow.size_.z)) / castsShadow.size_.z / 2.0f);
+	if (castsShadow.position.z + castsShadow.size.z > shadowAppears.position.z - shadowAppears.size.z &&
+		castsShadow.position.z - castsShadow.size.z < shadowAppears.position.z - shadowAppears.size.z) {
+		obj->transform_.translate.z = shadowAppears.position.z - shadowAppears.size.z + castsShadow.size.z;
+		move = 0.33f * (std::fabsf((shadowAppears.position.z - shadowAppears.size.z) - (castsShadow.position.z - castsShadow.size.z)) / castsShadow.size.z / 2.0f);
 		materialPosition.y = 0.33f + move;
 	}
-	else if (castsShadow.position_.z - castsShadow.size_.z < shadowAppears.position_.z + shadowAppears.size_.z &&
-		castsShadow.position_.z + castsShadow.size_.z > shadowAppears.position_.z + shadowAppears.size_.z) {
-		obj->transform_.translate.z = shadowAppears.position_.z + shadowAppears.size_.z - castsShadow.size_.z;
-		move = 0.33f * (std::fabsf((shadowAppears.position_.z + shadowAppears.size_.z) - (castsShadow.position_.z + castsShadow.size_.z)) / castsShadow.size_.z / 2.0f);
+	else if (castsShadow.position.z - castsShadow.size.z < shadowAppears.position.z + shadowAppears.size.z &&
+		castsShadow.position.z + castsShadow.size.z > shadowAppears.position.z + shadowAppears.size.z) {
+		obj->transform_.translate.z = shadowAppears.position.z + shadowAppears.size.z - castsShadow.size.z;
+		move = 0.33f * (std::fabsf((shadowAppears.position.z + shadowAppears.size.z) - (castsShadow.position.z + castsShadow.size.z)) / castsShadow.size.z / 2.0f);
 		materialPosition.y = 0.33f - move;
 	}
 

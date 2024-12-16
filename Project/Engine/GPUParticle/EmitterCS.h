@@ -2,6 +2,9 @@
 #include <cstdint>
 #include "../Math/Vector/Vector3.h"
 
+/// <summary>
+/// エミッタCS
+/// </summary>
 struct EmitterCS
 {
 

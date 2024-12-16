@@ -7,6 +7,9 @@
 #include "../Collider/Collider.h"
 #include "../Collider/ColliderShape.h"
 
+/// <summary>
+/// レベルデータ
+/// </summary>
 class LevelData
 {
 
@@ -70,13 +73,13 @@ public: // サブクラス
 		EulerTransform transform;
 	};
 
+	// 項目をまとめる
 	using ObjectData = std::variant<MeshData, CameraData, LightData>;
 
 public: // 変数
 
 	// オブジェクトの情報
 	std::vector<ObjectData> objectsData_;
-
 
 };
 

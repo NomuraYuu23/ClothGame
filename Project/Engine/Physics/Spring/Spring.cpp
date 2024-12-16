@@ -24,20 +24,20 @@ void Spring::Initialize(
 void Spring::Update()
 {
 
-	Vector3 diff = massPoint_.position - anchor_;
+	Vector3 diff = massPoint_.position_ - anchor_;
 	float length = Vector3::Length(diff);
 	if (length != 0.0f) {
 		Vector3 direction = Vector3::Normalize(diff);
 		Vector3 restPosition = anchor_ + direction * naturalLength_;
-		Vector3 displacement = Vector3::Multiply(length,(massPoint_.position - restPosition));
+		Vector3 displacement = Vector3::Multiply(length,(massPoint_.position_ - restPosition));
 		Vector3 restoringForce = Vector3::Multiply(-stiffness_,displacement);
-		Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_,massPoint_.velocity);
+		Vector3 dampingForce = Vector3::Multiply(-dampingCoefficient_,massPoint_.velocity_);
 		Vector3 force = restoringForce + dampingForce;
-		massPoint_.acceleration = Vector3::Multiply(force, 1.0f / massPoint_.mass)
-			+ Vector3{ 0.0f, -9.8f, 0.0f } * massPoint_.mass;
+		massPoint_.acceleration_ = Vector3::Multiply(force, 1.0f / massPoint_.mass_)
+			+ Vector3{ 0.0f, -9.8f, 0.0f } * massPoint_.mass_;
 	}
 
-	massPoint_.velocity = massPoint_.velocity + massPoint_.acceleration * kDeltaTime_;
-	massPoint_.position = massPoint_.position + massPoint_.velocity * kDeltaTime_;
+	massPoint_.velocity_ = massPoint_.velocity_ + massPoint_.acceleration_ * kDeltaTime_;
+	massPoint_.position_ = massPoint_.position_ + massPoint_.velocity_ * kDeltaTime_;
 
 }

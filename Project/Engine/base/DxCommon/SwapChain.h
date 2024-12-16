@@ -10,10 +10,13 @@
 #include "../../2D/SpriteVertex.h"
 #include "../GraphicsPipelineState/GraphicsPipelineState.h"
 
+/// <summary>
+/// スワップチェイン
+/// </summary>
 class SwapChain
 {
 
-public: // 関数
+public: // メンバ関数
 	
 	/// <summary>
 	/// インスタンス取得
@@ -54,10 +57,15 @@ public: // 関数
 	/// </summary>
 	void Present() { swapChain_->Present(1, 0); }
 
+	/// <summary>
+	///  描画
+	/// </summary>
+	/// <param name="commandList">コマンドリスト</param>
+	/// <param name="renderTargetTexture">レンダーターゲットテクスチャ</param>
 	void Draw(ID3D12GraphicsCommandList* commandList,
 		RenderTargetTexture* renderTargetTexture);
 
-private:
+private: // メンバ関数
 
 	/// <summary>
 	/// 描画前処理
@@ -70,7 +78,7 @@ private:
 	/// </summary>
 	void PostDraw();
 
-private: // 変数
+private: // メンバ変数
 
 	// スワップチェーンの数
 	static const uint32_t kSwapChainNum_ = 2;

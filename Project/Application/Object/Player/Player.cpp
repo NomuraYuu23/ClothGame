@@ -24,8 +24,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	material_->SetEnableLighting(HalfLambert);
 
 	// 衝突マスク
-	collisionAttribute_ = kCollisionAttributePlayer;
-	collisionMask_ -= kCollisionAttributePlayer;
+	collisionAttribute_ = kCollisionAttributePlayer_;
+	collisionMask_ -= kCollisionAttributePlayer_;
 
 	// コライダー
 	OBB obb = std::get<OBB>(*collider_.get());
@@ -59,8 +59,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	runDustParticle_->Initialize(
 		dxCommon->GetDevice(),
 		dxCommon->GetCommadListLoad(),
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
 
 	// エミッタ設定
 	const EmitterCS kEmitter =
@@ -163,6 +163,8 @@ void Player::ParticleDraw(BaseCamera& camera)
 
 void Player::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+
+	collisionData;
 
 	// 地面ブロック
 	if (std::holds_alternative<GroundBlock*>(colliderPartner)) {

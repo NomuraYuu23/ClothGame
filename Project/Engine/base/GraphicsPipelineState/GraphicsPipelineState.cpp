@@ -5,9 +5,9 @@
 using namespace Microsoft::WRL;
 
 // ルートシグネチャ
-Microsoft::WRL::ComPtr<ID3D12RootSignature> GraphicsPipelineState::sRootSignature[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+Microsoft::WRL::ComPtr<ID3D12RootSignature> GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 // パイプラインステートオブジェクト
-Microsoft::WRL::ComPtr<ID3D12PipelineState> GraphicsPipelineState::sPipelineState[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+Microsoft::WRL::ComPtr<ID3D12PipelineState> GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 // デバイス
 ID3D12Device* GraphicsPipelineState::sDevice_;
 
@@ -427,7 +427,7 @@ void GraphicsPipelineState::RootsignatureSetting(PipelineStateIndex pipelineStat
 	}
 	//バイナリを元に生成
 	hr = sDevice_->CreateRootSignature(0, signatureBlob->GetBufferPointer(),
-		signatureBlob->GetBufferSize(), IID_PPV_ARGS(&sRootSignature[pipelineStateName]));
+		signatureBlob->GetBufferSize(), IID_PPV_ARGS(&sRootSignature_[pipelineStateName]));
 	assert(SUCCEEDED(hr));
 
 }
@@ -473,7 +473,7 @@ void GraphicsPipelineState::CreatePSO(const CreatePSODesc& createPSODesc)
 
 	//PSOを生成
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC graphicsPipelineStateDesc{};
-	graphicsPipelineStateDesc.pRootSignature = sRootSignature[createPSODesc.pipelineStateIndex].Get();//RootSignature
+	graphicsPipelineStateDesc.pRootSignature = sRootSignature_[createPSODesc.pipelineStateIndex].Get();//RootSignature
 	graphicsPipelineStateDesc.InputLayout = createPSODesc.inputLayoutDesc;//InputLayout
 	graphicsPipelineStateDesc.VS = { createPSODesc.vertexShaderBlob->GetBufferPointer(),
 	createPSODesc.vertexShaderBlob->GetBufferSize() };//VertexShader
@@ -501,7 +501,7 @@ void GraphicsPipelineState::CreatePSO(const CreatePSODesc& createPSODesc)
 
 	//実際に生成
 	hr = sDevice_->CreateGraphicsPipelineState(&graphicsPipelineStateDesc,
-		IID_PPV_ARGS(&sPipelineState[createPSODesc.pipelineStateIndex]));
+		IID_PPV_ARGS(&sPipelineState_[createPSODesc.pipelineStateIndex]));
 	assert(SUCCEEDED(hr));
 
 }

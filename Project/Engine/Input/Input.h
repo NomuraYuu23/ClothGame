@@ -11,29 +11,43 @@
 
 #include "../Math/Vector/Vector2.h"
 
+/// <summary>
+/// ジョイスティックボタン一覧
+/// </summary>
 enum JoystickButton {
-	kJoystickButtonA,
-	kJoystickButtonB,
-	kJoystickButtonX,
-	kJoystickButtonY,
-	kJoystickButtonLB,
-	kJoystickButtonRB,
-	kJoystickButtonBACK,
-	kJoystickButtonSTART,
-	kJoystickButtonLST,
-	kJoystickButtonRST,
+	kJoystickButtonA, // ボタンA
+	kJoystickButtonB, // ボタンB
+	kJoystickButtonX, // ボタンX
+	kJoystickButtonY, // ボタンY
+	kJoystickButtonLB, // ボタンLB
+	kJoystickButtonRB, // ボタンRB
+	kJoystickButtonBACK, // ボタンBACK
+	kJoystickButtonSTART, // ボタンSTART
+	kJoystickButtonLST, // ボタンLST
+	kJoystickButtonRST, // ボタンRST
 };
 
+/// <summary>
+/// 入力関係
+/// </summary>
 class Input
 {
+
 public:
+
+	/// <summary>
+	/// マウスがどれだけ動いたか
+	/// </summary>
 	struct MouseMove {
-		LONG lX;
-		LONG lY;
-		LONG lZ;
+		LONG lX; // X
+		LONG lY; // Y
+		LONG lZ; // Z
 	};
 
-
+	/// <summary>
+	/// インスタンス取得
+	/// </summary>
+	/// <returns></returns>
 	static Input* GetInstance();
 
 	/// <summary>
@@ -81,6 +95,10 @@ public:
 	/// <returns>キーを離した瞬間か</returns>
 	bool ReleaseKey(uint8_t keyNumber) const;
 
+	/// <summary>
+	/// キー取得
+	/// </summary>
+	/// <returns></returns>
 	const std::array<BYTE, 256>& GetAllKey() const { return key_; }
 
 	/// <summary>
@@ -128,6 +146,10 @@ public:
 	/// <returns>マウスの位置</returns>
 	const Vector2& GetMousePosition(HWND hwnd);
 
+	/// <summary>
+	/// マウス取得
+	/// </summary>
+	/// <returns></returns>
 	const DIMOUSESTATE2& GetAllMouse() const { return mouse_; }
 
 	/// <summary>
@@ -200,6 +222,10 @@ public:
 	/// </summary>
 	void JoystickConnected(HWND hwnd);
 
+	/// <summary>
+	/// つながっているかどうか
+	/// </summary>
+	/// <returns></returns>
 	bool GetJoystickConnected() { return joystickConnected; }
 
 private: //XInput
@@ -257,17 +283,21 @@ private: //XInput
 	Vector2 XGetRightAnalogstick(float deadZone);
 
 	/// <summary>
-	/// 
+	/// LTrriger取得
 	/// </summary>
 	/// <returns></returns>
 	bool XGetLTrrigger();
 	
 	/// <summary>
-	/// 
+	/// RTrriger取得
 	/// </summary>
 	/// <returns></returns>
 	bool XGetRTrrigger();
 
+	/// <summary>
+	/// Joystickの状態取得
+	/// </summary>
+	/// <returns></returns>
 	const XINPUT_STATE& GetXJoystickState() const { return xJoystickState_; }
 
 	/// <summary>
@@ -332,43 +362,57 @@ private: //directInput
 	Vector2 DirectGetRightAnalogstick(float deadZone) const;
 
 	/// <summary>
-	/// 左右のトリガーの状態を取得()
+	/// 左右のトリガーの状態を取得
 	/// </summary>
 	/// <returns></returns>
 	float DirectGetLRTrrigger() const;
 
+	/// <summary>
+	/// Joystickの状態取得
+	/// </summary>
+	/// <returns></returns>
 	const DIJOYSTATE2& GetDirectJoystickState() const { return directJoystickState_; }
 
-private:
+private: // シングルトン
 
 	Input() = default;
 	~Input() = default;
 	Input(const Input&) = delete;
 	const Input& operator=(const Input&) = delete;
 
+private: // メンバ変数
 
 	// DirectInput
 	Microsoft::WRL::ComPtr<IDirectInput8> directInput_ = nullptr;
 	
 	//キーボード
 	Microsoft::WRL::ComPtr<IDirectInputDevice8> directKeyboard_;
+	// キー情報
 	std::array<BYTE, 256> key_;
+	// 前キー情報
 	std::array<BYTE, 256> keyPre_;
 
 	// マウス
 	Microsoft::WRL::ComPtr<IDirectInputDevice8> directMouse_ = nullptr;
+	// マウス状態
 	DIMOUSESTATE2 mouse_;
+	// マウス前状態
 	DIMOUSESTATE2 mousePre_;
+	// マウス位置
 	Vector2 mousePosition_;
 
-	// ジョイスティック
+	// directジョイスティック
 	Microsoft::WRL::ComPtr<IDirectInputDevice8> directJoystick_ = nullptr;
+	// directInput状態
 	DIJOYSTATE2 directJoystickState_;
+	// directInput前状態
 	DIJOYSTATE2 directJoystickPreState_;
 	
-	//XInput
+	// XInputジョイスティック
 	DWORD xJoystick_;
+	// XInput状態
 	XINPUT_STATE xJoystickState_;
+	// XInput前状態
 	XINPUT_STATE xJoystickPreState_;
 
 	// DIJOYSTATE2かXInputか

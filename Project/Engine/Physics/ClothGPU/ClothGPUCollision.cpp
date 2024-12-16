@@ -49,8 +49,8 @@ void ClothGPUCollision::CreateBufferPlane(ClothGPUCollision* myData)
 	myData->collisionDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&myData->collisionDataMap_));
 	// 衝突形状データ作成
 	ClothGPUCollision::Plane plane{};
-	plane.distance_ = 0.0f;
-	plane.normal_ = { 0.0f, 1.0f, 0.0f };
+	plane.distance = 0.0f;
+	plane.normal = { 0.0f, 1.0f, 0.0f };
 	// 衝突するデータマップ
 	CollisionDataMap map;
 	map = plane;
@@ -66,8 +66,8 @@ void ClothGPUCollision::CreateBufferSphere(ClothGPUCollision* myData)
 	myData->collisionDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&myData->collisionDataMap_));
 	// 衝突形状データ作成
 	ClothGPUCollision::Sphere sphere{};
-	sphere.radius_ = 0.5f;
-	sphere.position_ = { 0.0f, 0.0f, 0.0f };
+	sphere.radius = 0.5f;
+	sphere.position = { 0.0f, 0.0f, 0.0f };
 	// 衝突するデータマップ
 	CollisionDataMap map;
 	map = sphere;
@@ -83,9 +83,9 @@ void ClothGPUCollision::CreateBufferCapsule(ClothGPUCollision* myData)
 	myData->collisionDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&myData->collisionDataMap_));
 	// 衝突形状データ作成
 	ClothGPUCollision::Capsule capsule{};
-	capsule.radius_ = 0.5f;
-	capsule.origin_ = { 0.0f, 0.0f, 0.0f };
-	capsule.diff_ = { 0.0f, 1.0f, 0.0f };
+	capsule.radius = 0.5f;
+	capsule.origin = { 0.0f, 0.0f, 0.0f };
+	capsule.diff = { 0.0f, 1.0f, 0.0f };
 	// 衝突するデータマップ
 	CollisionDataMap map;
 	map = capsule;

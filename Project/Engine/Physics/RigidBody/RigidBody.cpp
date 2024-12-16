@@ -6,26 +6,26 @@ void RigidBody::Initialize(float mass, const Vector3& size)
 {
 
 	// 慣性テンソル作成
-	inertiaTensor = InertiaTensor::CreateRectangular(mass, size);
+	inertiaTensor_ = InertiaTensor::CreateRectangular(mass, size);
 
 	// 基本姿勢での慣性テンソル作成
-	basicPostureInertiaTensor = inertiaTensor;
+	basicPostureInertiaTensor_ = inertiaTensor_;
 
 	// 姿勢行列作成
-	postureMatrix = Matrix4x4::MakeRotateXYZMatrix({ 0.0f, 0.0f, 0.0f });
+	postureMatrix_ = Matrix4x4::MakeRotateXYZMatrix({ 0.0f, 0.0f, 0.0f });
 
-	angularVelocity = { 0.0f,0.0f,0.0f }; // 角速度
-	angularMomentum = { 0.0f,0.0f,0.0f }; // 角運動量
+	angularVelocity_ = { 0.0f,0.0f,0.0f }; // 角速度
+	angularMomentum_ = { 0.0f,0.0f,0.0f }; // 角運動量
 
-	centerOfGravityVelocity = { 0.0f,0.0f,0.0f }; // 重心位置速度
+	centerOfGravityVelocity_ = { 0.0f,0.0f,0.0f }; // 重心位置速度
 
 }
 
 void RigidBody::ApplyForce(const Vector3& center, const Vector3& pointOfAction, const Vector3& force)
 {
 
-	centerOfGravity = center;
-	torque = RigidBody::TorqueCalc(centerOfGravity, pointOfAction, force);
+	centerOfGravity_ = center;
+	torque_ = RigidBody::TorqueCalc(centerOfGravity_, pointOfAction, force);
 
 }
 
@@ -37,6 +37,8 @@ void RigidBody::CollisionPositionConfirmation(
 	bool isGround,
 	float power)
 {
+
+	pairObb;
 
 	// 地面に近い点を2点求める
 	Vector3 obbVertex[8];
@@ -109,7 +111,7 @@ void RigidBody::CollisionPositionConfirmation(
 		force.y = -power;
 	}
 	else {
-		rigidBody->centerOfGravityVelocity.y = 0.0f; // 重力があるため0にしないと変になる
+		rigidBody->centerOfGravityVelocity_.y = 0.0f; // 重力があるため0にしないと変になる
 		return;
 	}
 
@@ -119,17 +121,17 @@ void RigidBody::CollisionPositionConfirmation(
 		force);
 
 	// 反発
-	rigidBody->centerOfGravityVelocity = rigidBody->centerOfGravityVelocity * -coefficientOfRestitution;
+	rigidBody->centerOfGravityVelocity_ = rigidBody->centerOfGravityVelocity_ * -coefficientOfRestitution;
 	
 	// 小さい値だったら動かさない
-	if (std::fabsf(rigidBody->centerOfGravityVelocity.x) < Gravity::GetPower() * kDeltaTime_) {
-		rigidBody->centerOfGravityVelocity.x = 0.0f;
+	if (std::fabsf(rigidBody->centerOfGravityVelocity_.x) < Gravity::GetPower() * kDeltaTime_) {
+		rigidBody->centerOfGravityVelocity_.x = 0.0f;
 	}
-	if (std::fabsf(rigidBody->centerOfGravityVelocity.y) < Gravity::GetPower() * kDeltaTime_) {
-		rigidBody->centerOfGravityVelocity.y = 0.0f;
+	if (std::fabsf(rigidBody->centerOfGravityVelocity_.y) < Gravity::GetPower() * kDeltaTime_) {
+		rigidBody->centerOfGravityVelocity_.y = 0.0f;
 	}
-	if (std::fabsf(rigidBody->centerOfGravityVelocity.z) < Gravity::GetPower() * kDeltaTime_) {
-		rigidBody->centerOfGravityVelocity.z = 0.0f;
+	if (std::fabsf(rigidBody->centerOfGravityVelocity_.z) < Gravity::GetPower() * kDeltaTime_) {
+		rigidBody->centerOfGravityVelocity_.z = 0.0f;
 	}
 
 }

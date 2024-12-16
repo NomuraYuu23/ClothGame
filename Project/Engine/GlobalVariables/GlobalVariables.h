@@ -6,6 +6,9 @@
 #include "../Math/Vector/Vector3.h"
 #include "../Math/Vector/Vector2.h"
 
+/// <summary>
+/// グローバル変数
+/// </summary>
 class GlobalVariables {
 
 public:
@@ -106,14 +109,15 @@ public:
 	// 値の取得(Vector3)
 	Vector3 GetVector3Value(const std::string& groupName, const std::string& key);
 
-private:
+private: // シングルトン
 	GlobalVariables() = default;
 	~GlobalVariables() = default;
 	GlobalVariables(const GlobalVariables&) = delete;
 	const GlobalVariables& operator=(const GlobalVariables&) = delete;
 
-	//項目
+private:
 
+	//項目
 	using Item = std::variant<int32_t, uint32_t, float, Vector2, Vector3>;
 	using Group = std::map<std::string, Item>;
 
@@ -121,6 +125,6 @@ private:
 	std::map<std::string, Group> datas_;
 
 	// グローバル変数の保存先ファイルパス
-	const std::string kDirectoryPath = "Resources/GlobalVariables/";
+	const std::string kDirectoryPath_ = "Resources/GlobalVariables/";
 
 };

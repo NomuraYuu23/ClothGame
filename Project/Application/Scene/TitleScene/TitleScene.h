@@ -1,13 +1,19 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
-
 #include "../../../Engine/PostEffect/HSV/HSVFilter.h"
 
-class TitleScene : public IScene
+/// <summary>
+/// タイトルシーン
+/// </summary>
+class TitleScene : 
+	public IScene
 {
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~TitleScene();
 
 	/// <summary>
@@ -33,7 +39,7 @@ public: // メンバ関数
 private: // メンバ関数
 
 	/// <summary>
-	/// 
+	/// デバッグカメラ更新
 	/// </summary>
  	void DebugCameraUpdate();
 
@@ -54,21 +60,25 @@ private: // メンバ変数
 
 	// 衝撃波
 	std::unique_ptr<ShockWaveManager> shockWaveManager_;
+	// 衝撃波を出してるか
 	bool isShockWave_;
 
-	// ボタン
+	// ボタンスプライト
 	std::unique_ptr<Sprite> buttonSprite_;
+	// ボタンテクスチャハンドル
 	uint32_t buttonTextureHandle_;
-	// 点滅用媒介変数
+	// ボタン点滅用媒介変数
 	float buttonAlphaT_;
-	// 点滅用媒介変数速度
+	// ボタン点滅用媒介変数速度
 	float buttonAlphaTSpeed_;
-	// 点滅用媒介変数は増えるか
+	// ボタン点滅用媒介変数は増えるか
 	bool buttonItIncreaseAlphaT_;
-	// 色
+	// ボタン色
 	Vector4 buttonColor_;
 
+	// タイトルスプライト
 	std::unique_ptr<Sprite> titleSprite_;
+	// タイトルテクスチャハンドル
 	uint32_t titleTextureHandle_;
 
 };

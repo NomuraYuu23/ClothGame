@@ -13,6 +13,9 @@
 #include "InputLayoutManager.h"
 #include "BlendStateManager.h"
 
+/// <summary>
+/// グラフィックスパイプラインステート
+/// </summary>
 class GraphicsPipelineState
 {
 
@@ -67,9 +70,9 @@ public: // サブクラス
 public: // 変数
 
 	// ルートシグネチャ
-	static Microsoft::WRL::ComPtr<ID3D12RootSignature> sRootSignature[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+	static Microsoft::WRL::ComPtr<ID3D12RootSignature> sRootSignature_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 	// パイプラインステートオブジェクト
-	static Microsoft::WRL::ComPtr<ID3D12PipelineState> sPipelineState[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
+	static Microsoft::WRL::ComPtr<ID3D12PipelineState> sPipelineState_[GraphicsPipelineState::PipelineStateIndex::kPipelineStateIndexOfCount];
 
 public: // 関数
 
@@ -114,6 +117,7 @@ private: // パイプラインステートオブジェクト作成
 	/// RootSignature設定
 	/// </summary>
 	/// <param name="pipelineStateName">パイプラインステートの名前</param>
+	/// <param name="rootsignatureFlags">シグネチャフラッグ</param>
 	/// <param name="rootParameterIndex">ルートパラメータの名前</param>
 	/// <param name="samplerIndex">サンプラーの名前</param>
 	static void RootsignatureSetting(PipelineStateIndex pipelineStateName, D3D12_ROOT_SIGNATURE_FLAGS rootsignatureFlags,

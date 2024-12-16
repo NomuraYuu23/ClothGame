@@ -24,7 +24,7 @@ void Velocity2DManager::ImGuiDraw()
 {
 	
 	ImGui::Begin("Velocity2D");
-	ImGui::DragFloat2("velocity", &velocity2DDataMap_->velocity.x);
+	ImGui::DragFloat2("velocity_", &velocity2DDataMap_->velocity.x);
 	ImGui::End();
 
 }

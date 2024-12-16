@@ -5,13 +5,16 @@
 #include "../3D/Model/ModelNodeData.h"
 #include "../3D/Model/ModelNode.h"
 
+/// <summary>
+/// ローカル行列マネージャー
+/// </summary>
 class LocalMatrixManager
 {
 
 public:
 
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 
 public:
 

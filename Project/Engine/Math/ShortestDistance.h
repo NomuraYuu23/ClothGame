@@ -3,11 +3,13 @@
 #include "../Line/Line.h"
 #include "../Line/Segment.h"
 
-
+/// <summary>
+/// 最短距離
+/// </summary>
 class ShortestDistance
 {
 
-public:
+public: // メンバ関数
 
     /// <summary>
     /// シングルトンインスタンスの取得
@@ -59,7 +61,7 @@ public:
     /// <returns>最短距離</returns>
     static float SegmentSegmentDist(const Segment& seg1, const Segment& seg2, Vector3& p1, Vector3& p2, float& t1, float& t2);
 
-private:
+private: // シングルトン
     ShortestDistance() = default;
     ~ShortestDistance() = default;
     ShortestDistance(const ShortestDistance&) = delete;

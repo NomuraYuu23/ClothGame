@@ -186,6 +186,8 @@ Microsoft::WRL::ComPtr<ID3D12Resource> TextureManager::CreateTextureResource(con
 		D3D12_RESOURCE_STATE_COPY_DEST, //データ転送される設定
 		nullptr, //Clear最適値。使わないのでnullptr
 		IID_PPV_ARGS(&resource)); //作成するResourceポインタへのポインタ
+	// リリース版警告回避
+	hr;
 	assert(SUCCEEDED(hr));
 	return resource;
 
@@ -238,7 +240,7 @@ uint32_t TextureManager::LoadInternal(const std::string& fileName, DirectXCommon
 		}
 	}
 
-	assert(indexNextDescriptorHeap < SRVDescriptorHerpManager::kNumDescriptors);
+	assert(indexNextDescriptorHeap < SRVDescriptorHerpManager::kNumDescriptors_);
 	uint32_t handle = indexNextDescriptorHeap;
 
 	Texture& texture = textures_.at(handle);

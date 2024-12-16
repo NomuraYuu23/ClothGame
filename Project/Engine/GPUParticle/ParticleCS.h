@@ -3,6 +3,9 @@
 #include "../Math/Vector/Vector3.h"
 #include "../Math/Vector/Vector4.h"
 
+/// <summary>
+/// パーティクルCS
+/// </summary>
 struct ParticleCS
 {
 

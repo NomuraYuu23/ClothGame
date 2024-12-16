@@ -2,8 +2,12 @@
 #include "GhostStateFactory.h"
 #include "../IGhostState.h"
 
+// 前方宣言
 class Ghost;
 
+/// <summary>
+/// ゴーストの状態システム
+/// </summary>
 class GhostStateSystem
 {
 

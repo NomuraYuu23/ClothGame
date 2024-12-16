@@ -3,10 +3,13 @@
 #include <dxgi1_6.h>
 #include <wrl.h>
 
+/// <summary>
+/// コマンド
+/// </summary>
 class DxCommand
 {
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 静的初期化
@@ -20,7 +23,7 @@ public:
 	/// <returns></returns>
 	static ID3D12CommandQueue* GetCommandQueue() { return commandQueue_.Get(); }
 
-private:
+private: // メンバ変数
 
 	// コマンドキュー
 	static Microsoft::WRL::ComPtr<ID3D12CommandQueue> commandQueue_;
@@ -28,7 +31,7 @@ private:
 	// デバイス
 	static ID3D12Device* device_;
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
@@ -47,7 +50,7 @@ public:
 	/// <returns></returns>
 	ID3D12CommandAllocator* GetCommandAllocator() const { return commandAllocator_.Get(); }
 
-private:
+private: // メンバ変数
 
 	// コマンドリスト
 	Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList_;

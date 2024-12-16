@@ -1,10 +1,11 @@
 #pragma once
 #include "NodeAnimationData.h"
 
-class AnimationData
+/// <summary>
+/// アニメーションデータ
+/// </summary>
+struct AnimationData
 {
-
-public:
 
 	// ノードアニメーション
 	std::vector<NodeAnimationData> nodeAnimationDatas_;

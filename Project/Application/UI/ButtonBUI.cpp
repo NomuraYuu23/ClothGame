@@ -12,6 +12,7 @@ void ButtonBUI::Update()
 	
 	BaseUI::Update();
 
+	// 押したときに色が変わる
 	const Vector4 kWhite = { 1.0f,1.0f,1.0f,1.0f };
 	const Vector4 kGray = { 0.5f,0.5f,0.5f,1.0f };
 

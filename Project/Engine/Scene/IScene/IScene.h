@@ -56,22 +56,29 @@ protected: // 静的メンバ変数
 
 	// シーン番号
 	static int sceneNo_;
+	// リクエストシーン番号
 	static int requestSceneNo_;
 
-	static int  sceneNoCheck_;
+	// シーン番号確認
+	static int sceneNoCheck_;
+	// リクエストシーン番号確認
 	static int requestSceneNoCheck_;
 
-	// 入力マネージャー
+	// DirectXCommon
 	static DirectXCommon* dxCommon_;
+	// 入力
 	static Input* input_;
+	// オーディオ
 	static Audio* audio_;
+	// レンダーターゲットテクスチャ
 	static RenderTargetTexture* renderTargetTexture_;
 
-	//ビュープロジェクション
+	// ビュープロジェクション
 	static BaseCamera camera_;
 
-	//デバッグカメラ
+	// デバッグカメラ
 	static std::unique_ptr<DebugCamera> debugCamera_;
+	// デバッグカメラを使用するか
 	static bool isDebugCameraActive_;
 
 	// 線描画
@@ -88,6 +95,7 @@ public: // メンバ関数
 	/// <summary>
 	/// 静的初期化
 	/// </summary>
+	/// <param name="levelDataManager">レベルデータマネージャー</param>
 	static void StaticInitialize(LevelDataManager* levelDataManager);
 	 
 	/// <summary>
@@ -105,19 +113,33 @@ public: // メンバ関数
 	/// </summary>
 	virtual void Draw() = 0;
 
-	//デストラクタ
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	virtual ~IScene();
 
-	// シーン番号のゲッター
+	/// <summary>
+	/// シーン番号取得
+	/// </summary>
+	/// <returns></returns>
 	int GetSceneNo();
 
-	// リクエストシーン番号のゲッター
+	/// <summary>
+	/// リクエストシーン番号取得
+	/// </summary>
+	/// <returns></returns>
 	int GetRequestSceneNo();
 
-	// シーンをリセットするか
+	/// <summary>
+	/// シーンをリセットするか取得
+	/// </summary>
+	/// <returns></returns>
 	bool GetResetScene() { return resetScene_; }
 
-	// オーディオを止める
+	/// <summary>
+	/// オーディオを止める
+	/// </summary>
+	/// <param name="stopAudio"></param>
 	void SetStopAudio(bool stopAudio) { stopAudio_ = stopAudio; }
 
 protected:  // メンバ関数
@@ -148,16 +170,19 @@ protected: // メンバ変数
 	// 削除された時オーディオ止める
 	bool stopAudio_ = false;
 
-	// ライト
+	// 平行光源
 	std::unique_ptr<DirectionalLight> directionalLight_;
+	// 平行光源データ
 	DirectionalLightData directionalLightData_;
 
 	// 点光源
 	std::unique_ptr<PointLightManager> pointLightManager_;
+	// 点光源データ
 	std::array<PointLightData, PointLightManager::kNumInstanceMax_> pointLightDatas_;
 
 	// スポットライト
 	std::unique_ptr<SpotLightManager> spotLightManager_;
+	// スポットライトデータ
 	std::array<SpotLightData, SpotLightManager::kNumInstanceMax_> spotLightDatas_;
 
 	// オブジェクトマネージャー

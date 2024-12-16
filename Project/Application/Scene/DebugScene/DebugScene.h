@@ -6,11 +6,18 @@
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
 #include "../../ClothDemo/ClothDemo.h"
 
-class DebugScene : public IScene
+/// <summary>
+/// デバッグシーン
+/// </summary>
+class DebugScene :
+	public IScene
 {
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~DebugScene();
 
 	/// <summary>
@@ -50,11 +57,7 @@ private: // メンバ変数
 	// スカイボックス
 	uint32_t skyboxTextureHandle_ = 0;
 
-	// 
-	std::unique_ptr<ClothGPU> clothGPU_;
-	Vector2 clothScale_;
-	Vector2 clothDiv_;
-
+	// クロスシミュレーションデモ
 	std::unique_ptr<ClothDemo> clothDemo_;
 
 };

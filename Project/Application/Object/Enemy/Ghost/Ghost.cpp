@@ -86,10 +86,13 @@ void Ghost::ImGuiDraw()
 
 void Ghost::ParticleDraw(BaseCamera& camera)
 {
+	camera;
 }
 
 void Ghost::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+
+	collisionData;
 
 	// プレイヤー
 	if (std::holds_alternative<Player*>(colliderPartner) && conflictWithPlayer_) {
@@ -162,9 +165,9 @@ void Ghost::ClothInitialize()
 
 	// プレイヤーの衝突判定データ
 	const float playerColliderRadius = 0.6f;
-	collider_.radius_ = playerColliderRadius;
-	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixedTop_.y - playerColliderRadius;
+	collider_.radius = playerColliderRadius;
+	collider_.position = worldTransform_.GetWorldPosition();
+	collider_.position.y += kBaseFixedTop_.y - playerColliderRadius;
 	// 登録
 	cloth_->CollisionDataRegistration(kMyColliderName_, ClothGPUCollision::kCollisionTypeIndexSphere);
 
@@ -189,7 +192,7 @@ void Ghost::ClothUpdate()
 	cloth_->SetWind(wind);
 
 	// 布更新
-	cloth_->Update(dxCommon_->GetCommadList());
+	cloth_->Update();
 
 	// 固定部分
 
@@ -220,8 +223,8 @@ void Ghost::ClothUpdate()
 
 	// 球
 	// 情報をいれる
-	collider_.position_ = worldTransform_.GetWorldPosition();
-	collider_.position_.y += kBaseFixedTop_.y - collider_.radius_;
+	collider_.position = worldTransform_.GetWorldPosition();
+	collider_.position.y += kBaseFixedTop_.y - collider_.radius;
 	ClothGPUCollision::CollisionDataMap colliderData = collider_;
 	cloth_->CollisionDataUpdate(kMyColliderName_, colliderData);
 

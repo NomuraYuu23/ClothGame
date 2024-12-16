@@ -1,6 +1,9 @@
 #pragma once
 #include "BillboardEffect.h"
 
+/// <summary>
+/// エフェクトマネージャー
+/// </summary>
 class EffectManager
 {
 
@@ -60,7 +63,7 @@ public: // アクセッサ
 private: // 静的メンバ変数
 
 	// テクスチャパス
-	static const std::string texturePath;
+	static const std::string texturePath_;
 
 	// テクスチャ名前
 	static const std::array<std::string, EffectTextureIndexOfCount> effectTextureNames_;

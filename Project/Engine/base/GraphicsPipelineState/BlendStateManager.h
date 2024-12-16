@@ -12,11 +12,14 @@
 /// ブレンドの名前
 /// </summary>
 enum BlendStateIndex {
-	kBlendStateIndexNormal,
-	kBlendStateIndexAdd,
+	kBlendStateIndexNormal, // ノーマル
+	kBlendStateIndexAdd, //加算
 	kBlendStateIndexOfCount,
 };
 
+/// <summary>
+/// ブレンドステートマネージャー
+/// </summary>
 class BlendStateManager
 {
 

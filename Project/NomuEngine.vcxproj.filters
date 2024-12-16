@@ -124,9 +124,6 @@
     <Filter Include="Engine\Math\Matrix4x4">
       <UniqueIdentifier>{358fa42c-da60-4ac5-9e6b-cf5c70c0bda9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Collider2D">
-      <UniqueIdentifier>{9ac58789-fc1d-4653-9fe5-d73a64de3881}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Collider2D">
       <UniqueIdentifier>{803ed6ba-ffb7-4b13-bd75-ec906b55bd5e}</UniqueIdentifier>
     </Filter>
@@ -402,6 +399,9 @@
     </Filter>
     <Filter Include="Application\System\PostEffectSystem">
       <UniqueIdentifier>{91acd4c9-9bf6-42cb-9c04-c472ff6ee0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Collider2D">
+      <UniqueIdentifier>{ada4d6fb-f8d8-4de8-817d-cc970ee7b575}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -814,12 +814,6 @@
     <ClCompile Include="Application\Effect\BillboardEffect.cpp">
       <Filter>Application\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Effect\EffectManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Application\Object\Player\State\IPlayerState.cpp">
       <Filter>Application\Object\Player\State</Filter>
     </ClCompile>
@@ -929,10 +923,16 @@
       <Filter>Application\GPUParticle</Filter>
     </ClCompile>
     <ClCompile Include="Application\System\PostEffectSystem\PostEffectSystem.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\System\PostEffectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Effect\EffectManager.cpp">
+      <Filter>Application\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\Manager\ClearSceneObjectManager.cpp">
+      <Filter>Application\Object\Manager</Filter>
     </ClCompile>
     <ClCompile Include="externals\imgui\ImGuizmo.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>externals\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1160,12 +1160,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Collider2D\CollisionConfig2D.h">
-      <Filter>Application\Collider2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h">
-      <Filter>Application\Collider2D</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Collider2D\Box.h">
       <Filter>Engine\Collider2D</Filter>
@@ -1482,12 +1476,6 @@
     <ClInclude Include="Application\Effect\BillboardEffect.h">
       <Filter>Application\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Effect\EffectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Object\Player\State\IPlayerState.h">
       <Filter>Application\Object\Player\State</Filter>
     </ClInclude>
@@ -1603,10 +1591,19 @@
       <Filter>Application\GPUParticle</Filter>
     </ClInclude>
     <ClInclude Include="Application\System\PostEffectSystem\PostEffectSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\System\PostEffectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Effect\EffectManager.h">
+      <Filter>Application\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\Manager\ClearSceneObjectManager.h">
+      <Filter>Application\Object\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Collider2D\ColliderParentObject2D.h">
+      <Filter>Application\Collider2D</Filter>
     </ClInclude>
     <ClInclude Include="externals\imgui\ImGuizmo.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>externals\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

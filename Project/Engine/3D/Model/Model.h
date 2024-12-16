@@ -39,19 +39,29 @@
 #include "../../Animation/AnimationData.h"
 #include "../../Animation/LocalMatrixManager.h"
 
+/// <summary>
+/// モデル
+/// </summary>
 class Model
 {
 
 public:
 
+	/// <summary>
+	/// マテリアルデータ
+	/// </summary>
 	struct MaterialData {
-		std::vector<std::string> textureFilePaths;
+		std::vector<std::string> textureFilePaths; // ファイルパス
 	};
 
+	/// <summary>
+	/// モデルデータ
+	/// </summary>
 	struct ModelData {
 
 		// 頂点
 		std::vector<VertexData> vertices;
+		// 頂点が受ける影響
 		std::vector<VertexInfluence> vertexInfluences;
 		// マテリアル
 		MaterialData material;
@@ -73,6 +83,9 @@ public:
 	/// <summary>
 	/// 3Dモデル生成
 	/// </summary>
+	/// <param name="directoryPath">ディレクトリパス</param>
+	/// <param name="filename">ファイル名前</param>
+	/// <param name="dxCommon">DirectXCommon</param>
 	/// <returns></returns>
 	static Model* Create(
 		const std::string& directoryPath, 
@@ -83,20 +96,23 @@ public:
 	/// デフォルトマテリアル取得
 	/// </summary>
 	/// <returns></returns>
-	static Material* GetDefaultMaterial() { return sDefaultMaterial.get(); };
+	static Material* GetDefaultMaterial() { return sDefaultMaterial_.get(); };
 
 private:
 
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 	// デフォルトマテリアル
-	static std::unique_ptr<Material> sDefaultMaterial;
+	static std::unique_ptr<Material> sDefaultMaterial_;
 
 public:
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
+	/// <param name="directoryPath">ディレクトリパス</param>
+	/// <param name="filename">ファイル名前</param>
+	/// <param name="dxCommon">DirectXCommon</param>
 	void Initialize(const std::string& directoryPath, const std::string& filename, DirectXCommon* dxCommon);
 
 	/// <summary>

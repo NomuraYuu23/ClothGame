@@ -8,6 +8,7 @@ void GroundBlock::Initialize(LevelData::MeshData* data)
 
 	// マテリアル
 	material_->SetEnableLighting(BlinnPhongReflection);
+	// UVトランスフォーム
 	const EulerTransform uvTransform = {
 	worldTransform_.transform_.scale.x / 4.0f,
 	worldTransform_.transform_.scale.z / 4.0f,
@@ -18,8 +19,8 @@ void GroundBlock::Initialize(LevelData::MeshData* data)
 	material_->SetUvTransform(uvTransform);
 
 	// 衝突マスク
-	collisionAttribute_ = kCollisionAttributeGround;
-	collisionMask_ -= kCollisionAttributeGround;
+	collisionAttribute_ = kCollisionAttributeGround_;
+	collisionMask_ -= kCollisionAttributeGround_;
 
 	// コライダー
 	OBB obb = std::get<OBB>(*collider_.get());
@@ -51,4 +52,6 @@ void GroundBlock::Update()
 
 void GroundBlock::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
 {
+	colliderPartner;
+	collisionData;
 }

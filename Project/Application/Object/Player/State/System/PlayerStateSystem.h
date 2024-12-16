@@ -5,8 +5,12 @@
 #include "../IPlayerState.h"
 #include "PlayerCommand.h"
 
+// 前方宣言
 class Player;
 
+/// <summary>
+/// プレイヤー状態システム
+/// </summary>
 class PlayerStateSystem
 {
 

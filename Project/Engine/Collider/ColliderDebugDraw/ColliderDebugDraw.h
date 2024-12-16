@@ -33,6 +33,7 @@ public:
 	/// <summary>
 	/// コライダー追加
 	/// </summary>
+	/// <param name="collider">コライダー</param>
 	void AddCollider(const ColliderShape& collider);
 
 	/// <summary>
@@ -75,7 +76,7 @@ private:
 private: // メンバ変数
 
 	// 分割数
-	static const uint32_t kSubdivision = 10;
+	static const uint32_t kSubdivision_ = 10;
 
 	// コライダー
 	std::list<ColliderShape> colliders_;
@@ -87,7 +88,7 @@ private: // メンバ変数
 	std::array<Vector3, 8> obbOffsetPoints_;
 
 	// Sphere
-	std::array<Vector3, kSubdivision * kSubdivision + 1> sphereOffsetPoints_;
+	std::array<Vector3, kSubdivision_* kSubdivision_ + 1> sphereOffsetPoints_;
 
 };
 

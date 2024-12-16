@@ -7,16 +7,16 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* PointLightManager::sDevice = nullptr;
+ID3D12Device* PointLightManager::sDevice_ = nullptr;
 // コマンドリスト
-ID3D12GraphicsCommandList* PointLightManager::sCommandList = nullptr;
+ID3D12GraphicsCommandList* PointLightManager::sCommandList_ = nullptr;
 
 void PointLightManager::StaticInitialize(ID3D12Device* device)
 {
 
 	assert(device);
 
-	sDevice = device;
+	sDevice_ = device;
 
 }
 
@@ -31,7 +31,7 @@ void PointLightManager::Initialize()
 {
 
 	//平行光源リソースを作る
-	pointLightDataBuff_ = BufferResource::CreateBufferResource(sDevice, ((sizeof(PointLightData) + 0xff) & ~0xff) * kNumInstanceMax_);
+	pointLightDataBuff_ = BufferResource::CreateBufferResource(sDevice_, ((sizeof(PointLightData) + 0xff) & ~0xff) * kNumInstanceMax_);
 
 	//書き込むためのアドレスを取得
 	pointLightDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&pointLightDataMap_));
@@ -85,13 +85,13 @@ void PointLightManager::Update(const std::array<PointLightData, PointLightManage
 void PointLightManager::Draw(ID3D12GraphicsCommandList* cmdList, uint32_t rootParameterIndex)
 {
 
-	assert(sCommandList == nullptr);
+	assert(sCommandList_ == nullptr);
 
-	sCommandList = cmdList;
+	sCommandList_ = cmdList;
 
-	sCommandList->SetGraphicsRootDescriptorTable(rootParameterIndex, instancingSrvHandleGPU_);
+	sCommandList_->SetGraphicsRootDescriptorTable(rootParameterIndex, instancingSrvHandleGPU_);
 
 	// コマンドリストを解除
-	sCommandList = nullptr;
+	sCommandList_ = nullptr;
 
 }

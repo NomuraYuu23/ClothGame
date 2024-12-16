@@ -28,9 +28,9 @@ void PostEffect::Initialize()
 
 	// 定数バッファに渡す値の設定
 	computeParametersMap_->threadIdOffsetX = 0; // スレッドのオフセットX
-	computeParametersMap_->threadIdTotalX = kTextureWidth; // スレッドの総数X
+	computeParametersMap_->threadIdTotalX = kTextureWidth_; // スレッドの総数X
 	computeParametersMap_->threadIdOffsetY = 0; // スレッドのオフセットY
-	computeParametersMap_->threadIdTotalY = kTextureHeight; // スレッドの総数Y
+	computeParametersMap_->threadIdTotalY = kTextureHeight_; // スレッドの総数Y
 	computeParametersMap_->threadIdOffsetZ = 0; // スレッドのオフセットZ
 	computeParametersMap_->threadIdTotalZ = 1; // スレッドの総数Z
 
@@ -99,12 +99,12 @@ void PostEffect::Initialize()
 	CreatePipline();
 
 	// 編集する画像初期化
-	for (uint32_t i = 0; i < kNumEditTexture; ++i) {
+	for (uint32_t i = 0; i < kNumEditTexture_; ++i) {
 		editTextures_[i] = std::make_unique<TextureUAV>();
 		editTextures_[i]->Initialize(
 			device_,
-			kTextureWidth,
-			kTextureHeight);
+			kTextureWidth_,
+			kTextureHeight_);
 	}
 
 	// デフォルト速度バッファ
@@ -183,8 +183,8 @@ void PostEffect::Execution(
 	commandList_->SetComputeRootSignature(rootSignature_.Get());
 
 	// ディスパッチ数
-	uint32_t x = (kTextureWidth + kNumThreadX - 1) / kNumThreadX;
-	uint32_t y = (kTextureHeight + kNumThreadY - 1) / kNumThreadY;
+	uint32_t x = (kTextureWidth_ + kNumThreadX_ - 1) / kNumThreadX_;
+	uint32_t y = (kTextureHeight_ + kNumThreadY_ - 1) / kNumThreadY_;
 	uint32_t z = 1;
 
 	//ソース
@@ -210,11 +210,11 @@ void PostEffect::Execution(
 		commandList_->SetComputeRootConstantBufferView(rootParameterIndex, computeParametersBuff_->GetGPUVirtualAddress());
 		rootParameterIndex++;
 
-		// 速度パラメータ
-		for (uint32_t i = 0; i < 4; ++i) {
+		// 速度パラメータj
+		for (uint32_t j = 0; j < 4; ++j) {
 			if (executionAdditionalDesc) {
-				if (executionAdditionalDesc->velocity2DManagers[i]) {
-					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->velocity2DManagers[i]->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
+				if (executionAdditionalDesc->velocity2DManagers[j]) {
+					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->velocity2DManagers[j]->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
 				}
 				else {
 					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, velocity2DManager_->GetVelocity2DDataBuff()->GetGPUVirtualAddress());
@@ -227,10 +227,10 @@ void PostEffect::Execution(
 		}
 
 		// 衝撃波パラメータ
-		for (uint32_t i = 0; i < 4; ++i) {
+		for (uint32_t j = 0; j < 4; ++j) {
 			if (executionAdditionalDesc) {
-				if (executionAdditionalDesc->shockWaveManagers[i]) {
-					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->shockWaveManagers[i]->GetShockWaveDataBuff()->GetGPUVirtualAddress());
+				if (executionAdditionalDesc->shockWaveManagers[j]) {
+					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, executionAdditionalDesc->shockWaveManagers[j]->GetShockWaveDataBuff()->GetGPUVirtualAddress());
 				}
 				else {
 					commandList_->SetComputeRootConstantBufferView(rootParameterIndex, shockWaveManager_->GetShockWaveDataBuff()->GetGPUVirtualAddress());
@@ -243,8 +243,8 @@ void PostEffect::Execution(
 		}
 
 		// ソース
-		for (uint32_t i = 0; i < 8; ++i) {
-			commandList_->SetComputeRootDescriptorTable(rootParameterIndex, renderTargetTexture->GetSrvGPUHandle(i));
+		for (uint32_t j = 0; j < 8; ++j) {
+			commandList_->SetComputeRootDescriptorTable(rootParameterIndex, renderTargetTexture->GetSrvGPUHandle(j));
 			rootParameterIndex++;
 		}
 
@@ -257,8 +257,8 @@ void PostEffect::Execution(
 		rootParameterIndex++;
 
 		// 行先
-		for (uint32_t i = 0; i < kNumEditTexture; ++i) {
-			editTextures_[i]->SetRootDescriptorTable(commandList_, rootParameterIndex);
+		for (uint32_t j = 0; j < kNumEditTexture_; ++j) {
+			editTextures_[j]->SetRootDescriptorTable(commandList_, rootParameterIndex);
 			rootParameterIndex++;
 		}
 
@@ -414,9 +414,9 @@ void PostEffect::CreateHeaderHLSL()
 	assert(file);
 
 	// スレッド数
-	file << "#define" << " " << "THREAD_X" << " " << kNumThreadX << "\n";
-	file << "#define" << " " << "THREAD_Y" << " " << kNumThreadY << "\n";
-	file << "#define" << " " << "THREAD_Z" << " " << kNumThreadZ << "\n";
+	file << "#define" << " " << "THREAD_X" << " " << kNumThreadX_ << "\n";
+	file << "#define" << " " << "THREAD_Y" << " " << kNumThreadY_ << "\n";
+	file << "#define" << " " << "THREAD_Z" << " " << kNumThreadZ_ << "\n";
 	file << "#define" << " " << "PI" << " " << 3.14159265 << "\n";
 
 	// ファイルを閉じる
@@ -456,6 +456,8 @@ void PostEffect::CreatePipline()
 		desc.pRootSignature = rootSignature_.Get();
 
 		HRESULT hr = device_->CreateComputePipelineState(&desc, IID_PPV_ARGS(&pipelineStates_[i]));
+		// リリース版警告回避
+		hr;
 		assert(SUCCEEDED(hr));
 	}
 

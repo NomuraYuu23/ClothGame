@@ -7,7 +7,7 @@ ID3D12Device* RTVDescriptorHerpManager::device_ = nullptr;
 // 次のディスクリプタヒープの場所
 uint32_t RTVDescriptorHerpManager::nextIndexDescriptorHeap_ = 0u;
 // ディスクリプタヒープのどこが空いているか
-std::array<bool, RTVDescriptorHerpManager::kNumDescriptors> RTVDescriptorHerpManager::isNullDescriptorHeaps_;
+std::array<bool, RTVDescriptorHerpManager::kNumDescriptors_> RTVDescriptorHerpManager::isNullDescriptorHeaps_;
 
 RTVDescriptorHerpManager* RTVDescriptorHerpManager::GetInstance()
 {
@@ -28,7 +28,7 @@ void RTVDescriptorHerpManager::Initialize(ID3D12Device* device)
 	D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = {};
 	descHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 	descHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
-	descHeapDesc.NumDescriptors = kNumDescriptors;
+	descHeapDesc.NumDescriptors = kNumDescriptors_;
 	result = device_->CreateDescriptorHeap(&descHeapDesc, IID_PPV_ARGS(&descriptorHeap_));
 	assert(SUCCEEDED(result));
 

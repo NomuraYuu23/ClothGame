@@ -1,6 +1,9 @@
 #pragma once
 #include "../../../Engine/3D/ManyObjects/OneOfManyObjects.h"
 
+/// <summary>
+/// 丸影
+/// </summary>
 class Shadow :
     public OneOfManyObjects
 {

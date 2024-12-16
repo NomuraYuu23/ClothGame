@@ -1,6 +1,9 @@
 #pragma once
 #include "../IPlayerState.h"
 
+/// <summary>
+/// プレイヤーの状態ファクトリー
+/// </summary>
 class PlayerStateFactory
 {
 

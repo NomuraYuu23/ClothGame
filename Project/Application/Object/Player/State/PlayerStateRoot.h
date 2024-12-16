@@ -1,5 +1,9 @@
 #pragma once
 #include "IPlayerState.h"
+
+/// <summary>
+/// プレイヤーの通常状態
+/// </summary>
 class PlayerStateRoot :
     public IPlayerState
 {

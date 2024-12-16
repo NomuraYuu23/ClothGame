@@ -79,8 +79,6 @@ uint32_t Audio::LoadWave(const std::string& fileName) {
 	// ディレクトリパスとファイル名を連結してフルパスを得る
 	std::string fullpath = directoryPath_ + fileName;
 
-	HRESULT result = 0;
-
 	// ファイルオープン
 
 	// ファイル入力ストリームのインスタンス
@@ -174,8 +172,6 @@ uint32_t Audio::LoadAudio(const std::string& fileName)
 	// ディレクトリパスとファイル名を連結してフルパスを得る
 	std::wstring fullpath = Log::ConvertString(directoryPath_ + fileName);
 
-	HRESULT result = 0;
-
 	IMFSourceReader* pMFSourceReader{nullptr};
 	MFCreateSourceReaderFromURL(fullpath.c_str(), NULL, &pMFSourceReader);
 
@@ -183,11 +179,11 @@ uint32_t Audio::LoadAudio(const std::string& fileName)
 	MFCreateMediaType(&pMFMediaType);
 	pMFMediaType->SetGUID(MF_MT_MAJOR_TYPE, MFMediaType_Audio);
 	pMFMediaType->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM);
-	pMFSourceReader->SetCurrentMediaType(MF_SOURCE_READER_FIRST_AUDIO_STREAM, nullptr, pMFMediaType);
+	pMFSourceReader->SetCurrentMediaType(static_cast<DWORD>(MF_SOURCE_READER_FIRST_AUDIO_STREAM), nullptr, pMFMediaType);
 
 	pMFMediaType->Release();
 	pMFMediaType = nullptr;
-	pMFSourceReader->GetCurrentMediaType(MF_SOURCE_READER_FIRST_AUDIO_STREAM, &pMFMediaType);
+	pMFSourceReader->GetCurrentMediaType(static_cast<DWORD>(MF_SOURCE_READER_FIRST_AUDIO_STREAM), &pMFMediaType);
 	
 	WAVEFORMATEX* waveFormat{ nullptr };
 	MFCreateWaveFormatExFromMFMediaType(pMFMediaType, &waveFormat, nullptr);
@@ -199,7 +195,7 @@ uint32_t Audio::LoadAudio(const std::string& fileName)
 		IMFSample* pMFSample{ nullptr };
 		DWORD dwStreamFlags{ 0 };
 		pMFSourceReader->ReadSample(
-			MF_SOURCE_READER_FIRST_AUDIO_STREAM,
+			static_cast<DWORD>(MF_SOURCE_READER_FIRST_AUDIO_STREAM),
 			0, nullptr,
 			&dwStreamFlags, nullptr,
 			&pMFSample);

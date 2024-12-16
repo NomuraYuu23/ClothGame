@@ -527,7 +527,7 @@ ClothGPU::~ClothGPU()
 	SRVDescriptorHerpManager::DescriptorHeapsMakeNull(externalSrvIndexDescriptorHeap_);
 	SRVDescriptorHerpManager::DescriptorHeapsMakeNull(massPointIndexSrvIndexDescriptorHeap_);
 	for (uint32_t i = 0; i < kClothSpringBufferStructIndexOfCount; ++i) {
-		SRVDescriptorHerpManager::DescriptorHeapsMakeNull(clothSpringBufferStructs_[i].srvIndexDescriptorHeap_);
+		SRVDescriptorHerpManager::DescriptorHeapsMakeNull(clothSpringBufferStructs_[i].srvIndexDescriptorHeap);
 	}
 
 	// URV
@@ -552,7 +552,7 @@ void ClothGPU::Initialize(
 	NumInitialize(device, div);
 
 	// バッファ初期化
-	BufferInitialize(device, commandList, scale, div);
+	BufferInitialize(device, scale, div);
 
 	// CSでUAV初期化
 	InitializeCS(commandList);
@@ -568,13 +568,13 @@ void ClothGPU::Initialize(
 
 }
 
-void ClothGPU::Update(ID3D12GraphicsCommandList* commandList)
+void ClothGPU::Update()
 {
 
 	// 外部操作リセット
 	if (didYouMoveInit_) {
-		for (uint32_t i = 0; i < NumsMap_->massPointNum_; ++i) {
-			externalMap_[i].isMove_ = 0;
+		for (uint32_t i = 0; i < NumsMap_->massPointNum; ++i) {
+			externalMap_[i].isMove = 0;
 		}
 	}
 	else {
@@ -607,7 +607,7 @@ void ClothGPU::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// マップ
-	wvpMap_->matrix_ = camera->GetViewProjectionMatrix();
+	wvpMap_->matrix = camera->GetViewProjectionMatrix();
 
 	// ここでバネの更新
 	UpdateCS(commandList);
@@ -616,8 +616,8 @@ void ClothGPU::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 	ResouseBarrierToNonPixelShader(commandList);
 
 	// パイプライン設定
-	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());//PS0を設定
-	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());
+	commandList->SetPipelineState(GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());//PS0を設定
+	commandList->SetGraphicsRootSignature(GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexClothGPU].Get());
 
 	//マテリアルCBufferの場所を設定
 	commandList->SetGraphicsRootConstantBufferView(0, material_->GetMaterialBuff()->GetGPUVirtualAddress());
@@ -646,7 +646,7 @@ void ClothGPU::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 	commandList->SetGraphicsRootDescriptorTable(8, vertSrvHandleGPU_);
 
 	//描画
-	commandList->DrawInstanced(NumsMap_->vertexNum_, 1, 0, 0);
+	commandList->DrawInstanced(NumsMap_->vertexNum, 1, 0, 0);
 
 	// リソースバリア
 	ResouseBarrierToUnorderedAccess(commandList);
@@ -662,18 +662,18 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 	ImGui::DragInt("バネの更新の反復の回数", &relaxation_, 0.2f, 1, 6);
 
 	//clothCalcDataMap_
-	ImGui::DragFloat("質量", &clothCalcDataMap_->mass_, 0.01f, 1.0f, 1000.0f);
-	ImGui::DragFloat3("重力", &clothCalcDataMap_->gravity_.x, 0.01f, -1000.0f, 1000.0f);
-	ImGui::DragFloat3("風力", &clothCalcDataMap_->wind_.x, 0.01f, -1000.0f, 1000.0f);
-	ImGui::DragFloat("抵抗", &clothCalcDataMap_->speedResistance_, 0.01f, 0.0f, 1.0f);
-	ImGui::DragFloat("バネの強度", &clothCalcDataMap_->stiffness_, 0.1f, 1.0f, 1000.0f);
-	ImGui::DragFloat("構成バネ伸び抵抗", &clothCalcDataMap_->structuralShrink_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("構成バネ縮み抵抗", &clothCalcDataMap_->structuralStretch_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("せん断バネ伸び抵抗", &clothCalcDataMap_->shearShrink_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("せん断バネ縮み抵抗", &clothCalcDataMap_->shearStretch_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("曲げバネ伸び抵抗", &clothCalcDataMap_->bendingShrink_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("曲げバネ縮み抵抗", &clothCalcDataMap_->bendingStretch_, 0.1f, 0.0f, 1000.0f);
-	ImGui::DragFloat("速度制限", &clothCalcDataMap_->velocityLimit_, 0.01f, 0.0f,1000.0f);
+	ImGui::DragFloat("質量", &clothCalcDataMap_->mass, 0.01f, 1.0f, 1000.0f);
+	ImGui::DragFloat3("重力", &clothCalcDataMap_->gravity.x, 0.01f, -1000.0f, 1000.0f);
+	ImGui::DragFloat3("風力", &clothCalcDataMap_->wind.x, 0.01f, -1000.0f, 1000.0f);
+	ImGui::DragFloat("抵抗", &clothCalcDataMap_->speedResistance, 0.01f, 0.0f, 1.0f);
+	ImGui::DragFloat("バネの強度", &clothCalcDataMap_->stiffness, 0.1f, 1.0f, 1000.0f);
+	ImGui::DragFloat("構成バネ伸び抵抗", &clothCalcDataMap_->structuralShrink, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("構成バネ縮み抵抗", &clothCalcDataMap_->structuralStretch, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("せん断バネ伸び抵抗", &clothCalcDataMap_->shearShrink, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("せん断バネ縮み抵抗", &clothCalcDataMap_->shearStretch, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("曲げバネ伸び抵抗", &clothCalcDataMap_->bendingShrink, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("曲げバネ縮み抵抗", &clothCalcDataMap_->bendingStretch, 0.1f, 0.0f, 1000.0f);
+	ImGui::DragFloat("速度制限", &clothCalcDataMap_->velocityLimit, 0.01f, 0.0f,1000.0f);
 
 	ImGui::End();
 
@@ -685,37 +685,37 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 	// 頂点数(CPUのIndexと同じ数)
 	NumsBuff_ = BufferResource::CreateBufferResource(device, (sizeof(Nums) + 0xff) & ~0xff);
 	NumsBuff_->Map(0, nullptr, reinterpret_cast<void**>(&NumsMap_));
-	NumsMap_->vertexNum_ = static_cast<uint32_t>(div.y) * static_cast<uint32_t>(div.x) * 6;
+	NumsMap_->vertexNum = static_cast<uint32_t>(div.y) * static_cast<uint32_t>(div.x) * 6;
 
 	// 質点数
-	NumsMap_->massPointNum_ = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) + 1);
+	NumsMap_->massPointNum = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) + 1);
 
 	// バネ数
 	// 構成バネ
-	NumsMap_->structuralSpringNums_[0] = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) / 2);
-	NumsMap_->structuralSpringNums_[1] = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) / 2);
-	NumsMap_->structuralSpringNums_[2] = (static_cast<uint32_t>(div.y) / 2) * (static_cast<uint32_t>(div.x) + 1);
-	NumsMap_->structuralSpringNums_[3] = (static_cast<uint32_t>(div.y) / 2) * (static_cast<uint32_t>(div.x) + 1);
+	NumsMap_->structuralSpringNums[0] = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) / 2);
+	NumsMap_->structuralSpringNums[1] = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) / 2);
+	NumsMap_->structuralSpringNums[2] = (static_cast<uint32_t>(div.y) / 2) * (static_cast<uint32_t>(div.x) + 1);
+	NumsMap_->structuralSpringNums[3] = (static_cast<uint32_t>(div.y) / 2) * (static_cast<uint32_t>(div.x) + 1);
 
 	// 軸の分割数が奇数の場合追加する
 	if (static_cast<uint32_t>(div.x) % 2 == 1) {
-		NumsMap_->structuralSpringNums_[0] += static_cast<uint32_t>(div.y) + 1;
+		NumsMap_->structuralSpringNums[0] += static_cast<uint32_t>(div.y) + 1;
 	}
 	if (static_cast<uint32_t>(div.y) % 2 == 1) {
-		NumsMap_->structuralSpringNums_[2] += static_cast<uint32_t>(div.x) + 1;
+		NumsMap_->structuralSpringNums[2] += static_cast<uint32_t>(div.x) + 1;
 	}
 
 	// せん断バネ
 	uint32_t shearSpringNum = (static_cast<uint32_t>(div.y) * (static_cast<uint32_t>(div.x) / 2));
-	NumsMap_->shearSpringNums_[0] = shearSpringNum;
-	NumsMap_->shearSpringNums_[1] = shearSpringNum;
-	NumsMap_->shearSpringNums_[2] = shearSpringNum;
-	NumsMap_->shearSpringNums_[3] = shearSpringNum;
+	NumsMap_->shearSpringNums[0] = shearSpringNum;
+	NumsMap_->shearSpringNums[1] = shearSpringNum;
+	NumsMap_->shearSpringNums[2] = shearSpringNum;
+	NumsMap_->shearSpringNums[3] = shearSpringNum;
 
 	//  Xの分割数が奇数の場合追加する
 	if (static_cast<uint32_t>(div.x) % 2 == 1) {
-		NumsMap_->shearSpringNums_[0] += static_cast<uint32_t>(div.y);
-		NumsMap_->shearSpringNums_[2] += static_cast<uint32_t>(div.y);
+		NumsMap_->shearSpringNums[0] += static_cast<uint32_t>(div.y);
+		NumsMap_->shearSpringNums[2] += static_cast<uint32_t>(div.y);
 	}
 
 	// 曲げバネ
@@ -725,16 +725,16 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 	uint32_t add = bendingX % 4;
 
 	// 4で割れる分の処理
-	NumsMap_->bendingSpringNums_[0] = (static_cast<uint32_t>(div.y) + 1) * 2 * base;
-	NumsMap_->bendingSpringNums_[1] = (static_cast<uint32_t>(div.y) + 1) * 2 * base;
+	NumsMap_->bendingSpringNums[0] = (static_cast<uint32_t>(div.y) + 1) * 2 * base;
+	NumsMap_->bendingSpringNums[1] = (static_cast<uint32_t>(div.y) + 1) * 2 * base;
 
 	// あまりが0以外の場合それぞれ追加する
 	if (add == 1 || add == 2) {
-		NumsMap_->bendingSpringNums_[0] += (static_cast<uint32_t>(div.y) + 1) * add;
+		NumsMap_->bendingSpringNums[0] += (static_cast<uint32_t>(div.y) + 1) * add;
 	}
 	else if (add == 3) {
-		NumsMap_->bendingSpringNums_[0] += (static_cast<uint32_t>(div.y) + 1) * 2;
-		NumsMap_->bendingSpringNums_[1] += (static_cast<uint32_t>(div.y) + 1);
+		NumsMap_->bendingSpringNums[0] += (static_cast<uint32_t>(div.y) + 1) * 2;
+		NumsMap_->bendingSpringNums[1] += (static_cast<uint32_t>(div.y) + 1);
 	}
 
 	// Y
@@ -743,20 +743,20 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 	add = bendingY % 4;
 
 	// 4で割れる分の処理
-	NumsMap_->bendingSpringNums_[2] = (static_cast<uint32_t>(div.x) + 1) * 2 * base;
-	NumsMap_->bendingSpringNums_[3] = (static_cast<uint32_t>(div.x) + 1) * 2 * base;
+	NumsMap_->bendingSpringNums[2] = (static_cast<uint32_t>(div.x) + 1) * 2 * base;
+	NumsMap_->bendingSpringNums[3] = (static_cast<uint32_t>(div.x) + 1) * 2 * base;
 
 	// あまりが0以外の場合それぞれ追加する
 	if (add == 1 || add == 2) {
-		NumsMap_->bendingSpringNums_[2] += (static_cast<uint32_t>(div.x) + 1) * add;
+		NumsMap_->bendingSpringNums[2] += (static_cast<uint32_t>(div.x) + 1) * add;
 	}
 	else if (add == 3) {
-		NumsMap_->bendingSpringNums_[2] += (static_cast<uint32_t>(div.x) + 1) * 2;
-		NumsMap_->bendingSpringNums_[3] += (static_cast<uint32_t>(div.x) + 1);
+		NumsMap_->bendingSpringNums[2] += (static_cast<uint32_t>(div.x) + 1) * 2;
+		NumsMap_->bendingSpringNums[3] += (static_cast<uint32_t>(div.x) + 1);
 	}
 
 	// 面数
-	NumsMap_->surfaceNum_ = NumsMap_->vertexNum_ / 6;
+	NumsMap_->surfaceNum = NumsMap_->vertexNum / 6;
 
 	// バネフェーズの反復回数
 	relaxation_ = 4;
@@ -775,7 +775,6 @@ void ClothGPU::MaterialInitialize(const std::string textureName)
 }
 
 void ClothGPU::BufferInitialize(ID3D12Device* device,
-	ID3D12GraphicsCommandList* commandList,
 	const Vector2& scale,
 	const Vector2& div)
 {
@@ -790,10 +789,10 @@ void ClothGPU::BufferInitialize(ID3D12Device* device,
 	SpringBufferInitialize(device);
 
 	// 頂点バッファ
-	VertexBufferInitialize(device, commandList);
+	VertexBufferInitialize(device);
 
 	// UAV
-	UAVInitialize(device, commandList);
+	UAVInitialize(device);
 
 }
 
@@ -801,28 +800,28 @@ void ClothGPU::SpringBufferInitialize(ID3D12Device* device)
 {
 
 	// 初期化
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralLeftOdd].Initialize(device, NumsMap_->structuralSpringNums_[0]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralLeftEven].Initialize(device, NumsMap_->structuralSpringNums_[1]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralTopOdd].Initialize(device, NumsMap_->structuralSpringNums_[2]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralTopEven].Initialize(device, NumsMap_->structuralSpringNums_[3]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralLeftOdd].Initialize(device, NumsMap_->structuralSpringNums[0]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralLeftEven].Initialize(device, NumsMap_->structuralSpringNums[1]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralTopOdd].Initialize(device, NumsMap_->structuralSpringNums[2]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexStructuralTopEven].Initialize(device, NumsMap_->structuralSpringNums[3]);
 
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearLeftOdd].Initialize(device, NumsMap_->shearSpringNums_[0]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearLeftEven].Initialize(device, NumsMap_->shearSpringNums_[1]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearRightOdd].Initialize(device, NumsMap_->shearSpringNums_[2]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearRightEven].Initialize(device, NumsMap_->shearSpringNums_[3]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearLeftOdd].Initialize(device, NumsMap_->shearSpringNums[0]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearLeftEven].Initialize(device, NumsMap_->shearSpringNums[1]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearRightOdd].Initialize(device, NumsMap_->shearSpringNums[2]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexShearRightEven].Initialize(device, NumsMap_->shearSpringNums[3]);
 
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingLeftNotPrime].Initialize(device, NumsMap_->bendingSpringNums_[0]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingLeftPrime].Initialize(device, NumsMap_->bendingSpringNums_[1]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingTopNotPrime].Initialize(device, NumsMap_->bendingSpringNums_[2]);
-	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingTopPrime].Initialize(device, NumsMap_->bendingSpringNums_[3]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingLeftNotPrime].Initialize(device, NumsMap_->bendingSpringNums[0]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingLeftPrime].Initialize(device, NumsMap_->bendingSpringNums[1]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingTopNotPrime].Initialize(device, NumsMap_->bendingSpringNums[2]);
+	clothSpringBufferStructs_[kClothSpringBufferStructIndexBendingTopPrime].Initialize(device, NumsMap_->bendingSpringNums[3]);
 
 	// マッピング
 	for (uint32_t i = 0; i < kClothSpringBufferStructIndexOfCount; ++i) {
 		springInitNextIndexes_[i] = 0;
 	}
 
-	for (uint32_t y = 0; y < static_cast<uint32_t>(createDataMap_->div_.y) + 1; ++y) {
-		for (uint32_t x = 0; x < static_cast<uint32_t>(createDataMap_->div_.x) + 1; ++x) {
+	for (uint32_t y = 0; y < static_cast<uint32_t>(createDataMap_->div.y) + 1; ++y) {
+		for (uint32_t x = 0; x < static_cast<uint32_t>(createDataMap_->div.x) + 1; ++x) {
 
 			// 構成バネ
 			SpringGeneration(x, y, -1, 0, kTypeOfSpringStructuralSpring); // 左の質点とつなぐ
@@ -841,18 +840,18 @@ void ClothGPU::SpringBufferInitialize(ID3D12Device* device)
 
 }
 
-void ClothGPU::VertexBufferInitialize(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+void ClothGPU::VertexBufferInitialize(ID3D12Device* device)
 {
 
 	// UAVデータ
-	vertBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(VertexData) + 0xff) & ~0xff) * NumsMap_->vertexNum_);
+	vertBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(VertexData) + 0xff) & ~0xff) * NumsMap_->vertexNum);
 
 	D3D12_UNORDERED_ACCESS_VIEW_DESC uavDesc{};
 
 	uavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	uavDesc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 	uavDesc.Buffer.FirstElement = 0;
-	uavDesc.Buffer.NumElements = NumsMap_->vertexNum_;
+	uavDesc.Buffer.NumElements = NumsMap_->vertexNum;
 	uavDesc.Buffer.CounterOffsetInBytes = 0;
 	uavDesc.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 	uavDesc.Buffer.StructureByteStride = sizeof(VertexData);
@@ -870,7 +869,7 @@ void ClothGPU::VertexBufferInitialize(ID3D12Device* device, ID3D12GraphicsComman
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
 	srvDesc.Buffer.FirstElement = 0;
 	srvDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
-	srvDesc.Buffer.NumElements = NumsMap_->vertexNum_;
+	srvDesc.Buffer.NumElements = NumsMap_->vertexNum;
 	srvDesc.Buffer.StructureByteStride = sizeof(VertexData);
 
 	vertSrvHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
@@ -882,18 +881,18 @@ void ClothGPU::VertexBufferInitialize(ID3D12Device* device, ID3D12GraphicsComman
 
 }
 
-void ClothGPU::UAVInitialize(ID3D12Device* device, ID3D12GraphicsCommandList* commandList)
+void ClothGPU::UAVInitialize(ID3D12Device* device)
 {
 
 	// 面情報
-	surfaceDataBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(SurfaceData) + 0xff) & ~0xff) * NumsMap_->surfaceNum_);
+	surfaceDataBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(SurfaceData) + 0xff) & ~0xff) * NumsMap_->surfaceNum);
 
 	D3D12_UNORDERED_ACCESS_VIEW_DESC surfaceDataUavDesc{};
 
 	surfaceDataUavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	surfaceDataUavDesc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 	surfaceDataUavDesc.Buffer.FirstElement = 0;
-	surfaceDataUavDesc.Buffer.NumElements = NumsMap_->surfaceNum_;
+	surfaceDataUavDesc.Buffer.NumElements = NumsMap_->surfaceNum;
 	surfaceDataUavDesc.Buffer.CounterOffsetInBytes = 0;
 	surfaceDataUavDesc.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 	surfaceDataUavDesc.Buffer.StructureByteStride = sizeof(SurfaceData);
@@ -906,14 +905,14 @@ void ClothGPU::UAVInitialize(ID3D12Device* device, ID3D12GraphicsCommandList* co
 	device->CreateUnorderedAccessView(surfaceDataBuff_.Get(), nullptr, &surfaceDataUavDesc, surfaceDataUavHandleCPU_);
 
 	// 質点情報
-	massPointBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(ClothMassPoint) + 0xff) & ~0xff) * NumsMap_->massPointNum_);
+	massPointBuff_ = BufferResource::CreateBufferResourceUAV(device, ((sizeof(ClothMassPoint) + 0xff) & ~0xff) * NumsMap_->massPointNum);
 
 	D3D12_UNORDERED_ACCESS_VIEW_DESC massPointUavDesc{};
 
 	massPointUavDesc.Format = DXGI_FORMAT_UNKNOWN;
 	massPointUavDesc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 	massPointUavDesc.Buffer.FirstElement = 0;
-	massPointUavDesc.Buffer.NumElements = NumsMap_->massPointNum_;
+	massPointUavDesc.Buffer.NumElements = NumsMap_->massPointNum;
 	massPointUavDesc.Buffer.CounterOffsetInBytes = 0;
 	massPointUavDesc.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 	massPointUavDesc.Buffer.StructureByteStride = sizeof(ClothMassPoint);
@@ -951,18 +950,18 @@ void ClothGPU::SRVInitialize(ID3D12Device* device)
 {
 
 	// 外部操作
-	externalBuff_ = BufferResource::CreateBufferResource(device, ((sizeof(ExternalOperationData) + 0xff) & ~0xff) * NumsMap_->massPointNum_);
+	externalBuff_ = BufferResource::CreateBufferResource(device, ((sizeof(ExternalOperationData) + 0xff) & ~0xff) * NumsMap_->massPointNum);
 	//書き込むためのアドレスを取得
 	externalBuff_->Map(0, nullptr, reinterpret_cast<void**>(&externalMap_));
 
-	for (uint32_t i = 0; i < NumsMap_->massPointNum_; ++i) {
-		externalMap_[i].position_ = {0.0f,0.0f,0.0f};
-		externalMap_[i].isMove_ = 0;
-		if (i < (createDataMap_->div_.x + 1.0f)) {
-			externalMap_[i].weight_ = 0.0f;
+	for (uint32_t i = 0; i < NumsMap_->massPointNum; ++i) {
+		externalMap_[i].position = {0.0f,0.0f,0.0f};
+		externalMap_[i].isMove = 0;
+		if (i < (createDataMap_->div.x + 1.0f)) {
+			externalMap_[i].weight = 0.0f;
 		}
 		else {
-			externalMap_[i].weight_ = 1.0f;
+			externalMap_[i].weight = 1.0f;
 		}
 	}
 
@@ -972,7 +971,7 @@ void ClothGPU::SRVInitialize(ID3D12Device* device)
 	externalSrvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
 	externalSrvDesc.Buffer.FirstElement = 0;
 	externalSrvDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
-	externalSrvDesc.Buffer.NumElements = NumsMap_->massPointNum_;
+	externalSrvDesc.Buffer.NumElements = NumsMap_->massPointNum;
 	externalSrvDesc.Buffer.StructureByteStride = sizeof(ExternalOperationData);
 
 	externalSrvHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
@@ -983,37 +982,37 @@ void ClothGPU::SRVInitialize(ID3D12Device* device)
 	device->CreateShaderResourceView(externalBuff_.Get(), &externalSrvDesc, externalSrvHandleCPU_);
 
 	// 頂点 がどこの質点か
-	massPointIndexBuff_ = BufferResource::CreateBufferResource(device, ((sizeof(uint32_t) + 0xff) & ~0xff) * NumsMap_->vertexNum_);
+	massPointIndexBuff_ = BufferResource::CreateBufferResource(device, ((sizeof(uint32_t) + 0xff) & ~0xff) * NumsMap_->vertexNum);
 	//書き込むためのアドレスを取得
 	massPointIndexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&massPointIndexMap_));
 
 	uint32_t y = 0;
 	uint32_t x = 0;
-	for (uint32_t i = 0; i < NumsMap_->vertexNum_; ++i) {
+	for (uint32_t i = 0; i < NumsMap_->vertexNum; ++i) {
 		uint32_t mod = i % 6;
 		switch (mod)
 		{
 		// 左上
 		case 0:
-			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x;
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
 			break;
 		// 右上
 		case 1:
 		case 3:
-			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x + 1;
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
 			break;
 		// 左下
 		case 2:
 		case 4:
-			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x;
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
 			break;
 		// 右下
 		case 5:
-			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x + 1;
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
 			
 			// 一周終了
 			x++;
-			if (x >= (createDataMap_->div_.x)) {
+			if (x >= (createDataMap_->div.x)) {
 				x = 0;
 				y++;
 			}
@@ -1031,7 +1030,7 @@ void ClothGPU::SRVInitialize(ID3D12Device* device)
 	massPointIndexSrvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
 	massPointIndexSrvDesc.Buffer.FirstElement = 0;
 	massPointIndexSrvDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
-	massPointIndexSrvDesc.Buffer.NumElements = NumsMap_->vertexNum_;
+	massPointIndexSrvDesc.Buffer.NumElements = NumsMap_->vertexNum;
 	massPointIndexSrvDesc.Buffer.StructureByteStride = sizeof(uint32_t);
 
 	massPointIndexSrvHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
@@ -1053,31 +1052,31 @@ void ClothGPU::CBVInitialize(
 	createDataBuff_ = BufferResource::CreateBufferResource(device, (sizeof(CreateData) + 0xff) & ~0xff);
 	createDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&createDataMap_));
 	//マップ
-	createDataMap_->scale_ = scale;
-	createDataMap_->div_ = div;
+	createDataMap_->scale = scale;
+	createDataMap_->div = div;
 
 	// WVPバッファ
 	wvpBuff_ = BufferResource::CreateBufferResource(device, (sizeof(WVP) + 0xff) & ~0xff);
 	wvpBuff_->Map(0, nullptr, reinterpret_cast<void**>(&wvpMap_));
 	//WVPマップ
-	wvpMap_->matrix_ = Matrix4x4::MakeIdentity4x4();
+	wvpMap_->matrix = Matrix4x4::MakeIdentity4x4();
 
 	// 布計算バッファ
 	clothCalcDataBuff_ = BufferResource::CreateBufferResource(device, (sizeof(ClothCalcData) + 0xff) & ~0xff);
 	clothCalcDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&clothCalcDataMap_));
 	//マップ
-	clothCalcDataMap_->mass_ = 1.0f;// 質点の質量
-	clothCalcDataMap_->gravity_ = { 0.0f, -9.8f, 0.0f};// 重力
-	clothCalcDataMap_->wind_ = { 0.0f, 0.0f, 0.0f };// 風力
-	clothCalcDataMap_->stiffness_ = 100.0f; // 剛性。バネ定数k
-	clothCalcDataMap_->speedResistance_ = 0.0f; // 速度抵抗
-	clothCalcDataMap_->structuralShrink_ = 10.0f; // 構成バネ伸び抵抗
-	clothCalcDataMap_->structuralStretch_ = 10.0f; // 構成バネ縮み抵抗
-	clothCalcDataMap_->shearShrink_ = 10.0f; // せん断バネ伸び抵抗
-	clothCalcDataMap_->shearStretch_ = 10.0f; // せん断バネ縮み抵抗
-	clothCalcDataMap_->bendingShrink_ = 10.0f; // 曲げバネ伸び抵抗
-	clothCalcDataMap_->bendingStretch_ = 10.0f; // 曲げバネ縮み抵抗
-	clothCalcDataMap_->velocityLimit_ = 1000.0f; // 速度制限
+	clothCalcDataMap_->mass = 1.0f;// 質点の質量
+	clothCalcDataMap_->gravity = { 0.0f, -9.8f, 0.0f};// 重力
+	clothCalcDataMap_->wind = { 0.0f, 0.0f, 0.0f };// 風力
+	clothCalcDataMap_->stiffness = 100.0f; // 剛性。バネ定数k
+	clothCalcDataMap_->speedResistance = 0.0f; // 速度抵抗
+	clothCalcDataMap_->structuralShrink = 10.0f; // 構成バネ伸び抵抗
+	clothCalcDataMap_->structuralStretch = 10.0f; // 構成バネ縮み抵抗
+	clothCalcDataMap_->shearShrink = 10.0f; // せん断バネ伸び抵抗
+	clothCalcDataMap_->shearStretch = 10.0f; // せん断バネ縮み抵抗
+	clothCalcDataMap_->bendingShrink = 10.0f; // 曲げバネ伸び抵抗
+	clothCalcDataMap_->bendingStretch = 10.0f; // 曲げバネ縮み抵抗
+	clothCalcDataMap_->velocityLimit = 1000.0f; // 速度制限
 
 	// 時間バッファ
 	perFrameBuff_ = BufferResource::CreateBufferResource(device, (sizeof(PerFrame) + 0xff) & ~0xff);
@@ -1151,7 +1150,7 @@ void ClothGPU::InitVertexCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(3, massPointIndexSrvHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->vertexNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->vertexNum + 1023) / 1024, 1, 1);
 
 }
 
@@ -1169,7 +1168,7 @@ void ClothGPU::InitMassPointCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(3, springIndexUavHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->massPointNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->massPointNum + 1023) / 1024, 1, 1);
 
 }
 
@@ -1185,7 +1184,7 @@ void ClothGPU::InitSurfaceCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(2, massPointIndexSrvHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->surfaceNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->surfaceNum + 1023) / 1024, 1, 1);
 
 }
 
@@ -1226,7 +1225,7 @@ void ClothGPU::UpdateExternalOperationCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(2, externalSrvHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->massPointNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->massPointNum + 1023) / 1024, 1, 1);
 
 	UAVBarrierMassPoint(commandList);
 
@@ -1246,7 +1245,7 @@ void ClothGPU::UpdateIntegralCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(3, massPointUavHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->massPointNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->massPointNum + 1023) / 1024, 1, 1);
 
 	UAVBarrierMassPoint(commandList);
 
@@ -1273,18 +1272,18 @@ void ClothGPU::UpdateSpringCS(ID3D12GraphicsCommandList* commandList)
 
 		for (int32_t j = 0; j < kClothSpringBufferStructIndexOfCount; ++j) {
 
-			commandList->SetComputeRootDescriptorTable(4, clothSpringBufferStructs_[j].srvHandleGPU_);
+			commandList->SetComputeRootDescriptorTable(4, clothSpringBufferStructs_[j].srvHandleGPU);
 
 			uint32_t num = 0;
 
 			if (j < 4) {
-				num = NumsMap_->structuralSpringNums_[j % 4];
+				num = NumsMap_->structuralSpringNums[j % 4];
 			}
 			else if (j < 8) {
-				num = NumsMap_->shearSpringNums_[j % 4];
+				num = NumsMap_->shearSpringNums[j % 4];
 			}
 			else {
-				num = NumsMap_->bendingSpringNums_[j % 4];
+				num = NumsMap_->bendingSpringNums[j % 4];
 			}
 
 			commandList->Dispatch((num + 1023) / 1024, 1, 1);
@@ -1306,7 +1305,7 @@ void ClothGPU::UpdateCollisionCS(ID3D12GraphicsCommandList* commandList)
 			commandList,
 			&massPointUavHandleGPU_,
 			NumsBuff_.Get(),
-			NumsMap_->massPointNum_
+			NumsMap_->massPointNum
 		);
 
 		UAVBarrierMassPoint(commandList);
@@ -1327,7 +1326,7 @@ void ClothGPU::UpdateSurfaceCS(ID3D12GraphicsCommandList* commandList)
 
 	commandList->SetComputeRootDescriptorTable(2, massPointUavHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->surfaceNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->surfaceNum + 1023) / 1024, 1, 1);
 
 	UAVBarrierMassPoint(commandList);
 }
@@ -1348,7 +1347,7 @@ void ClothGPU::UpdateVertexCS(ID3D12GraphicsCommandList* commandList)
 	
 	commandList->SetComputeRootDescriptorTable(4, surfaceDataUavHandleGPU_);
 
-	commandList->Dispatch((NumsMap_->vertexNum_ + 1023) / 1024, 1, 1);
+	commandList->Dispatch((NumsMap_->vertexNum + 1023) / 1024, 1, 1);
 
 	UAVBarrierVertex(commandList);
 
@@ -1411,17 +1410,17 @@ void ClothGPU::SetWeight(
 {
 
 	// 質点があるか
-	if (y < static_cast<uint32_t>(createDataMap_->div_.y) + 1 &&
-		x < static_cast<uint32_t>(createDataMap_->div_.x) + 1) {
+	if (y < static_cast<uint32_t>(createDataMap_->div.y) + 1 &&
+		x < static_cast<uint32_t>(createDataMap_->div.x) + 1) {
 
 		// index取得
-		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x;
+		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
 		// 重み
 		float value = 0.0f;
 		if (isWight) {
 			value = 1.0f;
 		}
-		externalMap_[index].weight_ = value;
+		externalMap_[index].weight = value;
 	}
 
 }
@@ -1433,16 +1432,16 @@ void ClothGPU::SetPosition(
 {
 
 	// 質点があるか
-	if (y < static_cast<uint32_t>(createDataMap_->div_.y) + 1 &&
-		x < static_cast<uint32_t>(createDataMap_->div_.x) + 1) {
+	if (y < static_cast<uint32_t>(createDataMap_->div.y) + 1 &&
+		x < static_cast<uint32_t>(createDataMap_->div.x) + 1) {
 
 		// index取得
-		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x;
+		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
 
 		// 位置
-		externalMap_[index].position_ = position;
+		externalMap_[index].position = position;
 		// フラグを立てる
-		externalMap_[index].isMove_ = 1;
+		externalMap_[index].isMove = 1;
 	}
 
 }
@@ -1456,33 +1455,33 @@ void ClothGPU::SpringGeneration(uint32_t x, uint32_t y, int32_t offsetX, int32_t
 
 	// 範囲内か確認
 	if (targetX >= 0 &&
-		targetX < static_cast<int32_t>(createDataMap_->div_.x) + 1 &&
+		targetX < static_cast<int32_t>(createDataMap_->div.x) + 1 &&
 		targetY >= 0 &&
-		targetY < static_cast<int32_t>(createDataMap_->div_.y) + 1) {
+		targetY < static_cast<int32_t>(createDataMap_->div.y) + 1) {
 
 		// バネ
 		ClothSpring spring;
 		// 質点
-		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + x;
-		spring.pointIndex0_ = index;
-		index = targetY * (static_cast<uint32_t>(createDataMap_->div_.x) + 1) + targetX;
-		spring.pointIndex1_ = index;
+		uint32_t index = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
+		spring.pointIndex0 = index;
+		index = targetY * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + targetX;
+		spring.pointIndex1 = index;
 		// 自然長
 
 		Vector2 distance =
 			Vector2(
-				static_cast<float>(offsetX) * createDataMap_->scale_.x / createDataMap_->div_.x,
-				static_cast<float>(offsetY) * createDataMap_->scale_.y / createDataMap_->div_.y);
+				static_cast<float>(offsetX) * createDataMap_->scale.x / createDataMap_->div.x,
+				static_cast<float>(offsetY) * createDataMap_->scale.y / createDataMap_->div.y);
 
-		spring.naturalLength_ = Vector2::Length(distance);
+		spring.naturalLength = Vector2::Length(distance);
 		// バネの種類
-		spring.type_ = type;
+		spring.type = type;
 
 		// バネのindex
 		uint32_t springIndex = 0;
 		
 		// 登録
-		if (spring.type_ == kTypeOfSpringStructuralSpring) {
+		if (spring.type == kTypeOfSpringStructuralSpring) {
 			if (offsetX == -1) {
 				// 0
 				if (targetX % 2 == 0) {
@@ -1504,7 +1503,7 @@ void ClothGPU::SpringGeneration(uint32_t x, uint32_t y, int32_t offsetX, int32_t
 				}
 			}
 		}
-		else if (spring.type_ == kTypeOfSpringShearSpring) {
+		else if (spring.type == kTypeOfSpringShearSpring) {
 			if (offsetX == -1) {
 				// 4
 				if (targetX % 2 == 0) {
@@ -1550,7 +1549,7 @@ void ClothGPU::SpringGeneration(uint32_t x, uint32_t y, int32_t offsetX, int32_t
 
 		}
 
-		clothSpringBufferStructs_[springIndex].map_[springInitNextIndexes_[springIndex]] = spring;
+		clothSpringBufferStructs_[springIndex].map[springInitNextIndexes_[springIndex]] = spring;
 		springInitNextIndexes_[springIndex]++;
 
 	}
@@ -1632,9 +1631,9 @@ void ClothGPU::ClothSpringBufferStruct::Initialize(ID3D12Device* device, uint32_
 {
 
 	// 外部操作
-	buff_ = BufferResource::CreateBufferResource(device, ((sizeof(ClothSpring) + 0xff) & ~0xff) * num);
+	buff = BufferResource::CreateBufferResource(device, ((sizeof(ClothSpring) + 0xff) & ~0xff) * num);
 	//書き込むためのアドレスを取得
-	buff_->Map(0, nullptr, reinterpret_cast<void**>(&map_));
+	buff->Map(0, nullptr, reinterpret_cast<void**>(&map));
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC externalSrvDesc{};
 	externalSrvDesc.Format = DXGI_FORMAT_UNKNOWN;
@@ -1645,11 +1644,11 @@ void ClothGPU::ClothSpringBufferStruct::Initialize(ID3D12Device* device, uint32_
 	externalSrvDesc.Buffer.NumElements = num;
 	externalSrvDesc.Buffer.StructureByteStride = sizeof(ClothSpring);
 
-	srvHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
-	srvHandleGPU_ = SRVDescriptorHerpManager::GetGPUDescriptorHandle();
-	srvIndexDescriptorHeap_ = SRVDescriptorHerpManager::GetNextIndexDescriptorHeap();
+	srvHandleCPU = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
+	srvHandleGPU = SRVDescriptorHerpManager::GetGPUDescriptorHandle();
+	srvIndexDescriptorHeap = SRVDescriptorHerpManager::GetNextIndexDescriptorHeap();
 	SRVDescriptorHerpManager::NextIndexDescriptorHeapChange();
 
-	device->CreateShaderResourceView(buff_.Get(), &externalSrvDesc, srvHandleCPU_);
+	device->CreateShaderResourceView(buff.Get(), &externalSrvDesc, srvHandleCPU);
 
 }

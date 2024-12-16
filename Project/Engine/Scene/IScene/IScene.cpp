@@ -1,11 +1,11 @@
 #include "IScene.h"
 
 //タイトルシーンで初期化
-int IScene::sceneNo_ = kDebug;
-int IScene::requestSceneNo_ = kDebug;
+int IScene::sceneNo_ = kTitle;
+int IScene::requestSceneNo_ = kTitle;
 
-int IScene::sceneNoCheck_ = kDebug;
-int IScene::requestSceneNoCheck_ = kDebug;
+int IScene::sceneNoCheck_ = kTitle;
+int IScene::requestSceneNoCheck_ = kTitle;
 
 DirectXCommon* IScene::dxCommon_ = nullptr;
 Input* IScene::input_ = nullptr;
@@ -47,8 +47,8 @@ void IScene::StaticInitialize(LevelDataManager* levelDataManager)
 	// 線描画
 	drawLine_ = DrawLine::GetInstance();
 	drawLine_->Initialize(dxCommon_->GetDevice(), 
-		GraphicsPipelineState::sRootSignature[GraphicsPipelineState::kPipelineStateIndexLine].Get(),
-		GraphicsPipelineState::sPipelineState[GraphicsPipelineState::kPipelineStateIndexLine].Get());
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexLine].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexLine].Get());
 
 	// レベルデータマネージャー
 	levelDataManager_ = levelDataManager;

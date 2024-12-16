@@ -42,6 +42,9 @@ void TextureUAV::Initialize(
 		D3D12_RESOURCE_STATE_UNORDERED_ACCESS,
 		nullptr,
 		IID_PPV_ARGS(&resource_));
+	// リリース版警告回避
+	hr;
+	assert(SUCCEEDED(hr));
 
 	D3D12_UNORDERED_ACCESS_VIEW_DESC desc{};
 	desc.ViewDimension = D3D12_UAV_DIMENSION_TEXTURE2D;

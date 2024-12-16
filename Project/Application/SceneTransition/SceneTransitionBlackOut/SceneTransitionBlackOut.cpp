@@ -6,8 +6,6 @@
 SceneTransitionBlackOut::~SceneTransitionBlackOut()
 {
 
-	//ISceneTransition::~ISceneTransition();
-
 }
 
 void SceneTransitionBlackOut::Initialize()
@@ -16,18 +14,25 @@ void SceneTransitionBlackOut::Initialize()
 	ISceneTransition::Initialize();
 
 	// テクスチャ読み込み
-	textureHandle_ = TextureManager::Load("Resources/default/white2x2.png", DirectXCommon::GetInstance());
-	color_ = { 0.0f,0.0f,0.0f,0.0f };
-	Vector2 position = { static_cast<float>(WinApp::kWindowWidth) / 2.0f, static_cast<float>(WinApp::kWindowHeight) / 2.0f };
-	sprite_.reset(Sprite::Create(textureHandle_, position, color_));
-	sprite_->SetSize(Vector2{ static_cast<float>(WinApp::kWindowWidth), static_cast<float>(WinApp::kWindowHeight) });
+	blockTextureHandle_ = TextureManager::Load("Resources/default/white2x2.png", DirectXCommon::GetInstance());
+	blockColor_ = { 0.0f,0.0f,0.0f,0.0f };
+	// 黒位置
+	const Vector2 kBlockSpritePosition = { static_cast<float>(WinApp::kWindowWidth_) / 2.0f, static_cast<float>(WinApp::kWindowHeight_) / 2.0f };
+	blockSprite_.reset(Sprite::Create(blockTextureHandle_, kBlockSpritePosition, blockColor_));
+	// 黒大きさ
+	const Vector2 kBlockSpriteSize = { static_cast<float>(WinApp::kWindowWidth_), static_cast<float>(WinApp::kWindowHeight_) };
+	blockSprite_->SetSize(kBlockSpriteSize);
 
 	// テクスチャ読み込み
 	loadTextureHandle_ = TextureManager::Load("Resources/default/load.png", DirectXCommon::GetInstance());
-	position = { 1100.0f, 600.0f };
-	loadSprite_.reset(Sprite::Create(loadTextureHandle_, position, color_));
-	loadSprite_->SetSize({ 128.0f, 128.0f });
-	loadSprite_->SetTextureSize({ 128.0f, 128.0f });
+	// ロード位置
+	const Vector2 kLoadSpritePosition = { 1100.0f, 600.0f };
+	const Vector4 kLoadSpriteColor = { 1.0f,1.0f,1.0f, 0.0f };
+	loadSprite_.reset(Sprite::Create(loadTextureHandle_, kLoadSpritePosition, kLoadSpriteColor));
+	// ロード大きさ
+	const Vector2 kLoadSpriteSize = { 128.0f, 128.0f };
+	loadSprite_->SetSize(kLoadSpriteSize);
+	loadSprite_->SetTextureSize(kLoadSpriteSize);
 	loadSprite_->SetTextureLeftTop({ 0.0f, 0.0f });
 	loadCount_ = 0;
 
@@ -40,17 +45,26 @@ void SceneTransitionBlackOut::Update()
 
 	// α値変更
 	if (isFadeIn_) {
-		color_.w = fadeTimer_ / fadeInTime_;
+		blockColor_.w = fadeTimer_ / fadeInTime_;
 	}
 	else {
-		color_.w = 1.0f - fadeTimer_ / fadeOutTime_;
+		blockColor_.w = 1.0f - fadeTimer_ / fadeOutTime_;
 	}
 
-	loadCount_ = loadCount_ + 2 % 80;
-	loadSprite_->SetTextureLeftTop({ 128.0f * (static_cast<float>(loadCount_ / 10)), 0.0f });
+	// カウント速度
+	const int kCountSpeed = 2;
+	// カウント最大数
+	const int kCountMax = 80;
+	// LeftTopで使う値
+	const int kCountDivide = kCountMax / 8;
+	// ロード大きさX
+	const float kLoadSpriteSizeX = 128.0f;
 
-	sprite_->SetColor(color_);
-	loadSprite_->SetColor({ 1.0f,1.0f,1.0f,color_.w });
+	loadCount_ = loadCount_ + kCountSpeed % kCountMax;
+	loadSprite_->SetTextureLeftTop({ kLoadSpriteSizeX * (static_cast<float>(loadCount_ / kCountDivide)), 0.0f });
+
+	blockSprite_->SetColor(blockColor_);
+	loadSprite_->SetColor({ 1.0f,1.0f,1.0f,blockColor_.w });
 
 }
 
@@ -61,7 +75,7 @@ void SceneTransitionBlackOut::Draw()
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(DirectXCommon::GetInstance()->GetCommadList());
 
-	sprite_->Draw();
+	blockSprite_->Draw();
 	loadSprite_->Draw();
 
 	// 前景スプライト描画後処理

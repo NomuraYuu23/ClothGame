@@ -17,7 +17,7 @@ void QueryTimestamp::Initialize(ID3D12Device* device)
 	D3D12_QUERY_HEAP_DESC desc;
 	memset(&desc, 0, sizeof(desc));
 	desc.Type = D3D12_QUERY_HEAP_TYPE_TIMESTAMP;
-	desc.Count = kQueryCount * kFrameCount_;
+	desc.Count = kQueryCount_ * kFrameCount_;
 	device->CreateQueryHeap(&desc, IID_PPV_ARGS(&query_));
 
 	// リソース
@@ -25,7 +25,7 @@ void QueryTimestamp::Initialize(ID3D12Device* device)
 	memset(&resourceDesc, 0, sizeof(resourceDesc));
 	resourceDesc.SampleDesc.Count = 1;
 	resourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
-	resourceDesc.Width = sizeof(UI64) * kQueryCount * kFrameCount_;
+	resourceDesc.Width = sizeof(UI64) * kQueryCount_ * kFrameCount_;
 	resourceDesc.Height = 1;
 	resourceDesc.MipLevels = 1;
 	resourceDesc.DepthOrArraySize = 1;
@@ -51,6 +51,8 @@ void QueryTimestamp::Initialize(ID3D12Device* device)
 
 	//FrenceのSignalを持つためのイベントを作成する
 	HANDLE fenceEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+	// リリース版警告回避
+	fenceEvent;
 	assert(fenceEvent != nullptr);
 
 }
@@ -78,25 +80,25 @@ void QueryTimestamp::Postprocessing(ID3D12GraphicsCommandList* commandList)
 	}
 
 	// 実行中のクエリを終了
-	command_->GetCommadList()->EndQuery(
+	commandList->EndQuery(
 		query_.Get(),
 		D3D12_QUERY_TYPE_TIMESTAMP,
 		offset_ + 1);
 
 	// クエリデータをバッファに取り出す
-	command_->GetCommadList()->ResolveQueryData(
+	commandList->ResolveQueryData(
 		query_.Get(),
 		D3D12_QUERY_TYPE_TIMESTAMP,
 		offset_,
-		kQueryCount,
+		kQueryCount_,
 		buffer_.Get(),
 		offset_ * sizeof(UI64));
 
 	//コマンドリストの内容を確定させる。すべてのコマンドを積んでからCloseすること
-	HRESULT hr = command_->GetCommadList()->Close();
+	HRESULT hr = commandList->Close();
 	assert(SUCCEEDED(hr));
 	//GPUにコマンドリストの実行を行わせる
-	ID3D12CommandList* commandLists[] = { command_->GetCommadList() };
+	ID3D12CommandList* commandLists[] = { commandList };
 	DxCommand::GetCommandQueue()->ExecuteCommandLists(1, commandLists);
 
 	//Fenceの値を更新
@@ -137,8 +139,8 @@ void QueryTimestamp::Reading()
 	DxCommand::GetCommandQueue()->GetTimestampFrequency(&freq);
 
 	// 読みだし
-	uint32_t start = (kQueryCount * sizeof(UI64)) * offset_;
-	D3D12_RANGE range{ start, start + kQueryCount * sizeof(UI64) };
+	uint32_t start = (kQueryCount_ * sizeof(UI64)) * offset_;
+	D3D12_RANGE range{ start, start + kQueryCount_ * sizeof(UI64) };
 	void* ptr = nullptr;
 	buffer_->Map(0, &range, &ptr);
 	UI64* data = reinterpret_cast<UI64*>(ptr);

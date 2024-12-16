@@ -1,6 +1,9 @@
 #pragma once
 #include "../../Math/Vector/Vector4.h"
 
+/// <summary>
+/// 霧データ
+/// </summary>
 struct FogData
 {
 

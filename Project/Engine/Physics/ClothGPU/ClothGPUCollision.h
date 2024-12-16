@@ -16,6 +16,9 @@
 
 #pragma comment(lib, "dxcompiler.lib")
 
+/// <summary>
+/// 布衝突GPU
+/// </summary>
 class ClothGPUCollision
 {
 
@@ -37,9 +40,9 @@ public: // サブクラス
 	struct Plane
 	{
 		//法線
-		Vector3 normal_;
+		Vector3 normal;
 		//距離
-		float distance_;
+		float distance;
 	};
 
 	/// <summary>
@@ -48,9 +51,9 @@ public: // サブクラス
 	struct Sphere
 	{
 		// 位置
-		Vector3 position_;
+		Vector3 position;
 		// 距離
-		float radius_;
+		float radius;
 	};
 
 	/// <summary>
@@ -58,11 +61,11 @@ public: // サブクラス
 	/// </summary>
 	struct Capsule {
 		// 半径
-		float radius_;
+		float radius;
 		// 原点
-		Vector3 origin_;
+		Vector3 origin;
 		// 終点までのベクトル
-		Vector3 diff_;
+		Vector3 diff;
 	};
 
 	// 衝突するデータマップ

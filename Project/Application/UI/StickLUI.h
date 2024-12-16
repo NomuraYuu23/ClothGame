@@ -1,5 +1,9 @@
 #pragma once
 #include "BaseUI.h"
+
+/// <summary>
+/// スティックUI
+/// </summary>
 class StickLUI :
     public BaseUI
 {
@@ -23,8 +27,6 @@ public: // メンバ関数
 	/// ImGui描画
 	/// </summary>
 	void ImGuiDraw();
-
-private: // メンバ変数
 
 };
 

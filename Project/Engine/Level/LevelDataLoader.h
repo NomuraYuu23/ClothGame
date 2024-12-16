@@ -8,20 +8,23 @@
 #include "LevelData.h"
 #include "../Collider/Collider.h"
 
+/// <summary>
+/// レベルデータ読み込み
+/// </summary>
 class LevelDataLoader
 {
 
 private: // 定数
 
 	// ディレクトリの名前
-	static const std::string kFileDirectoryName;
+	static const std::string kFileDirectoryName_;
 
 	// ファイルの種類の名前
-	static const std::string kExtensionName;
+	static const std::string kExtensionName_;
 
 	// オブジェクトの名前
 	static const std::array<std::string, 
-		LevelData::ObjectDataIndex::kObjectDataIndexOfCount> kObjectTypeNames;
+		LevelData::ObjectDataIndex::kObjectDataIndexOfCount> kObjectTypeNames_;
 
 private: // 変数 
 

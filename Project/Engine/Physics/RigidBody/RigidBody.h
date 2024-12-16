@@ -4,6 +4,9 @@
 #include "../../Math/Quaternion.h"
 #include "../../Collider/OBB/OBB.h"
 
+/// <summary>
+/// 剛体
+/// </summary>
 class RigidBody
 {
 
@@ -18,20 +21,20 @@ class RigidBody
 
 public: // 変数
 
-	MassPoint massPoint; // 質点
+	MassPoint massPoint_; // 質点
 
-	Vector3 torque;	// トルク(ひねり力)
+	Vector3 torque_;	// トルク(ひねり力)
 	
-	Matrix4x4 inertiaTensor; // 慣性テンソル
-	Matrix4x4 basicPostureInertiaTensor; // 基本姿勢での慣性テンソル
+	Matrix4x4 inertiaTensor_; // 慣性テンソル
+	Matrix4x4 basicPostureInertiaTensor_; // 基本姿勢での慣性テンソル
 	
-	Matrix4x4 postureMatrix; // 姿勢行列
+	Matrix4x4 postureMatrix_; // 姿勢行列
 
-	Vector3 angularVelocity; // 角速度
-	Vector3 angularMomentum; // 角運動量
+	Vector3 angularVelocity_; // 角速度
+	Vector3 angularMomentum_; // 角運動量
 
-	Vector3 centerOfGravityVelocity; // 重心位置速度
-	Vector3 centerOfGravity; // 重心位置 
+	Vector3 centerOfGravityVelocity_; // 重心位置速度
+	Vector3 centerOfGravity_; // 重心位置 
 
 public: // 関数
 
@@ -50,6 +53,15 @@ public: // 関数
 	/// <param name="force">力</param>
 	void ApplyForce(const Vector3& center, const Vector3& pointOfAction, const Vector3& force);
 
+	/// <summary>
+	/// 衝突位置確認
+	/// </summary>
+	/// <param name="rigidBody">剛体</param>
+	/// <param name="myObb">自分</param>
+	/// <param name="pairObb">ペア</param>
+	/// <param name="coefficientOfRestitution">反発係数</param>
+	/// <param name="isGround">地面か</param>
+	/// <param name="power">力</param>
 	static void CollisionPositionConfirmation(RigidBody* rigidBody,
 		const OBB& myObb,
 		const OBB& pairObb,
@@ -59,12 +71,38 @@ public: // 関数
 
 private:
 
+	/// <summary>
+	/// 2つの近い点を見つける
+	/// </summary>
+	/// <param name="ansNumber">一つ目の点</param>
+	/// <param name="ansNumber2">二つ目の点</param>
+	/// <param name="obbVertex">obbの頂点</param>
+	/// <param name="pairPos">ペアの位置</param>
 	static void FindTwoClosePoints(uint32_t& ansNumber, uint32_t& ansNumber2, const Vector3 obbVertex[8], const Vector3& pairPos);
-
+	
+	/// <summary>
+	/// 2つの近い点を見つける
+	/// </summary>
+	/// <param name="ansNumber">一つ目の点</param>
+	/// <param name="ansNumber2">二つ目の点</param>
+	/// <param name="obbVertex">obbの頂点</param>
 	static void FindTwoClosePoints(uint32_t& ansNumber, uint32_t& ansNumber2, const Vector3 obbVertex[8]);
-
+	
+	/// <summary>
+	/// 2つの遠い点を見つける
+	/// </summary>
+	/// <param name="ansNumber">一つ目の点</param>
+	/// <param name="ansNumber2">二つ目の点</param>
+	/// <param name="obbVertex">obbの頂点</param>
+	/// <param name="pairPos">ペアの位置</param>
 	static void FindTwoFarPoints(uint32_t& ansNumber, uint32_t& ansNumber2, const Vector3 obbVertex[8], const Vector3& pairPos);
-
+	
+	/// <summary>
+	/// 2つの遠い点を見つける
+	/// </summary>
+	/// <param name="ansNumber">一つ目の点</param>
+	/// <param name="ansNumber2">二つ目の点</param>
+	/// <param name="obbVertex">obbの頂点</param>
 	static void FindTwoFarPoints(uint32_t& ansNumber, uint32_t& ansNumber2, const Vector3 obbVertex[8]);
 
 public: // 関数

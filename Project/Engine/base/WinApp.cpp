@@ -6,7 +6,7 @@
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 //#endif
 
-const wchar_t WinApp::kWindowClassName[] = L"DirectXGame";
+const wchar_t WinApp::kWindowClassName_[] = L"DirectXGame";
 
 //	シングルトンインスタンスの取得
 WinApp* WinApp::GetInstance() {
@@ -46,7 +46,7 @@ void WinApp::CreateGameWindow(const wchar_t* title, UINT windowStyle, int32_t cl
 	//ウィンドウプロシージャ
 	wndClass_.lpfnWndProc = WindowProc;
 	//ウィンドウクラス名
-	wndClass_.lpszClassName = kWindowClassName;
+	wndClass_.lpszClassName = kWindowClassName_;
 	//インスタンスハンドル
 	wndClass_.hInstance = GetModuleHandle(nullptr);
 	//カーソル

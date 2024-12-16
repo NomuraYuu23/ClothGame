@@ -19,20 +19,26 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     model_.reset(Model::Create(directoryPath_, fileName_, dxCommon));
 
     // マテリアル
+    const Vector4 kMaterialColor = { 0.5f,1.0f,0.5f,1.0f };
     material_.reset(Material::Create());
-    material_->SetColor(Vector4{ 0.5f,1.0f,0.5f,1.0f });
+    material_->SetColor(kMaterialColor);
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
-    data_.origin_ = { 0.0f, -0.5f, 0.0f };
-    data_.diff_ = { 0.0f, 0.5f, 0.0f };
-    data_.radius_ = 0.5f;
+    const ClothGPUCollision::Capsule kInitData =
+    {
+        0.5f,
+        Vector3{ 0.0f, -0.5f, 0.0f },
+        Vector3{ 0.0f, 0.5f, 0.0f },
+    };
+    data_ = kInitData;
 
     // 画面ちらつかないようの値
-    screenDoesNotFlickerValue_ = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
 
     // デモに存在するか
     exist_ = false;
@@ -44,7 +50,7 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     textureHandle_ = TextureManager::Load("Resources/default/white2x2.png", dxCommon);
 
     // トランスフォーム、カプセルの下用
-    diffWorldTransform_.Initialize(model_->GetRootNode());
+    diffWorldTransform_.Initialize(true);
 
     // 円柱モデルファイル名前
     cylinderFileName_ = "Cylinder.obj";
@@ -53,7 +59,7 @@ void ClothDemoCapsule::Initialize(const std::string& name)
     cylinderModel_.reset(Model::Create(directoryPath_, cylinderFileName_, dxCommon));
 
     // トランスフォーム、円柱
-    cylinderWorldTransform_.Initialize(cylinderModel_->GetRootNode());
+    cylinderWorldTransform_.Initialize(true);
 
     // ギズモ操作番号
     guizmoOperation_ = ImGuizmo::TRANSLATE;
@@ -69,9 +75,9 @@ void ClothDemoCapsule::Update()
 
     // 原点球
     // 位置
-    worldTransform_.transform_.translate = data_.origin_;
+    worldTransform_.transform_.translate = data_.origin;
     // 大きさ
-    float size = data_.radius_ - screenDoesNotFlickerValue_;
+    float size = data_.radius - screenDoesNotFlickerValue_;
     worldTransform_.transform_.scale = { size, size, size };
 
     // 行列更新
@@ -79,7 +85,7 @@ void ClothDemoCapsule::Update()
 
     // 線分球
     // 位置
-    diffWorldTransform_.transform_.translate = data_.origin_ + data_.diff_;
+    diffWorldTransform_.transform_.translate = data_.origin + data_.diff;
     // 大きさ
     diffWorldTransform_.transform_.scale = { size, size, size };
 
@@ -88,13 +94,13 @@ void ClothDemoCapsule::Update()
 
     // 円柱
     // 位置
-    cylinderWorldTransform_.transform_.translate = data_.diff_ * 0.5f + data_.origin_;
+    cylinderWorldTransform_.transform_.translate = data_.diff * 0.5f + data_.origin;
     // 大きさ
-    size = data_.radius_ - screenDoesNotFlickerValue_;
-    cylinderWorldTransform_.transform_.scale = { size, size, Vector3::Length(data_.diff_) * 0.5f };
+    size = data_.radius - screenDoesNotFlickerValue_;
+    cylinderWorldTransform_.transform_.scale = { size, size, Vector3::Length(data_.diff) * 0.5f };
     // 回転
     cylinderWorldTransform_.usedDirection_ = true;
-    cylinderWorldTransform_.direction_ = Vector3::Normalize(data_.diff_);
+    cylinderWorldTransform_.direction_ = Vector3::Normalize(data_.diff);
 
     // 行列更新
     cylinderWorldTransform_.UpdateMatrix();
@@ -136,25 +142,28 @@ void ClothDemoCapsule::Draw(BaseCamera& camera)
 void ClothDemoCapsule::ImGuiDraw(BaseCamera& camera)
 {
 
+    // ImGui速度
+    const float kImGuiSpeed = 0.01f;
+
     ImGui::Text("カプセル");
     // 原点
-    ImGui::DragFloat3("カプセル_原点", &data_.origin_.x, 0.01f);
+    ImGui::DragFloat3("カプセル_原点", &data_.origin.x, kImGuiSpeed);
     // 終点までのベクトル
-    ImGui::DragFloat3("カプセル_終点までのベクトル", &data_.diff_.x, 0.01f);
+    ImGui::DragFloat3("カプセル_終点までのベクトル", &data_.diff.x, kImGuiSpeed);
     // 半径
-    ImGui::DragFloat("カプセル_半径", &data_.radius_, 0.01f);
+    ImGui::DragFloat("カプセル_半径", &data_.radius, kImGuiSpeed);
 
     // ギズモ
 
     // 変数
     EulerTransform transform =
     {
-        Vector3{ data_.radius_, data_.radius_, Vector3::Length(data_.diff_) * 0.5f },
+        Vector3{ data_.radius, data_.radius, Vector3::Length(data_.diff) * 0.5f },
         Vector3{ 0.0f,0.0f,0.0f },
-        data_.origin_ + (data_.diff_ * 0.5f)
+        data_.origin + (data_.diff * 0.5f)
     };
     Matrix4x4 scaleMatrix = Matrix4x4::MakeScaleMatrix(transform.scale);
-    Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, Vector3::Normalize(data_.diff_));
+    Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, Vector3::Normalize(data_.diff));
     Matrix4x4 translateMatrix = Matrix4x4::MakeTranslateMatrix(transform.translate);
 
     Matrix4x4 matrix = Matrix4x4::Multiply(scaleMatrix, Matrix4x4::Multiply(rotateMatrix, translateMatrix));
@@ -192,9 +201,9 @@ void ClothDemoCapsule::ImGuiDraw(BaseCamera& camera)
         ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
 
         // データを代入
-        data_.origin_ = transform.translate - Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix);
-        data_.diff_ = Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix) * 2.0f;
-        data_.radius_ = transform.scale.x;
+        data_.origin = transform.translate - Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix);
+        data_.diff = Matrix4x4::TransformNormal(Vector3{ 0.0f, 0.0f, 1.0f }, matrix) * 2.0f;
+        data_.radius = transform.scale.x;
     }
     
     // ID

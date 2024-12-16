@@ -3,10 +3,17 @@
 #include <memory>
 #include "../../../Engine/2D/Sprite.h"
 
-class SceneTransitionBlackOut : public ISceneTransition{
+/// <summary>
+/// だんだん黒くなるシーン遷移
+/// </summary>
+class SceneTransitionBlackOut : 
+	public ISceneTransition{
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~SceneTransitionBlackOut() override;
 
 	/// <summary>
@@ -26,13 +33,18 @@ public: // メンバ関数
 
 private:
 
-	std::unique_ptr<Sprite> sprite_;
-	uint32_t textureHandle_;
-	Vector4 color_;
+	// 黒スプライト
+	std::unique_ptr<Sprite> blockSprite_;
+	// 黒テクスチャハンドル
+	uint32_t blockTextureHandle_;
+	// 黒色（透明度も含める）
+	Vector4 blockColor_;
 
+	// ロードスプライト
 	std::unique_ptr<Sprite> loadSprite_;
+	// ロードテクスチャハンドル
 	uint32_t loadTextureHandle_;
-
+	// ロードカウント
 	uint32_t loadCount_;
 
 };

@@ -3,6 +3,9 @@
 #include "../3D/Transform/WorldTransform.h"
 #include "../3D/Line/DrawLine.h"
 
+/// <summary>
+/// ローカル行列描画
+/// </summary>
 class LocalMatrixDraw
 {
 

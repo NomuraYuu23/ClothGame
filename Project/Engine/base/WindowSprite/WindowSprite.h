@@ -7,19 +7,13 @@
 #include "../../3D/Material/Material.h"
 #include "../Texture/TextureUAV.h"
 
+/// <summary>
+/// ウインドウスプライト
+/// </summary>
 class WindowSprite
 {
 
-private:
-
-	// 頂点数
-	const int kVertNum = 3;
-	// デバイス
-	ID3D12Device* device_;
-	// コマンドリスト
-	ID3D12GraphicsCommandList* commandList_;
-
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// インスタンス取得
@@ -46,6 +40,16 @@ public:
 	/// </summary>
 	/// <param name="textureUAV">テクスチャ</param>
 	void DrawSRV(TextureUAV* textureUAV);
+
+private: // メンバ変数、定数
+
+	// 頂点数
+	const int kVertNum_ = 3;
+	// デバイス
+	ID3D12Device* device_;
+	// コマンドリスト
+	ID3D12GraphicsCommandList* commandList_;
+
 
 };
 

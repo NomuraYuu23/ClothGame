@@ -2,6 +2,9 @@
 #include "../../Math/Vector/Vector3.h"
 #include "../../Math/DeltaTime.h"
 
+/// <summary>
+/// 重力
+/// </summary>
 class Gravity
 {
 
@@ -23,13 +26,13 @@ private: // 変数
 
 public: // アクセッサ
 	
-	// 向き
+	// 向き設定
 	static void SetDirction(const Vector3& dirction) { dirction_ = dirction; }
 
-	// 力
+	// 力設定
 	static void SetPower(const float& power) { power_ = power;	}
 
-	// 力
+	// 力取得
 	static float GetPower() { return power_; }
 
 };

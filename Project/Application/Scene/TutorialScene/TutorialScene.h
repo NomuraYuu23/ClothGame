@@ -1,26 +1,26 @@
 #pragma once
-
 #include <array>
-
 #include "../../../Engine/Scene/IScene/IScene.h"
-
 #include "../../../Engine/Light/DirectionalLight/DirectionalLight.h" // 平行光源
 #include "../../../Engine/Light/PointLight/PointLightManager.h" // 点光源
 #include "../../../Engine/Light/SpotLight/SpotLightManager.h" // スポット
-
 #include "../../../Engine/Collision2D/Collision2DManager.h"
 #include "../../../Engine/Collision2D/Collision2DDebugDraw.h"
-
 #include "../../Camera/FollowCamera.h"
-
 #include "../../Effect/EffectManager.h"
 
-
-class TutorialScene : public IScene
+/// <summary>
+/// チュートリアルシーン
+/// </summary>
+class TutorialScene : 
+	public IScene
 {
 
-public:
+public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~TutorialScene();
 
 	/// <summary>
@@ -62,7 +62,7 @@ private: // メンバ関数
 	/// </summary>
 	void TextureLoad() override;
 
-private:
+private: // メンバ変数
 
 	// パーティクルマネージャー
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;

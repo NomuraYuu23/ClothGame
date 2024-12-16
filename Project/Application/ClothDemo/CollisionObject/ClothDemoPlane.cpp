@@ -17,19 +17,25 @@ void ClothDemoPlane::Initialize(const std::string& name)
     model_.reset(Model::Create(directoryPath_, fileName_, dxCommon));
 
     // マテリアル
+    const Vector4 kMaterialColor = { 0.5f,0.5f,1.0f,1.0f };
     material_.reset(Material::Create());
-    material_->SetColor(Vector4{0.5f,0.5f,1.0f,1.0f});
+    material_->SetColor(kMaterialColor);
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
-    data_.distance_ = 0.0f;
-    data_.normal_ = {0.0f, 1.0f, 0.0f};
+    const ClothGPUCollision::Plane kInitData =
+    {
+        Vector3{ 0.0f, 0.0f, 0.0f },
+        0.0f
+    };
+    data_ = kInitData;
     
     // 画面ちらつかないようの値
-    screenDoesNotFlickerValue_ = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
     
     // 大きさ
     worldTransform_.transform_.scale = kScale_;
@@ -57,10 +63,10 @@ void ClothDemoPlane::Update()
 
     // 回転
     worldTransform_.usedDirection_ = true;
-    worldTransform_.direction_ = data_.normal_;
+    worldTransform_.direction_ = data_.normal;
     
     // 位置
-    worldTransform_.transform_.translate = data_.normal_ * (data_.distance_ - screenDoesNotFlickerValue_);
+    worldTransform_.transform_.translate = data_.normal * (data_.distance - screenDoesNotFlickerValue_);
 
     // 行列更新
     worldTransform_.UpdateMatrix();
@@ -70,12 +76,15 @@ void ClothDemoPlane::Update()
 void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
 {
 
+    // ImGui速度
+    const float kImGuiSpeed = 0.01f;
+
     ImGui::Text("平面");
     // 法線
-    ImGui::DragFloat3("平面_法線", &data_.normal_.x, 0.01f);
-    data_.normal_ = Vector3::Normalize(data_.normal_);
+    ImGui::DragFloat3("平面_法線", &data_.normal.x, kImGuiSpeed);
+    data_.normal = Vector3::Normalize(data_.normal);
     // 距離
-    ImGui::DragFloat("平面_距離", &data_.distance_, 0.01f);
+    ImGui::DragFloat("平面_距離", &data_.distance, kImGuiSpeed);
 
     // ギズモ
 
@@ -84,12 +93,12 @@ void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
     {
         kScale_,
         Vector3{ 0.0f,0.0f,0.0f },
-        Vector3{ 0.0f, data_.distance_, 0.0f },
+        Vector3{ 0.0f, data_.distance, 0.0f },
     };
 
     Matrix4x4 scaleMatrix = Matrix4x4::MakeScaleMatrix(kScale_);
-    Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, data_.normal_);
-    Matrix4x4 translateMatrix = Matrix4x4::MakeTranslateMatrix(Vector3{ 0.0f, data_.distance_, 0.0f });
+    Matrix4x4 rotateMatrix = Matrix4x4::DirectionToDirection(Vector3{ 0.0f,0.0f,1.0f }, data_.normal);
+    Matrix4x4 translateMatrix = Matrix4x4::MakeTranslateMatrix(Vector3{ 0.0f, data_.distance, 0.0f });
 
     Matrix4x4 matrix = Matrix4x4::Multiply(scaleMatrix, Matrix4x4::Multiply(rotateMatrix, translateMatrix));
 
@@ -118,9 +127,9 @@ void ClothDemoPlane::ImGuiDraw(BaseCamera& camera)
     ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
 
     // データを代入
-    data_.distance_ = transform.translate.y;
-    data_.normal_ = Matrix4x4::TransformNormal(Vector3{ 0.0f,0.0f,1.0f },matrix);
-    data_.normal_ = Vector3::Normalize(data_.normal_);
+    data_.distance = transform.translate.y;
+    data_.normal = Matrix4x4::TransformNormal(Vector3{ 0.0f,0.0f,1.0f },matrix);
+    data_.normal = Vector3::Normalize(data_.normal);
 
     // 更新
     Update();

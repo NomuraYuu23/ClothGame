@@ -4,6 +4,9 @@
 #include "../Transform/WorldTransform.h"
 #include "../Material/MaterialData.h"
 
+/// <summary>
+/// 1 つのオブジェクト
+/// </summary>
 class OneOfManyObjects
 {
 

@@ -1,6 +1,11 @@
 #pragma once
 #include "../Collider.h"
-class Sphere : public Collider
+
+/// <summary>
+/// 衝突オブジェクト 球
+/// </summary>
+class Sphere : 
+	public Collider
 {
 
 public: // メンバ関数
@@ -19,8 +24,10 @@ public: // メンバ関数
 
 public: // メンバ変数
 
-	Vector3 center_; //中心点
-	float radius_;   //半径
+	// 中心点
+	Vector3 center_;
+	// 半径
+	float radius_;
 
 };
 

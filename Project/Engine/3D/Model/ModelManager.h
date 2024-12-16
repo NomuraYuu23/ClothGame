@@ -4,6 +4,9 @@
 
 #include "Model.h"
 
+/// <summary>
+/// モデルマネージャー
+/// </summary>
 class ModelManager
 {
 
@@ -51,9 +54,10 @@ private: // 変数
 	// モデル
 	std::vector<std::unique_ptr<Model>> models_;
 
+	// DirectXCommon
 	DirectXCommon* dxCommon_ = nullptr;
 
-private:
+private: //シングルトン
 	ModelManager() = default;
 	~ModelManager() = default;
 	ModelManager(const ModelManager&) = delete;

@@ -1,7 +1,11 @@
 #pragma once
 #include "Collider2D.h"
 
-class Circle : public Collider2D
+/// <summary>
+/// 2D衝突オブジェクト 円
+/// </summary>
+class Circle : 
+	public Collider2D
 {
 
 public: // メンバ関数
@@ -23,6 +27,7 @@ public: // メンバ関数
 
 public: // メンバ変数
 
+	// 半径
 	float radius_ = 0.0f;
 
 };

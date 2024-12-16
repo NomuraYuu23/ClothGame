@@ -3,6 +3,9 @@
 #include <wrl/client.h>
 #include <d3d12.h>
 
+/// <summary>
+/// 衝撃波エフェクトマネージャー
+/// </summary>
 class ShockWaveManager
 {
 

@@ -23,6 +23,9 @@
 #include "../../3D/Fog/FogManager.h"
 #include "ClothGPUCollision.h"
 
+/// <summary>
+/// 布GPU
+/// </summary>
 class ClothGPU
 {
 
@@ -81,24 +84,24 @@ public: // サブクラス
 	/// 頂点
 	/// </summary>
 	struct VertexData {
-		Vector4 position_; // 位置
-		Vector2 texcoord_; // テクスチャ座標
-		Vector3 normal_; // 法線
+		Vector4 position; // 位置
+		Vector2 texcoord; // テクスチャ座標
+		Vector3 normal; // 法線
 	};
 
 	/// <summary>
 	/// WVP
 	/// </summary>
 	struct WVP {
-		Matrix4x4 matrix_; // 行列
+		Matrix4x4 matrix; // 行列
 	};
 
 	/// <summary>
 	/// 面情報
 	/// </summary>
 	struct SurfaceData {
-		Vector3 normal_; // 法線
-		std::array<int32_t, 4> indexes_; // 頂点 四角形固定なので四つ
+		Vector3 normal; // 法線
+		std::array<int32_t, 4> indexes; // 頂点 四角形固定なので四つ
 	};
 
 	/// <summary>
@@ -106,8 +109,8 @@ public: // サブクラス
 	/// </summary>
 	struct CreateData
 	{
-		Vector2 scale_; // 大きさ
-		Vector2 div_; // 分割数
+		Vector2 scale; // 大きさ
+		Vector2 div; // 分割数
 	};
 
 	/// <summary>
@@ -115,18 +118,18 @@ public: // サブクラス
 	/// </summary>
 	struct ClothCalcData
 	{
-		float mass_; // 質点の質量
-		Vector3 gravity_; // 重力
-		Vector3 wind_; // 風力
-		float stiffness_; // 剛性。バネ定数k
-		float speedResistance_; // 速度抵抗
-		float structuralShrink_; // 構成バネ伸び抵抗
-		float structuralStretch_; // 構成バネ縮み抵抗
-		float shearShrink_; // せん断バネ伸び抵抗
-		float shearStretch_; // せん断バネ縮み抵抗
-		float bendingShrink_; // 曲げバネ伸び抵抗
-		float bendingStretch_; // 曲げバネ縮み抵抗
-		float velocityLimit_; // 速度制限
+		float mass; // 質点の質量
+		Vector3 gravity; // 重力
+		Vector3 wind; // 風力
+		float stiffness; // 剛性。バネ定数k
+		float speedResistance; // 速度抵抗
+		float structuralShrink; // 構成バネ伸び抵抗
+		float structuralStretch; // 構成バネ縮み抵抗
+		float shearShrink; // せん断バネ伸び抵抗
+		float shearStretch; // せん断バネ縮み抵抗
+		float bendingShrink; // 曲げバネ伸び抵抗
+		float bendingStretch; // 曲げバネ縮み抵抗
+		float velocityLimit; // 速度制限
 
 	};
 
@@ -135,9 +138,9 @@ public: // サブクラス
 	/// </summary>
 	struct ExternalOperationData
 	{	
-		Vector3 position_; // 位置
-		uint32_t isMove_; // 位置動かすか
-		float weight_; // 重み
+		Vector3 position; // 位置
+		uint32_t isMove; // 位置動かすか
+		float weight; // 重み
 	};
 
 	/// <summary>
@@ -145,9 +148,9 @@ public: // サブクラス
 	/// </summary>
 	struct ClothMassPoint
 	{
-		Vector3 position_; // 現在の位置
-		Vector3 prePosition_; // 前フレ―ムの位置
-		float weight_; // 運動計算の重み (固定する場合は0.0f, それ以外は1.0f)
+		Vector3 position; // 現在の位置
+		Vector3 prePosition; // 前フレ―ムの位置
+		float weight; // 運動計算の重み (固定する場合は0.0f, それ以外は1.0f)
 	};
 
 	/// <summary>
@@ -155,10 +158,10 @@ public: // サブクラス
 	/// </summary>
 	struct ClothSpring
 	{
-		uint32_t pointIndex0_; // 質点0
-		uint32_t pointIndex1_; // 質点1
-		float naturalLength_; // 自然長
-		uint32_t type_; // バネの種類
+		uint32_t pointIndex0; // 質点0
+		uint32_t pointIndex1; // 質点1
+		float naturalLength; // 自然長
+		uint32_t type; // バネの種類
 	};
 
 	/// <summary>
@@ -166,27 +169,27 @@ public: // サブクラス
 	/// </summary>
 	struct Nums
 	{
-		std::array<uint32_t,4> structuralSpringNums_; // 構成バネ、4つバッファがある
-		std::array<uint32_t, 4> shearSpringNums_;
-		std::array<uint32_t, 4> bendingSpringNums_;
+		std::array<uint32_t,4> structuralSpringNums; // 構成バネ、4つバッファがある
+		std::array<uint32_t, 4> shearSpringNums;
+		std::array<uint32_t, 4> bendingSpringNums;
 
-		uint32_t vertexNum_;
-		uint32_t massPointNum_;
-		uint32_t surfaceNum_;
+		uint32_t vertexNum;
+		uint32_t massPointNum;
+		uint32_t surfaceNum;
 	};
 
 	struct ClothSpringBufferStruct
 	{
 		// バネ情報 (バネの数)
-		Microsoft::WRL::ComPtr<ID3D12Resource> buff_;
+		Microsoft::WRL::ComPtr<ID3D12Resource> buff;
 		// 頂点 がどこの質点かマップ
-		ClothSpring* map_ = nullptr;
+		ClothSpring* map = nullptr;
 		// CPUハンドル
-		D3D12_CPU_DESCRIPTOR_HANDLE srvHandleCPU_{};
+		D3D12_CPU_DESCRIPTOR_HANDLE srvHandleCPU{};
 		// GPUハンドル
-		D3D12_GPU_DESCRIPTOR_HANDLE srvHandleGPU_{};
+		D3D12_GPU_DESCRIPTOR_HANDLE srvHandleGPU{};
 		// ディスクリプタヒープの位置
-		uint32_t srvIndexDescriptorHeap_ = 0;
+		uint32_t srvIndexDescriptorHeap = 0;
 
 		/// <summary>
 		/// 初期化
@@ -325,8 +328,7 @@ public: // メンバ関数
 	/// <summary>
 	/// 更新
 	/// </summary>
-	/// <param name="commandList">コマンドリスト</param>
-	void Update(ID3D12GraphicsCommandList* commandList);
+	void Update();
 
 	/// <summary>
 	/// 描画
@@ -362,11 +364,9 @@ private: // バッファの初期化、設定
 	/// バッファの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	/// <param name="commandList"></param>
 	/// <param name="scale"></param>
 	/// <param name="div"></param>
 	void BufferInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList, 
 		const Vector2& scale, 
 		const Vector2& div);
 
@@ -380,15 +380,13 @@ private: // バッファの初期化、設定
 	///	頂点バッファの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	void VertexBufferInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList);
+	void VertexBufferInitialize(ID3D12Device* device);
 
 	/// <summary>
 	/// UAVの初期化
 	/// </summary>
 	/// <param name="device"></param>
-	void UAVInitialize(ID3D12Device* device,
-		ID3D12GraphicsCommandList* commandList);
+	void UAVInitialize(ID3D12Device* device);
 
 	/// <summary>
 	/// SRVの初期化
@@ -584,52 +582,52 @@ public: // アクセッサ
 	// 布計算
 
 	// 質量
-	void SetMass(float mass) { clothCalcDataMap_->mass_ = mass; }
-	float GetMass() { return clothCalcDataMap_->mass_; }
+	void SetMass(float mass) { clothCalcDataMap_->mass = mass; }
+	float GetMass() { return clothCalcDataMap_->mass; }
 
 	// 重力
-	void SetGravity(const Vector3& gravity) { clothCalcDataMap_->gravity_ = gravity; }
-	Vector3 GetGravity() { return clothCalcDataMap_->gravity_; }
+	void SetGravity(const Vector3& gravity) { clothCalcDataMap_->gravity = gravity; }
+	Vector3 GetGravity() { return clothCalcDataMap_->gravity; }
 
 	// 風力
-	void SetWind(const Vector3& wind) { clothCalcDataMap_->wind_ = wind; }
-	Vector3 GetWind() { return clothCalcDataMap_->wind_; }
+	void SetWind(const Vector3& wind) { clothCalcDataMap_->wind = wind; }
+	Vector3 GetWind() { return clothCalcDataMap_->wind; }
 	
 	// バネ強度
-	void SetStiffness(float stiffness) { clothCalcDataMap_->stiffness_ = stiffness; }
-	float GetStiffness() { return clothCalcDataMap_->stiffness_; }
+	void SetStiffness(float stiffness) { clothCalcDataMap_->stiffness = stiffness; }
+	float GetStiffness() { return clothCalcDataMap_->stiffness; }
 
 	// 速度抵抗
-	void SetSpeedResistance(float speedResistance) { clothCalcDataMap_->speedResistance_ = speedResistance; }
-	float GetSpeedResistance() { return clothCalcDataMap_->speedResistance_; }
+	void SetSpeedResistance(float speedResistance) { clothCalcDataMap_->speedResistance = speedResistance; }
+	float GetSpeedResistance() { return clothCalcDataMap_->speedResistance; }
 	
 	// 構成バネ伸び抵抗
-	void SetStructuralShrink(float structuralShrink) { clothCalcDataMap_->structuralShrink_ = structuralShrink; }
-	float GetStructuralShrink() { return clothCalcDataMap_->structuralShrink_; }
+	void SetStructuralShrink(float structuralShrink) { clothCalcDataMap_->structuralShrink = structuralShrink; }
+	float GetStructuralShrink() { return clothCalcDataMap_->structuralShrink; }
 
 	// 構成バネ縮み抵抗
-	void SetStructuralStretch(float structuralStretch) { clothCalcDataMap_->structuralStretch_ = structuralStretch; }
-	float GetStructuralStretch() { return clothCalcDataMap_->structuralStretch_; }
+	void SetStructuralStretch(float structuralStretch) { clothCalcDataMap_->structuralStretch = structuralStretch; }
+	float GetStructuralStretch() { return clothCalcDataMap_->structuralStretch; }
 
 	// せん断バネ伸び抵抗
-	void SetShearShrink(float shearShrink) { clothCalcDataMap_->shearShrink_ = shearShrink; }
-	float GetShearShrink() { return clothCalcDataMap_->shearShrink_; }
+	void SetShearShrink(float shearShrink) { clothCalcDataMap_->shearShrink = shearShrink; }
+	float GetShearShrink() { return clothCalcDataMap_->shearShrink; }
 
 	// せん断バネ縮み抵抗
-	void SetShearStretch(float shearStretch) { clothCalcDataMap_->shearStretch_ = shearStretch; }
-	float GetShearStretch() { return clothCalcDataMap_->shearStretch_; }
+	void SetShearStretch(float shearStretch) { clothCalcDataMap_->shearStretch = shearStretch; }
+	float GetShearStretch() { return clothCalcDataMap_->shearStretch; }
 
 	// 曲げバネ伸び抵抗
-	void SetBendingShrink(float bendingShrink) { clothCalcDataMap_->bendingShrink_ = bendingShrink; }
-	float GetBendingShrink() { return clothCalcDataMap_->bendingShrink_; }
+	void SetBendingShrink(float bendingShrink) { clothCalcDataMap_->bendingShrink = bendingShrink; }
+	float GetBendingShrink() { return clothCalcDataMap_->bendingShrink; }
 
 	// 曲げバネ縮み抵抗
-	void SetBendingStretch(float bendingStretch) { clothCalcDataMap_->bendingStretch_ = bendingStretch; }
-	float GetBendingStretch() { return clothCalcDataMap_->bendingStretch_; }
+	void SetBendingStretch(float bendingStretch) { clothCalcDataMap_->bendingStretch = bendingStretch; }
+	float GetBendingStretch() { return clothCalcDataMap_->bendingStretch; }
 
 	// 速度制限
-	void SetVelocityLimit(float velocityLimit) { clothCalcDataMap_->velocityLimit_ = velocityLimit; }
-	float GetVelocityLimit() { return clothCalcDataMap_->velocityLimit_; }
+	void SetVelocityLimit(float velocityLimit) { clothCalcDataMap_->velocityLimit = velocityLimit; }
+	float GetVelocityLimit() { return clothCalcDataMap_->velocityLimit; }
 
 	// バネフェーズの反復回数
 	void SetRelaxation(int32_t relaxation) { relaxation_ = relaxation; }

@@ -3,6 +3,9 @@
 #include "../../Math/Vector/Vector3.h"
 #include "../../Math/Matrix/Matrix4x4.h"
 
+/// <summary>
+/// モーションブラーで使用する速度2D
+/// </summary>
 struct Velocity2DData
 {
 	// 速度

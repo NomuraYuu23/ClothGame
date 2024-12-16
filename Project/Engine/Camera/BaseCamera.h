@@ -6,10 +6,13 @@
 #include "CameraForGPU.h"
 #include "ViewProjectionMatrix.h"
 
+/// <summary>
+/// カメラの基盤
+/// </summary>
 class BaseCamera
 {
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// 初期化
@@ -19,7 +22,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	/// <param name="elapsedTime"></param>
+	/// <param name="elapsedTime">経過時間</param>
 	virtual void Update(float elapsedTime = 0.0f);
 
 	/// <summary>
@@ -106,7 +109,7 @@ public:
 	/// </summary>
 	void ShakeStop();
 
-protected: // 関数
+protected: // メンバ関数
 
 	/// <summary>
 	/// シェイク更新
@@ -120,7 +123,7 @@ protected: // 関数
 	/// <param name="elapsedTime">経過時間</param>
 	void Zoom(float elapsedTime);
 
-protected: // 変数
+protected: // メンバ変数
 
 	// トランスフォーム
 	EulerTransform transform_{ { 1.0f, 1.0f, 1.0f},{ 0.0f, 0.0f, 0.0f},{ 0.0f, 0.0f, -10.0f} };

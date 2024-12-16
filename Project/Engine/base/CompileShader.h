@@ -4,19 +4,24 @@
 #include <dxcapi.h>
 #include <format>
 
+/// <summary>
+/// コンパイルシェーダ
+/// </summary>
 class CompileShader
 {
 
-public:
+public: // サブクラス
 
 	/// <summary>
 	/// シェーダーコンパイル用
 	/// </summary>
 	struct CompileShaderStruct {
-		IDxcUtils* dxcUtils = nullptr;
-		IDxcCompiler3* dxcCompiler = nullptr;
-		IDxcIncludeHandler* includeHandler = nullptr;
+		IDxcUtils* dxcUtils = nullptr; // ユーティリティ
+		IDxcCompiler3* dxcCompiler = nullptr; // コンパイラ
+		IDxcIncludeHandler* includeHandler = nullptr; // ハンドラー
 	};
+
+public: // 静的メンバ変数
 
 	// シェーダーコンパイル用
 	static CompileShaderStruct compileShaderStruct_;
@@ -24,8 +29,7 @@ public:
 	// デバイス
 	static ID3D12Device* sDevice_;
 
-public:
-
+public: // メンバ関数
 
 	/// <summary>
 	/// dxcCompilerを初期化

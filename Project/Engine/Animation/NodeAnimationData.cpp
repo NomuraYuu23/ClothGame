@@ -1,6 +1,6 @@
 #include "NodeAnimationData.h"
 
-const double NodeAnimationData::kSecondsConversion = 1000.0;
+const double NodeAnimationData::kSecondsConversion_ = 1000.0;
 
 void NodeAnimationData::Initialize(const aiNodeAnim& nodeAnim)
 {
@@ -17,16 +17,16 @@ void NodeAnimationData::Initialize(const aiNodeAnim& nodeAnim)
 
 	for (uint32_t i = 0; i < positionKeyNum_; ++i) {
 		
-		animationVector3Key.value_.x = -nodeAnim.mPositionKeys[i].mValue.x;
-		animationVector3Key.value_.y = nodeAnim.mPositionKeys[i].mValue.y;
-		animationVector3Key.value_.z = nodeAnim.mPositionKeys[i].mValue.z;
+		animationVector3Key.value.x = -nodeAnim.mPositionKeys[i].mValue.x;
+		animationVector3Key.value.y = nodeAnim.mPositionKeys[i].mValue.y;
+		animationVector3Key.value.z = nodeAnim.mPositionKeys[i].mValue.z;
 
-		animationVector3Key.time_ = nodeAnim.mPositionKeys[i].mTime / kSecondsConversion;
+		animationVector3Key.time = nodeAnim.mPositionKeys[i].mTime / kSecondsConversion_;
 
 		positions_.push_back(animationVector3Key);
 		
-		if (endTime_ < animationVector3Key.time_) {
-			endTime_ = animationVector3Key.time_;
+		if (endTime_ < animationVector3Key.time) {
+			endTime_ = animationVector3Key.time;
 		}
 
 	}
@@ -36,17 +36,17 @@ void NodeAnimationData::Initialize(const aiNodeAnim& nodeAnim)
 
 	for (uint32_t i = 0; i < rotationKeyNum_; ++i) {
 
-		animationQuaternionKey.value_.x = nodeAnim.mRotationKeys[i].mValue.x;
-		animationQuaternionKey.value_.y = -nodeAnim.mRotationKeys[i].mValue.y;
-		animationQuaternionKey.value_.z = -nodeAnim.mRotationKeys[i].mValue.z;
-		animationQuaternionKey.value_.w = nodeAnim.mRotationKeys[i].mValue.w;
+		animationQuaternionKey.value.x = nodeAnim.mRotationKeys[i].mValue.x;
+		animationQuaternionKey.value.y = -nodeAnim.mRotationKeys[i].mValue.y;
+		animationQuaternionKey.value.z = -nodeAnim.mRotationKeys[i].mValue.z;
+		animationQuaternionKey.value.w = nodeAnim.mRotationKeys[i].mValue.w;
 
-		animationQuaternionKey.time_ = nodeAnim.mRotationKeys[i].mTime / kSecondsConversion;
+		animationQuaternionKey.time = nodeAnim.mRotationKeys[i].mTime / kSecondsConversion_;
 
 		rotations_.push_back(animationQuaternionKey);
 
-		if (endTime_ < animationQuaternionKey.time_) {
-			endTime_ = animationQuaternionKey.time_;
+		if (endTime_ < animationQuaternionKey.time) {
+			endTime_ = animationQuaternionKey.time;
 		}
 
 	}
@@ -56,16 +56,16 @@ void NodeAnimationData::Initialize(const aiNodeAnim& nodeAnim)
 
 	for (uint32_t i = 0; i < scalingKeyNum_; ++i) {
 
-		animationVector3Key.value_.x = nodeAnim.mScalingKeys[i].mValue.x;
-		animationVector3Key.value_.y = nodeAnim.mScalingKeys[i].mValue.y;
-		animationVector3Key.value_.z = nodeAnim.mScalingKeys[i].mValue.z;
+		animationVector3Key.value.x = nodeAnim.mScalingKeys[i].mValue.x;
+		animationVector3Key.value.y = nodeAnim.mScalingKeys[i].mValue.y;
+		animationVector3Key.value.z = nodeAnim.mScalingKeys[i].mValue.z;
 
-		animationVector3Key.time_ = nodeAnim.mScalingKeys[i].mTime / kSecondsConversion;
+		animationVector3Key.time = nodeAnim.mScalingKeys[i].mTime / kSecondsConversion_;
 
 		scalings_.push_back(animationVector3Key);
 
-		if (endTime_ < animationVector3Key.time_) {
-			endTime_ = animationVector3Key.time_;
+		if (endTime_ < animationVector3Key.time) {
+			endTime_ = animationVector3Key.time;
 		}
 
 	}

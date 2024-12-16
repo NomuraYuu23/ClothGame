@@ -1,5 +1,9 @@
 #pragma once
 #include "../../../Engine/Object/BaseObjectManager.h"
+
+/// <summary>
+/// クリアシーン用のオブジェクトマネージャー
+/// </summary>
 class ClearSceneObjectManager :
     public BaseObjectManager
 {

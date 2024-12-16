@@ -18,11 +18,18 @@
 #include "../../System/Start/StartCountDown.h"
 #include "../../System/PostEffectSystem/PostEffectSystem.h"
 
-class GameScene : public IScene
+/// <summary>
+/// ゲームシーン
+/// </summary>
+class GameScene : 
+	public IScene
 {
 
-public:
+public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~GameScene();
 
 	/// <summary>
@@ -69,6 +76,7 @@ private:
 	// パーティクルマネージャー
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;
 
+	// 衝突マネージャー
 	std::unique_ptr<GameSceneCollisionManager> collisionManager_;
 
 	// 追加カメラ

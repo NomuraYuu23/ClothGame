@@ -3,6 +3,9 @@
 #include "LevelIndex.h"
 #include "LevelData.h"
 
+/// <summary>
+/// レベルデータ表示
+/// </summary>
 class LevelDataViewing
 {
 
@@ -94,7 +97,7 @@ private: // オブジェクトタイプごとの表示処理で使う関数
 private: // 定数
 
 	// ファイルの名前
-	static const std::array<const std::string, LevelIndex::kLevelIndexOfCount>* fileNames_;
+	static const std::array<const std::string, LevelIndex::kLevelIndexOfCount>* kFileNames_;
 
 private: // 変数
 

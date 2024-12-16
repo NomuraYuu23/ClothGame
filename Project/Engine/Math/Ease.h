@@ -1,11 +1,18 @@
 #pragma once
 #include "Vector/Vector2.h"
 #include "Vector/Vector3.h"
+
+/// <summary>
+/// イージング
+/// </summary>
 class Ease
 {
 
 public: // サブクラス
 
+	/// <summary>
+	/// 名前
+	/// </summary>
 	enum class EaseName
 	{
 
@@ -95,6 +102,7 @@ private: //easeTがかえってくる
 	static float EaseOutBounce(float t);
 	static float EaseInOutBounce(float t);
 
+	// tを設定
 	static float SetEaseT(Ease::EaseName name, float t);
 
 public:

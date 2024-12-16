@@ -32,6 +32,9 @@ int CrashHandler::GenerateDump(EXCEPTION_POINTERS* expPtr)
 			GetCurrentProcess(), GetCurrentProcessId(), dumpFile,
 			MiniDumpWithDataSegs, &expInfo, NULL, NULL);
 
+	// 警告回避
+	miniDumpSuccessful;
+
 	return EXCEPTION_EXECUTE_HANDLER;
 
 }

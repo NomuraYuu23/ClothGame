@@ -14,10 +14,13 @@
 
 #pragma comment(lib, "dxcompiler.lib")
 
+/// <summary>
+/// GPUパーティクル
+/// </summary>
 class GPUParticle
 {
 
-public:
+public: // サブクラス
 
 	/// <summary>
 	/// CSのパイプラインステート
@@ -30,7 +33,7 @@ public:
 	};
 
 
-public:
+public: // 静的メンバ関数
 
 	/// <summary>
 	/// 静的初期化
@@ -163,13 +166,13 @@ protected: // パイプラインステートの初期化CS
 protected:
 
 	// パーティクルの最大数
-	static const uint32_t kParticleMax;
+	static const uint32_t kParticleMax_;
 	// モデルのディレクトリパス
-	static const std::string kModelDirectoryPath;
+	static const std::string kModelDirectoryPath_;
 	// テクスチャのディレクトリパス
-	static const std::string kTextureDirectoryPath;
+	static const std::string kTextureDirectoryPath_;
 	// モデルのファイルの名前
-	static const std::string kFilename;
+	static const std::string kFilename_;
 	// モデル
 	static std::unique_ptr<Model> model_;
 

@@ -6,14 +6,14 @@
 #include "../../base/DescriptorHerpManager/SRVDescriptorHerpManager.h"
 
 // コマンドリスト
-ID3D12GraphicsCommandList* WorldTransform::sCommandList = nullptr;
+ID3D12GraphicsCommandList* WorldTransform::sCommandList_ = nullptr;
 
 WorldTransform::~WorldTransform()
 {
 
 }
 
-void WorldTransform::Initialize()
+void WorldTransform::Initialize(bool isModelDraw)
 {
 
 	// 回転行列
@@ -25,31 +25,19 @@ void WorldTransform::Initialize()
 	// スケールを考えない
 	parentMatrix_ = Matrix4x4::MakeAffineMatrix(Vector3{ 1.0f,1.0f,1.0f }, transform_.rotate, transform_.translate);
 
-	UpdateMatrix();
+	// モデル表示で使う
+	if (isModelDraw) {
+		//WVP用のリソースを作る。
+		transformationMatrixBuff_ = BufferResource::CreateBufferResource(DirectXCommon::GetInstance()->GetDevice(), ((sizeof(TransformationMatrix) + 0xff) & ~0xff));
+		//書き込むためのアドレスを取得
+		transformationMatrixBuff_->Map(0, nullptr, reinterpret_cast<void**>(&transformationMatrixMap_));
 
-}
+		transformationMatrixMap_->WVP = Matrix4x4::MakeIdentity4x4();
+		transformationMatrixMap_->World = Matrix4x4::MakeIdentity4x4();
+		transformationMatrixMap_->WorldInverseTranspose = Matrix4x4::MakeIdentity4x4();
+	}
 
-void WorldTransform::Initialize(const ModelNode& modelNode)
-{
-
-	// 回転行列
-	rotateMatrix_ = Matrix4x4::MakeRotateXYZMatrix(transform_.rotate);
-
-	// 方向ベクトルで回転行列
-	usedDirection_ = false;
-
-	// スケールを考えない
-	parentMatrix_ = Matrix4x4::MakeAffineMatrix(Vector3{ 1.0f,1.0f,1.0f }, transform_.rotate, transform_.translate);
-
-	//WVP用のリソースを作る。
-	transformationMatrixBuff_ = BufferResource::CreateBufferResource(DirectXCommon::GetInstance()->GetDevice(), ((sizeof(TransformationMatrix) + 0xff) & ~0xff));
-	//書き込むためのアドレスを取得
-	transformationMatrixBuff_->Map(0, nullptr, reinterpret_cast<void**>(&transformationMatrixMap_));
-
-	transformationMatrixMap_->WVP = Matrix4x4::MakeIdentity4x4();
-	transformationMatrixMap_->World = Matrix4x4::MakeIdentity4x4();
-	transformationMatrixMap_->WorldInverseTranspose = Matrix4x4::MakeIdentity4x4();
-
+	// 更新
 	UpdateMatrix();
 
 }

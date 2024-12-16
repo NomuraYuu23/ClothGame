@@ -8,16 +8,18 @@
 
 #include <iostream>
 
-// クラッシュハンドラー
+/// <summary>
+/// クラッシュハンドラー
+/// </summary>
 class CrashHandler
 {
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	///	ダンプファイル作成
 	/// </summary>
-	/// <param name="expPtr"></param>
+	/// <param name="expPtr">ポインタ</param>
 	/// <returns></returns>
 	static int GenerateDump(EXCEPTION_POINTERS* expPtr);
 

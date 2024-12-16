@@ -3,13 +3,13 @@
 #include <cassert>
 #include "../Collider/OBB/OBB.h"
 
-const std::string LevelDataLoader::kFileDirectoryName = "Resources/Level/";
+const std::string LevelDataLoader::kFileDirectoryName_ = "Resources/Level/";
 
-const std::string LevelDataLoader::kExtensionName = ".json";
+const std::string LevelDataLoader::kExtensionName_ = ".json";
 
 const std::array<std::string,
 	LevelData::ObjectDataIndex::kObjectDataIndexOfCount> 
-	LevelDataLoader::kObjectTypeNames = { "MESH", "CAMERA", "LIGHT"};
+	LevelDataLoader::kObjectTypeNames_ = { "MESH", "CAMERA", "LIGHT"};
 
 std::array<std::function<void(LevelData*, nlohmann::json&)>,
 	LevelData::ObjectDataIndex::kObjectDataIndexOfCount> 
@@ -33,6 +33,8 @@ LevelData* LevelDataLoader::Load(const std::string& fileName)
 
 	// ファイルのデータ読み込み(失敗したらエラー)
 	bool success = FileLoad(deserialized, fileName);
+	// リリース版警告回避
+	success;
 	assert(success);
 
 	// オブジェクトの走査
@@ -44,7 +46,7 @@ bool LevelDataLoader::FileLoad(nlohmann::json& deserialized, const std::string& 
 {
 
 	// 連結してフルパスを得る
-	const std::string fullpath = kFileDirectoryName + fileName + kExtensionName;
+	const std::string fullpath = kFileDirectoryName_ + fileName + kExtensionName_;
 
 	// ファイルストリーム
 	std::ifstream file;
@@ -104,7 +106,7 @@ LevelData* LevelDataLoader::ScanningObjects(nlohmann::json& deserialized)
 		// 種類ごとの処理
 		success = false;
 		for (uint32_t i = 0; i < LevelData::ObjectDataIndex::kObjectDataIndexOfCount; ++i) {
-			if (type.compare(kObjectTypeNames[i]) == 0) {
+			if (type.compare(kObjectTypeNames_[i]) == 0) {
 				// それぞれの関数へ
 				objectTypeFunctions_[i](levelData, object);
 				success = true;
@@ -143,7 +145,7 @@ void LevelDataLoader::ScanningChildren(LevelData* levelData, nlohmann::json& par
 		// 種類ごとの処理
 		success = false;
 		for (uint32_t i = 0; i < LevelData::ObjectDataIndex::kObjectDataIndexOfCount; ++i) {
-			if (type.compare(kObjectTypeNames[i]) == 0) {
+			if (type.compare(kObjectTypeNames_[i]) == 0) {
 				// それぞれの関数へ
 				objectTypeFunctions_[i](levelData, object);
 				success = true;

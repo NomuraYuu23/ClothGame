@@ -2,6 +2,9 @@
 
 #include "../Math/Vector/Vector3.h"
 
+/// <summary>
+/// 衝突データ
+/// </summary>
 struct CollisionData {
 	Vector3 p = {}; // 衝突点
 	float t = 0.0f; // 移動t

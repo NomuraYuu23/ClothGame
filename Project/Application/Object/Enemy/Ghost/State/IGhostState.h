@@ -4,10 +4,13 @@
 #include "../../../../../Engine/Math/Vector/Vector3.h"
 #include "../../../../../Engine/3D/Transform/WorldTransform.h"
 
+// 前方宣言
 class Ghost;
 class GhostStateSystem;
 
-//プレイヤーの状態名
+/// <summary>
+/// プレイヤーの状態名
+/// </summary>
 enum GhostStateIndex {
 	kGhostStateIndexRoot, // 通常
 	kGhostStateIndexSideMove, // 横移動
@@ -15,6 +18,9 @@ enum GhostStateIndex {
 	kGhostStateIndexOfCount // 数
 };
 
+/// <summary>
+/// ゴーストの状態の基盤
+/// </summary>
 class IGhostState
 {
 

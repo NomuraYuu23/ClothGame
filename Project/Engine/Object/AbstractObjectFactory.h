@@ -4,6 +4,9 @@
 #include "IObject.h"
 #include "../Level/LevelData.h"
 
+/// <summary>
+/// オブジェクトファクトリーの基盤
+/// </summary>
 class AbstractObjectFactory {
 
 public: //メンバ関数

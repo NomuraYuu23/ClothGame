@@ -201,7 +201,7 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つしかない
 		if (data.positionKeyNum_ == 1) {
 			// 値
-			position = data.positions_[0].value_;
+			position = data.positions_[0].value;
 			// ノードの名前がヒット
 			uint32_t name = 0;
 			for (uint32_t k = 0; k < nodeNames_.size(); ++k) {
@@ -215,18 +215,18 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つ以上
 		else {
 			for (uint32_t j = 1; j < data.positionKeyNum_; ++j) {
-				if (data.positions_[j].time_ > timer) {
+				if (data.positions_[j].time > timer) {
 					// 補間係数
 					float t = static_cast<float>(
 						(timer -
-							data.positions_[j - 1].time_) /
-						(data.positions_[j].time_ -
-							data.positions_[j - 1].time_));
+							data.positions_[j - 1].time) /
+						(data.positions_[j].time -
+							data.positions_[j - 1].time));
 					// 値
 					position =
 						Ease::Easing(Ease::EaseName::Lerp,
-							data.positions_[j - 1].value_,
-							data.positions_[j].value_,
+							data.positions_[j - 1].value,
+							data.positions_[j].value,
 							t);
 
 					// ノードの名前がヒット
@@ -248,7 +248,7 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つしかない
 		if (data.rotationKeyNum_ == 1) {
 			// 値
-			rotation = data.rotations_[0].value_;
+			rotation = data.rotations_[0].value;
 			// ノードの名前がヒット
 			uint32_t name = 0;
 			for (uint32_t k = 0; k < nodeNames_.size(); ++k) {
@@ -262,18 +262,18 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つ以上
 		else {
 			for (uint32_t j = 1; j < data.rotationKeyNum_; ++j) {
-				if (data.rotations_[j].time_ > timer) {
+				if (data.rotations_[j].time > timer) {
 					// 補間係数
 					float t = static_cast<float>(
 						(timer -
-							data.rotations_[j - 1].time_) /
-						(data.rotations_[j].time_ -
-							data.rotations_[j - 1].time_));
+							data.rotations_[j - 1].time) /
+						(data.rotations_[j].time -
+							data.rotations_[j - 1].time));
 					// 値
 					rotation =
 						Quaternion::Slerp(
-							data.rotations_[j - 1].value_,
-							data.rotations_[j].value_,
+							data.rotations_[j - 1].value,
+							data.rotations_[j].value,
 							t);
 
 					// ノードの名前がヒット
@@ -296,7 +296,7 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つしかない
 		if (data.scalingKeyNum_ == 1) {
 			// 値
-			scaling = data.scalings_[0].value_;
+			scaling = data.scalings_[0].value;
 			// ノードの名前がヒット
 			uint32_t name = 0;
 			for (uint32_t k = 0; k < nodeNames_.size(); ++k) {
@@ -310,19 +310,19 @@ void Animation::NodeAnimationUpdate(uint32_t index, double timer)
 		// データが一つ以上
 		else {
 			for (uint32_t j = 1; j < data.scalingKeyNum_; ++j) {
-				if (data.scalings_[j].time_ > timer) {
+				if (data.scalings_[j].time > timer) {
 
 					// 補間係数
 					float t = static_cast<float>(
 						(timer -
-							data.scalings_[j - 1].time_) /
-						(data.scalings_[j].time_ -
-							data.scalings_[j - 1].time_));
+							data.scalings_[j - 1].time) /
+						(data.scalings_[j].time -
+							data.scalings_[j - 1].time));
 					// 値
 					scaling =
 						Ease::Easing(Ease::EaseName::Lerp,
-							data.scalings_[j - 1].value_,
-							data.scalings_[j].value_,
+							data.scalings_[j - 1].value,
+							data.scalings_[j].value,
 							t);
 
 					// ノードの名前がヒット

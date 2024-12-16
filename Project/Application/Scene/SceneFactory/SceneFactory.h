@@ -4,7 +4,9 @@
 /// <summary>
 /// シーンファクトリー
 /// </summary>
-class SceneFactory : public AbstractSceneFactory{
+class SceneFactory : 
+	public AbstractSceneFactory
+{
 
 public: // 静的メンバ関数
 
@@ -19,7 +21,7 @@ public: // メンバ関数
 	// シーン生成
 	IScene* CreateScene(int sceneName) override;
 
-private: 
+private: // シングルトン
 	SceneFactory() = default;
 	~SceneFactory() = default;
 	SceneFactory(const SceneFactory&) = delete;

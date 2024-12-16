@@ -83,13 +83,13 @@ void GlobalVariables::SaveFile(const std::string& groupName) {
 		}
 
 		//ディレクトリがなければ作成する
-		std::filesystem::path dir(kDirectoryPath);
+		std::filesystem::path dir(kDirectoryPath_);
 		if (!std::filesystem::exists(dir)) {
 			std::filesystem::create_directory(dir);
 		}
 
 		// 書き込むJSONファイルのフルパスを合成する
-		std::string filePath = kDirectoryPath + groupName + ".json";
+		std::string filePath = kDirectoryPath_ + groupName + ".json";
 		// 書き込む用ファイルストリーム
 		std::ofstream ofs;
 		// ファイルを書き込み用に開く
@@ -291,14 +291,14 @@ void GlobalVariables::Update() {
 void GlobalVariables::LoadFiles() {
 
 	// 保存先ディレクトリのパスをローカル変数で宣言する
-	std::filesystem::path dir(kDirectoryPath);
+	std::filesystem::path dir(kDirectoryPath_);
 	// ディレクトリがなければスキップする
 	if (!std::filesystem::exists(dir)) {
 		return;
 	}
 
 	//各ファイルの処理
-	std::filesystem::directory_iterator dir_it(kDirectoryPath);
+	std::filesystem::directory_iterator dir_it(kDirectoryPath_);
 	for (const std::filesystem::directory_entry& entry : dir_it) {
 
 		// ファイルパスを取得
@@ -326,7 +326,7 @@ void GlobalVariables::LoadFiles() {
 void GlobalVariables::LoadFile(const std::string& groupName) {
 
 	// 読み込むJSONファイルのフルパスを合成する
-	std::string filePath = kDirectoryPath + groupName + ".json";
+	std::string filePath = kDirectoryPath_ + groupName + ".json";
 	// 読み込み用ファイルストリーム
 	std::ifstream ifs;
 	// ファイルを読み込み用に聞く

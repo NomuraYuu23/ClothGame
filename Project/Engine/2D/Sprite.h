@@ -55,7 +55,6 @@ public:
 	/// スプライト生成
 	/// </summary>
 	/// <param name="textureHandle">テクスチャハンドル</param>
-
 	/// <returns>生成されたスプライト</returns>
 	static Sprite* Create(
 		uint32_t textureHandle, const Vector2& position, const Vector4& color);
@@ -63,15 +62,15 @@ public:
 private:
 
 	// 頂点数
-	static const int kVertNum = 6;
+	static const int kVertNum_ = 6;
 	// デバイス
-	static ID3D12Device* sDevice;
+	static ID3D12Device* sDevice_;
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 	// ルートシグネチャ
-	static ID3D12RootSignature* sRootSignature;
+	static ID3D12RootSignature* sRootSignature_;
 	// パイプラインステートオブジェクト
-	static ID3D12PipelineState* sPipelineState;
+	static ID3D12PipelineState* sPipelineState_;
 
 public:
 	/// <summary>
@@ -100,7 +99,11 @@ public:
 	/// <param name="textureHandle"></param>
 	void SetTextureHandle(uint32_t textureHandle);
 
-	uint32_t GetTevtureHandle() { return textureHandle_; }
+	/// <summary>
+	/// テクスチャハンドルの取得
+	/// </summary>
+	/// <returns></returns>
+	uint32_t GetTextureHandle() { return textureHandle_; }
 
 	/// <summary>
 	/// 描画
@@ -118,44 +121,42 @@ public:
 	void TransformMatrixUpdate();
 
 private:
+
 	// 頂点バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> vertBuff_;
 	// 頂点バッファマップ
-	SpriteVertex* vertMap = nullptr;
+	SpriteVertex* vertMap_ = nullptr;
 	// 頂点バッファビュー
 	D3D12_VERTEX_BUFFER_VIEW vbView_{};
-
+	// インデックスバッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> indexBuff_;
-
 	//インデックスバッファビュー
 	D3D12_INDEX_BUFFER_VIEW ibView_{};
-
 	//インデックスリソースにデータを書き込む
-	uint32_t* indexMap = nullptr;
-
+	uint32_t* indexMap_ = nullptr;
 	//テクスチャ番号
 	UINT textureHandle_ = 0;
 	// リソース設定
 	D3D12_RESOURCE_DESC resourceDesc_;
 
-public: // アクセッサ(ワールドトランスフォーム)
+public: // アクセッサ
 
+	// 位置
 	void SetPosition(const Vector2& position);
-
+	// 回転
 	void SetRotate(float rotate);
-
+	// サイズ
 	void SetSize(const Vector2& size);
-
+	// アンカーポイント
 	void SetAnchorPoint(const Vector2& anchorPoint);
-
+	// フリップ
 	void SetIsFlipX(bool isFlipX);
-
 	void SetIsFlipY(bool isFlipY);
-	
+	// 非表示か
 	void SetIsInvisible(bool isInvisible) { isInvisible_ = isInvisible; }
-	
+	// テクスチャのサイズ
 	void SetTextureSize(const Vector2& textureSize);
-
+	// テクスチャの左上
 	void SetTextureLeftTop(const Vector2& textureLeftTop);
 
 	// 位置
@@ -174,14 +175,14 @@ public: // アクセッサ(ワールドトランスフォーム)
 
 	// テクスチャのサイズ
 	Vector2 GetTextureSize() { return textureSize_; }
-	// 描画する
+	// テクスチャの左上
 	Vector2 GetTextureLeftTop() { return textureLeftTop_; }
 	// テクスチャ初期サイズ
 	Vector2 GetTextureInitSize() { return textureInitSize_; }
-
+	// 非表示か
 	bool GetIsInvisible() { return isInvisible_; }
 
-private: // メンバ変数(ワールドトランスフォーム)
+private: // メンバ変数
 
 	// 位置
 	Vector2 position_;
@@ -217,20 +218,25 @@ private: // メンバ変数(ワールドトランスフォーム)
 
 public: // アクセッサ(マテリアル)
 
+	// UVトランスフォーム
 	void SetUvTransform(const EulerTransform& uvTransform);
 	void SetUvTransform(const Vector3& scale, const Vector3& rotate, const Vector3& translate);
 
+	// 色
 	void SetColor(const Vector4& color);
 
+	// ライティング
 	void SetEnableLighting(int enableLighting);
 
 private: // メンバ変数(マテリアル)
 
 	// マテリアル
 	std::unique_ptr<Material> material_;
-
+	// UVトランスフォーム
 	EulerTransform uvTransform_;
+	// 色
 	Vector4 color_;
+	// ライティング
 	int enableLighting_;
 
 };

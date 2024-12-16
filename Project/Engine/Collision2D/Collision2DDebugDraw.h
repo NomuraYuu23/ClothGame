@@ -15,10 +15,13 @@
 
 #pragma comment(lib, "dxcompiler.lib")
 
+/// <summary>
+/// 2Dコライダーデバッグ描画
+/// </summary>
 class Collision2DDebugDraw
 {
 
-public:
+public: // サブクラス
 
 	/// <summary>
 	/// テクスチャ名
@@ -30,7 +33,7 @@ public:
 	};
 
 
-public:
+public: // メンバ関数
 
 	/// <summary>
 	/// デストラクタ
@@ -70,14 +73,14 @@ public:
 	/// </summary>
 	void ImGuiDraw();
 
-private:
+private: // メンバ関数
 
 	/// <summary>
 	/// SRVを作る
 	/// </summary>
 	void SRVCreate();
 
-private:
+private: // メンバ変数
 
 	//デバイス
 	ID3D12Device* device_;
@@ -100,7 +103,7 @@ private: // 頂点
 	// 頂点バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> vertBuff_;
 	// 頂点バッファマップ
-	VertexData* vertMap = nullptr;
+	VertexData* vertMap_ = nullptr;
 	// 頂点バッファビュー
 	D3D12_VERTEX_BUFFER_VIEW vbView_{};
 
@@ -110,7 +113,7 @@ private: // 頂点
 	D3D12_INDEX_BUFFER_VIEW ibView_{};
 
 	//インデックスリソースにデータを書き込む
-	uint32_t* indexMap = nullptr;
+	uint32_t* indexMap_ = nullptr;
 
 private: // テクスチャ
 
@@ -119,7 +122,8 @@ private: // テクスチャ
 	// リソース設定
 	std::array<D3D12_RESOURCE_DESC, kTexutureNameOfCount> resourceDesc_;
 
-	const Vector2 textureScale = { 16.0f, 16.0f};
+	// テクスチャ大きさ
+	const Vector2 kTextureScale_ = { 16.0f, 16.0f};
 
 private: // トランスフォーム
 

@@ -2,6 +2,9 @@
 #include "AnimationData.h"
 #include "../3D/Transform/TransformStructure.h"
 
+/// <summary>
+/// アニメーション
+/// </summary>
 class Animation
 {
 

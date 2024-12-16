@@ -2,6 +2,9 @@
 #include "Audio.h"
 #include <array>
 
+/// <summary>
+/// オーディオデータ
+/// </summary>
 struct AudioData
 {
 	// ハンドル
@@ -18,12 +21,14 @@ struct AudioData
 
 };
 
-// 再生中データ
+/// <summary>
+/// 再生中データ
+/// </summary>
 struct PlayingSoundData
 {
-	uint32_t handle_;
-	IXAudio2SourceVoice* pSourceVoice_;
-	float volume_;
+	uint32_t handle_; // ハンドル
+	IXAudio2SourceVoice* pSourceVoice_; // ソースボイス
+	float volume_; // 音量
 
 };
 
@@ -35,6 +40,9 @@ class AudioManager
 
 public: // メンバ関数
 
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~AudioManager() = default;
 
 	/// <summary>
@@ -76,13 +84,6 @@ public: // メンバ関数
 	void StopWave(uint32_t playingSoundDataHandle);
 
 	/// <summary>
-	/// 再生してあるか
-	/// </summary>
-	/// <param name="PlayingSoundDataHandle"></param>
-	/// <returns></returns>
-	//bool IsPlayAudio(uint32_t playingSoundDataHandle);
-
-	/// <summary>
 	/// 音量設定
 	/// </summary>
 	/// <param name="PlayingSoundDataHandle"></param>
@@ -110,8 +111,11 @@ protected: // メンバ変数
 
 public: // アクセッサ
 
+	/// <summary>
+	/// 再生中のサウンドデータコンテナ
+	/// </summary>
+	/// <returns></returns>
 	std::array<PlayingSoundData, kMaxPlayingSoundData> GetPlayingSoundDatas() { return playingSoundDatas_; }
-
 	void SetPlayingSoundDataVolume(uint32_t num, float volume) { playingSoundDatas_[num].volume_ = volume; }
 
 protected: // メンバ変数

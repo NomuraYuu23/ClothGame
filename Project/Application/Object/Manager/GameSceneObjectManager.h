@@ -2,8 +2,12 @@
 #include "../../../Engine/Object/BaseObjectManager.h"
 #include "../../System/Shadow/ShadowManager.h"
 
+// 前方宣言
 class Player;
 
+/// <summary>
+/// ゲームシーン用のオブジェクトマネージャー
+/// </summary>
 class GameSceneObjectManager :
     public BaseObjectManager
 {

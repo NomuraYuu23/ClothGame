@@ -12,7 +12,8 @@ void RunDustParticle::Initialize(ID3D12Device* device, ID3D12GraphicsCommandList
 {
 
 	// テクスチャ名前
-	textureFilename_ = "smoke.png";
+	const std::string kTextureFilename = "smoke.png";
+	textureFilename_ = kTextureFilename;
 
 	// 初期化
 	GPUParticle::Initialize(device, commandList, rootSignature, pipelineState);
@@ -79,7 +80,7 @@ void RunDustParticle::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera& c
 	commandList->SetGraphicsRootConstantBufferView(3, material_->GetMaterialBuff()->GetGPUVirtualAddress());
 
 	// 描画
-	commandList->DrawInstanced(6, kParticleMax, 0, 0);
+	commandList->DrawInstanced(static_cast<UINT>(model_->GetModelData().vertices.size()), kParticleMax_, 0, 0);
 
 	// リソースバリア
 	ResouseBarrierToUnorderedAccess(commandList);

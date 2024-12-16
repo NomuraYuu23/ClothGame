@@ -17,19 +17,25 @@ void ClothDemoSphere::Initialize(const std::string& name)
     model_.reset(Model::Create(directoryPath_, fileName_, dxCommon));
 
     // マテリアル
+    const Vector4 kMaterialColor = { 1.0f,0.5f,0.5f,1.0f };
     material_.reset(Material::Create());
-    material_->SetColor(Vector4{ 1.0f,0.5f,0.5f,1.0f });
+    material_->SetColor(kMaterialColor);
     material_->SetEnableLighting(HalfLambert);
 
     // トランスフォーム
-    worldTransform_.Initialize(model_->GetRootNode());
+    worldTransform_.Initialize(true);
 
     // データ
-    data_.position_ = { 0.0f, 0.0f, 0.0f };
-    data_.radius_ = 0.5f;
+    const ClothGPUCollision::Sphere kInitData =
+    {
+        Vector3{ 0.0f, 0.0f, 0.0f },
+        0.5f
+    };
+    data_ = kInitData;
 
     // 画面ちらつかないようの値
-    screenDoesNotFlickerValue_ = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
 
     // デモに存在するか
     exist_ = false;
@@ -53,8 +59,8 @@ void ClothDemoSphere::Update()
 {
 
     // 位置
-    worldTransform_.transform_.translate = data_.position_;
-    float size = data_.radius_ - screenDoesNotFlickerValue_;
+    worldTransform_.transform_.translate = data_.position;
+    float size = data_.radius - screenDoesNotFlickerValue_;
     worldTransform_.transform_.scale = { size, size, size };
 
     // 行列更新
@@ -65,20 +71,23 @@ void ClothDemoSphere::Update()
 void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
 {
 
+    // ImGui速度
+    const float kImGuiSpeed = 0.01f;
+
     ImGui::Text("球");
     // 法線
-    ImGui::DragFloat3("球_位置", &data_.position_.x, 0.01f);
+    ImGui::DragFloat3("球_位置", &data_.position.x, kImGuiSpeed);
     // 距離
-    ImGui::DragFloat("球_半径", &data_.radius_, 0.01f, 0.01f, 1000.0f);
+    ImGui::DragFloat("球_半径", &data_.radius, kImGuiSpeed);
 
     // ギズモ
 
     // 変数
     EulerTransform transform = 
     {
-        Vector3{ data_.radius_, data_.radius_, data_.radius_ },
+        Vector3{ data_.radius, data_.radius, data_.radius },
         Vector3{ 0.0f,0.0f,0.0f },
-        data_.position_
+        data_.position
     };
     Matrix4x4 matrix = Matrix4x4::MakeAffineMatrix(transform.scale, transform.rotate, transform.translate);
 
@@ -106,8 +115,8 @@ void ClothDemoSphere::ImGuiDraw(BaseCamera& camera)
     ImGuizmo::DecomposeMatrixToComponents(&matrix.m[0][0], &transform.translate.x, &transform.rotate.x, &transform.scale.x);
 
     // データを代入
-    data_.position_ = transform.translate;
-    data_.radius_ = transform.scale.x;
+    data_.position = transform.translate;
+    data_.radius = transform.scale.x;
 
     // 更新
     Update();

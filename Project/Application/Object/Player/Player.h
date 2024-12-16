@@ -7,6 +7,9 @@
 #include "Animation/PlayerAnimation.h"
 #include "../../GPUParticle/RunDustParticle/RunDustParticle.h"
 
+/// <summary>
+/// プレイヤー
+/// </summary>
 class Player :
     public MeshObject
 {

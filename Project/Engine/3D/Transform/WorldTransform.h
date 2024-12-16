@@ -8,13 +8,16 @@
 #include "../Model/ModelNode.h"
 #include "../Model/ModelNodeData.h"
 
+/// <summary>
+/// ワールドトランスフォーム
+/// </summary>
 class WorldTransform
 {
 
 public:
 
 	// コマンドリスト
-	static ID3D12GraphicsCommandList* sCommandList;
+	static ID3D12GraphicsCommandList* sCommandList_;
 
 public:
 
@@ -24,15 +27,10 @@ public:
 	~WorldTransform();
 
 	/// <summary>
-	/// 初期化(モデル表示で使わない)
-	/// </summary>
-	void Initialize();
-
-	/// <summary>
 	/// 初期化
 	/// </summary>
-	/// <param name="modelNode"></param>
-	void Initialize(const ModelNode& modelNode);
+	/// <param name="isModelDraw">モデル表示するか</param>
+	void Initialize(bool isModelDraw = false);
 
 	/// <summary>
 	/// 行列更新
@@ -48,6 +46,7 @@ public:
 	/// <summary>
 	/// マップ
 	/// </summary>
+	/// <param name="viewProjectionMatrix">ビュープロジェクション行列</param>
 	void Map(const Matrix4x4& viewProjectionMatrix);
 
 	/// <summary>

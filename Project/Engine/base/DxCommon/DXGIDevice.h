@@ -3,10 +3,13 @@
 #include <dxgi1_6.h>
 #include <wrl.h>
 
+/// <summary>
+/// デバイス
+/// </summary>
 class DXGIDevice
 {
 
-public: // 関数
+public: // メンバ関数
 
 	/// <summary>
 	/// シングルトンインスタンスの取得
@@ -31,7 +34,7 @@ public: // 関数
 	/// <returns></returns>
 	ID3D12Device* GetDevice() { return device_.Get(); }
 
-private: // 変数
+private: // メンバ変数
 
 	// ファクトリ
 	Microsoft::WRL::ComPtr<IDXGIFactory7> dxgiFactory_;

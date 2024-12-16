@@ -1,5 +1,9 @@
 #pragma once
 #include "IPlayerState.h"
+
+/// <summary>
+/// プレイヤーのダッシュ状態
+/// </summary>
 class PlayerStateDash :
     public IPlayerState
 {

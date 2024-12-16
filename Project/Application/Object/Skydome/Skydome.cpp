@@ -16,7 +16,9 @@ void Skydome::Initialize(LevelData::MeshData* data)
 void Skydome::Update() 
 {
 
-	worldTransform_.transform_.rotate.y = fmodf(worldTransform_.transform_.rotate.y + 0.001f, static_cast<float>(std::numbers::pi) * 2.0f);
+	// 速度
+	const float kSpeed = 0.001f;
+	worldTransform_.transform_.rotate.y = fmodf(worldTransform_.transform_.rotate.y + kSpeed, static_cast<float>(std::numbers::pi) * 2.0f);
 
 	worldTransform_.UpdateMatrix();
 	

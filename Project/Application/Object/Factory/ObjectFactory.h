@@ -4,6 +4,9 @@
 #include "../../../Engine/Object/BaseObjectManager.h"
 #include "CreateObjectIndex.h"
 
+/// <summary>
+/// オブジェクトファクトリー
+/// </summary>
 class ObjectFactory :
     public AbstractObjectFactory
 {

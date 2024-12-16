@@ -2,6 +2,9 @@
 #include "../../Engine/2D/Sprite.h"
 #include "../../Engine/Input/Input.h"
 
+/// <summary>
+/// UIの基盤
+/// </summary>
 class BaseUI
 {
 

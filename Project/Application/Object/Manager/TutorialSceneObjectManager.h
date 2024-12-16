@@ -1,5 +1,9 @@
 #pragma once
 #include "../../../Engine/Object/BaseObjectManager.h"
+
+/// <summary>
+/// チュートリアルシーン用のオブジェクトマネージャー
+/// </summary>
 class TutorialSceneObjectManager :
     public BaseObjectManager
 {

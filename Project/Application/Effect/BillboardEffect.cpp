@@ -13,7 +13,7 @@ void BillboardEffect::Initialize(Model* model, uint32_t textureHandle, float lif
 	material_.reset(Material::Create());
 
 	// ワールドトランスフォーム
-	worldTransform_.Initialize(model_->GetRootNode());
+	worldTransform_.Initialize(true);
 
 	// テクスチャハンドル
 	textureHnadle_ = textureHandle;
@@ -28,7 +28,7 @@ void BillboardEffect::Initialize(Model* model, uint32_t textureHandle, float lif
 	initScale_ = { 1.0f, 1.0f, 1.0f };
 
 	// 終了大きさ
-	endScale_ = { 10.0f, 10.0f, 10.0f };
+	endScale_ = { 1.0f, 1.0f, 1.0f };
 
 	// 初期透明度
 	initAlpha_ = 1.0f;

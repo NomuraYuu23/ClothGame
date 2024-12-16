@@ -1,14 +1,14 @@
 #include "OBB.h"
 
-void OBB::Initialize(const Vector3& center, const Vector3& otientatuons1, const Vector3& otientatuons2, const Vector3& otientatuons3, const Vector3& size, ColliderParentObject parentObject)
+void OBB::Initialize(const Vector3& center, const Vector3& otientatuonsX, const Vector3& otientatuonsY, const Vector3& otientatuonsZ, const Vector3& size, ColliderParentObject parentObject)
 {
 
 	Collider::Initialize(parentObject);
 
 	center_ = center;//中心
-	otientatuons_[0] = otientatuons1;//座標軸
-	otientatuons_[1] = otientatuons2;//座標軸
-	otientatuons_[2] = otientatuons3;//座標軸
+	otientatuons_[0] = otientatuonsX;//座標軸
+	otientatuons_[1] = otientatuonsY;//座標軸
+	otientatuons_[2] = otientatuonsZ;//座標軸
 	size_ = size;//座標軸方向の長さの半分
 
 }
@@ -20,19 +20,16 @@ void OBB::Initialize(const Vector3& center, const Matrix4x4& rotateMatrix, const
 
 	center_ = center;//中心
 	SetOtientatuons(rotateMatrix);
-	//otientatuons_[0] = otientatuons1;//座標軸
-	//otientatuons_[1] = otientatuons2;//座標軸
-	//otientatuons_[2] = otientatuons3;//座標軸
 	size_ = size;//座標軸方向の長さの半分
 
 }
 
-void OBB::SetOtientatuons(const Vector3& otientatuons1, const Vector3& otientatuons2, const Vector3& otientatuons3)
+void OBB::SetOtientatuons(const Vector3& otientatuonsX, const Vector3& otientatuonsY, const Vector3& otientatuonsZ)
 {
 
-	otientatuons_[0] = otientatuons1;//座標軸
-	otientatuons_[1] = otientatuons2;//座標軸
-	otientatuons_[2] = otientatuons3;//座標軸
+	otientatuons_[0] = otientatuonsX;//座標軸
+	otientatuons_[1] = otientatuonsY;//座標軸
+	otientatuons_[2] = otientatuonsZ;//座標軸
 
 }
 

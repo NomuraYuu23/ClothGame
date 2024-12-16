@@ -15,9 +15,9 @@ void FollowCamera::Initialize() {
 	BaseCamera::Update();
 
 	// オフセットの長さ
-	offsetLength_ = -50.0f;
+	offsetLength_ = 0.0f;
 	// オフセットの高さ
-	offsetHeight_ = 8.0f;
+	offsetHeight_ = 0.0f;
 	// ターゲット位置
 	interTarget_ = {0.0f,0.0f,0.0f};
 
@@ -45,7 +45,7 @@ void FollowCamera::Update(float elapsedTime) {
 
 	//追従対象がいれば
 	if (target_) {
-		// 追従座標の補間
+		// 追従座標の補間(Z軸を取ってくる)
 		const Vector3 kTargetPositionEnd = { 0.0f, 0.0f, target_->worldMatrix_.m[3][2] };
 		// 移動レート
 		const float kMoveRate = 0.1f;

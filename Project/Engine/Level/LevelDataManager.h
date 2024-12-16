@@ -5,6 +5,9 @@
 #include "LevelDataLoader.h"
 #include "LevelDataViewing.h"
 
+/// <summary>
+/// レベルデータマネージャー
+/// </summary>
 class LevelDataManager
 {
 
@@ -32,7 +35,7 @@ public: // アクセッサ
 private: // 定数
 
 	// ファイルの名前
-	const std::array<const std::string, LevelIndex::kLevelIndexOfCount> fileNames_{
+	const std::array<const std::string, LevelIndex::kLevelIndexOfCount> kFileNames_{
 		"title",
 		"tutorial",
 		"GameScene",

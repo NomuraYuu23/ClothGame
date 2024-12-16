@@ -1,5 +1,9 @@
 #pragma once
 #include "IPlayerState.h"
+
+/// <summary>
+/// プレイヤーの落下状態
+/// </summary>
 class PlayerStateFall :
     public IPlayerState
 {

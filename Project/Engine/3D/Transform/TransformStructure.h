@@ -5,9 +5,9 @@
 
 // オイラー
 struct EulerTransform {
-	Vector3 scale;
-	Vector3 rotate;
-	Vector3 translate;
+	Vector3 scale; // 大きさ
+	Vector3 rotate; // 回転
+	Vector3 translate; //位置
 };
 
 inline void to_json(nlohmann::json& json, const EulerTransform& value) {
@@ -34,7 +34,7 @@ inline void from_json(const nlohmann::json& json, EulerTransform& value) {
 
 // クォータニオン
 struct QuaternionTransform {
-	Vector3 scale;
-	Quaternion rotate;
-	Vector3 translate;
+	Vector3 scale; // 大きさ
+	Quaternion rotate; // 回転
+	Vector3 translate; //位置
 };

@@ -17,6 +17,9 @@ enum SamplerIndex {
 	kSamplerIndexOfCount,
 };
 
+/// <summary>
+/// サンプラーマネージャー
+/// </summary>
 class SamplerManager
 {
 

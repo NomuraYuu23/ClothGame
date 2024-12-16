@@ -4,17 +4,18 @@
 #include <vector>
 #include "../Transform/TransformStructure.h"
 
-class ModelNode
+/// <summary>
+/// モデルのノード
+/// </summary>
+struct ModelNode
 {
 
-public:
-
-	Matrix4x4 localMatrix;
-	Matrix4x4 offsetMatrix;
-	std::string name;
-	std::vector<ModelNode> children;
-	uint32_t meshNum;
-	QuaternionTransform initTransform;
+	Matrix4x4 localMatrix; // ローカル行列
+	Matrix4x4 offsetMatrix; // オフセット行列
+	std::string name; // 名前
+	std::vector<ModelNode> children; // 子供
+	uint32_t meshNum; // メッシュ番号
+	QuaternionTransform initTransform; // 初期トランスフォーム
 
 };
 

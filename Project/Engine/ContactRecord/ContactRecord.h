@@ -1,10 +1,13 @@
 #pragma once
 #include <vector>
 
+/// <summary>
+/// 衝突履歴
+/// </summary>
 class ContactRecord
 {
 	
-public:
+public: // メンバ関数
 
 	// 履歴追加
 	void AddHistory(uint32_t number);
@@ -15,7 +18,7 @@ public:
 	// 履歴抹消
 	void Clear();
 
-private:
+private: // メンバ変数
 
 	// 履歴
 	std::vector<uint32_t> history_;

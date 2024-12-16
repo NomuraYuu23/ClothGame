@@ -53,7 +53,7 @@ void Cloth::Update()
 
 	std::vector<Vector3> positions;
 	for (uint32_t i = 0; i < massPoints_.size(); ++i) {
-		positions.push_back(massPoints_[i].position_);
+		positions.push_back(massPoints_[i].position);
 	}
 	model_.Update(positions);
 
@@ -84,7 +84,7 @@ void Cloth::DebugDrawMap(DrawLine* drawLine)
 
 		ClothSpring* spring = &springs_[i];
 
-		if (spring->type_ == StructuralSpring) {
+		if (spring->type == StructuralSpring) {
 			if (structuralDebugDraw_) {
 				color = { 0.8f, 0.0f,0.0f,1.0f };
 			}
@@ -92,7 +92,7 @@ void Cloth::DebugDrawMap(DrawLine* drawLine)
 				continue;
 			}
 		}
-		else if (spring->type_ == ShearSpring) {
+		else if (spring->type == ShearSpring) {
 			if (shearDebugDraw_) {
 				color = { 0.0f, 0.0f,0.8f,1.0f };
 			}
@@ -110,8 +110,8 @@ void Cloth::DebugDrawMap(DrawLine* drawLine)
 		}
 
 		// 位置と色(赤)を設定
-		lineForGPU.position[0] = spring->point0_->position_;
-		lineForGPU.position[1] = spring->point1_->position_;
+		lineForGPU.position[0] = spring->point0->position;
+		lineForGPU.position[1] = spring->point1->position;
 		lineForGPU.color[0] = color;
 		lineForGPU.color[1] = color;
 
@@ -159,7 +159,7 @@ void Cloth::SetWeight(uint32_t y, uint32_t x, bool isWight)
 		if (isWight) {
 			value = 1.0f;
 		}
-		massPoints_[index].weight_ = value;
+		massPoints_[index].weight = value;
 	}
 		
 }
@@ -172,7 +172,7 @@ void Cloth::SetPosition(uint32_t y, uint32_t x, const Vector3& position)
 
 		uint32_t index = y * (static_cast<uint32_t>(div_.x) + 1) + x;
 
-		massPoints_[index].position_ = position;
+		massPoints_[index].position = position;
 	}
 
 }
@@ -188,23 +188,23 @@ void Cloth::MassPointsInitialize()
 	for(uint32_t y = 0; y < static_cast<uint32_t>(div_.y) + 1; ++y){
 		for (uint32_t x = 0; x < static_cast<uint32_t>(div_.x) + 1; ++x) {
 			// 位置
-			masspoint.position_.x = static_cast<float>(x) / div_.x;
-			masspoint.position_.y = static_cast<float>(y) / div_.y * - 1.0f;
-			masspoint.position_.z = 0.0f;
+			masspoint.position.x = static_cast<float>(x) / div_.x;
+			masspoint.position.y = static_cast<float>(y) / div_.y * - 1.0f;
+			masspoint.position.z = 0.0f;
 			// 大きさ分
-			masspoint.position_.x *= scale_.x;
-			masspoint.position_.y *= scale_.y;
-			masspoint.prePosition_ = masspoint.position_;
+			masspoint.position.x *= scale_.x;
+			masspoint.position.y *= scale_.y;
+			masspoint.prePosition = masspoint.position;
 			// 重み 落ちないよう上の部分を固定
 			if (y == 0) {
-				masspoint.weight_ = 0.0f;
+				masspoint.weight = 0.0f;
 			}
 			else {
-				masspoint.weight_ = 1.0f;
+				masspoint.weight = 1.0f;
 			}
 			// 検索用値
-			masspoint.y_ = y;
-			masspoint.x_ = x;
+			masspoint.y = y;
+			masspoint.x = x;
 
 			// 登録
 			massPoints_.push_back(masspoint);
@@ -220,7 +220,6 @@ void Cloth::SpringInitialize()
 	springs_.clear();
 
 	// 登録
-	uint32_t index = 0;
 	for (uint32_t y = 0; y < static_cast<uint32_t>(div_.y) + 1; ++y) {
 		for (uint32_t x = 0; x < static_cast<uint32_t>(div_.x) + 1; ++x) {
 			
@@ -262,17 +261,17 @@ void Cloth::IntegralPhase()
 		// 変位
 		Vector3 dx = {};
 		// 速度
-		dx = point->position_ - point->prePosition_;
+		dx = point->position - point->prePosition;
 		// 前フレーム位置更新
-		point->prePosition_ = point->position_;
+		point->prePosition = point->position;
 		// 力の変位を足しこむ
 		dx = dx + force + wind;
 		// 抵抗
 		dx *= resistance;
 
 		// 位置更新
-		dx *= point->weight_; // 固定されてるか
-		point->position_ += dx;
+		dx *= point->weight; // 固定されてるか
+		point->position += dx;
 	}
 
 
@@ -288,18 +287,18 @@ void Cloth::SpringPhase()
 			ClothSpring* spring = &springs_[j];
 
 			// 二点が固定点
-			if (spring->point0_->weight_ + spring->point1_->weight_ == 0.0f) {
+			if (spring->point0->weight + spring->point1->weight == 0.0f) {
 				continue;
 			}
 
 			// 抵抗
 			float shrink = 0.0f;
 			float stretch = 0.0f;
-			if (spring->type_ == StructuralSpring) {
+			if (spring->type == StructuralSpring) {
 				shrink = structuralShrink_;
 				stretch = structuralStretch_;
 			}
-			else if (spring->type_ == ShearSpring) {
+			else if (spring->type == ShearSpring) {
 				shrink = shearShrink_;
 				stretch = shearStretch_;
 			}
@@ -310,9 +309,9 @@ void Cloth::SpringPhase()
 
 			// バネの力
 			// 質点間の距離
-			float distance = Vector3::Length(spring->point1_->position_ - spring->point0_->position_);
+			float distance = Vector3::Length(spring->point1->position - spring->point0->position);
 			// 力
-			float force = (distance - spring->naturalLength_) * stiffness_;
+			float force = (distance - spring->naturalLength) * stiffness_;
 			// 抵抗
 			if (force >= 0.0f) {
 				force *= shrink;
@@ -323,18 +322,18 @@ void Cloth::SpringPhase()
 
 			// 変位
 			Vector3 dx = {};
-			dx = spring->point1_->position_ - spring->point0_->position_;
+			dx = spring->point1->position - spring->point0->position;
 			dx = Vector3::Normalize(dx);
 			dx *= force;
 			dx *= step_ * step_ * 0.5f / mass;
 
 			// 位置更新
 			Vector3 dx0 = {};
-			dx0 = dx * (spring->point0_->weight_ / (spring->point0_->weight_ + spring->point1_->weight_));
-			spring->point0_->position_ += dx0;
+			dx0 = dx * (spring->point0->weight / (spring->point0->weight + spring->point1->weight));
+			spring->point0->position += dx0;
 			Vector3 dx1 = {};
-			dx1 = dx * (spring->point1_->weight_ / (spring->point0_->weight_ + spring->point1_->weight_));
-			spring->point1_->position_ -= dx1;
+			dx1 = dx * (spring->point1->weight / (spring->point0->weight + spring->point1->weight));
+			spring->point1->position -= dx1;
 
 		}
 
@@ -364,13 +363,13 @@ void Cloth::SpringGeneration(
 		ClothSpring spring;
 		// 質点
 		uint32_t index = y * (static_cast<uint32_t>(div_.x) + 1) + x;
-		spring.point0_ = &massPoints_[index];
+		spring.point0 = &massPoints_[index];
 		index = targetY * (static_cast<uint32_t>(div_.x) + 1) + targetX;
-		spring.point1_ = &massPoints_[index];
+		spring.point1 = &massPoints_[index];
 		// 自然長
-		spring.naturalLength_ = Vector3::Length(spring.point0_->position_ - spring.point1_->position_);
+		spring.naturalLength = Vector3::Length(spring.point0->position - spring.point1->position);
 		// バネの種類
-		spring.type_ = type;
+		spring.type = type;
 		// 登録
 		springs_.push_back(spring);
 

@@ -8,13 +8,13 @@ using namespace DirectX;
 using namespace Microsoft::WRL;
 
 // デバイス
-ID3D12Device* Sprite::sDevice = nullptr;
+ID3D12Device* Sprite::sDevice_ = nullptr;
 // コマンドリスト
-ID3D12GraphicsCommandList* Sprite::sCommandList = nullptr;
+ID3D12GraphicsCommandList* Sprite::sCommandList_ = nullptr;
 // ルートシグネチャ
-ID3D12RootSignature* Sprite::sRootSignature;
+ID3D12RootSignature* Sprite::sRootSignature_;
 // パイプラインステートオブジェクト
-ID3D12PipelineState* Sprite::sPipelineState;
+ID3D12PipelineState* Sprite::sPipelineState_;
 
 /// <summary>
 /// 静的初期化
@@ -27,10 +27,10 @@ void Sprite::StaticInitialize(
 
 	assert(device);
 	
-	sDevice = device;
+	sDevice_ = device;
 
-	sRootSignature = rootSignature;
-	sPipelineState = pipelineState;
+	sRootSignature_ = rootSignature;
+	sPipelineState_ = pipelineState;
 
 }
 
@@ -40,20 +40,20 @@ void Sprite::StaticInitialize(
 /// <param name="cmdList">描画コマンドリスト</param>
 void Sprite::PreDraw(ID3D12GraphicsCommandList* cmdList) {
 
-	assert(Sprite::sCommandList == nullptr);
+	assert(Sprite::sCommandList_ == nullptr);
 
-	sCommandList = cmdList;
+	sCommandList_ = cmdList;
 
 	//RootSignatureを設定。
-	sCommandList->SetPipelineState(sPipelineState);//PS0を設定
-	sCommandList->SetGraphicsRootSignature(sRootSignature);
+	sCommandList_->SetPipelineState(sPipelineState_);//PS0を設定
+	sCommandList_->SetGraphicsRootSignature(sRootSignature_);
 
 	// SRV
 	ID3D12DescriptorHeap* ppHeaps[] = { SRVDescriptorHerpManager::descriptorHeap_.Get() };
-	sCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+	sCommandList_->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 
 	//形状を設定。PS0に設定しているものとは別。
-	sCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	sCommandList_->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 }
 
@@ -62,7 +62,7 @@ void Sprite::PreDraw(ID3D12GraphicsCommandList* cmdList) {
 /// </summary>
 void Sprite::PostDraw() {
 	//コマンドリストを解除
-	Sprite::sCommandList = nullptr;
+	Sprite::sCommandList_ = nullptr;
 
 }
 
@@ -170,38 +170,38 @@ Sprite::Sprite(
 /// <returns>成否</returns>
 bool Sprite::Initialize() {
 
-	assert(sDevice);
+	assert(sDevice_);
 
 	//HRESULT hr;
 
 	resourceDesc_ = TextureManager::GetInstance()->GetResourceDesc(textureHandle_);
 
 	//Sprite用の頂点リソースを作る
-	vertBuff_ = BufferResource::CreateBufferResource(sDevice, ((sizeof(SpriteVertex) + 0xff) & ~0xff) * kVertNum);
+	vertBuff_ = BufferResource::CreateBufferResource(sDevice_, ((sizeof(SpriteVertex) + 0xff) & ~0xff) * kVertNum_);
 
 	//リソースの先頭のアドレスから使う
 	vbView_.BufferLocation = vertBuff_->GetGPUVirtualAddress();
 	//使用するリソースのサイズは頂点6つ分のサイズ
-	vbView_.SizeInBytes = sizeof(SpriteVertex) * kVertNum;
+	vbView_.SizeInBytes = sizeof(SpriteVertex) * kVertNum_;
 	//1頂点あたりのサイズ
 	vbView_.StrideInBytes = sizeof(SpriteVertex);
 
 	//書き込むためのアドレスを取得
-	vertBuff_->Map(0, nullptr, reinterpret_cast<void**>(&vertMap));
+	vertBuff_->Map(0, nullptr, reinterpret_cast<void**>(&vertMap_));
 
 	//インデックスリソースを作る
-	indexBuff_ = BufferResource::CreateBufferResource(sDevice, ((sizeof(uint32_t) + 0xff) & ~0xff) * kVertNum);
+	indexBuff_ = BufferResource::CreateBufferResource(sDevice_, ((sizeof(uint32_t) + 0xff) & ~0xff) * kVertNum_);
 
 	//インデックスバッファビュー
 	//リソースの先頭のアドレスから使う
 	ibView_.BufferLocation = indexBuff_->GetGPUVirtualAddress();
 	//使用するリソースのサイズはインデックス6つ分のサイズ
-	ibView_.SizeInBytes = sizeof(uint32_t) * kVertNum;
+	ibView_.SizeInBytes = sizeof(uint32_t) * kVertNum_;
 	//インデックスはuint32_tとする
 	ibView_.Format = DXGI_FORMAT_R32_UINT;
 
 	//インデックスリソースにデータを書き込む
-	indexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&indexMap));
+	indexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&indexMap_));
 
 	SetAnchorPoint(anchorPoint_);
 
@@ -238,28 +238,28 @@ void Sprite::Draw() {
 	}
 
 	// 頂点バッファの設定
-	sCommandList->IASetVertexBuffers(0, 1, &vbView_);
+	sCommandList_->IASetVertexBuffers(0, 1, &vbView_);
 	//IBVを設定
-	sCommandList->IASetIndexBuffer(&ibView_);
+	sCommandList_->IASetIndexBuffer(&ibView_);
 	
 	//Sprite用のWorldViewProjectionMatrixを作る
 	Matrix4x4 viewMatrixSprite = Matrix4x4::MakeIdentity4x4();
-	Matrix4x4 projectionMatrixSprite = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth), float(WinApp::kWindowHeight), 0.0f, 100.0f);
+	Matrix4x4 projectionMatrixSprite = Matrix4x4::MakeOrthographicMatrix(0.0f, 0.0f, float(WinApp::kWindowWidth_), float(WinApp::kWindowHeight_), 0.0f, 100.0f);
 	Matrix4x4 worldViewProjectionMatrixSprite = Matrix4x4::Multiply(transformMatrix_, Matrix4x4::Multiply(viewMatrixSprite, projectionMatrixSprite));
 	spriteForGPUMap_->WVP = worldViewProjectionMatrixSprite;
 	spriteForGPUMap_->World = transformMatrix_;
 
 	//TransformationMatrixCBufferの場所を設定
-	sCommandList->SetGraphicsRootConstantBufferView(0, spriteForGPUBuff_->GetGPUVirtualAddress());
+	sCommandList_->SetGraphicsRootConstantBufferView(0, spriteForGPUBuff_->GetGPUVirtualAddress());
 
 	//マテリアルCBufferの場所を設定
-	sCommandList->SetGraphicsRootConstantBufferView(1, material_->GetMaterialBuff()->GetGPUVirtualAddress());
+	sCommandList_->SetGraphicsRootConstantBufferView(1, material_->GetMaterialBuff()->GetGPUVirtualAddress());
 
 	// シェーダーリソースビューをセット
-	TextureManager::GetInstance()->SetGraphicsRootDescriptorTable(sCommandList, 2, textureHandle_);
+	TextureManager::GetInstance()->SetGraphicsRootDescriptorTable(sCommandList_, 2, textureHandle_);
 
 	//描画
-	sCommandList->DrawIndexedInstanced(kVertNum, 1, 0, 0, 0);
+	sCommandList_->DrawIndexedInstanced(kVertNum_, 1, 0, 0, 0);
 
 }
 
@@ -342,33 +342,33 @@ void Sprite::SetAnchorPoint(const Vector2& anchorPoint)
 	}
 
 	//一枚目の三角形
-	vertMap[0].position = { left, bottom, 0.0f, 1.0f };//左下
-	vertMap[0].texcoord = { 0.0f, 1.0f };
-	vertMap[0].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[1].position = { left, top, 0.0f, 1.0f };//左上
-	vertMap[1].texcoord = { 0.0f, 0.0f };
-	vertMap[1].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[2].position = { right, bottom, 0.0f, 1.0f };//右下
-	vertMap[2].texcoord = { 1.0f, 1.0f };
-	vertMap[2].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[0].position = { left, bottom, 0.0f, 1.0f };//左下
+	vertMap_[0].texcoord = { 0.0f, 1.0f };
+	vertMap_[0].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[1].position = { left, top, 0.0f, 1.0f };//左上
+	vertMap_[1].texcoord = { 0.0f, 0.0f };
+	vertMap_[1].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[2].position = { right, bottom, 0.0f, 1.0f };//右下
+	vertMap_[2].texcoord = { 1.0f, 1.0f };
+	vertMap_[2].normal = { 0.0f, 0.0f, -1.0f };
 	//ニ枚目の三角形
-	vertMap[3].position = { right, top, 0.0f, 1.0f };//右上
-	vertMap[3].texcoord = { 1.0f, 0.0f };
-	vertMap[3].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[4].position = { left, top, 0.0f, 1.0f };//左上
-	vertMap[4].texcoord = { 0.0f, 0.0f };
-	vertMap[4].normal = { 0.0f, 0.0f, -1.0f };
-	vertMap[5].position = { right, bottom, 0.0f, 1.0f };//右下
-	vertMap[5].texcoord = { 1.0f, 1.0f };
-	vertMap[5].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[3].position = { right, top, 0.0f, 1.0f };//右上
+	vertMap_[3].texcoord = { 1.0f, 0.0f };
+	vertMap_[3].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[4].position = { left, top, 0.0f, 1.0f };//左上
+	vertMap_[4].texcoord = { 0.0f, 0.0f };
+	vertMap_[4].normal = { 0.0f, 0.0f, -1.0f };
+	vertMap_[5].position = { right, bottom, 0.0f, 1.0f };//右下
+	vertMap_[5].texcoord = { 1.0f, 1.0f };
+	vertMap_[5].normal = { 0.0f, 0.0f, -1.0f };
 
 	//インデックスリソースにデータを書き込む
-	indexMap[0] = 0;
-	indexMap[1] = 1;
-	indexMap[2] = 2;
-	indexMap[3] = 1;
-	indexMap[4] = 3;
-	indexMap[5] = 2;
+	indexMap_[0] = 0;
+	indexMap_[1] = 1;
+	indexMap_[2] = 2;
+	indexMap_[3] = 1;
+	indexMap_[4] = 3;
+	indexMap_[5] = 2;
 
 }
 
