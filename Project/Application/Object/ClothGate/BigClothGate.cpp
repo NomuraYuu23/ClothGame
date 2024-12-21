@@ -1,13 +1,13 @@
 #include "BigClothGate.h"
 #include "../../../Engine/Math/Ease.h"
 
-const Vector2 BigClothGate::kClothScale_ = { 10.0f,8.0f };
+const Vector2 BigClothGate::kClothScale_ = { 6.0f, 5.0f };
 
 const Vector2 BigClothGate::kClothDiv_ = { 8.0f,8.0f };
 
-const Vector3 BigClothGate::kBaseLeftFixed_ = { -5.0f, 8.0f, 0.0f };
+const Vector3 BigClothGate::kBaseLeftFixed_ = { -3.0f, 5.0f, 0.0f };
 
-const Vector3 BigClothGate::kBaseRightFixed_ = { 5.0f, 8.0f, 0.0f };
+const Vector3 BigClothGate::kBaseRightFixed_ = { 3.0f, 5.0f, 0.0f };
 
 void BigClothGate::Initialize(LevelData::MeshData* data)
 {
