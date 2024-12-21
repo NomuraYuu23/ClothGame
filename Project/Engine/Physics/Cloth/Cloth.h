@@ -32,7 +32,7 @@ public: // サブクラス
 		uint32_t y; // y 検索用
 		uint32_t x; // x 検索用
 	};
-	
+
 	/// <summary>
 	/// 布用バネ
 	/// </summary>
@@ -129,10 +129,10 @@ private: // その他関数
 	/// <param name="offsetY">始点から終点への距離Y</param>
 	/// <param name="type">タイプ</param>
 	void SpringGeneration(
-		uint32_t x, 
-		uint32_t y, 
-		int32_t offsetX, 
-		int32_t offsetY, 
+		uint32_t x,
+		uint32_t y,
+		int32_t offsetX,
+		int32_t offsetY,
 		TypeOfSpring type);
 
 private: // メンバ変数
@@ -148,7 +148,7 @@ private: // メンバ変数
 	float speedResistance_; // 速度抵抗
 
 	int32_t relaxation_; // バネフェーズの反復回数
-	
+
 	float structuralShrink_; // 構成バネ伸び抵抗
 	float structuralStretch_; // 構成バネ縮み抵抗
 	float shearShrink_; // せん断バネ伸び抵抗
