@@ -169,6 +169,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\Camera\FollowCamera.cpp" />
     <ClCompile Include="Application\GPUParticle\RunDustParticle\RunDustParticle.cpp" />
     <ClCompile Include="Application\Object\BaseCharacter\BaseCharacterAnimation.cpp" />
+    <ClCompile Include="Application\Object\ClothGate\BaseClothGate.cpp" />
+    <ClCompile Include="Application\Object\ClothGate\BigClothGate.cpp" />
     <ClCompile Include="Application\Object\ClothGate\ClothGate.cpp" />
     <ClCompile Include="Application\Object\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="Application\Object\Enemy\Ghost\Ghost.cpp" />
@@ -357,6 +359,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Collider\CollisionConfig.h" />
     <ClInclude Include="Application\GPUParticle\RunDustParticle\RunDustParticle.h" />
     <ClInclude Include="Application\Object\BaseCharacter\BaseCharacterAnimation.h" />
+    <ClInclude Include="Application\Object\ClothGate\BaseClothGate.h" />
+    <ClInclude Include="Application\Object\ClothGate\BigClothGate.h" />
     <ClInclude Include="Application\Object\ClothGate\ClothGate.h" />
     <ClInclude Include="Application\Object\Enemy\BaseEnemy.h" />
     <ClInclude Include="Application\Object\Enemy\Ghost\Ghost.h" />

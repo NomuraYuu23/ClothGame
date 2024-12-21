@@ -934,6 +934,12 @@
     <ClCompile Include="externals\imgui\ImGuizmo.cpp">
       <Filter>externals\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Object\ClothGate\BaseClothGate.cpp">
+      <Filter>Application\Object\ClothGate</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Object\ClothGate\BigClothGate.cpp">
+      <Filter>Application\Object\ClothGate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1604,6 +1610,12 @@
     </ClInclude>
     <ClInclude Include="externals\imgui\ImGuizmo.h">
       <Filter>externals\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\ClothGate\BaseClothGate.h">
+      <Filter>Application\Object\ClothGate</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Object\ClothGate\BigClothGate.h">
+      <Filter>Application\Object\ClothGate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
