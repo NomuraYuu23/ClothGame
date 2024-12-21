@@ -35,7 +35,12 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		if (distance < gSphere.radius_) {
 			// 衝突したので押し出し
 			subVector = subVector * gSphere.radius_ * rcp(distance);
-			gClothMassPoints[index].position_ = gSphere.position_ + subVector;
+			
+			float32_t3 newPosition = gSphere.position_ + subVector;
+
+			gClothMassPoints[index].position_ = newPosition;
+			gClothMassPoints[index].prePosition_ = newPosition;
+
 		}
 
 	}

@@ -43,7 +43,12 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		if (distance < gCapsule.radius_) {
 			// 衝突したので押し出し
 			subVector = subVector * gCapsule.radius_ * rcp(distance);
-			gClothMassPoints[index].position_ = closestPoint + subVector;
+
+			float32_t3 newPosition = closestPoint + subVector;
+			
+			gClothMassPoints[index].position_ = newPosition;
+			gClothMassPoints[index].prePosition_ = newPosition;
+		
 		}
 
 	}

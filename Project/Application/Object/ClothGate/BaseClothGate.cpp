@@ -66,7 +66,7 @@ void BaseClothGate::ClothInitialize(const Vector2& clothScale, const Vector2& cl
 	cloth_->SetBendingStretch(kClothBending);
 	cloth_->SetBendingShrink(kClothBending);
 	// 速度制限
-	const float kClothVelocityLimit = 0.09f;
+	const float kClothVelocityLimit = 10.09f;
 	cloth_->SetVelocityLimit(kClothVelocityLimit);
 	// 更新回数
 	const uint32_t kClothRelaxation = 6;

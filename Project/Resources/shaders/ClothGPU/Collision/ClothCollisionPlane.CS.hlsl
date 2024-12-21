@@ -66,6 +66,7 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		// 押し出し
 		float32_t3 extrusion = massPoint.prePosition_ + (diff * t);
 		gClothMassPoints[index].position_ = extrusion;
+		gClothMassPoints[index].prePosition_ = extrusion;
 
 	}
 

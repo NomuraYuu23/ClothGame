@@ -3,7 +3,7 @@
     "objects": [
         {
             "type": "MESH",
-            "name": "立方体.031",
+            "name": "立方体.032",
             "transform": {
                 "translation": [
                     0.0,
@@ -24,30 +24,6 @@
             "fileName": "BigClothGate.obj",
             "directoryPath": "Resources/Model/ClothGate",
             "className": "BigClothGate"
-        },
-        {
-            "type": "MESH",
-            "name": "ClothGate.000",
-            "transform": {
-                "translation": [
-                    -5.0,
-                    20.0,
-                    3.0
-                ],
-                "rotation": [
-                    -0.0,
-                    -0.0,
-                    -1.5707961320877075
-                ],
-                "scaling": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "fileName": "ClothGate.obj",
-            "directoryPath": "Resources/Model/ClothGate",
-            "className": "ClothGate"
         },
         {
             "type": "MESH",
