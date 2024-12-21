@@ -3,6 +3,7 @@
 #include "../Skydome/Skydome.h"
 #include "../Player/Player.h"
 #include "../ClothGate/ClothGate.h"
+#include "../ClothGate/BigClothGate.h"
 #include "../Enemy/Ghost/Ghost.h"
 #include "../GroundBlock/GroundBlock.h"
 #include "../SideCloth/SideCloth.h"
@@ -49,6 +50,16 @@ IObject* ObjectCreate::CreateObjectClothGate(LevelData::ObjectData& objectData)
 	// 初期化
 	static_cast<ClothGate*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
 	static_cast<ClothGate*>(object)->SetPlayer(player_);
+	return object;
+}
+
+IObject* ObjectCreate::CreateObjectBigClothGate(LevelData::ObjectData& objectData)
+{
+	// インスタンス生成
+	IObject* object = new BigClothGate();
+	// 初期化
+	static_cast<BigClothGate*>(object)->Initialize(&std::get<LevelData::MeshData>(objectData));
+	static_cast<BigClothGate*>(object)->SetPlayer(player_);
 	return object;
 }
 

@@ -3,6 +3,30 @@
     "objects": [
         {
             "type": "MESH",
+            "name": "立方体.031",
+            "transform": {
+                "translation": [
+                    0.0,
+                    42.0,
+                    3.0
+                ],
+                "rotation": [
+                    -0.0,
+                    0.0,
+                    -1.5707964897155762
+                ],
+                "scaling": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "fileName": "BigClothGate.obj",
+            "directoryPath": "Resources/Model/ClothGate",
+            "className": "BigClothGate"
+        },
+        {
+            "type": "MESH",
             "name": "ClothGate.000",
             "transform": {
                 "translation": [

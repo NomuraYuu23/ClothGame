@@ -42,6 +42,13 @@ public: //メンバ関数
 	static IObject* CreateObjectClothGate(LevelData::ObjectData& objectData);
 
 	/// <summary>
+	/// 大きい布ゲート
+	/// </summary>
+	/// <param name="objectData">オブジェクトデータ</param>
+	/// <returns>オブジェクト</returns>
+	static IObject* CreateObjectBigClothGate(LevelData::ObjectData& objectData);
+
+	/// <summary>
 	/// ゴースト
 	/// </summary>
 	/// <param name="objectData">オブジェクトデータ</param>

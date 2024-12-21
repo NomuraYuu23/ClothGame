@@ -37,11 +37,6 @@ public: // メンバ関数
 	virtual void Draw(BaseCamera& camera) override;
 
 	/// <summary>
-	/// ImGui描画
-	/// </summary>
-	virtual void ImGuiDraw() override {};
-
-	/// <summary>
 	/// 布リセット
 	/// </summary>
 	virtual void ClothReset() = 0;

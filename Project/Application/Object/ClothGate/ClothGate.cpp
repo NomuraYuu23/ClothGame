@@ -1,8 +1,5 @@
 #include "ClothGate.h"
-#include "../Player/Player.h"
-#include "../../../Engine/Math/RandomEngine.h"
 #include "../../../Engine/Math/Ease.h"
-#include "../../../Engine/Math/DeltaTime.h"
 
 const Vector2 ClothGate::kClothScale_ = { 4.0f,3.0f };
 
@@ -62,10 +59,5 @@ void ClothGate::ClothUpdate()
 	cloth_->SetPosition(0, 0, kLeftTopPosition);
 	cloth_->SetWeight(0, kRightX, false);
 	cloth_->SetPosition(0, kRightX, kRightTopPosition);
-
-}
-
-void ClothGate::ImGuiDraw()
-{
 
 }

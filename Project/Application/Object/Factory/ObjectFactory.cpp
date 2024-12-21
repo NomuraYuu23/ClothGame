@@ -3,6 +3,7 @@
 #include "ObjectCreate.h"
 
 #include "../ClothGate/ClothGate.h"
+#include "../ClothGate/BigClothGate.h"
 #include "../SideCloth/SideCloth.h"
 #include "../Enemy/Ghost/Ghost.h"
 #include "CreateObjectNames.h"
@@ -39,6 +40,10 @@ void ObjectFactory::Initialize(BaseObjectManager* objectManager)
 	// 布ゲート
 	createObjectFunctions_[kCreateObjectIndexClothGate].first = kCreateObjectNames_[kCreateObjectIndexClothGate];
 	createObjectFunctions_[kCreateObjectIndexClothGate].second = ObjectCreate::CreateObjectClothGate;
+
+	// 大きい布ゲート
+	createObjectFunctions_[kCreateObjectIndexBigClothGate].first = kCreateObjectNames_[kCreateObjectIndexBigClothGate];
+	createObjectFunctions_[kCreateObjectIndexBigClothGate].second = ObjectCreate::CreateObjectBigClothGate;
 
 	// ゴースト
 	createObjectFunctions_[kCreateObjectIndexGhost].first = kCreateObjectNames_[kCreateObjectIndexGhost];
@@ -99,6 +104,9 @@ IObject* ObjectFactory::CreateObjectPattern(LevelData::ObjectData& objectData)
 				object->GetWorldTransformAdress()->UpdateMatrix();
 				if (i == kCreateObjectIndexClothGate) {
 					static_cast<ClothGate*>(object)->ClothReset();
+				}
+				else if (i == kCreateObjectIndexBigClothGate) {
+					static_cast<BigClothGate*>(object)->ClothReset();
 				}
 				else if (i == kCreateObjectIndexGhost) {
 					static_cast<Ghost*>(object)->ClothReset();

@@ -12,6 +12,7 @@ const std::array<std::string, CreateObjectIndex::kCreateObjectIndexOfCount> kCre
 	"GroundBlock",
 	"Player",
 	"ClothGate",
+	"BigClothGate",
 	"Ghost",
 	"SideCloth",
 };

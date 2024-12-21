@@ -30,11 +30,6 @@ public: // メンバ関数
 	void Initialize(LevelData::MeshData* data) override;
 
 	/// <summary>
-	/// ImGui描画
-	/// </summary>
-	void ImGuiDraw() override;
-
-	/// <summary>
 	/// 布リセット
 	/// </summary>
 	void ClothReset() override;
