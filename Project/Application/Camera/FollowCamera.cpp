@@ -38,9 +38,9 @@ void FollowCamera::Initialize() {
 
 void FollowCamera::Update(float elapsedTime) {
 
-#ifdef _DEBUG
+#ifdef _DEMO
 	ApplyGlobalVariables();
-#endif // _DEBUG
+#endif // _DEMO
 
 
 	//追従対象がいれば
