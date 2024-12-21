@@ -91,18 +91,9 @@ void BaseClothGate::ClothUpdate()
 
 	// 球
 	// プレイヤーの情報をいれる
+	const Vector3 prePlayerPosition = playerCollider_.origin;
 	playerCollider_.origin = player_->GetWorldTransformAdress()->GetWorldPosition();
-
-	// プレイヤーの衝突判定差分ベクトルダッシュ版(大きくなる)
-	if (player_->GetCurrentStateNo() == kPlayerStateIndexDash) {
-		const float kDashPlayerColliderDiffZ = -10.0f;
-		playerCollider_.diff = { 0.0f, 0.0f, kDashPlayerColliderDiffZ };
-	}
-	// プレイヤーの衝突判定差分ベクトル通常版
-	else {
-		const float kRootPlayerColliderDiffZ = -1.0f;
-		playerCollider_.diff = { 0.0f, 0.0f, kRootPlayerColliderDiffZ };
-	}
+	playerCollider_.diff = Vector3::Subtract(prePlayerPosition,playerCollider_.origin);
 
 	// プレイヤー近いなら更新
 	const float kCollisionDistance = 10.0f; // 距離判定
