@@ -940,6 +940,9 @@
     <ClCompile Include="Application\Object\ClothGate\BigClothGate.cpp">
       <Filter>Application\Object\ClothGate</Filter>
     </ClCompile>
+    <ClCompile Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1616,6 +1619,9 @@
     </ClInclude>
     <ClInclude Include="Application\Object\ClothGate\BigClothGate.h">
       <Filter>Application\Object\ClothGate</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

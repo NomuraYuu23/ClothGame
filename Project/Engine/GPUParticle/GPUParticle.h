@@ -49,11 +49,13 @@ public:
 	/// <param name="commandList">コマンドリスト</param>
 	/// <param name="rootSignature">ルートシグネチャ</param>
 	/// <param name="pipelineState">パイプラインステート</param>
+	/// <param name="name">パーティクルの名前</param>
 	virtual void Initialize(
 		ID3D12Device* device,
 		ID3D12GraphicsCommandList* commandList,
 		ID3D12RootSignature* rootSignature,
-		ID3D12PipelineState* pipelineState);
+		ID3D12PipelineState* pipelineState,
+		const std::string name = "Particle");
 
 	/// <summary>
 	/// 更新
@@ -81,6 +83,7 @@ protected:
 	/// <summary>
 	/// パイプラインステートの初期化CS
 	/// </summary>
+	/// <param name="device">デバイス</param>
 	void PipelineStateCSInitialize(ID3D12Device* device);
 
 	/// <summary>
@@ -171,6 +174,8 @@ protected:
 	static const std::string kModelDirectoryPath_;
 	// テクスチャのディレクトリパス
 	static const std::string kTextureDirectoryPath_;
+	// シェーダパス
+	static const std::string kShaderDirectoryPath_;
 	// モデルのファイルの名前
 	static const std::string kFilename_;
 	// モデル
@@ -211,6 +216,9 @@ protected:
 
 	// テクスチャ名前
 	std::string textureFilename_ = "";
+
+	// パーティクルの名前
+	std::string particleName_ = "";
 
 	// GPUParticleViewバッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> gpuParticleViewBuff_;

@@ -14,6 +14,8 @@ const uint32_t GPUParticle::kParticleMax_ = 1024;
 const std::string GPUParticle::kModelDirectoryPath_ = "Resources/Particle/";
 // モデルのディレクトリパス
 const std::string GPUParticle::kTextureDirectoryPath_ = "Resources/Particle/";
+// シェーダパス
+const std::string GPUParticle::kShaderDirectoryPath_ = "Resources/shaders/GPUParticle/";
 // モデルのファイルの名前
 const std::string GPUParticle::kFilename_ = "plane.obj";
 // モデル
@@ -33,8 +35,12 @@ void GPUParticle::Initialize(
 	ID3D12Device* device,
 	ID3D12GraphicsCommandList* commandList,
 	ID3D12RootSignature* rootSignature,
-	ID3D12PipelineState* pipelineState)
+	ID3D12PipelineState* pipelineState,
+	const std::string name)
 {
+
+	// 名前
+	particleName_ = name;
 
 	// CSの初期化
 	PipelineStateCSInitialize(device);
@@ -151,7 +157,7 @@ void GPUParticle::SetEmitter(const EmitterCS& emitter, bool isEmitSet)
 
 void GPUParticle::PipelineStateCSInitialize(ID3D12Device* device)
 {
-
+	
 	PipelineStateCSInitializeForInitialize(device);
 
 	PipelineStateCSInitializeForEmit(device);
@@ -496,8 +502,9 @@ void GPUParticle::PipelineStateCSInitializeForInitialize(ID3D12Device* device)
 	assert(SUCCEEDED(hr));
 
 	// シェーダコンパイル
+	const std::wstring kFilePath = Log::ConvertString(kShaderDirectoryPath_ + particleName_ + "Particle/" + particleName_ +"Initialize.CS.hlsl");
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/GPUParticle/ParticleInitialize.CS.hlsl",
+		kFilePath,
 		L"cs_6_0",
 		L"main");
 
@@ -600,8 +607,9 @@ void GPUParticle::PipelineStateCSInitializeForEmit(ID3D12Device* device)
 	assert(SUCCEEDED(hr));
 
 	// シェーダコンパイル
+	const std::wstring kFilePath = Log::ConvertString(kShaderDirectoryPath_ + particleName_ + "Particle/" + particleName_ + "Emit.CS.hlsl");
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/GPUParticle/ParticleEmit.CS.hlsl",
+		kFilePath,
 		L"cs_6_0",
 		L"main");
 
@@ -700,8 +708,9 @@ void GPUParticle::PipelineStateCSInitializeForUpdate(ID3D12Device* device)
 	assert(SUCCEEDED(hr));
 
 	// シェーダコンパイル
+	const std::wstring kFilePath = Log::ConvertString(kShaderDirectoryPath_ + particleName_ + "Particle/" + particleName_ + "Update.CS.hlsl");
 	IDxcBlob* shader = CompileShader::Compile(
-		L"Resources/shaders/GPUParticle/ParticleUpdate.CS.hlsl",
+		kFilePath,
 		L"cs_6_0",
 		L"main");
 
