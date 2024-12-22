@@ -11,3 +11,5 @@ const uint32_t kCollisionAttributePlayer_ = 0b1;
 const uint32_t kCollisionAttributeGround_ = 0b1 << 1;
 // 敵
 const uint32_t kCollisionAttributeEnemy_ = 0b1 << 2;
+// 布ゲート
+const uint32_t kCollisionAttributeClothGate_ = 0b1 << 3;

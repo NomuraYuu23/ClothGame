@@ -11,9 +11,10 @@ class ParentNullObject;
 class Player;
 class BaseEnemy;
 class GroundBlock;
+class BaseClothGate;
 
 // variantでまとめる
-using ColliderParentObject = std::variant<ParentNullObject*, Player*, BaseEnemy*, GroundBlock*>;
+using ColliderParentObject = std::variant<ParentNullObject*, Player*, BaseEnemy*, GroundBlock*, BaseClothGate*>;
 
 /// <summary>
 /// 親がないもの用

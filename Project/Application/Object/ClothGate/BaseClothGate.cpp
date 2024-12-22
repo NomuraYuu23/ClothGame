@@ -3,6 +3,7 @@
 #include "../../../Engine/Math/RandomEngine.h"
 #include "../../../Engine/Math/Ease.h"
 #include "../../../Engine/Math/DeltaTime.h"
+#include "../../Collider/CollisionConfig.h"
 
 const std::string BaseClothGate::kPlayerColliderName_ = "player";
 
@@ -15,6 +16,22 @@ void BaseClothGate::Initialize(LevelData::MeshData* data)
 	MeshObject::Initialize(data);
 	// マテリアル
 	material_->SetEnableLighting(BlinnPhongReflection);
+
+	// 衝突マスク
+	collisionAttribute_ = kCollisionAttributeClothGate_;
+	// プレイヤー以外と当たらない
+	collisionMask_ -= kCollisionAttributeClothGate_;
+	collisionMask_ -= kCollisionAttributeEnemy_;
+	collisionMask_ -= kCollisionAttributeGround_;
+
+	// コライダー
+	OBB obb = std::get<OBB>(*collider_.get());
+	obb.SetParentObject(this);
+	obb.SetCollisionAttribute(collisionAttribute_);
+	obb.SetCollisionMask(collisionMask_);
+	ColliderShape* colliderShape = new ColliderShape();
+	*colliderShape = obb;
+	collider_.reset(colliderShape);
 
 }
 

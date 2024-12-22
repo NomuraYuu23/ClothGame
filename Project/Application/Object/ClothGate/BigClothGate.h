@@ -1,5 +1,9 @@
 #pragma once
 #include "BaseClothGate.h"
+
+/// <summary>
+/// 大きい布ゲート
+/// </summary>
 class BigClothGate :
     public BaseClothGate
 {

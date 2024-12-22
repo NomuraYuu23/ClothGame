@@ -5,6 +5,9 @@
 // 前方宣言
 class Player;
 
+/// <summary>
+/// 布ゲートの基盤
+/// </summary>
 class BaseClothGate :
     public MeshObject
 {
@@ -40,6 +43,17 @@ public: // メンバ関数
 	/// 布リセット
 	/// </summary>
 	virtual void ClothReset() = 0;
+
+	/// <summary>
+	/// 衝突処理
+	/// </summary>
+	/// <param name="colliderPartner"></param>
+	/// <param name="collisionData"></param>
+	virtual void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) {
+		// 警告回避
+		colliderPartner;
+		collisionData;
+	}
 
 protected: // メンバ関数
 
