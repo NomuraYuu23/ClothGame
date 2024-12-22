@@ -69,6 +69,11 @@ protected: // メンバ関数
 	/// </summary>
 	virtual void ClothUpdate();
 
+	/// <summary>
+	/// コライダー更新
+	/// </summary>
+	virtual void ColliderUpdate();
+
 public: // アクセッサ
 
 	/// <summary>
@@ -93,6 +98,9 @@ protected:
 
 	// 更新秒数
 	float updateSeconds_;
+
+	// コライダーの位置
+	Vector3 colliderAddPosition_;
 
 };
 

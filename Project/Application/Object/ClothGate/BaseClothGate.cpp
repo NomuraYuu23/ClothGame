@@ -32,6 +32,7 @@ void BaseClothGate::Initialize(LevelData::MeshData* data)
 	ColliderShape* colliderShape = new ColliderShape();
 	*colliderShape = obb;
 	collider_.reset(colliderShape);
+	colliderAddPosition_ = obb.center_ - worldTransform_.GetWorldPosition();
 
 }
 
@@ -40,6 +41,9 @@ void BaseClothGate::Update()
 
 	// 布CPU側処理
 	ClothUpdate();
+
+	// コライダー更新
+	ColliderUpdate();
 
 }
 
@@ -164,5 +168,22 @@ void BaseClothGate::ClothUpdate()
 
 	// 布更新
 	cloth_->Update();
+
+}
+
+void BaseClothGate::ColliderUpdate()
+{
+
+	OBB obb = std::get<OBB>(*collider_.get());
+
+	obb.center_ = worldTransform_.GetWorldPosition() + colliderAddPosition_;
+
+	obb.SetOtientatuons(worldTransform_.rotateMatrix_);
+
+	ColliderShape* colliderShape = new ColliderShape();
+
+	*colliderShape = obb;
+
+	collider_.reset(colliderShape);
 
 }
