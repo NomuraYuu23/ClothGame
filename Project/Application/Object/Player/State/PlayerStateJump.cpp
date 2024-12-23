@@ -6,7 +6,7 @@ void PlayerStateJump::Initialize()
 {
 
 	// ジャンプ初速を入れる
-	const float kJumpInitialSpeed = 1.2f;
+	const float kJumpInitialSpeed = 0.8f;
 	moveVelocity_.y = kJumpInitialSpeed;
 
 	// プレイヤーは浮く
@@ -25,7 +25,7 @@ void PlayerStateJump::Update()
 
 	// 重力で速度を変更する
 	// 重力倍率
-	const float kGravityMagnification = 0.5f;
+	const float kGravityMagnification = 0.2f;
 	moveVelocity_ += Gravity::Execute() * kGravityMagnification;
 	// 速度制限
 	const float kJumpSpeedMin = 0.0f;
