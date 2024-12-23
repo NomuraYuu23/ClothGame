@@ -51,7 +51,7 @@ void main(uint32_t3 DTid : SV_DispatchThreadID)
 				gParticles[particleIndex].lifeTime = 0.5f;
 				float32_t speed = 0.2f;
 				gParticles[particleIndex].velocity.x = generator.Generate1d() * speed * 2.0f - speed;
-				gParticles[particleIndex].velocity.y = generator.Generate1d() * 0.2f;
+				gParticles[particleIndex].velocity.y = generator.Generate1d() * speed;
 				gParticles[particleIndex].velocity.z = generator.Generate1d() * speed * 2.0f - speed;
 				gParticles[particleIndex].currentTime = 0.0f;
 			}

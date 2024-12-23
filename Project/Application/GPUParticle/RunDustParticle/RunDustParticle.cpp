@@ -7,17 +7,23 @@
 #include "../../../Engine/base/Texture/TextureManager.h"
 #include "../../../Engine/Particle/BillBoardMatrix.h"
 #include "../../../Engine/Math/DeltaTime.h"
+#include "../../../Engine/Math/RandomEngine.h"
 
 void RunDustParticle::Initialize(
 	ID3D12Device* device, 
 	ID3D12GraphicsCommandList* commandList, 
 	ID3D12RootSignature* rootSignature, 
 	ID3D12PipelineState* pipelineState,
-	const std::string name)
+	const std::string& name)
 {
 
+	// おかしな呼び方をされていないか
+	if (name != "Particle") {
+		assert(0);
+	}
+
 	// テクスチャ名前
-	const std::string kTextureFilename = "smoke.png";
+	const std::string kTextureFilename = "Note_1.png";
 	textureFilename_ = kTextureFilename;
 
 	// 初期化

@@ -22,6 +22,7 @@ public:
 		ID3D12GraphicsCommandList* commandList,
 		ID3D12RootSignature* rootSignature,
 		ID3D12PipelineState* pipelineState,
-		const std::string name = "Particle") override;
+		const std::string& name = "Particle") override;
+
 };
 

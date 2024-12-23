@@ -13,8 +13,13 @@ void PassThroughClothParticle::Initialize(
 	ID3D12GraphicsCommandList* commandList,
 	ID3D12RootSignature* rootSignature,
 	ID3D12PipelineState* pipelineState,
-	const std::string name) 
+	const std::string& name)
 {
+
+	// おかしな呼び方をされていないか
+	if (name != "Particle") {
+		assert(0);
+	}
 
 	// テクスチャ名前
 	const std::string kTextureFilename = "Kirakira.png";

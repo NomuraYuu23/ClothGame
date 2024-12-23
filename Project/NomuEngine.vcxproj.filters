@@ -1843,7 +1843,7 @@
     <FxCompile Include="Resources\shaders\PostEffect\HSVFilter.CS.hlsl">
       <Filter>shaders\PostEffect\HSVFilter</Filter>
     </FxCompile>
-    <FxCompile Include="Resources\shaders\GPUParticle\GPUParticleBlendNormal.VS.hlsl">
+    <FxCompile Include="Resources\shaders\GPUParticle\GPUParticleRotate.VS.hlsl">
       <Filter>shaders\GPUParticle</Filter>
     </FxCompile>
     <FxCompile Include="Resources\shaders\Cloth\Cloth.PS.hlsl">

@@ -36,7 +36,7 @@ void GPUParticle::Initialize(
 	ID3D12GraphicsCommandList* commandList,
 	ID3D12RootSignature* rootSignature,
 	ID3D12PipelineState* pipelineState,
-	const std::string name)
+	const std::string& name)
 {
 
 	// 名前

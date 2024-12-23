@@ -203,7 +203,7 @@ void GraphicsPipelineState::Initialize(ID3D12Device* sDevice)
 	desc.blendStateIndex = kBlendStateIndexNormal;
 	desc.cullMode = D3D12_CULL_MODE_BACK;
 	desc.fillMode = D3D12_FILL_MODE_SOLID;
-	desc.filePathVS = L"Resources/shaders/GPUParticle/GPUParticleBlendNormal.VS.hlsl";
+	desc.filePathVS = L"Resources/shaders/GPUParticle/GPUParticle.VS.hlsl";
 	desc.filePathPS = L"Resources/shaders/GPUParticle/GPUParticle.PS.hlsl";
 	desc.primitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	desc.numRenderTargets = 1;
