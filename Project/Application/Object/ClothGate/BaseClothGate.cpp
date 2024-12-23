@@ -7,6 +7,8 @@
 
 const std::string BaseClothGate::kPlayerColliderName_ = "player";
 
+const Vector3 BaseClothGate::kParticleEmitAddPosition_ = { 0.0f, 1.0f, 0.0f };
+
 DirectXCommon* BaseClothGate::dxCommon_ = DirectXCommon::GetInstance();
 
 void BaseClothGate::Initialize(LevelData::MeshData* data)
@@ -45,7 +47,7 @@ void BaseClothGate::Initialize(LevelData::MeshData* data)
 	// エミッタ設定
 	const EmitterCS kEmitter =
 	{
-			worldTransform_.GetWorldPosition(), // 位置
+			worldTransform_.GetWorldPosition() + kParticleEmitAddPosition_, // 位置
 			1.0f, // 射出半径
 			10, // 射出数
 			0.1f, // 射出間隔
@@ -71,7 +73,7 @@ void BaseClothGate::Update()
 	// くぐった時のパーティクル
 	const EmitterCS kEmitter =
 	{
-			worldTransform_.GetWorldPosition(), // 位置
+			worldTransform_.GetWorldPosition() + kParticleEmitAddPosition_, // 位置
 			1.0f, // 射出半径
 			40, // 射出数
 			kDeltaTime_ * 2.0f, // 射出間隔

@@ -18,6 +18,9 @@ protected:
     // プレイヤーの衝突判定データの名前
     static const std::string kPlayerColliderName_;
 
+	// パーティクルエミッタの追加位置
+	static const Vector3 kParticleEmitAddPosition_;
+
 	// DirectX
 	static DirectXCommon* dxCommon_;
 

@@ -944,7 +944,7 @@
       <Filter>Application\Object\ClothGate</Filter>
     </ClCompile>
     <ClCompile Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Application\GPUParticle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1624,7 +1624,7 @@
       <Filter>Application\Object\ClothGate</Filter>
     </ClInclude>
     <ClInclude Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Application\GPUParticle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
