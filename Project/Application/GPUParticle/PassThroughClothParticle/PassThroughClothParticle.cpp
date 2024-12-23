@@ -17,7 +17,7 @@ void PassThroughClothParticle::Initialize(
 {
 
 	// テクスチャ名前
-	const std::string kTextureFilename = "smoke.png";
+	const std::string kTextureFilename = "Kirakira.png";
 	textureFilename_ = kTextureFilename;
 
 	// 初期化

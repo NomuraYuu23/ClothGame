@@ -73,7 +73,7 @@ void BaseClothGate::Update()
 	{
 			worldTransform_.GetWorldPosition(), // 位置
 			1.0f, // 射出半径
-			20, // 射出数
+			40, // 射出数
 			kDeltaTime_ * 2.0f, // 射出間隔
 			0.0f, // 射出間隔調整時間
 			0 // 射出許可
