@@ -53,15 +53,8 @@ void Player::Initialize(LevelData::MeshData* data)
 	// レベルアップ
 	levelUp_ = false;
 
-	// 砂埃
+	// パーティクル
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
-	runDustParticle_ = std::make_unique<RunDustParticle>();
-	runDustParticle_->Initialize(
-		dxCommon->GetDevice(),
-		dxCommon->GetCommadListLoad(),
-		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get(),
-		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get());
-
 	// エミッタ設定
 	const EmitterCS kEmitter =
 	{
@@ -72,7 +65,24 @@ void Player::Initialize(LevelData::MeshData* data)
 			0.0f, // 射出間隔調整時間
 			0 // 射出許可
 	};
+
+	// 通常状態のエフェクト
+	runDustParticle_ = std::make_unique<RunDustParticle>();
+	runDustParticle_->Initialize(
+		dxCommon->GetDevice(),
+		dxCommon->GetCommadListLoad(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get());
 	runDustParticle_->SetEmitter(kEmitter);
+
+	// ジャンプと着地のエフェクト
+	JumpLandingParticle_ = std::make_unique<JumpLandingParticle>();
+	JumpLandingParticle_->Initialize(
+		dxCommon->GetDevice(),
+		dxCommon->GetCommadListLoad(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get());
+	JumpLandingParticle_->SetEmitter(kEmitter);
 
 }
 
@@ -111,8 +121,8 @@ void Player::Update()
 	// 速度保存
 	SaveVelocityUpdate();
 
-	// 砂埃
-	const EmitterCS kEmitter =
+	// 通常状態のエフェクト
+	const EmitterCS kRunDustEmitter =
 	{
 			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
 			1.0f, // 射出半径
@@ -122,12 +132,32 @@ void Player::Update()
 			0 // 射出許可
 	};
 	if (!floating_) {
-		runDustParticle_->SetEmitter(kEmitter, false);
+		runDustParticle_->SetEmitter(kRunDustEmitter, false);
 	}
 	else {
-		runDustParticle_->SetEmitter(kEmitter, true);
+		runDustParticle_->SetEmitter(kRunDustEmitter, true);
 	}
 	runDustParticle_->Update();
+
+	// ジャンプと着地のエフェクト
+	const EmitterCS kJumpLandingEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			20, // 射出数
+			kDeltaTime_ * 2.0f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	bool jumpTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexRoot && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexJump;
+	bool landingTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexFall && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexRoot;
+	if (jumpTiming || landingTiming) {
+		JumpLandingParticle_->SetEmitter(kJumpLandingEmitter, false);
+	}
+	else {
+		JumpLandingParticle_->SetEmitter(kJumpLandingEmitter, true);
+	}
+	JumpLandingParticle_->Update();
 
 	// 落下していることにする
 	floating_ = true;
@@ -156,8 +186,11 @@ void Player::ImGuiDraw()
 void Player::ParticleDraw(BaseCamera& camera)
 {
 
-	// 砂埃
+	// 通常状態のエフェクト
 	runDustParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
+
+	// ジャンプと着地のエフェクト
+	JumpLandingParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
 
 }
 

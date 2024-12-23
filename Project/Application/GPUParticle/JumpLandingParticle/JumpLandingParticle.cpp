@@ -1,10 +1,10 @@
-#include "PassThroughClothParticle.h"
+#include "JumpLandingParticle.h"
 
-void PassThroughClothParticle::Initialize(
-	ID3D12Device* device,
-	ID3D12GraphicsCommandList* commandList,
-	ID3D12RootSignature* rootSignature,
-	ID3D12PipelineState* pipelineState,
+void JumpLandingParticle::Initialize(
+	ID3D12Device* device, 
+	ID3D12GraphicsCommandList* commandList, 
+	ID3D12RootSignature* rootSignature, 
+	ID3D12PipelineState* pipelineState, 
 	const std::string& name)
 {
 
@@ -14,11 +14,11 @@ void PassThroughClothParticle::Initialize(
 	}
 
 	// テクスチャ名前
-	const std::string kTextureFilename = "Kirakira.png";
+	const std::string kTextureFilename = "Note_0.png";
 	textureFilename_ = kTextureFilename;
 
 	// 初期化
-	const std::string kName = "PassThroughCloth";
+	const std::string kName = "JumpLanding";
 	GPUParticle::Initialize(device, commandList, rootSignature, pipelineState, kName);
 
 	// エミッタ設定

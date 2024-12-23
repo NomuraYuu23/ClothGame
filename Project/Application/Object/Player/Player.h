@@ -6,6 +6,7 @@
 #include "State/System/PlayerStateSystem.h"
 #include "Animation/PlayerAnimation.h"
 #include "../../GPUParticle/RunDustParticle/RunDustParticle.h"
+#include "../../GPUParticle/JumpLandingParticle/JumpLandingParticle.h"
 
 /// <summary>
 /// プレイヤー
@@ -144,8 +145,11 @@ private: // メンバ変数
     // レベルアップ
     bool levelUp_;
 
-    // 砂ぼこり
+    // 通常状態のエフェクト
     std::unique_ptr<RunDustParticle> runDustParticle_;
+
+    // ジャンプと着地のエフェクト
+    std::unique_ptr<JumpLandingParticle> JumpLandingParticle_;
 
 };
 

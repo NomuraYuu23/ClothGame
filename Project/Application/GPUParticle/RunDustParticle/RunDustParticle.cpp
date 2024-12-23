@@ -1,13 +1,4 @@
 #include "RunDustParticle.h"
-#include "../../../Engine/base/BufferResource.h"
-#include "../../../Engine/GPUParticle/ParticleCS.h"
-#include "../../../Engine/base/DescriptorHerpManager/SRVDescriptorHerpManager.h"
-#include "../../../Engine/base/CompileShader.h"
-#include "../../../Engine/base/DxCommon/Log.h"
-#include "../../../Engine/base/Texture/TextureManager.h"
-#include "../../../Engine/Particle/BillBoardMatrix.h"
-#include "../../../Engine/Math/DeltaTime.h"
-#include "../../../Engine/Math/RandomEngine.h"
 
 void RunDustParticle::Initialize(
 	ID3D12Device* device, 

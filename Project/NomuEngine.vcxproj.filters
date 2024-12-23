@@ -406,6 +406,9 @@
     <Filter Include="shaders\GPUParticle\PassThroughCloth">
       <UniqueIdentifier>{c450ca40-e4be-452d-8fc9-172c44626979}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders\GPUParticle\JumpLanding">
+      <UniqueIdentifier>{fc519c58-6fbc-4d38-b2b2-be4605ef54ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -944,6 +947,9 @@
       <Filter>Application\Object\ClothGate</Filter>
     </ClCompile>
     <ClCompile Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.cpp">
+      <Filter>Application\GPUParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.cpp">
       <Filter>Application\GPUParticle</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1626,6 +1632,9 @@
     <ClInclude Include="Application\GPUParticle\PassThroughClothParticle\PassThroughClothParticle.h">
       <Filter>Application\GPUParticle</Filter>
     </ClInclude>
+    <ClInclude Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.h">
+      <Filter>Application\GPUParticle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="externals\imgui\LICENSE.txt">
@@ -1688,6 +1697,9 @@
     </None>
     <None Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughCloth.CS.hlsli">
       <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
+    </None>
+    <None Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLanding.CS.hlsli">
+      <Filter>shaders\GPUParticle\JumpLanding</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1914,6 +1926,15 @@
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughClothUpdate.CS.hlsl">
       <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLandingEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\JumpLanding</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLandingInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\JumpLanding</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLandingUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\JumpLanding</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

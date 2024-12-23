@@ -65,6 +65,12 @@ public: // アクセッサ
 	/// <returns></returns>
 	uint32_t GetCurrentStateNo() { return currentStateNo_; };
 
+	/// <summary>
+	/// 前のステート番号
+	/// </summary>
+	/// <returns></returns>
+	uint32_t GetPrevStateNo() { return prevStateNo_; }
+
 private: // メンバ変数
 
 	// ステート
