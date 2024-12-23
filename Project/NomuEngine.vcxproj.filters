@@ -403,6 +403,9 @@
     <Filter Include="Application\Collider2D">
       <UniqueIdentifier>{ada4d6fb-f8d8-4de8-817d-cc970ee7b575}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders\GPUParticle\PassThroughCloth">
+      <UniqueIdentifier>{c450ca40-e4be-452d-8fc9-172c44626979}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -1683,6 +1686,9 @@
     <None Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDust.CS.hlsli">
       <Filter>shaders\GPUParticle\RunDash</Filter>
     </None>
+    <None Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughCloth.CS.hlsli">
+      <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NomuEngine.rc">
@@ -1899,6 +1905,15 @@
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustUpdate.CS.hlsl">
       <Filter>shaders\GPUParticle\RunDash</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughClothInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughClothEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughClothUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../Engine/Object/MeshObject.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
+#include "../../GPUParticle/PassThroughClothParticle/PassThroughClothParticle.h"
 
 // 前方宣言
 class Player;
@@ -40,6 +41,12 @@ public: // メンバ関数
 	virtual void Draw(BaseCamera& camera) override;
 
 	/// <summary>
+	/// パーティクル描画
+	/// </summary>
+	/// <param name="camera">カメラ</param>
+	virtual void ParticleDraw(BaseCamera& camera) override;
+
+	/// <summary>
 	/// 布リセット
 	/// </summary>
 	virtual void ClothReset() = 0;
@@ -49,11 +56,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="colliderPartner"></param>
 	/// <param name="collisionData"></param>
-	virtual void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData) {
-		// 警告回避
-		colliderPartner;
-		collisionData;
-	}
+	virtual void OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData);
 
 protected: // メンバ関数
 
@@ -82,7 +85,7 @@ public: // アクセッサ
 	/// <param name="player"></param>
 	void SetPlayer(Player* player) { player_ = player; }
 
-protected:
+protected: // メンバ変数
 
 	// 布
 	std::unique_ptr<ClothGPU> cloth_;
@@ -101,6 +104,12 @@ protected:
 
 	// コライダーの位置
 	Vector3 colliderAddPosition_;
+
+	// くぐられた時のパーティクル
+	std::unique_ptr<PassThroughClothParticle> passThroughClothParticle_;
+
+	// くぐられたか
+	bool passedThrough_;
 
 };
 

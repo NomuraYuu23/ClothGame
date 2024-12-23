@@ -34,6 +34,29 @@ void BaseClothGate::Initialize(LevelData::MeshData* data)
 	collider_.reset(colliderShape);
 	colliderAddPosition_ = obb.center_ - worldTransform_.GetWorldPosition();
 
+	// くぐった時のパーティクル
+	passThroughClothParticle_ = std::make_unique<PassThroughClothParticle>();
+	passThroughClothParticle_->Initialize(
+		dxCommon_->GetDevice(),
+		dxCommon_->GetCommadListLoad(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticle].Get());
+
+	// エミッタ設定
+	const EmitterCS kEmitter =
+	{
+			worldTransform_.GetWorldPosition(), // 位置
+			1.0f, // 射出半径
+			10, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	passThroughClothParticle_->SetEmitter(kEmitter);
+
+	// くぐられたか
+	passedThrough_ = false;
+
 }
 
 void BaseClothGate::Update()
@@ -45,6 +68,27 @@ void BaseClothGate::Update()
 	// コライダー更新
 	ColliderUpdate();
 
+	// くぐった時のパーティクル
+	const EmitterCS kEmitter =
+	{
+			worldTransform_.GetWorldPosition(), // 位置
+			1.0f, // 射出半径
+			20, // 射出数
+			kDeltaTime_ * 2.0f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	if (passedThrough_) {
+		passThroughClothParticle_->SetEmitter(kEmitter, false);
+	}
+	else {
+		passThroughClothParticle_->SetEmitter(kEmitter, true);
+	}
+	passThroughClothParticle_->Update();
+
+	// くぐられていない
+	passedThrough_ = false;
+
 }
 
 void BaseClothGate::Draw(BaseCamera& camera)
@@ -55,6 +99,26 @@ void BaseClothGate::Draw(BaseCamera& camera)
 
 	// 布
 	cloth_->Draw(dxCommon_->GetCommadList(), &camera);
+
+}
+
+void BaseClothGate::ParticleDraw(BaseCamera& camera)
+{
+
+	// くぐった時のパーティクル
+	passThroughClothParticle_->Draw(dxCommon_->GetCommadList(), camera);
+
+}
+
+void BaseClothGate::OnCollision(ColliderParentObject colliderPartner, const CollisionData& collisionData)
+{
+
+	// 警告回避
+	colliderPartner;
+	collisionData;
+
+	// くぐられた
+	passedThrough_ = true;
 
 }
 

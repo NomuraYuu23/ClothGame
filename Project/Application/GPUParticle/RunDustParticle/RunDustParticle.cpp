@@ -21,7 +21,8 @@ void RunDustParticle::Initialize(
 	textureFilename_ = kTextureFilename;
 
 	// 初期化
-	GPUParticle::Initialize(device, commandList, rootSignature, pipelineState, "RunDust");
+	const std::string kName = "RunDust";
+	GPUParticle::Initialize(device, commandList, rootSignature, pipelineState, kName);
 
 	// エミッタ設定
 	const EmitterCS kEmitter =
