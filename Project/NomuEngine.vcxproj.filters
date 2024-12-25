@@ -409,6 +409,12 @@
     <Filter Include="shaders\GPUParticle\JumpLanding">
       <UniqueIdentifier>{fc519c58-6fbc-4d38-b2b2-be4605ef54ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\OutGameObject">
+      <UniqueIdentifier>{d62f92e7-2468-4151-88c1-ef16108e5f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\OutGameObject\Curtain">
+      <UniqueIdentifier>{0a87320a-fa01-461b-b9cf-cf1669646e2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -951,6 +957,12 @@
     </ClCompile>
     <ClCompile Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.cpp">
       <Filter>Application\GPUParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\OutGameObject\Curtain\Curtain.cpp">
+      <Filter>Application\OutGameObject\Curtain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1634,6 +1646,12 @@
     </ClInclude>
     <ClInclude Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.h">
       <Filter>Application\GPUParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\OutGameObject\Curtain\Curtain.h">
+      <Filter>Application\OutGameObject\Curtain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

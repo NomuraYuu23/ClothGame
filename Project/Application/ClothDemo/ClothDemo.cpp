@@ -11,13 +11,11 @@ void ClothDemo::Initilalize(
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 
-	// 布の静的初期化
-	ClothGPU::StaticInitialize(
-		dxCommon_->GetDevice(),
+	// 布のライト
+	ClothGPU::SetLight(
 		directionalLight,
 		pointLightManager,
-		spotLightManager,
-		FogManager::GetInstance());
+		spotLightManager);
 	clothFixedFunctions_[kFixedIndexEnd] = std::bind(&ClothDemo::ClothFixedEnd, this);
 	clothFixedFunctions_[kFixedIndexTop] = std::bind(&ClothDemo::ClothFixedTop, this);
 

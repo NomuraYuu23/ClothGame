@@ -1,6 +1,7 @@
 #include "SceneTransitionFactory.h"
 #include "../../../Engine/Scene/IScene/IScene.h"
 #include "../SceneTransitionBlackOut/SceneTransitionBlackOut.h"
+#include "../SceneTransitionCurtain/SceneTransitionCurtain.h"
 
 SceneTransitionFactory* SceneTransitionFactory::GetInstance()
 {
@@ -15,7 +16,7 @@ ISceneTransition* SceneTransitionFactory::CreateSceneTransition(int sceneName, i
 
 	// タイトルからゲーム
 	if (sceneName == SceneName::kTitle && requestSeneName == SceneName::kGame) {
-		newSceneTransition = new SceneTransitionBlackOut();
+		newSceneTransition = new SceneTransitionCurtain();
 	}
 	else {
 		// 現在のシーンから次のシーンへ行くときの遷移が設定されてない

@@ -38,12 +38,11 @@ void TutorialScene::Initialize() {
 
 	isDebugCameraActive_ = false;
 
-	ClothGPU::StaticInitialize(
-		dxCommon_->GetDevice(),
+	// 布ライト
+	ClothGPU::SetLight(
 		directionalLight_.get(),
 		pointLightManager_.get(),
-		spotLightManager_.get(),
-		FogManager::GetInstance());
+		spotLightManager_.get());
 
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<TutorialSceneObjectManager>();

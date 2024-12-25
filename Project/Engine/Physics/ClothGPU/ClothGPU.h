@@ -221,16 +221,21 @@ public: // 静的メンバ関数
 	/// 静的初期化
 	/// </summary>
 	/// <param name="device"></param>
-	/// <param name="sDirectionalLight"></param>
-	/// <param name="sPointLightManager"></param>
-	/// <param name="sSpotLightManager"></param>
 	/// <param name="sFogManager"></param>
 	static void StaticInitialize(
 		ID3D12Device* device,
+		FogManager* sFogManager);
+
+	/// <summary>
+	/// ライト設定
+	/// </summary>
+	/// <param name="sDirectionalLight"></param>
+	/// <param name="sPointLightManager"></param>
+	/// <param name="sSpotLightManager"></param>
+	static void SetLight(
 		DirectionalLight* sDirectionalLight,
 		PointLightManager* sPointLightManager,
-		SpotLightManager* sSpotLightManager,
-		FogManager* sFogManager);
+		SpotLightManager* sSpotLightManager);
 
 private: // CSの初期化、設定
 

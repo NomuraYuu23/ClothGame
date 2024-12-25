@@ -23,10 +23,20 @@ std::array<Microsoft::WRL::ComPtr<ID3D12PipelineState>, ClothGPU::kPipelineState
 
 void ClothGPU::StaticInitialize(
 	ID3D12Device* device,
-	DirectionalLight* sDirectionalLight, 
-	PointLightManager* sPointLightManager, 
-	SpotLightManager* sSpotLightManager, 
 	FogManager* sFogManager)
+{
+
+	// 霧マネージャー
+	sFogManager_ = sFogManager;
+
+	PipelineStateCSInitialize(device);
+
+	// 衝突クラス
+	ClothGPUCollision::StaticInitialize();
+
+}
+
+void ClothGPU::SetLight(DirectionalLight* sDirectionalLight, PointLightManager* sPointLightManager, SpotLightManager* sSpotLightManager)
 {
 
 	//	平行光源
@@ -35,13 +45,6 @@ void ClothGPU::StaticInitialize(
 	sPointLightManager_ = sPointLightManager;
 	//	スポットライトマネージャ
 	sSpotLightManager_ = sSpotLightManager;
-	// 霧マネージャー
-	sFogManager_ = sFogManager;
-
-	PipelineStateCSInitialize(device);
-
-	// 衝突クラス
-	ClothGPUCollision::StaticInitialize();
 
 }
 

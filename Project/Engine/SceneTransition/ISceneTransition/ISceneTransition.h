@@ -1,5 +1,8 @@
 #pragma once
 #include <memory>
+#include "../../Light/DirectionalLight/DirectionalLight.h"
+#include "../../Light/PointLight/PointLightManager.h"
+#include "../../Light/SpotLight/SpotLightManager.h"
 
 /// <summary>
 /// シーン遷移
@@ -85,6 +88,22 @@ protected: // メンバ変数
 	bool switchScene_; //シーンを切り替えるか
 
 	bool stoppingUpdates_; // 更新を停止する
+
+
+	// 平行光源
+	std::unique_ptr<DirectionalLight> directionalLight_;
+	// 平行光源データ
+	DirectionalLightData directionalLightData_;
+
+	// 点光源
+	std::unique_ptr<PointLightManager> pointLightManager_;
+	// 点光源データ
+	std::array<PointLightData, PointLightManager::kNumInstanceMax_> pointLightDatas_;
+
+	// スポットライト
+	std::unique_ptr<SpotLightManager> spotLightManager_;
+	// スポットライトデータ
+	std::array<SpotLightData, SpotLightManager::kNumInstanceMax_> spotLightDatas_;
 
 };
 

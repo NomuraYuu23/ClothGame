@@ -1,4 +1,5 @@
 #include "MyFramework.h"
+#include "../Physics/ClothGPU/ClothGPU.h"
 
 void MyFramework::Initialize()
 {
@@ -70,6 +71,11 @@ void MyFramework::Initialize()
 
 	// オブジェクト
 	IObject::StaticInitialize(dxCommon->GetCommadList());
+
+	// 布
+	ClothGPU::StaticInitialize(
+		dxCommon->GetDevice(),
+		FogManager::GetInstance());
 
 #ifdef _DEMO
 

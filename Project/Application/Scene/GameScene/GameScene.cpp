@@ -41,12 +41,11 @@ void GameScene::Initialize() {
 	collisionManager_.reset(new GameSceneCollisionManager);
 	collisionManager_->Initialize();
 
-	ClothGPU::StaticInitialize(
-		dxCommon_->GetDevice(),
+	// 布
+	ClothGPU::SetLight(
 		directionalLight_.get(),
 		pointLightManager_.get(),
-		spotLightManager_.get(),
-		FogManager::GetInstance());
+		spotLightManager_.get());
 
 	// オブジェクトマネージャー
 	objectManager_ = std::make_unique<GameSceneObjectManager>();
