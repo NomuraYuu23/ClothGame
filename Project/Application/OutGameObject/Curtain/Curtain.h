@@ -33,7 +33,8 @@ public: // メンバ関数
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	/// <param name="t">補間係数</param>
+	void Update(float t);
 
 	/// <summary>
 	/// 描画
