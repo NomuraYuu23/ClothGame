@@ -3,15 +3,15 @@
 #include "../../../Engine/Math/RandomEngine.h"
 #include "../../../Engine/Math/DeltaTime.h"
 
-const Vector2 Curtain::kClothScale_ = { 10.0f, 5.0f };
+const Vector2 Curtain::kClothScale_ = { 10.0f, 7.0f };
 
 const Vector2 Curtain::kClothDiv_ = { 16.0f,16.0f };
 
-const Vector3 Curtain::kBaseFixed_ = { 8.0f, 3.0f, 0.0f };
+const Vector3 Curtain::kBaseFixed_ = { 10.0f, 3.0f, 0.0f };
 
-const Vector3 Curtain::kBaseMovingOpen_{ 7.0f, 3.0f, 0.0f };
+const Vector3 Curtain::kBaseMovingOpen_{ 9.0f, 3.0f, 0.0f };
 
-const Vector3 Curtain::kBaseMovingClose_{ 0.0f, 3.0f, 0.0f };
+const Vector3 Curtain::kBaseMovingClose_{ -1.0f, 3.0f, 0.0f };
 
 DirectXCommon* Curtain::dxCommon_ = DirectXCommon::GetInstance();
 
@@ -74,6 +74,9 @@ void Curtain::Initialize()
 	rightMovingPosition_ = kBaseMovingOpen_;
 	leftMovingPosition_ = kBaseMovingOpen_;
 
+	// スタートリセットフラグ
+	startReset_ = true;
+
 }
 
 void Curtain::Update(float t)
@@ -100,21 +103,38 @@ void Curtain::Update(float t)
 	leftCurtain_->Update();
 
 	// 固定部分
+	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
 
-	for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
-		for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
-			// 重み
-			rightCurtain_->SetWeight(y, x, true);
-			leftCurtain_->SetWeight(y, x, true);
+	// 移動
+	rightMovingPosition_ = Ease::Easing(Ease::EaseName::Lerp, kBaseMovingOpen_, kBaseMovingClose_, t);
+	const Vector3 kBaseMovingOpenLeft = { -kBaseMovingOpen_.x, kBaseMovingOpen_.y, kBaseMovingOpen_.z };
+	const Vector3 kBaseMovingCloseLeft = { -kBaseMovingClose_.x, kBaseMovingClose_.y, kBaseMovingClose_.z };
+	leftMovingPosition_ = Ease::Easing(Ease::EaseName::Lerp, kBaseMovingOpenLeft, kBaseMovingCloseLeft, t);
+
+	// スタートリセット
+	if (startReset_) {
+		startReset_ = false;
+		for (uint32_t y = 0; y <= static_cast<uint32_t>(kClothDiv_.y); ++y) {
+			for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); ++x) {
+				// 重み
+				rightCurtain_->SetWeight(y, x, true);
+				// 位置
+				resetPosition = kBaseFixed_;
+				resetPosition.x = Ease::Easing(Ease::EaseName::Lerp, rightMovingPosition_.x, kBaseFixed_.x, static_cast<float>(x) / kClothDiv_.x);
+				resetPosition.y = Ease::Easing(Ease::EaseName::Lerp, kBaseFixed_.y, kBaseFixed_.y - kClothScale_.y, static_cast<float>(y) / kClothDiv_.y);
+				rightCurtain_->SetPosition(y, x, resetPosition);
+				// 重み
+				leftCurtain_->SetWeight(y, x, true);
+				// 位置
+				resetPosition = kBaseFixed_;
+				resetPosition.x = Ease::Easing(Ease::EaseName::Lerp, -kBaseFixed_.x, leftMovingPosition_.x, static_cast<float>(x) / kClothDiv_.x);
+				resetPosition.y = Ease::Easing(Ease::EaseName::Lerp, kBaseFixed_.y, kBaseFixed_.y - kClothScale_.y, static_cast<float>(y) / kClothDiv_.y);
+				leftCurtain_->SetPosition(y, x, resetPosition);
+			}
 		}
 	}
 
-
-	rightMovingPosition_ = Ease::Easing(Ease::EaseName::Lerp, kBaseMovingOpen_, kBaseMovingClose_, t);
-	const Vector3 kBaseMovingOpenLeft = { -kBaseMovingOpen_.x, kBaseMovingOpen_.y, kBaseMovingOpen_.z };
-	leftMovingPosition_ = Ease::Easing(Ease::EaseName::Lerp, kBaseMovingOpenLeft, kBaseMovingClose_, t);
-
-	Vector3 resetPosition = { 0.0f,0.0f,0.0f };
+	// 上の固定部分
 	const uint32_t step = 4;
 	for (uint32_t x = 0; x <= static_cast<uint32_t>(kClothDiv_.x); x += step) {
 

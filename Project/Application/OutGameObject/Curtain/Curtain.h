@@ -54,5 +54,8 @@ private: // メンバ変数
 	// 左の移動位置
 	Vector3 leftMovingPosition_;
 
+	// スタートリセットするか
+	bool startReset_;
+
 };
 

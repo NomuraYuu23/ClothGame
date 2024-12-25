@@ -22,8 +22,8 @@ void SceneTransitionCurtain::Initialize()
 	curtain_ = std::make_unique<Curtain>();
 	curtain_->Initialize();
 
-	fadeInTime_ = 5.0f; //フェードインタイム
-	fadeOutTime_ = 5.0f; //フェードアウトタイム
+	fadeInTime_ = 3.0f; //フェードインタイム
+	fadeOutTime_ = 3.0f; //フェードアウトタイム
 
 }
 
