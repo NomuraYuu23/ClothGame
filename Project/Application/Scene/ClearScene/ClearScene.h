@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../OutGameObject/ClearBackGround/ClearBackGround.h"
 
 /// <summary>
 /// クリアシーン
@@ -49,6 +50,9 @@ private: // メンバ関数
 
 private: // メンバ変数
 
+	// スカイボックス
+	uint32_t skyboxTextureHandle_ = 0;
+
 	// ボタンスプライト
 	std::unique_ptr<Sprite> buttonSprite_;
 	// ボタンテクスチャハンドル
@@ -66,6 +70,9 @@ private: // メンバ変数
 	std::unique_ptr<Sprite> clearSprite_;
 	// クリアテクスチャハンドル
 	uint32_t clearTextureHandle_;
+
+	// 背景
+	std::unique_ptr<ClearBackGround> clearBackGround_;
 
 };
 

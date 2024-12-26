@@ -1,10 +1,7 @@
 #pragma once
 #include "../../../Engine/3D/Model/Model.h"
 
-/// <summary>
-/// タイトルの背景
-/// </summary>
-class TitleBackGround
+class ClearBackGround
 {
 
 public:
@@ -40,3 +37,4 @@ private:
 	WorldTransform worldTransform_;
 
 };
+

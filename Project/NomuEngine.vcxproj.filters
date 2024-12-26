@@ -967,6 +967,9 @@
     <ClCompile Include="Application\OutGameObject\TitleBackGround\TitleBackGround.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Application\OutGameObject\ClearBackGround\ClearBackGround.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1657,6 +1660,9 @@
       <Filter>Application\OutGameObject\Curtain</Filter>
     </ClInclude>
     <ClInclude Include="Application\OutGameObject\TitleBackGround\TitleBackGround.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\OutGameObject\ClearBackGround\ClearBackGround.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
