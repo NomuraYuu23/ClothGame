@@ -26,8 +26,8 @@ void TitleScene::Initialize()
 
 	const EulerTransform cameraTransform = {
 		1.0f,1.0f,1.0f,
-		0.03f, -0.45f, 0.0f,
-		6.0f, 1.7f, -9.5f};
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, -10.0f};
 
 	camera_.SetTransform(cameraTransform);
 	camera_.Update();
@@ -45,6 +45,10 @@ void TitleScene::Initialize()
 	// クリアスプライト位置
 	const Vector2 kTitleSpritePosition = { 640.0f, 360.0f };
 	titleSprite_.reset(Sprite::Create(titleTextureHandle_, kTitleSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
+
+	// タイトル背景
+	titleBackGround_ = std::make_unique<TitleBackGround>();
+	titleBackGround_->Initialize();
 
 	IScene::InitilaizeCheck();
 
@@ -99,6 +103,9 @@ void TitleScene::Update()
 	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
 	buttonSprite_->SetColor(buttonColor_);
 
+	// タイトル背景
+	titleBackGround_->Update();
+
 	ImguiDraw();
 
 }
@@ -111,9 +118,9 @@ void TitleScene::Draw()
 
 	//背景
 	//前景スプライト描画
-	titleSprite_->Draw();
+	//titleSprite_->Draw();
 
-	buttonSprite_->Draw();
+	//buttonSprite_->Draw();
 
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();
@@ -135,6 +142,9 @@ void TitleScene::Draw()
 	//3Dオブジェクトはここ
 
 	objectManager_->Draw(camera_, drawLine_);
+
+	// タイトル背景
+	titleBackGround_->Draw(camera_);
 
 	ModelDraw::PostDraw();
 

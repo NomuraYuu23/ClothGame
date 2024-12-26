@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../Engine/Scene/IScene/IScene.h"
 #include "../../../Engine/PostEffect/HSV/HSVFilter.h"
+#include "../../OutGameObject/TitleBackGround/TitleBackGround.h"
 
 /// <summary>
 /// タイトルシーン
@@ -75,5 +76,8 @@ private: // メンバ変数
 	std::unique_ptr<Sprite> titleSprite_;
 	// タイトルテクスチャハンドル
 	uint32_t titleTextureHandle_;
+
+	// タイトル背景
+	std::unique_ptr<TitleBackGround> titleBackGround_;
 
 };
