@@ -32,15 +32,6 @@ void TitleScene::Initialize()
 	camera_.SetTransform(cameraTransform);
 	camera_.Update();
 
-	shockWaveManager_ = std::make_unique<ShockWaveManager>();
-	shockWaveManager_->Initialize();
-	shockWaveManager_->SetCenter(Vector2{ 0.25f, 0.7f });
-	shockWaveManager_->SetDistortion(0.1f);
-	shockWaveManager_->SetRadius(0.0f);
-	shockWaveManager_->SetThickness(0.1f);
-	shockWaveManager_->SetRadiusMax(2.0f);
-	isShockWave_ = false;
-
 	// ボタンスプライト位置
 	const Vector2 kButtonSpritePosition = { 400.0f, 540.0f };
 	buttonColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -65,7 +56,6 @@ void TitleScene::Update()
 	if (input_->TriggerJoystick(JoystickButton::kJoystickButtonA)) {
 		// 行きたいシーンへ
 		requestSceneNo_ = kGame;
-		isShockWave_ = true;
 	}
 
 	objectManager_->Update();
@@ -109,16 +99,27 @@ void TitleScene::Update()
 	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
 	buttonSprite_->SetColor(buttonColor_);
 
-	if (isShockWave_) {
-		shockWaveManager_->Update();
-	}
-
 	ImguiDraw();
 
 }
 
 void TitleScene::Draw()
 {
+
+	// スプライト描画前処理
+	Sprite::PreDraw(dxCommon_->GetCommadList());
+
+	//背景
+	//前景スプライト描画
+	titleSprite_->Draw();
+
+	buttonSprite_->Draw();
+
+	// 前景スプライト描画後処理
+	Sprite::PostDraw();
+
+	// 深度バッファクリア
+	renderTargetTexture_->ClearDepthBuffer();
 
 #pragma region モデル描画
 
@@ -141,48 +142,6 @@ void TitleScene::Draw()
 
 	// パーティクル描画
 	objectManager_->ParticleDraw(camera_);
-
-	PostEffect::ExecutionAdditionalDesc desc = {};
-	desc.shockWaveManagers[0] = shockWaveManager_.get();
-	PostEffect::GetInstance()->SetKernelSize(33);
-	PostEffect::GetInstance()->SetGaussianSigma(8.0f);
-	PostEffect::GetInstance()->SetThreshold(0.11f);
-
-	PostEffect::GetInstance()->Execution(
-		dxCommon_->GetCommadList(),
-		renderTargetTexture_,
-		PostEffect::kCommandIndexShockWave,
-		&desc
-	);
-
-	renderTargetTexture_->ClearDepthBuffer();
-
-
-	WindowSprite::GetInstance()->DrawSRV(PostEffect::GetInstance()->GetEditTextures(0));
-
-	//ブルーム
-	PostEffect::GetInstance()->Execution(
-		dxCommon_->GetCommadList(),
-		renderTargetTexture_,
-		PostEffect::kCommandIndexBloom,
-		&desc
-	);
-
-	renderTargetTexture_->ClearDepthBuffer();
-
-	WindowSprite::GetInstance()->DrawSRV(PostEffect::GetInstance()->GetEditTextures(0));
-
-	// スプライト描画前処理
-	Sprite::PreDraw(dxCommon_->GetCommadList());
-
-	//背景
-	//前景スプライト描画
-	titleSprite_->Draw();
-
-	buttonSprite_->Draw();
-
-	// 前景スプライト描画後処理
-	Sprite::PostDraw();
 
 }
 

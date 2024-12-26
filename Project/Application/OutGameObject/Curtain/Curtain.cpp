@@ -163,7 +163,10 @@ void Curtain::Update(float t)
 void Curtain::Draw(BaseCamera& camera)
 {
 
-	rightCurtain_->Draw(dxCommon_->GetCommadList(), &camera);
-	leftCurtain_->Draw(dxCommon_->GetCommadList(), &camera);
+	// ちらつき防止
+	if (!startReset_) {
+		rightCurtain_->Draw(dxCommon_->GetCommadList(), &camera);
+		leftCurtain_->Draw(dxCommon_->GetCommadList(), &camera);
+	}
 
 }

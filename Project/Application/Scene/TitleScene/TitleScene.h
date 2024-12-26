@@ -58,11 +58,6 @@ private: // メンバ変数
 	// スカイボックス
 	uint32_t skyboxTextureHandle_ = 0;
 
-	// 衝撃波
-	std::unique_ptr<ShockWaveManager> shockWaveManager_;
-	// 衝撃波を出してるか
-	bool isShockWave_;
-
 	// ボタンスプライト
 	std::unique_ptr<Sprite> buttonSprite_;
 	// ボタンテクスチャハンドル
