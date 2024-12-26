@@ -26,15 +26,21 @@ void StartCountDown::Initialize()
 	numSprite_->SetSize(kNumSpriteSize);
 
 	// startテクスチャハンドル
-	startTextureHnadle_ = TextureManager::Load("Resources/Sprite/Common/Start.png", dxCommon);
+	startTextureHnadle_ = TextureManager::Load("Resources/OutGame/Start.png", dxCommon);
 
 	// startスプライト
 	startSprite_.reset(Sprite::Create(startTextureHnadle_, kSpritePosition, kSpriteColor));
 	// 非表示
 	startSprite_->SetIsInvisible(true);
 	// サイズ
-	const Vector2 kStartSpriteSize = { 400.0f,128.0f };
+	const Vector2 kStartSpriteSize = { 256.0f,128.0f };
 	startSprite_->SetSize(kStartSpriteSize);
+
+	// 説明テクスチャハンドル
+	explanationTextureHnadle_ = TextureManager::Load("Resources/Sprite/Common/Explanation.png", dxCommon);
+	const Vector2 kExplanationSpritePosition = { 640.0f, 400.0f };
+	const Vector4 kExplanationSpriteColor = { 1.0f, 0.2f, 0.2f, 1.0f };
+	explanationSprite_.reset(Sprite::Create(explanationTextureHnadle_, kExplanationSpritePosition, kExplanationSpriteColor));
 
 	// カウントダウン秒数
 	const float kCountDownTime = 100.0f;
@@ -113,5 +119,8 @@ void StartCountDown::Draw()
 	numSprite_->Draw();
 	// strat
 	startSprite_->Draw();
+
+	// 説明
+	explanationSprite_->Draw();
 
 }

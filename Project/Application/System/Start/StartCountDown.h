@@ -46,6 +46,12 @@ private: // メンバ変数
 	// startスプライト
 	std::unique_ptr<Sprite> startSprite_;
 
+	// 説明テクスチャハンドル
+	uint32_t explanationTextureHnadle_;
+
+	// 説明スプライト
+	std::unique_ptr<Sprite> explanationSprite_;
+
 	// カウントダウン秒数
 	float countDownTime_;
 
