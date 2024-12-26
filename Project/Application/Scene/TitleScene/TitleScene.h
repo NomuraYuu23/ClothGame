@@ -72,12 +72,12 @@ private: // メンバ変数
 	// ボタン色
 	Vector4 buttonColor_;
 
-	// タイトルスプライト
-	std::unique_ptr<Sprite> titleSprite_;
-	// タイトルテクスチャハンドル
-	uint32_t titleTextureHandle_;
-
 	// タイトル背景
 	std::unique_ptr<TitleBackGround> titleBackGround_;
+
+	// 「スタート」スプライト
+	std::unique_ptr<Sprite> startSprite_;
+	// 「スタート」テクスチャハンドル
+	uint32_t startTextureHandle_;
 
 };

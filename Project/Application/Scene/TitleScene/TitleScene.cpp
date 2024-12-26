@@ -42,13 +42,13 @@ void TitleScene::Initialize()
 	buttonAlphaTSpeed_ = kButtonAlphaTSpeed;
 	buttonItIncreaseAlphaT_ = true;
 
-	// クリアスプライト位置
-	const Vector2 kTitleSpritePosition = { 640.0f, 360.0f };
-	titleSprite_.reset(Sprite::Create(titleTextureHandle_, kTitleSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
-
 	// タイトル背景
 	titleBackGround_ = std::make_unique<TitleBackGround>();
 	titleBackGround_->Initialize();
+
+	//「スタート」スプライト
+	const Vector2 kStartSpritePosition = { 640.0f, 540.0f };
+	startSprite_.reset(Sprite::Create(startTextureHandle_, kStartSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
 
 	IScene::InitilaizeCheck();
 
@@ -82,25 +82,7 @@ void TitleScene::Update()
 			buttonItIncreaseAlphaT_ = true;
 		}
 	}
-	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
-	buttonSprite_->SetColor(buttonColor_);
-
-	// ボタンスプライト
-	if (buttonItIncreaseAlphaT_) {
-		buttonAlphaT_ += buttonAlphaTSpeed_;
-		if (buttonAlphaT_ >= 1.0f) {
-			buttonAlphaT_ = 1.0f;
-			buttonItIncreaseAlphaT_ = false;
-		}
-	}
-	else {
-		buttonAlphaT_ -= buttonAlphaTSpeed_;
-		if (buttonAlphaT_ <= 0.0f) {
-			buttonAlphaT_ = 0.0f;
-			buttonItIncreaseAlphaT_ = true;
-		}
-	}
-	buttonColor_.w = Ease::Easing(Ease::EaseName::Lerp, 0.0f, 1.0f, buttonAlphaT_);
+	buttonColor_.w = Ease::Easing(Ease::EaseName::EaseInOutQuad, 0.0f, 1.0f, buttonAlphaT_);
 	buttonSprite_->SetColor(buttonColor_);
 
 	// タイトル背景
@@ -112,21 +94,6 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-
-	// スプライト描画前処理
-	Sprite::PreDraw(dxCommon_->GetCommadList());
-
-	//背景
-	//前景スプライト描画
-	//titleSprite_->Draw();
-
-	//buttonSprite_->Draw();
-
-	// 前景スプライト描画後処理
-	Sprite::PostDraw();
-
-	// 深度バッファクリア
-	renderTargetTexture_->ClearDepthBuffer();
 
 #pragma region モデル描画
 
@@ -152,6 +119,21 @@ void TitleScene::Draw()
 
 	// パーティクル描画
 	objectManager_->ParticleDraw(camera_);
+
+	// スプライト描画前処理
+	Sprite::PreDraw(dxCommon_->GetCommadList());
+
+	// ボタン
+	buttonSprite_->Draw();
+
+	// 「スタート」
+	startSprite_->Draw();
+
+	// 前景スプライト描画後処理
+	Sprite::PostDraw();
+
+	// 深度バッファクリア
+	renderTargetTexture_->ClearDepthBuffer();
 
 }
 
@@ -203,8 +185,7 @@ void TitleScene::TextureLoad()
 {
 
 	buttonTextureHandle_ = TextureManager::Load("Resources/UI/ButtonA.png", dxCommon_);
-
-	titleTextureHandle_ = TextureManager::Load("Resources/OutGame/Title.png", dxCommon_);
+	startTextureHandle_ = TextureManager::Load("Resources/OutGame/Start.png", dxCommon_);
 
 	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
