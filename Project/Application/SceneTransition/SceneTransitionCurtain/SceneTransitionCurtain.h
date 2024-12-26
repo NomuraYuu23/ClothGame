@@ -42,5 +42,12 @@ private:
 	// カーテン
 	std::unique_ptr<Curtain> curtain_;
 
+	// 黒スプライト
+	std::unique_ptr<Sprite> blockSprite_;
+	// 黒テクスチャハンドル
+	uint32_t blockTextureHandle_;
+	// 黒色（透明度も含める）
+	Vector4 blockColor_;
+
 };
 
