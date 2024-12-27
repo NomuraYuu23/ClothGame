@@ -28,7 +28,7 @@ void ClothDemoPlane::Initialize(const std::string& name)
     // データ
     const ClothGPUCollision::Plane kInitData =
     {
-        Vector3{ 0.0f, 0.0f, 0.0f },
+        Vector3{ 0.0f, 1.0f, 0.0f },
         0.0f
     };
     data_ = kInitData;
