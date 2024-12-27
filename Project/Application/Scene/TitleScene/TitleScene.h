@@ -80,4 +80,9 @@ private: // メンバ変数
 	// 「スタート」テクスチャハンドル
 	uint32_t startTextureHandle_;
 
+	// ロゴスプライト
+	std::unique_ptr<Sprite> logoSprite_;
+	// ロゴテクスチャハンドル
+	uint32_t logoTextureHandle_;
+
 };

@@ -50,6 +50,10 @@ void TitleScene::Initialize()
 	const Vector2 kStartSpritePosition = { 640.0f, 540.0f };
 	startSprite_.reset(Sprite::Create(startTextureHandle_, kStartSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
 
+	// ロゴスプライト
+	const Vector2 kLogoSpritePosition = { 640.0f, 200.0f };
+	logoSprite_.reset(Sprite::Create(logoTextureHandle_, kLogoSpritePosition, { 1.0f, 1.0f, 1.0f, 1.0f }));
+
 	IScene::InitilaizeCheck();
 
 }
@@ -129,6 +133,9 @@ void TitleScene::Draw()
 	// 「スタート」
 	startSprite_->Draw();
 
+	// ロゴ
+	logoSprite_->Draw();
+
 	// 前景スプライト描画後処理
 	Sprite::PostDraw();
 
@@ -186,6 +193,7 @@ void TitleScene::TextureLoad()
 
 	buttonTextureHandle_ = TextureManager::Load("Resources/UI/ButtonA.png", dxCommon_);
 	startTextureHandle_ = TextureManager::Load("Resources/OutGame/Start.png", dxCommon_);
+	logoTextureHandle_ = TextureManager::Load("Resources/OutGame/TitleLogo.png", dxCommon_);
 
 	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
