@@ -8,7 +8,7 @@ void MyGame::Initialize()
 
 	//ゲームシーン
 	sceneManager = std::make_unique<SceneManager>();
-	sceneManager->Initialize(kDebug);
+	sceneManager->Initialize(kTitle);
 
 }
 
