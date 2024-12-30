@@ -76,13 +76,22 @@ void Player::Initialize(LevelData::MeshData* data)
 	runDustParticle_->SetEmitter(kEmitter);
 
 	// ジャンプと着地のエフェクト
-	JumpLandingParticle_ = std::make_unique<JumpLandingParticle>();
-	JumpLandingParticle_->Initialize(
+	jumpLandingParticle_ = std::make_unique<JumpLandingParticle>();
+	jumpLandingParticle_->Initialize(
 		dxCommon->GetDevice(),
 		dxCommon->GetCommadListLoad(),
 		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get(),
 		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get());
-	JumpLandingParticle_->SetEmitter(kEmitter);
+	jumpLandingParticle_->SetEmitter(kEmitter);
+	
+	// ミスした時のエフェクト
+	missParticle_ = std::make_unique<MissParticle>();
+	missParticle_->Initialize(
+		dxCommon->GetDevice(),
+		dxCommon->GetCommadListLoad(),
+		GraphicsPipelineState::sRootSignature_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get(),
+		GraphicsPipelineState::sPipelineState_[GraphicsPipelineState::kPipelineStateIndexGPUParticleBlendNormal].Get());
+	missParticle_->SetEmitter(kEmitter);
 
 }
 
@@ -152,12 +161,30 @@ void Player::Update()
 	bool jumpTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexRoot && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexJump;
 	bool landingTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexFall && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexRoot;
 	if (jumpTiming || landingTiming) {
-		JumpLandingParticle_->SetEmitter(kJumpLandingEmitter, false);
+		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, false);
 	}
 	else {
-		JumpLandingParticle_->SetEmitter(kJumpLandingEmitter, true);
+		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, true);
 	}
-	JumpLandingParticle_->Update();
+	jumpLandingParticle_->Update();
+
+	// ミスした時のエフェクト
+	const EmitterCS kMissDustEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			2, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	if (playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexDamage) {
+		missParticle_->SetEmitter(kMissDustEmitter, false);
+	}
+	else {
+		missParticle_->SetEmitter(kMissDustEmitter, true);
+	}
+	missParticle_->Update();
 
 	// 落下していることにする
 	floating_ = true;
@@ -190,7 +217,10 @@ void Player::ParticleDraw(BaseCamera& camera)
 	runDustParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
 
 	// ジャンプと着地のエフェクト
-	JumpLandingParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
+	jumpLandingParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
+
+	// ミスした時のエフェクト
+	missParticle_->Draw(DirectXCommon::GetInstance()->GetCommadList(), camera);
 
 }
 

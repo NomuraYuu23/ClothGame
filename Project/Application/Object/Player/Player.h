@@ -7,6 +7,7 @@
 #include "Animation/PlayerAnimation.h"
 #include "../../GPUParticle/RunDustParticle/RunDustParticle.h"
 #include "../../GPUParticle/JumpLandingParticle/JumpLandingParticle.h"
+#include "../../GPUParticle/MissParticle/MissParticle.h"
 
 /// <summary>
 /// プレイヤー
@@ -149,7 +150,10 @@ private: // メンバ変数
     std::unique_ptr<RunDustParticle> runDustParticle_;
 
     // ジャンプと着地のエフェクト
-    std::unique_ptr<JumpLandingParticle> JumpLandingParticle_;
+    std::unique_ptr<JumpLandingParticle> jumpLandingParticle_;
+
+    // ミスした時のエフェクト
+    std::unique_ptr<MissParticle> missParticle_;
 
 };
 

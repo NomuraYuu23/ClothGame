@@ -22,6 +22,10 @@ void main( uint3 DTid : SV_DispatchThreadID )
 			float32_t alpha = 
 				1.0f - (gParticles[particleIndex].currentTime * rcp(gParticles[particleIndex].lifeTime));
 			gParticles[particleIndex].color.a = saturate(alpha);
+
+			float32_t accelerationY_ = -0.02f;
+			gParticles[particleIndex].velocity.y += accelerationY_;
+
 		}
 		else {
 
