@@ -394,9 +394,6 @@
     <Filter Include="Application\System\Start">
       <UniqueIdentifier>{4f806038-eab7-425e-bc33-20a48683f633}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders\GPUParticle\RunDash">
-      <UniqueIdentifier>{63c54488-09c9-478d-9809-d8bf33df4e15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\System\PostEffectSystem">
       <UniqueIdentifier>{91acd4c9-9bf6-42cb-9c04-c472ff6ee0a0}</UniqueIdentifier>
     </Filter>
@@ -414,6 +411,12 @@
     </Filter>
     <Filter Include="Application\OutGameObject\Curtain">
       <UniqueIdentifier>{0a87320a-fa01-461b-b9cf-cf1669646e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\GPUParticle\Miss">
+      <UniqueIdentifier>{c8499aea-67a1-4ceb-b674-f4038ca19518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\GPUParticle\RunDust">
+      <UniqueIdentifier>{63c54488-09c9-478d-9809-d8bf33df4e15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -968,6 +971,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Application\OutGameObject\ClearBackGround\ClearBackGround.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GPUParticle\MissParticle\MissParticle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1665,6 +1671,9 @@
     <ClInclude Include="Application\OutGameObject\ClearBackGround\ClearBackGround.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Application\GPUParticle\MissParticle\MissParticle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="externals\imgui\LICENSE.txt">
@@ -1723,13 +1732,16 @@
       <Filter>shaders\GPUParticle\CS</Filter>
     </None>
     <None Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDust.CS.hlsli">
-      <Filter>shaders\GPUParticle\RunDash</Filter>
+      <Filter>shaders\GPUParticle\RunDust</Filter>
     </None>
     <None Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughCloth.CS.hlsli">
       <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
     </None>
     <None Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLanding.CS.hlsli">
       <Filter>shaders\GPUParticle\JumpLanding</Filter>
+    </None>
+    <None Include="Resources\Shaders\GPUParticle\MissParticle\Miss.CS.hlsli">
+      <Filter>shaders\GPUParticle\Miss</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1940,13 +1952,13 @@
       <Filter>shaders\GPUParticle\CS</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustEmit.CS.hlsl">
-      <Filter>shaders\GPUParticle\RunDash</Filter>
+      <Filter>shaders\GPUParticle\RunDust</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustInitialize.CS.hlsl">
-      <Filter>shaders\GPUParticle\RunDash</Filter>
+      <Filter>shaders\GPUParticle\RunDust</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\RunDustParticle\RunDustUpdate.CS.hlsl">
-      <Filter>shaders\GPUParticle\RunDash</Filter>
+      <Filter>shaders\GPUParticle\RunDust</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\PassThroughClothParticle\PassThroughClothInitialize.CS.hlsl">
       <Filter>shaders\GPUParticle\PassThroughCloth</Filter>
@@ -1965,6 +1977,15 @@
     </FxCompile>
     <FxCompile Include="Resources\Shaders\GPUParticle\JumpLandingParticle\JumpLandingUpdate.CS.hlsl">
       <Filter>shaders\GPUParticle\JumpLanding</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\MissParticle\MissEmit.CS.hlsl">
+      <Filter>shaders\GPUParticle\Miss</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\MissParticle\MissInitialize.CS.hlsl">
+      <Filter>shaders\GPUParticle\Miss</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\GPUParticle\MissParticle\MissUpdate.CS.hlsl">
+      <Filter>shaders\GPUParticle\Miss</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
