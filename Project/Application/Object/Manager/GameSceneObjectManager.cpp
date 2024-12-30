@@ -73,7 +73,7 @@ void GameSceneObjectManager::LevelChange()
 {
 
 	// 最大レベル
-	const uint32_t kLevelMax = 1;
+	const uint32_t kLevelMax = 2;
 
 	// レベルアップ
 	if (player_->GetLevelUp()) {

@@ -40,6 +40,7 @@ private: // 定数
 		"tutorial",
 		"GameScene",
 		"GenerationPattern_00",
+		"GenerationPattern_01",
 	};
 
 private: // 変数
