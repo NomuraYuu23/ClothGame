@@ -41,5 +41,12 @@ private: // メンバ関数
 	/// </summary>
 	void ClothUpdate() override;
 
+private: // メンバ変数
+
+	// ワールド座標からの左固定部分
+	Vector3 leftFixed_ = {};
+	// ワールド座標からの右固定部分
+	Vector3 rightFixed_ = {};
+
 };
 
