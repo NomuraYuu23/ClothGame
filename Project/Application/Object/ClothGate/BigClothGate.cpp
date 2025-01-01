@@ -38,6 +38,7 @@ void BigClothGate::ClothReset()
 			resetPosition = worldTransform_.GetWorldPosition();
 			resetPosition.x += Ease::Easing(Ease::EaseName::Lerp, leftFixed_.x, rightFixed_.x, static_cast<float>(x) / kClothDiv_.x);
 			resetPosition.y += Ease::Easing(Ease::EaseName::Lerp, rightFixed_.y, 0.0f, static_cast<float>(y) / kClothDiv_.y);
+			resetPosition.z += Ease::Easing(Ease::EaseName::Lerp, leftFixed_.z, rightFixed_.z, static_cast<float>(x) / kClothDiv_.x);
 			cloth_->SetPosition(y, x, resetPosition);
 		}
 	}

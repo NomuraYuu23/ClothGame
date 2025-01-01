@@ -260,7 +260,7 @@ EulerTransform LevelDataLoader::TransformLoad(nlohmann::json& object)
 
 	// 回転角
 	result.rotate.x = static_cast<float>(transform["rotation"][0]);
-	result.rotate.y = static_cast<float>(transform["rotation"][2]);
+	result.rotate.y = -static_cast<float>(transform["rotation"][2]);
 	result.rotate.z = static_cast<float>(transform["rotation"][1]);
 
 	// スケーリング
