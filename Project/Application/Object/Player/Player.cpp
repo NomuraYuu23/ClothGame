@@ -98,14 +98,6 @@ void Player::Initialize(LevelData::MeshData* data)
 void Player::Update()
 {
 
-	// ワープした
-	if (warping_) {
-		// ワープリセット
-		warping_ = false;
-		levelUp_ = false;
-		playerStateSystem_->GetPlayerCommand()->DashReset();
-	}
-
 	// メッシュオブジェクトの更新
 	MeshObject::Update();
 
@@ -246,6 +238,19 @@ void Player::Damage()
 	// ダメージ状態へ
 	playerStateSystem_->SetInterruptCommand(true);
 	playerStateSystem_->SetNextStateNo(kPlayerStateIndexDamage);
+
+}
+
+void Player::WarpPostProcessing()
+{
+
+	// ワープした
+	if (warping_) {
+		// ワープリセット
+		warping_ = false;
+		levelUp_ = false;
+		playerStateSystem_->GetPlayerCommand()->DashReset();
+	}
 
 }
 

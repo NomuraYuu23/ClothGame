@@ -73,6 +73,11 @@ public: // メンバ関数
     /// </summary>
     void Damage();
 
+    /// <summary>
+    /// ワープ後処理
+    /// </summary>
+    void WarpPostProcessing();
+
 private: // メンバ関数
 
 	/// <summary>

@@ -23,8 +23,25 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	shadowManager_ = std::make_unique<ShadowManager>();
 	shadowManager_->Initialize(shadowModel_.get());
 
-	// お試し
-	//GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
+	// 初期読み込み 
+	// レベルデータの取得
+	LevelData* levelData = levelDataManager->GetLevelDatas(kLevelIndexGenerationPattern_00);
+	// レベルデータのオブジェクトを走査
+	for (std::vector<LevelData::ObjectData>::iterator it = levelData->objectsData_.begin(); it != levelData->objectsData_.end(); ++it) {
+
+		// オブジェクトの参照
+		LevelData::ObjectData objectData = *it;
+
+		// 型にあわせてInitialize
+		std::unique_ptr<IObject> object;
+		object.reset(static_cast<ObjectFactory*>(objectFactory_.get())->CreateObjectPattern(objectData));
+
+		if (object) {
+			// listへ
+			objects_.emplace_back(object->GetName(), std::move(object));
+		}
+
+	}
 
 	// レベル
 	level_ = 0;
@@ -33,7 +50,7 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	numberOfObjectsRead_ = 0;
 
 	// オブジェクト読み込み中
-	loadingObject_ = true;
+	loadingObject_ = false;
 
 }
 
@@ -41,10 +58,14 @@ void GameSceneObjectManager::Update()
 {
 
 	// オブジェクトマネージャー
-	BaseObjectManager::Update();
+	if (!loadingObject_) {
+		BaseObjectManager::Update();
+	}
 
+	// レベル変更確認
 	if (player_->GetWarping()) {
 		LevelChange();
+		player_->WarpPostProcessing();
 	}
 
 	// データ読み込み
