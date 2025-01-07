@@ -24,9 +24,16 @@ void GameSceneObjectManager::Initialize(LevelIndex levelIndex, LevelDataManager*
 	shadowManager_->Initialize(shadowModel_.get());
 
 	// お試し
-	GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
+	//GeneratePattern(kLevelIndexGenerationPattern_00, levelDataManager_);
 
+	// レベル
 	level_ = 0;
+
+	// オブジェクト読み込み数
+	numberOfObjectsRead_ = 0;
+
+	// オブジェクト読み込み中
+	loadingObject_ = true;
 
 }
 
@@ -40,7 +47,11 @@ void GameSceneObjectManager::Update()
 		LevelChange();
 	}
 
-	// ワープ時、オブジェクトの追加
+	// データ読み込み
+	if (loadingObject_) {
+		LevelIndex levelIndex = static_cast<LevelIndex>(kLevelIndexGenerationPattern_00 + level_);
+		GeneratePattern(levelIndex, levelDataManager_);
+	}
 
 	// 影
 	ShadowUpdate();
@@ -85,20 +96,8 @@ void GameSceneObjectManager::LevelChange()
 		return;
 	}
 
-	uint32_t count = 0;
-
-	objects_.remove_if([&](ObjectPair& objects) {
-		count++;
-		if (count > objectsDeletionPosition_) {
-			objects.second.reset();
-			return true;
-		}
-		return false;
-		});
-
-	LevelIndex levelIndex = static_cast<LevelIndex>(kLevelIndexGenerationPattern_00 + level_);
-
-	GeneratePattern(levelIndex, levelDataManager_);
+	// 読み込み開始
+	loadingObject_ = true;
 
 }
 
@@ -108,9 +107,14 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 	// レベルデータの取得
 	LevelData* levelData = levelDataManager->GetLevelDatas(levelIndex);
 
+	// 読み込み回数
+	uint32_t countOfObjectsRead = 0;
+	const uint32_t kCountOfObjectsReadMax = 1;
+
 	// レベルデータのオブジェクトを走査
-	for (std::vector<LevelData::ObjectData>::iterator it = levelData->objectsData_.begin();
-		it != levelData->objectsData_.end(); ++it) {
+	std::vector<LevelData::ObjectData>::iterator it = levelData->objectsData_.begin();
+	it += numberOfObjectsRead_;
+	for (;it != levelData->objectsData_.end(); ++it) {
 
 		// オブジェクトの参照
 		LevelData::ObjectData objectData = *it;
@@ -121,8 +125,36 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 
 		if (object) {
 			// listへ
-			objects_.emplace_back(object->GetName(), std::move(object));
+			loadObjects_.emplace_back(object->GetName(), std::move(object));
 		}
+		numberOfObjectsRead_++;
+		countOfObjectsRead++;
+
+		if (kCountOfObjectsReadMax <= countOfObjectsRead) {
+			break;
+		}
+
+
+	}
+
+	// 読み込みが全て終わったら
+	if (levelData->objectsData_.size() == loadObjects_.size()) {
+		// オブジェクトを消して切り替える
+		uint32_t count = 0;
+		objects_.remove_if([&](ObjectPair& objects) {
+			count++;
+			if (count > objectsDeletionPosition_) {
+				objects.second.reset();
+				return true;
+			}
+			return false;
+			});
+		objects_.splice(objects_.end(),loadObjects_);
+		loadObjects_.clear();
+
+		// 読み込み終了
+		loadingObject_ = false;
+		numberOfObjectsRead_ = 0;
 
 	}
 

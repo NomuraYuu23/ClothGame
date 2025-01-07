@@ -88,5 +88,14 @@ private: // メンバ変数
 	// プレイヤー
 	Player* player_;
 
+	// オブジェクト読み込み数
+	uint32_t numberOfObjectsRead_;
+
+	// オブジェクト読み込み中
+	bool loadingObject_;
+
+	// オブジェクト読み込み保存
+	std::list<ObjectPair> loadObjects_{};
+
 };
 
