@@ -134,7 +134,6 @@ void GameSceneObjectManager::GeneratePattern(LevelIndex levelIndex, LevelDataMan
 			break;
 		}
 
-
 	}
 
 	// 読み込みが全て終わったら
