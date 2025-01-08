@@ -1446,43 +1446,6 @@
         },
         {
             "type": "MESH",
-            "name": "Ground.009",
-            "transform": {
-                "translation": [
-                    0.0,
-                    545.0,
-                    2.0
-                ],
-                "rotation": [
-                    -0.0,
-                    0.0,
-                    0.0
-                ],
-                "scaling": [
-                    2.799999952316284,
-                    2.799999952316284,
-                    2.0
-                ]
-            },
-            "fileName": "GroundBlock.obj",
-            "directoryPath": "Resources/Model/GroundBlock",
-            "className": "GroundBlock",
-            "collider": {
-                "type": "BOX",
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "size": [
-                    12.599999785423279,
-                    12.599999785423279,
-                    2.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "Ground.014",
             "transform": {
                 "translation": [
@@ -1497,7 +1460,7 @@
                 ],
                 "scaling": [
                     2.799999952316284,
-                    2.799999952316284,
+                    15.399999618530273,
                     2.0
                 ]
             },
@@ -1513,44 +1476,7 @@
                 ],
                 "size": [
                     12.599999785423279,
-                    12.599999785423279,
-                    2.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "Ground.025",
-            "transform": {
-                "translation": [
-                    0.0,
-                    595.0,
-                    2.0
-                ],
-                "rotation": [
-                    -0.0,
-                    0.0,
-                    0.0
-                ],
-                "scaling": [
-                    2.799999952316284,
-                    2.799999952316284,
-                    2.0
-                ]
-            },
-            "fileName": "GroundBlock.obj",
-            "directoryPath": "Resources/Model/GroundBlock",
-            "className": "GroundBlock",
-            "collider": {
-                "type": "BOX",
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "size": [
-                    12.599999785423279,
-                    12.599999785423279,
+                    69.29999828338623,
                     2.0
                 ]
             }
