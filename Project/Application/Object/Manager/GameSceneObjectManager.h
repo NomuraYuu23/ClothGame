@@ -66,6 +66,12 @@ public: // アクセッサ
 	/// <returns>終了フラグ</returns>
 	bool GetLevelChangeEnd() { return levelChangeEnd_; }
 
+	/// <summary>
+	/// オブジェクト読み込み中取得
+	/// </summary>
+	/// <returns>オブジェクト読み込み中</returns>
+	bool GetLoadingObject() { return loadingObject_; }
+
 private: // メンバ変数
 
 	// 影マネージャー

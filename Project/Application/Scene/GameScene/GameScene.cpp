@@ -94,9 +94,10 @@ void GameScene::Update() {
 	spotLightManager_->Update(spotLightDatas_);
 
 	// 追従カメラ
-	followCamera_->Update();
-
-	camera_ = static_cast<BaseCamera>(*followCamera_.get());
+	if (!static_cast<GameSceneObjectManager*>(objectManager_.get())->GetLoadingObject()) {
+		followCamera_->Update();
+		camera_ = static_cast<BaseCamera>(*followCamera_.get());
+	}
 
 	// スタートカウントダウン
 	startCountDown_->Update();
