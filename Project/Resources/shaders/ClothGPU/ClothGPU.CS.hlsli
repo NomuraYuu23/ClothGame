@@ -70,3 +70,8 @@ struct Nums
 	uint32_t surfaceNum_;
 
 };
+
+struct VertexCalcData
+{
+	float32_t thickness;
+};

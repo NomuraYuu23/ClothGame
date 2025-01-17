@@ -178,6 +178,9 @@ public: // サブクラス
 		uint32_t surfaceNum;
 	};
 
+	/// <summary>
+	/// バネ構造体
+	/// </summary>
 	struct ClothSpringBufferStruct
 	{
 		// バネ情報 (バネの数)
@@ -197,6 +200,15 @@ public: // サブクラス
 		/// <param name="device">デバイス</param>
 		/// <param name="num">数</param>
 		void Initialize(ID3D12Device* device, uint32_t num);
+	};
+
+	/// <summary>
+	/// 頂点計算データ
+	/// </summary>
+	struct VertexCalcData
+	{
+		// 厚み
+		float thickness;
 	};
 
 private: // 静的メンバ変数
@@ -715,9 +727,14 @@ private: // CBV
 	PerFrame* perFrameMap_ = nullptr;
 
 	// 数バッファ
-	Microsoft::WRL::ComPtr<ID3D12Resource> NumsBuff_;
+	Microsoft::WRL::ComPtr<ID3D12Resource> numsBuff_;
 	// 数マップ
-	Nums* NumsMap_ = nullptr;
+	Nums* numsMap_ = nullptr;
+
+	// 頂点計算データバッファ
+	Microsoft::WRL::ComPtr<ID3D12Resource> vertexCalcDataBuff_;
+	// 頂点計算データマップ
+	VertexCalcData* vertexCalcDataMap_ = nullptr;
 
 private: // UAV
 
