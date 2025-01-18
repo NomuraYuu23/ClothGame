@@ -216,14 +216,14 @@ void DirectXCommon::UpdateFixFPS()
 void DirectXCommon::DebugLayer()
 {
 
-	//if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController_)))) {
+	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController_)))) {
 
-	//	// デバッグレイヤーを有効化する
-	//	debugController_->EnableDebugLayer();
-	//	// GPU
-	//	debugController_->SetEnableGPUBasedValidation(TRUE);
+		// デバッグレイヤーを有効化する
+		debugController_->EnableDebugLayer();
+		// GPU
+		debugController_->SetEnableGPUBasedValidation(TRUE);
 
-	//}
+	}
 
 }
 

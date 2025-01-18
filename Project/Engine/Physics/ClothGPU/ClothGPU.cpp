@@ -667,6 +667,7 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 
 	// relaxation_ 1~6
 	ImGui::DragInt("バネの更新の反復の回数", &relaxation_, 0.2f, 1, 6);
+	ImGui::DragFloat("布の厚さ", &vertexCalcDataMap_->thickness, 0.0001f, 0.0001f, 1.0f);
 
 	//clothCalcDataMap_
 	ImGui::DragFloat("質量", &clothCalcDataMap_->mass, 0.01f, 1.0f, 1000.0f);
@@ -695,10 +696,7 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 
 	// 厚みを持たせるための処理
 	numsMap_->clothSurfaceVertexNum = static_cast<uint32_t>(div.y) * static_cast<uint32_t>(div.x) * 6;
-	numsMap_->vertexNum = numsMap_->clothSurfaceVertexNum * 2;
-	// 側面部分
-	//numsMap_->vertexNum += (static_cast<uint32_t>(div.y) + static_cast<uint32_t>(div.x)) * 12;
-	numsMap_->vertexNum += static_cast<uint32_t>(div.x) * 6;
+	numsMap_->vertexNum = numsMap_->clothSurfaceVertexNum * 2 + (static_cast<uint32_t>(div.y) + static_cast<uint32_t>(div.x)) * 12;
 
 	// 質点数
 	numsMap_->massPointNum = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) + 1);
@@ -769,7 +767,7 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 	}
 
 	// 面数
-	numsMap_->surfaceNum = numsMap_->vertexNum / 6;
+	numsMap_->surfaceNum = numsMap_->clothSurfaceVertexNum / 3;
 
 	// バネフェーズの反復回数
 	relaxation_ = 4;
@@ -1595,7 +1593,7 @@ void ClothGPU::SetMassPointIndex()
 			}
 
 			// 表面終了
-			if (numsMap_->clothSurfaceVertexNum - 1 == i) {
+			if (y >= (createDataMap_->div.y)) {
 				x = 0;
 				y = 0;
 			}
@@ -1606,15 +1604,45 @@ void ClothGPU::SetMassPointIndex()
 		}
 
 	}
-
+	
+	const uint32_t kDownY = (static_cast<uint32_t>(createDataMap_->div.y)) * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
+	uint32_t offsetIndex = numsMap_->clothSurfaceVertexNum * 2;
 	// 側面上部分
 	x = 0;
-	y = 0;
-	uint32_t offsetIndex = numsMap_->clothSurfaceVertexNum * 2;
 	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.x) * 6; ++i) {
-		massPointIndexMap_[offsetIndex + i] = x + i % 2;
+		massPointIndexMap_[offsetIndex + i] = x + (i % 2);
 		if (i % 6 == 5) {
 			x++;
+		}
+	}
+
+	// 側面下部分
+	x = 0;
+	offsetIndex += static_cast<uint32_t>(createDataMap_->div.x) * 6;
+	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.x) * 6; ++i) {
+		massPointIndexMap_[offsetIndex + i] = kDownY + x + (i % 2);
+		if (i % 6 == 5) {
+			x++;
+		}
+	}
+
+	// 側面左部分
+	y = 0;
+	offsetIndex += static_cast<uint32_t>(createDataMap_->div.x) * 6;
+	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.y) * 6; ++i) {
+		massPointIndexMap_[offsetIndex + i] = (y + i % 2) * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
+		if (i % 6 == 5) {
+			y++;
+		}
+	}
+
+	// 側面右部分
+	y = 0;
+	offsetIndex += static_cast<uint32_t>(createDataMap_->div.y) * 6;
+	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.y) * 6; ++i) {
+		massPointIndexMap_[offsetIndex + i] = (y + i % 2) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + static_cast<uint32_t>(createDataMap_->div.x);
+		if (i % 6 == 5) {
+			y++;
 		}
 	}
 
