@@ -767,7 +767,7 @@ void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 	}
 
 	// 面数
-	numsMap_->surfaceNum = numsMap_->clothSurfaceVertexNum / 3;
+	numsMap_->surfaceNum = numsMap_->clothSurfaceVertexNum / 6;
 
 	// バネフェーズの反復回数
 	relaxation_ = 4;

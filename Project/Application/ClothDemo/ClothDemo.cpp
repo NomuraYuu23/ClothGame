@@ -23,7 +23,7 @@ void ClothDemo::Initilalize(
 	const Vector2 kInitClothScale = { 2.0f, 2.0f };
 	clothScale_ = kInitClothScale;
 	// 布の初期の分割数
-	const Vector2 kInitClothDiv = { 63.0f, 63.0f };
+	const Vector2 kInitClothDiv = { 32.0f, 32.0f };
 	clothDiv_ = kInitClothDiv;
 	// リセット位置
 	const Vector3 kInitResetPosition = { 0.0f,3.0f,0.0f };
