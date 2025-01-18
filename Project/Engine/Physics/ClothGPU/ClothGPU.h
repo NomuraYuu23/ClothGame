@@ -176,6 +176,7 @@ public: // サブクラス
 		uint32_t vertexNum;
 		uint32_t massPointNum;
 		uint32_t surfaceNum;
+		uint32_t clothSurfaceVertexNum;
 	};
 
 	/// <summary>
@@ -551,8 +552,6 @@ private: // その他関数
 		int32_t offsetY, 
 		TypeOfSpring type);
 
-private: // その他関数
-
 	/// <summary>
 	/// マテリアル更新
 	/// </summary>
@@ -567,6 +566,11 @@ private: // その他関数
 		int enableLighting, 
 		float shininess, 
 		float environmentCoefficient);
+
+	/// <summary>
+	/// 頂点がどこの質点か
+	/// </summary>
+	void SetMassPointIndex();
 
 public: // その他関数
 

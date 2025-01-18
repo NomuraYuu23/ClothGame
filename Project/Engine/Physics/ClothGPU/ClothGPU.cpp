@@ -689,10 +689,16 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 void ClothGPU::NumInitialize(ID3D12Device* device, const Vector2& div)
 {
 
-	// 頂点数(CPUのIndexと同じ数)<-厚みを持たせるために2倍
+	// 頂点数(CPUのIndexと同じ数)
 	numsBuff_ = BufferResource::CreateBufferResource(device, (sizeof(Nums) + 0xff) & ~0xff);
 	numsBuff_->Map(0, nullptr, reinterpret_cast<void**>(&numsMap_));
-	numsMap_->vertexNum = static_cast<uint32_t>(div.y) * static_cast<uint32_t>(div.x) * 6 * 2;
+
+	// 厚みを持たせるための処理
+	numsMap_->clothSurfaceVertexNum = static_cast<uint32_t>(div.y) * static_cast<uint32_t>(div.x) * 6;
+	numsMap_->vertexNum = numsMap_->clothSurfaceVertexNum * 2;
+	// 側面部分
+	//numsMap_->vertexNum += (static_cast<uint32_t>(div.y) + static_cast<uint32_t>(div.x)) * 12;
+	numsMap_->vertexNum += static_cast<uint32_t>(div.x) * 6;
 
 	// 質点数
 	numsMap_->massPointNum = (static_cast<uint32_t>(div.y) + 1) * (static_cast<uint32_t>(div.x) + 1);
@@ -993,49 +999,8 @@ void ClothGPU::SRVInitialize(ID3D12Device* device)
 	//書き込むためのアドレスを取得
 	massPointIndexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&massPointIndexMap_));
 
-	uint32_t y = 0;
-	uint32_t x = 0;
-	for (uint32_t i = 0; i < numsMap_->vertexNum; ++i) {
-		uint32_t mod = i % 6;
-		switch (mod)
-		{
-		// 左上
-		case 0:
-			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
-			break;
-		// 右上
-		case 1:
-		case 3:
-			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
-			break;
-		// 左下
-		case 2:
-		case 4:
-			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
-			break;
-		// 右下
-		case 5:
-			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
-			
-			// 一周終了
-			x++;
-			if (x >= (createDataMap_->div.x)) {
-				x = 0;
-				y++;
-			}
-
-			// 表面終了
-			if (numsMap_->vertexNum / 2 - 1 == i) {
-				x = 0;
-				y = 0;
-			}
-			break;
-		default:
-			assert(0);
-			break;
-		}
-
-	}
+	// 設定（マッピング）
+	SetMassPointIndex();
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC massPointIndexSrvDesc{};
 	massPointIndexSrvDesc.Format = DXGI_FORMAT_UNKNOWN;
@@ -1102,7 +1067,7 @@ void ClothGPU::CBVInitialize(
 	vertexCalcDataBuff_ = BufferResource::CreateBufferResource(device, (sizeof(VertexCalcData) + 0xff) & ~0xff);
 	vertexCalcDataBuff_->Map(0, nullptr, reinterpret_cast<void**>(&vertexCalcDataMap_));
 	// 頂点計算データマップ
-	vertexCalcDataMap_->thickness = 0.1f;
+	vertexCalcDataMap_->thickness = 0.05f;
 
 }
 
@@ -1591,6 +1556,67 @@ void ClothGPU::MaterialUpdate(
 		enableLighting,
 		shininess,
 		environmentCoefficient);
+
+}
+
+void ClothGPU::SetMassPointIndex()
+{
+
+	uint32_t y = 0;
+	uint32_t x = 0;
+	// 裏面まで
+	for (uint32_t i = 0; i < numsMap_->clothSurfaceVertexNum * 2; ++i) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+			// 左上
+		case 0:
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
+			break;
+			// 右上
+		case 1:
+		case 3:
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
+			break;
+			// 左下
+		case 2:
+		case 4:
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
+			break;
+			// 右下
+		case 5:
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
+
+			// 一周終了
+			x++;
+			if (x >= (createDataMap_->div.x)) {
+				x = 0;
+				y++;
+			}
+
+			// 表面終了
+			if (numsMap_->clothSurfaceVertexNum - 1 == i) {
+				x = 0;
+				y = 0;
+			}
+			break;
+		default:
+			assert(0);
+			break;
+		}
+
+	}
+
+	// 側面上部分
+	x = 0;
+	y = 0;
+	uint32_t offsetIndex = numsMap_->clothSurfaceVertexNum * 2;
+	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.x) * 6; ++i) {
+		massPointIndexMap_[offsetIndex + i] = x + i % 2;
+		if (i % 6 == 5) {
+			x++;
+		}
+	}
 
 }
 

@@ -68,10 +68,11 @@ struct Nums
 	uint32_t vertexNum_;
 	uint32_t massPointNum_;
 	uint32_t surfaceNum_;
+	uint32_t clothSurfaceVertexNum_;
 
 };
 
 struct VertexCalcData
 {
-	float32_t thickness;
+	float32_t thickness_;
 };
