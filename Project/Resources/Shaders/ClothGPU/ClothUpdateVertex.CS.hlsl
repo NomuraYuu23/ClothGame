@@ -58,12 +58,21 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		// 位置設定
 		float32_t3 position = gClothMassPoints[massPointIndex].position_;
 
-		// 厚みを持たせる
-		if (gNums.vertexNum_ / 2 > index){
-			position = position + normal * gVertexCalcData.thickness;
+		// 厚みを持たせるために頂点を移動
+		if (gNums.clothSurfaceVertexNum_ > index) {
+			position = position + normal * gVertexCalcData.thickness_ * 0.5f;
+		}
+		else if (gNums.clothSurfaceVertexNum_ * 2 > index){
+			position = position + normal * -gVertexCalcData.thickness_ * 0.5f;
 		}
 		else {
-			position = position + normal * -gVertexCalcData.thickness;
+			uint32_t mod = index % 6;
+			if (mod == 0 || mod == 1 || mod == 3) {
+				position = position + normal * gVertexCalcData.thickness_ * 0.5f;
+			}
+			else {
+				position = position + normal * -gVertexCalcData.thickness_ * 0.5f;
+			}
 		}
 
 		gVertexDatas[index].position_ =
