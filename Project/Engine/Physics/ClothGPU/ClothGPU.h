@@ -789,5 +789,8 @@ private: // 変数
 	// 初期化移動したか
 	bool didYouMoveInit_;
 
+	// バネ強度を決めるための変数
+	float determineStiffness_;
+
 };
 

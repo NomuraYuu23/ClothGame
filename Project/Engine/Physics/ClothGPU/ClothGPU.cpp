@@ -573,6 +573,9 @@ void ClothGPU::Initialize(
 	// 初期化移動したか
 	didYouMoveInit_ = false;
 
+	// バネ強度を決めるための変数
+	determineStiffness_ = 100.0f;
+
 }
 
 void ClothGPU::Update()
@@ -668,13 +671,15 @@ void ClothGPU::ImGuiDraw(const std::string& name)
 	// relaxation_ 1~6
 	ImGui::DragInt("バネの更新の反復の回数", &relaxation_, 0.2f, 1, 6);
 	ImGui::DragFloat("布の厚さ", &vertexCalcDataMap_->thickness, 0.0001f, 0.0001f, 1.0f);
+	ImGui::DragFloat("バネ強度を決めるための変数", &determineStiffness_, 0.01f, 50.0f, 150.0f);
 
 	//clothCalcDataMap_
 	ImGui::DragFloat("質量", &clothCalcDataMap_->mass, 0.01f, 1.0f, 1000.0f);
 	ImGui::DragFloat3("重力", &clothCalcDataMap_->gravity.x, 0.01f, -1000.0f, 1000.0f);
 	ImGui::DragFloat3("風力", &clothCalcDataMap_->wind.x, 0.01f, -1000.0f, 1000.0f);
 	ImGui::DragFloat("抵抗", &clothCalcDataMap_->speedResistance, 0.01f, 0.0f, 1.0f);
-	ImGui::DragFloat("バネの強度", &clothCalcDataMap_->stiffness, 0.1f, 1.0f, 1000.0f);
+	ImGui::DragFloat("バネ強度", &clothCalcDataMap_->stiffness, 0.0f);
+	clothCalcDataMap_->stiffness = clothCalcDataMap_->mass * determineStiffness_;
 	ImGui::DragFloat("構成バネ伸び抵抗", &clothCalcDataMap_->structuralShrink, 0.1f, 0.0f, 1000.0f);
 	ImGui::DragFloat("構成バネ縮み抵抗", &clothCalcDataMap_->structuralStretch, 0.1f, 0.0f, 1000.0f);
 	ImGui::DragFloat("せん断バネ伸び抵抗", &clothCalcDataMap_->shearShrink, 0.1f, 0.0f, 1000.0f);
