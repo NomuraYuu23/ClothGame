@@ -67,7 +67,7 @@ void main(uint32_t3 dispatchId : SV_DispatchThreadID)
 		}
 		else {
 			uint32_t mod = index % 6;
-			if (mod == 0 || mod == 1 || mod == 3) {
+			if (mod == 0 || mod == 2 || mod == 3) {
 				position = position + normal * gVertexCalcData.thickness_ * 0.5f;
 			}
 			else {
