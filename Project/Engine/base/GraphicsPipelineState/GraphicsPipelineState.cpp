@@ -309,7 +309,7 @@ void GraphicsPipelineState::Initialize(ID3D12Device* sDevice)
 	desc.depthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
 	desc.inputLayoutIndex = kInputLayoutIndexNone;
 	desc.blendStateIndex = kBlendStateIndexNormal;
-	desc.cullMode = D3D12_CULL_MODE_NONE;
+	desc.cullMode = D3D12_CULL_MODE_BACK;
 	desc.fillMode = D3D12_FILL_MODE_SOLID;
 	desc.filePathVS = L"Resources/shaders/ClothGPU/ClothGPU.VS.hlsl";
 	desc.filePathPS = L"Resources/shaders/Cloth/Cloth.PS.hlsl";

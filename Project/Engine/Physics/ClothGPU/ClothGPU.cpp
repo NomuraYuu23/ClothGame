@@ -1562,8 +1562,8 @@ void ClothGPU::SetMassPointIndex()
 
 	uint32_t y = 0;
 	uint32_t x = 0;
-	// 裏面まで
-	for (uint32_t i = 0; i < numsMap_->clothSurfaceVertexNum * 2; ++i) {
+	// 表面まで
+	for (uint32_t i = 0; i < numsMap_->clothSurfaceVertexNum; ++i) {
 		uint32_t mod = i % 6;
 		switch (mod)
 		{
@@ -1573,12 +1573,12 @@ void ClothGPU::SetMassPointIndex()
 			break;
 			// 右上
 		case 1:
-		case 3:
+		case 4:
 			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
 			break;
 			// 左下
 		case 2:
-		case 4:
+		case 3:
 			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
 			break;
 			// 右下
@@ -1591,11 +1591,44 @@ void ClothGPU::SetMassPointIndex()
 				x = 0;
 				y++;
 			}
+			break;
+		default:
+			assert(0);
+			break;
+		}
 
-			// 表面終了
-			if (y >= (createDataMap_->div.y)) {
+	}
+
+	// 裏面まで
+	y = 0;
+	x = 0;
+	for (uint32_t i = numsMap_->clothSurfaceVertexNum; i < numsMap_->clothSurfaceVertexNum * 2; ++i) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+			// 左上
+		case 0:
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
+			break;
+			// 右上
+		case 2:
+		case 3:
+			massPointIndexMap_[i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
+			break;
+			// 左下
+		case 1:
+		case 4:
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x;
+			break;
+			// 右下
+		case 5:
+			massPointIndexMap_[i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + x + 1;
+
+			// 一周終了
+			x++;
+			if (x >= (createDataMap_->div.x)) {
 				x = 0;
-				y = 0;
+				y++;
 			}
 			break;
 		default:
@@ -1610,40 +1643,124 @@ void ClothGPU::SetMassPointIndex()
 	// 側面上部分
 	x = 0;
 	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.x) * 6; ++i) {
-		massPointIndexMap_[offsetIndex + i] = x + (i % 2);
-		if (i % 6 == 5) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+		// 左
+		case 0:
+		case 1:
+		case 4:
+			massPointIndexMap_[offsetIndex + i] = x;
+			break;
+		// 右
+		case 2:
+		case 3:
+			massPointIndexMap_[offsetIndex + i] = x + 1;
+			break;
+		// 右下
+		case 5:
+			massPointIndexMap_[offsetIndex + i] = x + 1;
+			// 一周終了
 			x++;
+			break;
+		default:
+			assert(0);
+			break;
 		}
+
 	}
 
 	// 側面下部分
 	x = 0;
 	offsetIndex += static_cast<uint32_t>(createDataMap_->div.x) * 6;
 	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.x) * 6; ++i) {
-		massPointIndexMap_[offsetIndex + i] = kDownY + x + (i % 2);
-		if (i % 6 == 5) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+			// 左
+		case 2:
+		case 1:
+			massPointIndexMap_[offsetIndex + i] = x + kDownY;
+			break;
+			// 右
+		case 0:
+		case 3:
+		case 4:
+			massPointIndexMap_[offsetIndex + i] = x + 1 + kDownY;
+			break;
+			// 右下
+		case 5:
+			massPointIndexMap_[offsetIndex + i] = x + kDownY;
+			// 一周終了
 			x++;
+			break;
+		default:
+			assert(0);
+			break;
 		}
+
 	}
 
 	// 側面左部分
 	y = 0;
 	offsetIndex += static_cast<uint32_t>(createDataMap_->div.x) * 6;
 	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.y) * 6; ++i) {
-		massPointIndexMap_[offsetIndex + i] = (y + i % 2) * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
-		if (i % 6 == 5) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+			// 左
+		case 2:
+		case 1:
+			massPointIndexMap_[offsetIndex + i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
+			break;
+			// 右
+		case 0:
+		case 3:
+		case 4:
+			massPointIndexMap_[offsetIndex + i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
+			break;
+			// 右下
+		case 5:
+			massPointIndexMap_[offsetIndex + i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1);
+			// 一周終了
 			y++;
+			break;
+		default:
+			assert(0);
+			break;
 		}
+
 	}
 
 	// 側面右部分
 	y = 0;
 	offsetIndex += static_cast<uint32_t>(createDataMap_->div.y) * 6;
 	for (uint32_t i = 0; i < static_cast<uint32_t>(createDataMap_->div.y) * 6; ++i) {
-		massPointIndexMap_[offsetIndex + i] = (y + i % 2) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + static_cast<uint32_t>(createDataMap_->div.x);
-		if (i % 6 == 5) {
+		uint32_t mod = i % 6;
+		switch (mod)
+		{
+			// 左
+		case 0:
+		case 1:
+		case 4:
+			massPointIndexMap_[offsetIndex + i] = y * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + static_cast<uint32_t>(createDataMap_->div.x);
+			break;
+			// 右
+		case 2:
+		case 3:
+			massPointIndexMap_[offsetIndex + i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + static_cast<uint32_t>(createDataMap_->div.x);
+			break;
+			// 右下
+		case 5:
+			massPointIndexMap_[offsetIndex + i] = (y + 1) * (static_cast<uint32_t>(createDataMap_->div.x) + 1) + static_cast<uint32_t>(createDataMap_->div.x);
+			// 一周終了
 			y++;
+			break;
+		default:
+			assert(0);
+			break;
 		}
+
 	}
 
 }
