@@ -34,7 +34,7 @@ void ClothDemoSphere::Initialize(const std::string& name)
     data_ = kInitData;
 
     // 画面ちらつかないようの値
-    const float kInitScreenDoesNotFlickerValue = 0.01f;
+    const float kInitScreenDoesNotFlickerValue = 0.03f;
     screenDoesNotFlickerValue_ = kInitScreenDoesNotFlickerValue;
 
     // デモに存在するか
