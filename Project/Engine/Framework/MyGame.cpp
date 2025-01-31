@@ -1,5 +1,7 @@
 #include "MyGame.h"
 
+using namespace NomeEngine;
+
 void MyGame::Initialize()
 {
 

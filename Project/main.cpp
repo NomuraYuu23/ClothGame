@@ -2,6 +2,8 @@
 #include "Engine/Framework/MyFramework.h"
 #include "Engine/Framework/MyGame.h"
 
+using namespace NomeEngine;
+
 //Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 

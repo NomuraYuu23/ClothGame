@@ -4,38 +4,45 @@
 #include "MyFramework.h"
 
 /// <summary>
-/// ゲーム大枠
+/// 自作エンジン名前空間
 /// </summary>
-class MyGame : 
-	public MyFramework
-{
-
-public: // メンバ関数
+namespace NomeEngine {
 
 	/// <summary>
-	/// 初期化
+	/// ゲーム大枠
 	/// </summary>
-	void Initialize() override;
+	class MyGame :
+		public MyFramework
+	{
 
-	/// <summary>
-	/// 終了処理
-	/// </summary>
-	void Finalize() override;
+	public: // メンバ関数
 
-	/// <summary>
-	/// 更新処理
-	/// </summary>
-	void Update() override;
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		void Initialize() override;
 
-	/// <summary>
-	/// 描画処理
-	/// </summary>
-	void Draw() override;
+		/// <summary>
+		/// 終了処理
+		/// </summary>
+		void Finalize() override;
 
-private: // メンバ変数
+		/// <summary>
+		/// 更新処理
+		/// </summary>
+		void Update() override;
 
-	// シーンマネージャー
-	std::unique_ptr<SceneManager> sceneManager = nullptr;
+		/// <summary>
+		/// 描画処理
+		/// </summary>
+		void Draw() override;
+
+	private: // メンバ変数
+
+		// シーンマネージャー
+		std::unique_ptr<SceneManager> sceneManager = nullptr;
+
+	};
 
 };
 

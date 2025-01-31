@@ -60,68 +60,74 @@
 #include "../base/Debug/QueryTimestamp.h"
 
 /// <summary>
-/// フレームワーク
+/// 自作エンジン名前空間
 /// </summary>
-class MyFramework
-{
-
-public: // メンバ関数
+namespace NomeEngine {
 
 	/// <summary>
-	/// デストラクタ
+	/// フレームワーク
 	/// </summary>
-	virtual ~MyFramework() = default;
+	class MyFramework
+	{
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	virtual void Initialize();
+	public: // メンバ関数
 
-	/// <summary>
-	/// 終了処理
-	/// </summary>
-	virtual void Finalize();
+		/// <summary>
+		/// デストラクタ
+		/// </summary>
+		virtual ~MyFramework() = default;
 
-	/// <summary>
-	/// 更新処理
-	/// </summary>
-	virtual void Update();
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		virtual void Initialize();
 
-	/// <summary>
-	/// 描画処理
-	/// </summary>
-	virtual void Draw() = 0;
+		/// <summary>
+		/// 終了処理
+		/// </summary>
+		virtual void Finalize();
 
-	/// <summary>
-	/// 終了チェック
-	/// </summary>
-	/// <returns></returns>
-	virtual bool IsEndRequst() { return endRequst_; }
+		/// <summary>
+		/// 更新処理
+		/// </summary>
+		virtual void Update();
 
-	/// <summary>
-	/// ラン
-	/// </summary>
-	void Run();
+		/// <summary>
+		/// 描画処理
+		/// </summary>
+		virtual void Draw() = 0;
 
-protected: // メンバ変数
+		/// <summary>
+		/// 終了チェック
+		/// </summary>
+		/// <returns></returns>
+		virtual bool IsEndRequst() { return endRequst_; }
 
-	// ウインドウアプリケーション
-	WinApp* win = nullptr;
-	
-	// DirectXCommon
-	DirectXCommon* dxCommon = nullptr;
+		/// <summary>
+		/// ラン
+		/// </summary>
+		void Run();
 
-	// オーディオ
-	Audio* audio = nullptr;
-	
-	// 入力
-	Input* input = nullptr;
+	protected: // メンバ変数
 
-	// ImGUiマネージャー
-	ImGuiManager* imGuiManager = nullptr;
+		// ウインドウアプリケーション
+		WinApp* win = nullptr;
 
-	// 終了リクエスト
-	bool endRequst_;
+		// DirectXCommon
+		DirectXCommon* dxCommon = nullptr;
+
+		// オーディオ
+		Audio* audio = nullptr;
+
+		// 入力
+		Input* input = nullptr;
+
+		// ImGUiマネージャー
+		ImGuiManager* imGuiManager = nullptr;
+
+		// 終了リクエスト
+		bool endRequst_;
+
+	};
 
 };
-

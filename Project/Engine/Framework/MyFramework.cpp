@@ -1,6 +1,8 @@
 #include "MyFramework.h"
 #include "../Physics/ClothGPU/ClothGPU.h"
 
+using namespace NomeEngine;
+
 void MyFramework::Initialize()
 {
 
