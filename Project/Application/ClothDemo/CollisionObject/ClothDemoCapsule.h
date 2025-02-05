@@ -45,9 +45,6 @@ private:
     // ClothGPUに渡すデータ
     ClothGPUCollision::Capsule data_;
 
-    // 画面ちらつかないようの値
-    float screenDoesNotFlickerValue_;
-
     // トランスフォーム、カプセルの下用
     WorldTransform diffWorldTransform_;
 

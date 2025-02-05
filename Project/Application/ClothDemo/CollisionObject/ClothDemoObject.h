@@ -96,5 +96,8 @@ protected:
     // ギズモID
     uint32_t guizmoID_;
 
+    // 画面ちらつかないようの値
+    float screenDoesNotFlickerValue_;
+
 };
 
