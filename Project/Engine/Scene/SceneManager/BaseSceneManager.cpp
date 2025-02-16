@@ -31,7 +31,7 @@ void BaseSceneManager::Initialize(uint32_t earlySceneNo)
 	// シーンファクトリー
 	levelDataManager_ = std::make_unique<LevelDataManager>();
 	levelDataManager_->Initialize();
-	IScene::StaticInitialize(levelDataManager_.get());
+	BaseScene::StaticInitialize(levelDataManager_.get());
 
 	// シーン(タイトル)
 	scene_.reset(sceneFactory_->CreateScene(earlySceneNo));

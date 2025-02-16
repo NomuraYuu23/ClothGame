@@ -1,5 +1,5 @@
 #pragma once
-#include "../IScene/IScene.h"
+#include "../BaseScene/BaseScene.h"
 #include <thread>
 #include "../../Level/LevelDataManager.h"
 #include "../SceneFactory/AbstractSceneFactory.h"
@@ -51,7 +51,7 @@ protected: // メンバ変数
 	AbstractSceneFactory* sceneFactory_ = nullptr;
 
 	// シーンを保持するメンバ変数
-	std::unique_ptr<IScene> scene_;
+	std::unique_ptr<BaseScene> scene_;
 
 	// どのステージを呼び出すかを管理する変数
 	int currentSceneNo_; // 現在のシーン

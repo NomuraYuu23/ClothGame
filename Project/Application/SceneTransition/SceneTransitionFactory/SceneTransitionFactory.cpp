@@ -1,5 +1,5 @@
 #include "SceneTransitionFactory.h"
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 #include "../SceneTransitionBlackOut/SceneTransitionBlackOut.h"
 #include "../SceneTransitionCurtain/SceneTransitionCurtain.h"
 

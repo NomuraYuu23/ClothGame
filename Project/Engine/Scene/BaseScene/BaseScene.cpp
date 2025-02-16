@@ -1,33 +1,33 @@
-#include "IScene.h"
+#include "BaseScene.h"
 
 //タイトルシーンで初期化
-int IScene::sceneNo_ = kTitle;
-int IScene::requestSceneNo_ = kTitle;
+int BaseScene::sceneNo_ = kTitle;
+int BaseScene::requestSceneNo_ = kTitle;
 
-int IScene::sceneNoCheck_ = kTitle;
-int IScene::requestSceneNoCheck_ = kTitle;
+int BaseScene::sceneNoCheck_ = kTitle;
+int BaseScene::requestSceneNoCheck_ = kTitle;
 
-DirectXCommon* IScene::dxCommon_ = nullptr;
-Input* IScene::input_ = nullptr;
-Audio* IScene::audio_ = nullptr;
+DirectXCommon* BaseScene::dxCommon_ = nullptr;
+Input* BaseScene::input_ = nullptr;
+Audio* BaseScene::audio_ = nullptr;
 
 //ビュープロジェクション
-BaseCamera IScene::camera_;
+BaseCamera BaseScene::camera_;
 
 //デバッグカメラ
-std::unique_ptr<DebugCamera> IScene::debugCamera_;
-bool IScene::isDebugCameraActive_;
+std::unique_ptr<DebugCamera> BaseScene::debugCamera_;
+bool BaseScene::isDebugCameraActive_;
 
-RenderTargetTexture* IScene::renderTargetTexture_;
+RenderTargetTexture* BaseScene::renderTargetTexture_;
 
-DrawLine* IScene::drawLine_ = nullptr;
+DrawLine* BaseScene::drawLine_ = nullptr;
 
 // レベルデータマネージャー
-LevelDataManager* IScene::levelDataManager_;
+LevelDataManager* BaseScene::levelDataManager_;
 // モデルマネージャー
-ModelManager* IScene::modelManager_;
+ModelManager* BaseScene::modelManager_;
 
-void IScene::StaticInitialize(LevelDataManager* levelDataManager)
+void BaseScene::StaticInitialize(LevelDataManager* levelDataManager)
 {
 
 	//機能
@@ -58,7 +58,7 @@ void IScene::StaticInitialize(LevelDataManager* levelDataManager)
 
 }
 
-void IScene::Initialize()
+void BaseScene::Initialize()
 {
 
 	sceneNoCheck_ = sceneNo_;
@@ -102,21 +102,21 @@ void IScene::Initialize()
 
 }
 
-IScene::~IScene(){
+BaseScene::~BaseScene(){
 
 	modelManager_->Finalize();
 
 }
 
-int IScene::GetSceneNo(){ return sceneNo_; }
+int BaseScene::GetSceneNo(){ return sceneNo_; }
 
-int IScene::GetRequestSceneNo(){ return requestSceneNo_; }
+int BaseScene::GetRequestSceneNo(){ return requestSceneNo_; }
 
-void IScene::ModelCreate(){}
+void BaseScene::ModelCreate(){}
 
-void IScene::TextureLoad(){}
+void BaseScene::TextureLoad(){}
 
-void IScene::InitilaizeCheck()
+void BaseScene::InitilaizeCheck()
 {
 
 	assert(requestSceneNo_ == requestSceneNoCheck_);

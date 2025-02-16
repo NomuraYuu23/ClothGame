@@ -7,7 +7,7 @@ DebugScene::~DebugScene()
 void DebugScene::Initialize()
 {
 
-	IScene::Initialize();
+	BaseScene::Initialize();
 
 	// スカイドーム
 	skydomeModel_.reset(Model::Create("Resources/Model/Skydome/", "skydome.obj", dxCommon_));
@@ -35,7 +35,7 @@ void DebugScene::Initialize()
 	preDrawParameters.environmentTextureHandle = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 	ModelDraw::SetPreDrawParameters(preDrawParameters);
 
-	IScene::InitilaizeCheck();
+	BaseScene::InitilaizeCheck();
 
 }
 

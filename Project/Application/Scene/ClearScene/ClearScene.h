@@ -1,12 +1,12 @@
 #pragma once
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 #include "../../OutGameObject/ClearBackGround/ClearBackGround.h"
 
 /// <summary>
 /// クリアシーン
 /// </summary>
 class ClearScene : 
-	public IScene
+	public BaseScene
 {
 
 public: // メンバ関数

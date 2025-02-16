@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 #include "../../../Engine/PostEffect/HSV/HSVFilter.h"
 #include "../../OutGameObject/TitleBackGround/TitleBackGround.h"
 
@@ -7,7 +7,7 @@
 /// タイトルシーン
 /// </summary>
 class TitleScene : 
-	public IScene
+	public BaseScene
 {
 
 public: // メンバ関数

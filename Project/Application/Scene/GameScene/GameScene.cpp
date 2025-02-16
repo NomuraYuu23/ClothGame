@@ -20,7 +20,7 @@ GameScene::~GameScene()
 /// </summary>
 void GameScene::Initialize() {
 
-	IScene::Initialize();
+	BaseScene::Initialize();
 
 	ModelCreate();
 	TextureLoad();
@@ -79,7 +79,7 @@ void GameScene::Initialize() {
 	preDrawParameters.environmentTextureHandle = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 	ModelDraw::SetPreDrawParameters(preDrawParameters);
 
-	IScene::InitilaizeCheck();
+	BaseScene::InitilaizeCheck();
 
 }
 

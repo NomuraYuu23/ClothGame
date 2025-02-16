@@ -1,11 +1,11 @@
 #pragma once
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 
 /// <summary>
 /// セレクトシーン
 /// </summary>
 class SelectScene : 
-	public IScene{
+	public BaseScene {
 
 public: // メンバ関数
 

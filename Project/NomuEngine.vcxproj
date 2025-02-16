@@ -332,7 +332,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="externals\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Application\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Engine\Input\Input.cpp" />
-    <ClCompile Include="Engine\Scene\IScene\IScene.cpp" />
+    <ClCompile Include="Engine\Scene\BaseScene\BaseScene.cpp" />
     <ClCompile Include="Engine\Framework\MyFramework.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\3D\Material\Material.cpp" />
@@ -567,7 +567,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Math\Matrix\Matrix4x4.h" />
     <ClInclude Include="Engine\3D\Model\Model.h" />
     <ClInclude Include="Engine\base\GraphicsPipelineState\GraphicsPipelineState.h" />
-    <ClInclude Include="Engine\Scene\IScene\IScene.h" />
+    <ClInclude Include="Engine\Scene\BaseScene\BaseScene.h" />
     <ClInclude Include="Engine\Framework\MyFramework.h" />
     <ClInclude Include="Engine\Collider\AABB\AABB.h" />
     <ClInclude Include="Engine\Collider\Collider.h" />

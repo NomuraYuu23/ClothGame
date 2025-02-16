@@ -19,7 +19,7 @@ public: // 静的メンバ関数
 public: // メンバ関数
 
 	// シーン生成
-	IScene* CreateScene(int sceneName) override;
+	BaseScene* CreateScene(int sceneName) override;
 
 private: // シングルトン
 	SceneFactory() = default;

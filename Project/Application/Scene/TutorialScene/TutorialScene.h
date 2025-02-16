@@ -1,6 +1,6 @@
 #pragma once
 #include <array>
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 #include "../../../Engine/Light/DirectionalLight/DirectionalLight.h" // 平行光源
 #include "../../../Engine/Light/PointLight/PointLightManager.h" // 点光源
 #include "../../../Engine/Light/SpotLight/SpotLightManager.h" // スポット
@@ -13,7 +13,7 @@
 /// チュートリアルシーン
 /// </summary>
 class TutorialScene : 
-	public IScene
+	public BaseScene
 {
 
 public: // メンバ関数

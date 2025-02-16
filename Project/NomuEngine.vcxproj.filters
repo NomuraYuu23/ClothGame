@@ -501,7 +501,7 @@
     <ClCompile Include="Engine\Collider\Triangle\Triangle.cpp">
       <Filter>Engine\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Scene\IScene\IScene.cpp">
+    <ClCompile Include="Engine\Scene\BaseScene\BaseScene.cpp">
       <Filter>Engine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.cpp">
@@ -1071,7 +1071,7 @@
     <ClInclude Include="Engine\Scene\SceneFactory\AbstractSceneFactory.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Scene\IScene\IScene.h">
+    <ClInclude Include="Engine\Scene\BaseScene\BaseScene.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.h">

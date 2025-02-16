@@ -12,7 +12,7 @@ ClearScene::~ClearScene()
 void ClearScene::Initialize()
 {
 
-	IScene::Initialize();
+	BaseScene::Initialize();
 
 	ModelCreate();
 	TextureLoad();

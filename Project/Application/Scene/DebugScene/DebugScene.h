@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Engine/Scene/IScene/IScene.h"
+#include "../../../Engine/Scene/BaseScene/BaseScene.h"
 #include "../../Object/Skydome/Skydome.h"
 #include "../../../Engine/Physics/Cloth/Cloth.h"
 #include "../../../Engine/Physics/ClothGPU/ClothGPU.h"
@@ -10,7 +10,7 @@
 /// デバッグシーン
 /// </summary>
 class DebugScene :
-	public IScene
+	public BaseScene
 {
 
 public: // メンバ関数

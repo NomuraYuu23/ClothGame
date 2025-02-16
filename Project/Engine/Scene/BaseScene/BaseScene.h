@@ -14,7 +14,6 @@
 // カメラ
 #include "../../Camera/BaseCamera.h" // ベースカメラ
 #include "../../Camera/DebugCamera.h"//デバッグカメラ
-#include "../../Camera/DebugCamera.h"//デバッグカメラ
 
 // 描画系
 #include "../../2D/Sprite.h" // スプライト
@@ -49,7 +48,7 @@
 /// <summary>
 /// シーンの元になるクラス
 /// </summary>
-class IScene
+class BaseScene
 {
 
 protected: // 静的メンバ変数
@@ -116,7 +115,7 @@ public: // メンバ関数
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~IScene();
+	virtual ~BaseScene();
 
 	/// <summary>
 	/// シーン番号取得

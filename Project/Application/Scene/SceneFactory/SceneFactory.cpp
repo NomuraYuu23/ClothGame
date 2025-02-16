@@ -11,11 +11,11 @@ SceneFactory* SceneFactory::GetInstance()
 	return &instance;
 }
 
-IScene* SceneFactory::CreateScene(int sceneName)
+BaseScene* SceneFactory::CreateScene(int sceneName)
 {
 
     // 次のシーンを生成
-    IScene* newScene = nullptr;
+	BaseScene* newScene = nullptr;
 
 	switch (sceneName)
 	{
