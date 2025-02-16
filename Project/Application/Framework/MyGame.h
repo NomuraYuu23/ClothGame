@@ -1,7 +1,9 @@
 #pragma once
 
 // フレームワーク
-#include "MyFramework.h"
+#include "../../Engine/Framework/MyFramework.h"
+
+#include "../Scene/SceneManager/SceneManager.h"
 
 /// <summary>
 /// 自作エンジン名前空間

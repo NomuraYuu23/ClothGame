@@ -1,36 +1,34 @@
 #pragma once
-
 #include "../IScene/IScene.h"
-#include "../../../Application/Scene/SceneFactory/SceneFactory.h"
-#include "../../SceneTransition/ISceneTransition/ISceneTransition.h"
-#include "../../../Application/SceneTransition/SceneTransitionFactory/SceneTransitionFactory.h"
 #include <thread>
 #include "../../Level/LevelDataManager.h"
+#include "../SceneFactory/AbstractSceneFactory.h"
+#include "../../SceneTransition/ISceneTransition/ISceneTransition.h"
+#include "../../SceneTransition/SceneTransitionFactory/AbstractSceneTransitionFactory.h"
 
 /// <summary>
-/// シーンマネージャー
+/// シーンマネージャー基盤クラス
 /// </summary>
-class SceneManager
+class BaseSceneManager
 {
 
 public: // メンバ関数
 
-
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~SceneManager();
+	~BaseSceneManager();
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
 	/// <param name="earlySceneNo">最初のシーン</param>
-	void Initialize(uint32_t earlySceneNo);
+	virtual void Initialize(uint32_t earlySceneNo);
 
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	virtual void Update();
 
 	/// <summary>
 	/// 描画
@@ -47,10 +45,10 @@ public: // メンバ関数
 	/// </summary>
 	void SceneTransitionInitializeThread();
 
-private: // メンバ変数
+protected: // メンバ変数
 
 	// シーンファクトリー	
-	SceneFactory* sceneFacyory_ = nullptr;
+	AbstractSceneFactory* sceneFactory_ = nullptr;
 
 	// シーンを保持するメンバ変数
 	std::unique_ptr<IScene> scene_;
@@ -62,7 +60,7 @@ private: // メンバ変数
 	int prevRequestSeneNo_; // 前のリクエストシーン
 
 	// シーン遷移ファクトリー
-	SceneTransitionFactory* sceneTransitionFactory_ = nullptr;
+	AbstractSceneTransitionFactory* sceneTransitionFactory_ = nullptr;
 
 	// シーン遷移を保持するメンバ変数
 	std::unique_ptr<ISceneTransition> sceneTransition_;

@@ -474,7 +474,7 @@
     <ClCompile Include="Engine\Framework\MyFramework.cpp">
       <Filter>Engine\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\MyGame.cpp">
+    <ClCompile Include="Application\Framework\MyGame.cpp">
       <Filter>Engine\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Engine\GlobalVariables\GlobalVariables.cpp">
@@ -502,9 +502,6 @@
       <Filter>Engine\Collider</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Scene\IScene\IScene.cpp">
-      <Filter>Engine\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Scene\SceneManager\SceneManager.cpp">
       <Filter>Engine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.cpp">
@@ -976,6 +973,12 @@
     <ClCompile Include="Application\GPUParticle\MissParticle\MissParticle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Scene\SceneManager\BaseSceneManager.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Scene\SceneManager\SceneManager.cpp">
+      <Filter>Application\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1044,7 +1047,7 @@
     <ClInclude Include="Engine\Framework\MyFramework.h">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\MyGame.h">
+    <ClInclude Include="Application\Framework\MyGame.h">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GlobalVariables\GlobalVariables.h">
@@ -1064,9 +1067,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Math\Ease.h">
       <Filter>Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Scene\SceneManager\SceneManager.h">
-      <Filter>Engine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Scene\SceneFactory\AbstractSceneFactory.h">
       <Filter>Engine\Scene</Filter>
@@ -1673,6 +1673,12 @@
     </ClInclude>
     <ClInclude Include="Application\GPUParticle\MissParticle\MissParticle.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene\SceneManager\BaseSceneManager.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scene\SceneManager\SceneManager.h">
+      <Filter>Application\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

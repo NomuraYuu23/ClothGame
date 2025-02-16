@@ -1,6 +1,6 @@
 #include <Windows.h>
 #include "Engine/Framework/MyFramework.h"
-#include "Engine/Framework/MyGame.h"
+#include "Application/Framework/MyGame.h"
 
 using namespace NomeEngine;
 

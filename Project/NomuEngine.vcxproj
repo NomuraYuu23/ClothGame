@@ -208,6 +208,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\OutGameObject\TitleBackGround\TitleBackGround.cpp" />
     <ClCompile Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.cpp" />
     <ClCompile Include="Application\Scene\DebugScene\DebugScene.cpp" />
+    <ClCompile Include="Application\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Application\Scene\SelectScene\SelectScene.cpp" />
     <ClCompile Include="Application\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Application\Scene\TutorialScene\TutorialScene.cpp" />
@@ -288,7 +289,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Camera\DebugCamera.cpp" />
     <ClCompile Include="Engine\Light\DirectionalLight\DirectionalLight.cpp" />
     <ClCompile Include="Engine\Collider\ColliderDebugDraw\ColliderDebugDraw.cpp" />
-    <ClCompile Include="Engine\Framework\MyGame.cpp" />
+    <ClCompile Include="Application\Framework\MyGame.cpp" />
     <ClCompile Include="Engine\GlobalVariables\GlobalVariables.cpp" />
     <ClCompile Include="Engine\Math\Ease.cpp" />
     <ClCompile Include="Engine\Math\Math.cpp" />
@@ -312,7 +313,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Application\SceneTransition\SceneTransitionFactory\SceneTransitionFactory.cpp" />
     <ClCompile Include="Application\Scene\ClearScene\ClearScene.cpp" />
     <ClCompile Include="Application\Scene\SceneFactory\SceneFactory.cpp" />
-    <ClCompile Include="Engine\Scene\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Engine\Scene\SceneManager\BaseSceneManager.cpp" />
     <ClCompile Include="Engine\SkyBox\SkyBox.cpp" />
     <ClCompile Include="externals\imgui\imgui.cpp" />
     <ClCompile Include="externals\imgui\ImGuizmo.cpp">
@@ -407,6 +408,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\OutGameObject\TitleBackGround\TitleBackGround.h" />
     <ClInclude Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.h" />
     <ClInclude Include="Application\Scene\DebugScene\DebugScene.h" />
+    <ClInclude Include="Application\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="Application\Scene\SceneName.h" />
     <ClInclude Include="Application\Scene\SelectScene\SelectScene.h" />
     <ClInclude Include="Application\Scene\TitleScene\TitleScene.h" />
@@ -515,7 +517,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Light\DirectionalLight\DirectionalLight.h" />
     <ClInclude Include="Engine\Light\DirectionalLight\DirectionalLightData.h" />
     <ClInclude Include="Engine\Collider\ColliderDebugDraw\ColliderDebugDraw.h" />
-    <ClInclude Include="Engine\Framework\MyGame.h" />
+    <ClInclude Include="Application\Framework\MyGame.h" />
     <ClInclude Include="Engine\GlobalVariables\GlobalVariables.h" />
     <ClInclude Include="Engine\Math\DeltaTime.h" />
     <ClInclude Include="Engine\Math\Ease.h" />
@@ -544,7 +546,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Application\Scene\ClearScene\ClearScene.h" />
     <ClInclude Include="Engine\Scene\SceneFactory\AbstractSceneFactory.h" />
     <ClInclude Include="Application\Scene\SceneFactory\SceneFactory.h" />
-    <ClInclude Include="Engine\Scene\SceneManager\SceneManager.h" />
+    <ClInclude Include="Engine\Scene\SceneManager\BaseSceneManager.h" />
     <ClInclude Include="Engine\SkyBox\SkyBox.h" />
     <ClInclude Include="externals\imgui\imgui.h" />
     <ClInclude Include="externals\imgui\ImGuizmo.h">

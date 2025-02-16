@@ -33,7 +33,7 @@
 #include "../Camera/DebugCamera.h"
 
 // シーンマネージャー
-#include "../Scene/SceneManager/SceneManager.h"
+#include "../Scene/SceneManager/BaseSceneManager.h"
 
 // ImGui
 #include "../2D/ImGuiManager.h"
