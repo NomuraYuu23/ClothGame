@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Engine/SceneTransition/ISceneTransition/ISceneTransition.h"
+#include "../../../Engine/SceneTransition/BaseSceneTransition/BaseSceneTransition.h"
 #include <memory>
 #include "../../../Engine/2D/Sprite.h"
 #include "../../../Engine/Camera/BaseCamera.h"
@@ -9,7 +9,7 @@
 /// シーン遷移カーテンver
 /// </summary>
 class SceneTransitionCurtain :
-    public ISceneTransition
+    public BaseSceneTransition
 {
 
 public: // メンバ関数

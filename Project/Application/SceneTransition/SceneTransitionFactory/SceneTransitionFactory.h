@@ -23,7 +23,7 @@ public: // メンバ関数
 	/// <param name="sceneName">シーンの名前</param>
 	/// <param name="requestSeneName">リクエストシーンの名前</param>
 	/// <returns></returns>
-	ISceneTransition* CreateSceneTransition(int sceneName, int requestSeneName) override;
+	BaseSceneTransition* CreateSceneTransition(int sceneName, int requestSeneName) override;
 
 private: // シングルトン
 	SceneTransitionFactory() = default;

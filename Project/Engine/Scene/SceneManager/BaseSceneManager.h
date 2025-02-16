@@ -3,7 +3,7 @@
 #include <thread>
 #include "../../Level/LevelDataManager.h"
 #include "../SceneFactory/AbstractSceneFactory.h"
-#include "../../SceneTransition/ISceneTransition/ISceneTransition.h"
+#include "../../SceneTransition/BaseSceneTransition/BaseSceneTransition.h"
 #include "../../SceneTransition/SceneTransitionFactory/AbstractSceneTransitionFactory.h"
 
 /// <summary>
@@ -63,7 +63,7 @@ protected: // メンバ変数
 	AbstractSceneTransitionFactory* sceneTransitionFactory_ = nullptr;
 
 	// シーン遷移を保持するメンバ変数
-	std::unique_ptr<ISceneTransition> sceneTransition_;
+	std::unique_ptr<BaseSceneTransition> sceneTransition_;
 
 	// シーン初期化用スレッド
 	std::thread sceneInitialize_;

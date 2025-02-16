@@ -7,7 +7,7 @@
 /// <summary>
 /// シーン遷移
 /// </summary>
-class ISceneTransition
+class BaseSceneTransition
 {
 
 public: // メンバ関数
@@ -15,7 +15,7 @@ public: // メンバ関数
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~ISceneTransition();
+	virtual ~BaseSceneTransition();
 
 	/// <summary>
 	/// 初期化

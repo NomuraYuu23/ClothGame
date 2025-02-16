@@ -1,12 +1,12 @@
-#include "ISceneTransition.h"
+#include "BaseSceneTransition.h"
 #include "../../Math/DeltaTime.h"
 
-ISceneTransition::~ISceneTransition()
+BaseSceneTransition::~BaseSceneTransition()
 {
 
 }
 
-void ISceneTransition::Initialize()
+void BaseSceneTransition::Initialize()
 {
 
 	fadeInTime_ = 1.0f; //フェードインタイム
@@ -54,7 +54,7 @@ void ISceneTransition::Initialize()
 
 }
 
-void ISceneTransition::Update()
+void BaseSceneTransition::Update()
 {
 
 	if (stoppingUpdates_) {

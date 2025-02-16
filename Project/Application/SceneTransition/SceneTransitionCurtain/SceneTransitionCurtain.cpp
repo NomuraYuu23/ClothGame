@@ -8,7 +8,7 @@ SceneTransitionCurtain::~SceneTransitionCurtain()
 void SceneTransitionCurtain::Initialize()
 {
 
-	ISceneTransition::Initialize();
+	BaseSceneTransition::Initialize();
 
 	// カメラ
 	camera_.Initialize();
@@ -41,7 +41,7 @@ void SceneTransitionCurtain::Initialize()
 void SceneTransitionCurtain::Update()
 {
 
-	ISceneTransition::Update();
+	BaseSceneTransition::Update();
 
 	// カメラ
 	camera_.Update();

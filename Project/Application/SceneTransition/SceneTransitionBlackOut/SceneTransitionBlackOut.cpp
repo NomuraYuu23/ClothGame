@@ -11,7 +11,7 @@ SceneTransitionBlackOut::~SceneTransitionBlackOut()
 void SceneTransitionBlackOut::Initialize()
 {
 
-	ISceneTransition::Initialize();
+	BaseSceneTransition::Initialize();
 
 	// テクスチャ読み込み
 	blockTextureHandle_ = TextureManager::Load("Resources/default/white2x2.png", DirectXCommon::GetInstance());
@@ -41,7 +41,7 @@ void SceneTransitionBlackOut::Initialize()
 void SceneTransitionBlackOut::Update()
 {
 
-	ISceneTransition::Update();
+	BaseSceneTransition::Update();
 
 	// α値変更
 	if (isFadeIn_) {

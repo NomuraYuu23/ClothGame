@@ -9,10 +9,10 @@ SceneTransitionFactory* SceneTransitionFactory::GetInstance()
 	return &instance;
 }
 
-ISceneTransition* SceneTransitionFactory::CreateSceneTransition(int sceneName, int requestSeneName)
+BaseSceneTransition* SceneTransitionFactory::CreateSceneTransition(int sceneName, int requestSeneName)
 {
 
-	ISceneTransition* newSceneTransition = nullptr;
+	BaseSceneTransition* newSceneTransition = nullptr;
 
 	// タイトルからゲーム
 	if (sceneName == SceneName::kTitle && requestSeneName == SceneName::kGame) {

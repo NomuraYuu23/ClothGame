@@ -504,7 +504,7 @@
     <ClCompile Include="Engine\Scene\BaseScene\BaseScene.cpp">
       <Filter>Engine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.cpp">
+    <ClCompile Include="Engine\SceneTransition\BaseSceneTransition\BaseSceneTransition.cpp">
       <Filter>Engine\SceneTransition</Filter>
     </ClCompile>
     <ClCompile Include="Application\Object\Skydome\Skydome.cpp">
@@ -1074,7 +1074,7 @@
     <ClInclude Include="Engine\Scene\BaseScene\BaseScene.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SceneTransition\ISceneTransition\ISceneTransition.h">
+    <ClInclude Include="Engine\SceneTransition\BaseSceneTransition\BaseSceneTransition.h">
       <Filter>Engine\SceneTransition</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SceneTransition\SceneTransitionFactory\AbstractSceneTransitionFactory.h">
