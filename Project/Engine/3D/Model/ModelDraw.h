@@ -32,9 +32,8 @@ public: // サブクラス
 	};
 	
 	// 描画前処理引数
-	struct PreDrawDesc
+	struct PreDrawParameters
 	{
-		ID3D12GraphicsCommandList* commandList = nullptr; // コマンドリスト
 		DirectionalLight* directionalLight = nullptr; // 平行光源
 		PointLightManager* pointLightManager = nullptr; // ポイントライト
 		SpotLightManager* spotLightManager = nullptr; // スポットライト
@@ -134,13 +133,18 @@ public: //関数（描画以外）
 	/// <summary>
 	/// 描画前処理
 	/// </summary>
-	/// <param name="desc">描画前処理引数</param>
-	static void PreDraw(const PreDrawDesc& desc);
+	/// <param name="commandList">コマンドリスト</param>
+	static void PreDraw(ID3D12GraphicsCommandList* commandList);
 
 	/// <summary>
 	/// 描画後処理
 	/// </summary>
 	static void PostDraw();
+
+	/// <summary>
+	/// 描画前処理パラメータ設定
+	/// </summary>
+	static void SetPreDrawParameters(const PreDrawParameters& preDrawParameters);
 
 public: // 描画
 

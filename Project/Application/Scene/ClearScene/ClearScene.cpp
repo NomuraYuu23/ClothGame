@@ -45,6 +45,15 @@ void ClearScene::Initialize()
 	const Vector4 kClearSpriteColor = { 0.6f, 1.0f, 0.6f, 1.0f };
 	clearSprite_.reset(Sprite::Create(clearTextureHandle_, kClearSpritePosition, kClearSpriteColor));
 
+	// モデル描画
+	ModelDraw::PreDrawParameters preDrawParameters;
+	preDrawParameters.directionalLight = directionalLight_.get();
+	preDrawParameters.fogManager = FogManager::GetInstance();
+	preDrawParameters.pointLightManager = pointLightManager_.get();
+	preDrawParameters.spotLightManager = spotLightManager_.get();
+	preDrawParameters.environmentTextureHandle = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
+	ModelDraw::SetPreDrawParameters(preDrawParameters);
+
 }
 
 void ClearScene::Update()
@@ -101,14 +110,7 @@ void ClearScene::Draw()
 
 #pragma region モデル描画
 
-	ModelDraw::PreDrawDesc preDrawDesc;
-	preDrawDesc.commandList = dxCommon_->GetCommadList();
-	preDrawDesc.directionalLight = directionalLight_.get();
-	preDrawDesc.fogManager = FogManager::GetInstance();
-	preDrawDesc.pointLightManager = pointLightManager_.get();
-	preDrawDesc.spotLightManager = spotLightManager_.get();
-	preDrawDesc.environmentTextureHandle = skyboxTextureHandle_;
-	ModelDraw::PreDraw(preDrawDesc);
+	ModelDraw::PreDraw(dxCommon_->GetCommadList());
 
 	// タイトル背景
 	clearBackGround_->Draw(camera_);
@@ -153,7 +155,5 @@ void ClearScene::TextureLoad()
 	buttonTextureHandle_ = TextureManager::Load("Resources/UI/ButtonA.png", dxCommon_);
 
 	clearTextureHandle_ = TextureManager::Load("Resources/OutGame/Clear.png", dxCommon_);
-
-	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
 }

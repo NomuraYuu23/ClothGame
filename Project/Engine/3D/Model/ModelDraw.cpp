@@ -156,17 +156,12 @@ void ModelDraw::Initialize(
 
 }
 
-void ModelDraw::PreDraw(const PreDrawDesc& desc)
+void ModelDraw::PreDraw(ID3D12GraphicsCommandList* commandList)
 {
 
 	assert(sCommandList_ == nullptr);
-	assert(desc.directionalLight);
-	assert(desc.pointLightManager);
-	assert(desc.spotLightManager);
-	assert(desc.fogManager);
-	assert(desc.environmentTextureHandle != 1024);
 
-	sCommandList_ = desc.commandList;
+	sCommandList_ = commandList;
 
 	// SRV
 	ID3D12DescriptorHeap* ppHeaps[] = { SRVDescriptorHerpManager::descriptorHeap_.Get() };
@@ -174,12 +169,6 @@ void ModelDraw::PreDraw(const PreDrawDesc& desc)
 
 	//形状を設定。PS0に設定しているものとは別。
 	sCommandList_->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	sDirectionalLight_ = desc.directionalLight;
-	sPointLightManager_ = desc.pointLightManager;
-	sSpotLightManager_ = desc.spotLightManager;
-	sFogManager_ = desc.fogManager;
-	sEnvironmentTextureHandle_ = desc.environmentTextureHandle;
 
 }
 
@@ -189,12 +178,18 @@ void ModelDraw::PostDraw()
 	// コマンドリストを解除
 	sCommandList_ = nullptr;
 
-	sDirectionalLight_ = nullptr;
-	sPointLightManager_ = nullptr;
-	sSpotLightManager_ = nullptr;
-	sFogManager_ = nullptr;
-
 	currentPipelineStateIndex_ = kPipelineStateIndexOfCount;
+
+}
+
+void ModelDraw::SetPreDrawParameters(const PreDrawParameters& preDrawParameters)
+{
+
+	sDirectionalLight_ = preDrawParameters.directionalLight;
+	sPointLightManager_ = preDrawParameters.pointLightManager;
+	sSpotLightManager_ = preDrawParameters.spotLightManager;
+	sFogManager_ = preDrawParameters.fogManager;
+	sEnvironmentTextureHandle_ = preDrawParameters.environmentTextureHandle;
 
 }
 

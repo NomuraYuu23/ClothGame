@@ -56,9 +56,6 @@ private: // メンバ関数
 
 private: // メンバ変数
 
-	// スカイボックス
-	uint32_t skyboxTextureHandle_ = 0;
-
 	// ボタンスプライト
 	std::unique_ptr<Sprite> buttonSprite_;
 	// ボタンテクスチャハンドル

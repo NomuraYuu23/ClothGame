@@ -70,9 +70,6 @@ private: // メンバ変数
 	// 追加カメラ
 	std::unique_ptr<FollowCamera> followCamera_;
 
-	// スカイボックス
-	uint32_t skyboxTextureHandle_ = 0;
-
 	// エフェクトマネージャー
 	EffectManager* effectManager_ = nullptr;
 

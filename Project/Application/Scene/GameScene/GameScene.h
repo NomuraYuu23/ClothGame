@@ -73,7 +73,7 @@ private: // メンバ関数
 
 private:
 
-	// パーティクルマネージャー
+	// パーティクルモデル
 	std::unique_ptr<Model> particleCircleModel_ = nullptr;
 
 	// 衝突マネージャー
@@ -81,9 +81,6 @@ private:
 
 	// 追加カメラ
 	std::unique_ptr<FollowCamera> followCamera_;
-
-	// スカイボックス
-	uint32_t skyboxTextureHandle_ = 0;
 
 	// エフェクトマネージャー
 	EffectManager* effectManager_ = nullptr;

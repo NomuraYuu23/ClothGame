@@ -51,7 +51,15 @@ void TutorialScene::Initialize() {
 	// 追従カメラ
 	followCamera_ = std::make_unique<FollowCamera>();
 	followCamera_->Initialize();
-	//followCamera_->SetTarget(player_->GetWorldTransformAdress());
+
+	// モデル描画
+	ModelDraw::PreDrawParameters preDrawParameters;
+	preDrawParameters.directionalLight = directionalLight_.get();
+	preDrawParameters.fogManager = FogManager::GetInstance();
+	preDrawParameters.pointLightManager = pointLightManager_.get();
+	preDrawParameters.spotLightManager = spotLightManager_.get();
+	preDrawParameters.environmentTextureHandle = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
+	ModelDraw::SetPreDrawParameters(preDrawParameters);
 
 	IScene::InitilaizeCheck();
 
@@ -118,14 +126,7 @@ void TutorialScene::Draw() {
 
 #pragma region モデル描画
 
-	ModelDraw::PreDrawDesc preDrawDesc;
-	preDrawDesc.commandList = dxCommon_->GetCommadList();
-	preDrawDesc.directionalLight = directionalLight_.get();
-	preDrawDesc.fogManager = FogManager::GetInstance();
-	preDrawDesc.pointLightManager = pointLightManager_.get();
-	preDrawDesc.spotLightManager = spotLightManager_.get();
-	preDrawDesc.environmentTextureHandle = skyboxTextureHandle_;
-	ModelDraw::PreDraw(preDrawDesc);
+	ModelDraw::PreDraw(dxCommon_->GetCommadList());
 
 	//3Dオブジェクトはここ
 
@@ -216,7 +217,5 @@ void TutorialScene::ModelCreate()
 
 void TutorialScene::TextureLoad()
 {
-
-	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
 }

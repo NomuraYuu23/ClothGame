@@ -70,6 +70,15 @@ void GameScene::Initialize() {
 	postEffectSystem_->SetPlayer(static_cast<Player*>(objectManager_->GetObjectPointer("Player")));
 	postEffectSystem_->SetRenderTargetTexture(renderTargetTexture_);
 
+	// モデル描画
+	ModelDraw::PreDrawParameters preDrawParameters;
+	preDrawParameters.directionalLight = directionalLight_.get();
+	preDrawParameters.fogManager = FogManager::GetInstance();
+	preDrawParameters.pointLightManager = pointLightManager_.get();
+	preDrawParameters.spotLightManager = spotLightManager_.get();
+	preDrawParameters.environmentTextureHandle = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
+	ModelDraw::SetPreDrawParameters(preDrawParameters);
+
 	IScene::InitilaizeCheck();
 
 }
@@ -152,14 +161,7 @@ void GameScene::Draw() {
 
 #pragma region モデル描画
 
-	ModelDraw::PreDrawDesc preDrawDesc;
-	preDrawDesc.commandList = dxCommon_->GetCommadList();
-	preDrawDesc.directionalLight = directionalLight_.get();
-	preDrawDesc.fogManager = FogManager::GetInstance();
-	preDrawDesc.pointLightManager = pointLightManager_.get();
-	preDrawDesc.spotLightManager = spotLightManager_.get();
-	preDrawDesc.environmentTextureHandle = skyboxTextureHandle_;
-	ModelDraw::PreDraw(preDrawDesc);
+	ModelDraw::PreDraw(dxCommon_->GetCommadList());
 
 	//3Dオブジェクトはここ
 
@@ -260,7 +262,5 @@ void GameScene::ModelCreate()
 
 void GameScene::TextureLoad()
 {
-
-	skyboxTextureHandle_ = TextureManager::Load("Resources/default/rostock_laage_airport_4k.dds", DirectXCommon::GetInstance());
 
 }
