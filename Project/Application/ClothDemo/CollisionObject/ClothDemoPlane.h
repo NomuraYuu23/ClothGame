@@ -39,9 +39,6 @@ private:
     // ClothGPUに渡すデータ
     ClothGPUCollision::Plane data_;
 
-    // 画面ちらつかないようの値
-    float screenDoesNotFlickerValue_;
-
     // 大きさ
     const Vector3 kScale_ = { 10.0f,10.0f,10.0f };
 

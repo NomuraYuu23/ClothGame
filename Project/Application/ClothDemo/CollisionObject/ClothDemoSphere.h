@@ -39,8 +39,5 @@ private:
     // ClothGPUに渡すデータ
     ClothGPUCollision::Sphere data_;
 
-    // 画面ちらつかないようの値
-    float screenDoesNotFlickerValue_;
-
 };
 
