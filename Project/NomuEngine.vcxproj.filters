@@ -418,6 +418,9 @@
     <Filter Include="shaders\GPUParticle\RunDust">
       <UniqueIdentifier>{63c54488-09c9-478d-9809-d8bf33df4e15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Framework">
+      <UniqueIdentifier>{2bedf1b2-9be8-4cc8-9cf4-6c3f3d3e6af5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -472,9 +475,6 @@
       <Filter>Engine\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Framework\MyFramework.cpp">
-      <Filter>Engine\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\Framework\MyGame.cpp">
       <Filter>Engine\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Engine\GlobalVariables\GlobalVariables.cpp">
@@ -958,26 +958,29 @@
     <ClCompile Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.cpp">
       <Filter>Application\GPUParticle</Filter>
     </ClCompile>
-    <ClCompile Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Application\OutGameObject\Curtain\Curtain.cpp">
       <Filter>Application\OutGameObject\Curtain</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\OutGameObject\TitleBackGround\TitleBackGround.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\OutGameObject\ClearBackGround\ClearBackGround.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application\GPUParticle\MissParticle\MissParticle.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Scene\SceneManager\BaseSceneManager.cpp">
       <Filter>Engine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Application\Scene\SceneManager\SceneManager.cpp">
       <Filter>Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Framework\MyGame.cpp">
+      <Filter>Application\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GPUParticle\MissParticle\MissParticle.cpp">
+      <Filter>Application\GPUParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.cpp">
+      <Filter>Application\SceneTransition</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\OutGameObject\TitleBackGround\TitleBackGround.cpp">
+      <Filter>Application\OutGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\OutGameObject\ClearBackGround\ClearBackGround.cpp">
+      <Filter>Application\OutGameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1045,9 +1048,6 @@
       <Filter>Engine\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Framework\MyFramework.h">
-      <Filter>Engine\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Framework\MyGame.h">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GlobalVariables\GlobalVariables.h">
@@ -1659,26 +1659,29 @@
     <ClInclude Include="Application\GPUParticle\JumpLandingParticle\JumpLandingParticle.h">
       <Filter>Application\GPUParticle</Filter>
     </ClInclude>
-    <ClInclude Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Application\OutGameObject\Curtain\Curtain.h">
       <Filter>Application\OutGameObject\Curtain</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\OutGameObject\TitleBackGround\TitleBackGround.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\OutGameObject\ClearBackGround\ClearBackGround.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\GPUParticle\MissParticle\MissParticle.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Scene\SceneManager\BaseSceneManager.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Application\Scene\SceneManager\SceneManager.h">
       <Filter>Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\GPUParticle\MissParticle\MissParticle.h">
+      <Filter>Application\GPUParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\SceneTransition\SceneTransitionCurtain\SceneTransitionCurtain.h">
+      <Filter>Application\SceneTransition</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Framework\MyGame.h">
+      <Filter>Application\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\OutGameObject\ClearBackGround\ClearBackGround.h">
+      <Filter>Application\OutGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\OutGameObject\TitleBackGround\TitleBackGround.h">
+      <Filter>Application\OutGameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
