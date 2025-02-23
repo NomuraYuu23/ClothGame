@@ -75,73 +75,77 @@ Model::ModelData ModelLoader::LoadModelFile(const std::string& directoryPath, co
 			}
 		}
 
-		// フェイス解析
-		for (uint32_t faceIndex = 0; faceIndex < mesh->mNumFaces; ++faceIndex) {
-			aiFace& face = mesh->mFaces[faceIndex];
-			assert(face.mNumIndices == 3);// 三角形のみサポート
+		// 頂点解析
+		for (uint32_t vertexIndex = 0; vertexIndex < mesh->mNumVertices; ++vertexIndex) {
+			aiVector3D& position = mesh->mVertices[vertexIndex];
+			aiVector3D& normal = mesh->mNormals[vertexIndex];
+			aiVector3D& texcoord = mesh->mTextureCoords[0][vertexIndex];
 
-			// 頂点解析
-			for (uint32_t element = 0; element < face.mNumIndices; ++element) {
-				uint32_t vertexIndex = face.mIndices[element];
-				aiVector3D& position = mesh->mVertices[vertexIndex];
-				aiVector3D& normal = mesh->mNormals[vertexIndex];
-				aiVector3D& texcoord = mesh->mTextureCoords[0][vertexIndex];
+			VertexData vertex;
+			vertex.position = { -position.x, position.y, position.z, 1.0f };
+			vertex.normal = { -normal.x, normal.y, normal.z };
+			vertex.texcoord = { texcoord.x, texcoord.y };
 
-				VertexData vertex;
-				vertex.position = { -position.x, position.y, position.z, 1.0f };
-				vertex.normal = { -normal.x, normal.y, normal.z };
-				vertex.texcoord = { texcoord.x, texcoord.y };
+			// テクスチャを移動
+			if (thisObj) {
+				vertex.texcoord.x += (mesh->mMaterialIndex - 1) * 2.0f;
+			}
+			else {
+				vertex.texcoord.x += mesh->mMaterialIndex * 2.0f;
+			}
 
-				// テクスチャを移動
-				if (thisObj) {
-					vertex.texcoord.x += (mesh->mMaterialIndex - 1) * 2.0f;
+			VertexInfluence vertexInfluence;
+
+			// ボーン情報取得
+			if (mesh->HasBones()) {
+				for (uint32_t i = 0; i < kNumMaxInfluence; ++i) {
+					vertexInfluence.weights[i] = 0.0f;
+					vertexInfluence.indecis[i] = 1000;
 				}
-				else {
-					vertex.texcoord.x += mesh->mMaterialIndex * 2.0f;
-				}
 
-				VertexInfluence vertexInfluence;
-
-				// ボーン情報取得
-				if (mesh->HasBones()) {
-					for (uint32_t i = 0; i < kNumMaxInfluence; ++i) {
-						vertexInfluence.weights[i] = 0.0f;
-						vertexInfluence.indecis[i] = 1000;
-					}
-
-					// 重みデータ
-					for (uint32_t i = 0; i < boneDatas.size(); ++i) {
-						for (uint32_t j = 0; j < boneDatas[i].size(); ++j) {
-							if (boneDatas[i][j].first == vertexIndex) {
-								// 空いている場所
-								for (uint32_t k = 0; k < kNumMaxInfluence; ++k) {
-									if (vertexInfluence.weights[k] == 0.0f) {
-										vertexInfluence.weights[k] = boneDatas[i][j].second;
-										vertexInfluence.indecis[k] = i + scene->mNumMeshes + 1;
-										break;
-									}
+				// 重みデータ
+				for (uint32_t i = 0; i < boneDatas.size(); ++i) {
+					for (uint32_t j = 0; j < boneDatas[i].size(); ++j) {
+						if (boneDatas[i][j].first == vertexIndex) {
+							// 空いている場所
+							for (uint32_t k = 0; k < kNumMaxInfluence; ++k) {
+								if (vertexInfluence.weights[k] == 0.0f) {
+									vertexInfluence.weights[k] = boneDatas[i][j].second;
+									vertexInfluence.indecis[k] = i + scene->mNumMeshes + 1;
+									break;
 								}
 							}
 						}
 					}
 				}
-				else {
-					for (uint32_t i = 1; i < kNumMaxInfluence; ++i) {
-						vertexInfluence.weights[i] = 0.0f;
-						vertexInfluence.indecis[i] = 1000;
-					}
-					vertexInfluence.weights[0] = 1.0f;
-					if (scene->mNumMeshes == 1) {
-						vertexInfluence.indecis[0] = meshIndex; // 親ノード分＋1
-					}
-					else {
-						vertexInfluence.indecis[0] = meshIndex + 1; // 親ノード分＋1
-					}
+			}
+			else {
+				for (uint32_t i = 1; i < kNumMaxInfluence; ++i) {
+					vertexInfluence.weights[i] = 0.0f;
+					vertexInfluence.indecis[i] = 1000;
 				}
+				vertexInfluence.weights[0] = 1.0f;
+				if (scene->mNumMeshes == 1) {
+					vertexInfluence.indecis[0] = meshIndex; // 親ノード分＋1
+				}
+				else {
+					vertexInfluence.indecis[0] = meshIndex + 1; // 親ノード分＋1
+				}
+			}
 
-				modelData.vertices.push_back(vertex);
-				modelData.vertexInfluences.push_back(vertexInfluence);
+			modelData.vertices.push_back(vertex);
+			modelData.vertexInfluences.push_back(vertexInfluence);
 
+		}
+
+		// フェイス解析
+		for (uint32_t faceIndex = 0; faceIndex < mesh->mNumFaces; ++faceIndex) {
+			aiFace& face = mesh->mFaces[faceIndex];
+			assert(face.mNumIndices == 3);// 三角形のみサポート
+
+			for (uint32_t element = 0; element < face.mNumIndices; ++element) {
+				uint32_t vertexIndex = face.mIndices[element];
+				modelData.indices.push_back(vertexIndex);
 			}
 
 		}

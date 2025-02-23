@@ -67,7 +67,7 @@ void Model::Initialize(const std::string& directoryPath, const std::string& file
 
 	//メッシュ生成
 	mesh_ = std::make_unique<Mesh>();
-	mesh_->CreateMesh(sDevice_,modelData_.vertices,modelData_.vertexInfluences, dxCommon->GetCommadListLoad());
+	mesh_->CreateMesh(sDevice_,modelData_.vertices,modelData_.vertexInfluences, modelData_.indices, dxCommon->GetCommadListLoad());
 
 	for (size_t i = 0; i < modelData_.material.textureFilePaths.size(); ++i) {
 		// テクスチャハンドル

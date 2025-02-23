@@ -71,6 +71,8 @@ public:
 		std::vector<AnimationData> animations;
 		// ノードアニメーション数
 		uint32_t nodeAnimationNum;
+		// インデックス
+		std::vector<uint32_t> indices;
 
 	};
 

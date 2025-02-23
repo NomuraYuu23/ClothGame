@@ -277,8 +277,11 @@ void ModelDraw::AnimObjectDraw(AnimObjectDesc& desc, uint32_t renderTargetIndex)
 	// 頂点
 	desc.model->GetMesh()->SetGraphicsRootDescriptorTableAnimVertHandleGPU(sCommandList_, 16);
 
+	// 頂点index
+	desc.model->GetMesh()->SetGraphicsRootDescriptorTableIndexHandleGPU(sCommandList_, 17);
+
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), 1, 0, 0);
+	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().indices.size()), 1, 0, 0);
 
 }
 
@@ -296,7 +299,10 @@ void ModelDraw::NormalObjectDraw(NormalObjectDesc& desc)
 	sCommandList_->SetGraphicsRootSignature(sRootSignature_[kPipelineStateIndexModel]);
 	currentPipelineStateIndex_ = kPipelineStateIndexModel;
 
+	// 頂点バッファの設定
 	sCommandList_->IASetVertexBuffers(0, 1, desc.model->GetMesh()->GetVbView());
+	//IBVを設定
+	sCommandList_->IASetIndexBuffer(desc.model->GetMesh()->GetIbView());
 
 	//マテリアルCBufferの場所を設定
 	if (desc.material) {
@@ -353,7 +359,7 @@ void ModelDraw::NormalObjectDraw(NormalObjectDesc& desc)
 	TextureManager::GetInstance()->SetGraphicsRootDescriptorTable(sCommandList_, 15, sEnvironmentTextureHandle_);
 
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), 1, 0, 0);
+	sCommandList_->DrawIndexedInstanced(UINT(desc.model->GetModelData().indices.size()), 1, 0, 0, 0);
 
 }
 
@@ -440,9 +446,11 @@ void ModelDraw::AnimInverseObjectDraw(AnimObjectDesc& desc, uint32_t renderTarge
 
 	// 頂点
 	desc.model->GetMesh()->SetGraphicsRootDescriptorTableAnimVertHandleGPU(sCommandList_, 16);
+	// 頂点index
+	desc.model->GetMesh()->SetGraphicsRootDescriptorTableIndexHandleGPU(sCommandList_, 17);
 
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), 1, 0, 0);
+	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().indices.size()), 1, 0, 0);
 
 }
 
@@ -509,8 +517,11 @@ void ModelDraw::ManyAnimObjectsDraw(ManyAnimObjectsDesc& desc)
 	// 頂点
 	desc.model->GetMesh()->SetGraphicsRootDescriptorTableAnimVertHandleGPU(sCommandList_, 16);
 
+	// 頂点index
+	desc.model->GetMesh()->SetGraphicsRootDescriptorTableIndexHandleGPU(sCommandList_, 17);
+
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), desc.numInstance, 0, 0);
+	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().indices.size()), desc.numInstance, 0, 0);
 
 }
 
@@ -527,6 +538,8 @@ void ModelDraw::ManyNormalObjectsDraw(ManyNormalObjectsDesc& desc) {
 
 	//VBVを設定 (インフルエンスと合体)
 	sCommandList_->IASetVertexBuffers(0, 1, desc.model->GetMesh()->GetVbView());
+	//IBVを設定
+	sCommandList_->IASetIndexBuffer(desc.model->GetMesh()->GetIbView());
 
 	// マテリアル
 	sCommandList_->SetGraphicsRootDescriptorTable(0, *desc.materialsHandle);
@@ -575,7 +588,7 @@ void ModelDraw::ManyNormalObjectsDraw(ManyNormalObjectsDesc& desc) {
 	TextureManager::GetInstance()->SetGraphicsRootDescriptorTable(sCommandList_, 15, sEnvironmentTextureHandle_);
 
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), desc.numInstance, 0, 0);
+	sCommandList_->DrawIndexedInstanced(UINT(desc.model->GetModelData().indices.size()), 1, 0, 0, 0);
 
 }
 
@@ -591,6 +604,8 @@ void ModelDraw::NormalOutlineDraw(NormalOutlineDesc& desc)
 	currentPipelineStateIndex_ = kPipelineStateIndexNormalOutline;
 
 	sCommandList_->IASetVertexBuffers(0, 1, desc.model->GetMesh()->GetVbView());
+	//IBVを設定
+	sCommandList_->IASetIndexBuffer(desc.model->GetMesh()->GetIbView());
 
 	// ワールドトランスフォーム
 	sCommandList_->SetGraphicsRootConstantBufferView(0, desc.worldTransform->GetTransformationMatrixBuff()->GetGPUVirtualAddress());
@@ -598,7 +613,7 @@ void ModelDraw::NormalOutlineDraw(NormalOutlineDesc& desc)
 	sCommandList_->SetGraphicsRootConstantBufferView(1, desc.outline->GetOutlineDataBuff()->GetGPUVirtualAddress());
 
 	//描画
-	sCommandList_->DrawInstanced(UINT(desc.model->GetModelData().vertices.size()), 1, 0, 0);
+	sCommandList_->DrawIndexedInstanced(UINT(desc.model->GetModelData().indices.size()), 1, 0, 0, 0);
 
 }
 

@@ -26,6 +26,7 @@ void Mesh::CreateMesh(
 	ID3D12Device* sDevice, 
 	const std::vector<VertexData>& vertices,
 	const std::vector<VertexInfluence>& vertexInfluences,
+	const std::vector<uint32_t>& indices,
 	ID3D12GraphicsCommandList* commandList) {
 
 	// SkinningInformationバッファ
@@ -44,6 +45,9 @@ void Mesh::CreateMesh(
 
 	// UAVバッファ
 	AnimBuffInitialize(sDevice, vertices, commandList);
+
+	// インデックス
+	IndexBufferInitialize(sDevice, indices);
 
 }
 
@@ -67,6 +71,11 @@ void Mesh::SetGraphicsRootDescriptorTableAnimVertHandleGPU(ID3D12GraphicsCommand
 {
 	ChangeNonPixelShaderResource(commandList);
 	commandList->SetGraphicsRootDescriptorTable(rootParameterIndex, animVertSRVHandleGPU_);
+}
+
+void Mesh::SetGraphicsRootDescriptorTableIndexHandleGPU(ID3D12GraphicsCommandList* commandList, uint32_t rootParameterIndex)
+{
+	commandList->SetGraphicsRootDescriptorTable(rootParameterIndex, indexHandleGPU_);
 }
 
 void Mesh::ChangeNonPixelShaderResource(ID3D12GraphicsCommandList* commandList)
@@ -224,6 +233,37 @@ void Mesh::AnimBuffInitialize(
 	commandList->SetComputeRootConstantBufferView(1, skinningInformationBuff_->GetGPUVirtualAddress());
 
 	commandList->Dispatch(static_cast<UINT>(vertices.size() + 1023) / 1024, 1, 1);
+
+}
+
+void Mesh::IndexBufferInitialize(ID3D12Device* sDevice, const std::vector<uint32_t>& indices)
+{
+
+	// インデックスバッファ
+	indexBuff_ = BufferResource::CreateBufferResource(sDevice, ((sizeof(uint32_t) + 0xff) & ~0xff) * indices.size());
+
+	// インデックスバッファビュー
+	ibView_.BufferLocation = indexBuff_->GetGPUVirtualAddress();
+	ibView_.SizeInBytes = static_cast<UINT>(sizeof(uint32_t) * indices.size());
+	ibView_.Format = DXGI_FORMAT_R32_UINT;
+
+	// インデックスバッファマップ
+	indexBuff_->Map(0, nullptr, reinterpret_cast<void**>(&indexMap_));
+	std::memcpy(indexMap_, indices.data(), sizeof(uint32_t) * indices.size());
+
+	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
+	srvDesc.Format = DXGI_FORMAT_UNKNOWN;
+	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
+	srvDesc.Buffer.FirstElement = 0;
+	srvDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
+	srvDesc.Buffer.NumElements = static_cast<UINT>(indices.size());
+	srvDesc.Buffer.StructureByteStride = sizeof(uint32_t);
+	indexHandleCPU_ = SRVDescriptorHerpManager::GetCPUDescriptorHandle();
+	indexHandleGPU_ = SRVDescriptorHerpManager::GetGPUDescriptorHandle();
+	indexIndexDescriptorHeap_ = SRVDescriptorHerpManager::GetNextIndexDescriptorHeap();
+	SRVDescriptorHerpManager::NextIndexDescriptorHeapChange();
+	sDevice->CreateShaderResourceView(indexBuff_.Get(), &srvDesc, indexHandleCPU_);
 
 }
 

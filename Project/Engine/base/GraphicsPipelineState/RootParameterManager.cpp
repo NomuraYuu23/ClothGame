@@ -67,6 +67,7 @@ void RootParameterManager::Initialize()
 	data.push_back(kCBV_PSIndexFog); // 霧
 	data.push_back(kSRV_PSIndexEnvironmentTexture); // 環境マップ(映り込み用テクスチャ)
 	data.push_back(kSRV_VSIndexVertex); // 頂点
+	data.push_back(kSRV_VSIndexVertexIndex); // 頂点index
 	Analyze(kRootParameterIndexAnimModel, data); // 解析
 	data.clear(); // クリア
 #pragma endregion
@@ -110,6 +111,7 @@ void RootParameterManager::Initialize()
 	data.push_back(kCBV_PSIndexFog); // 霧
 	data.push_back(kSRV_PSIndexEnvironmentTexture); // 環境マップ(映り込み用テクスチャ)
 	data.push_back(kSRV_VSIndexVertex); // 頂点
+	data.push_back(kSRV_VSIndexVertexIndex); // 頂点index
 	Analyze(kRootParameterIndexManyAnimModels, data); // 解析
 	data.clear(); // クリア
 #pragma endregion

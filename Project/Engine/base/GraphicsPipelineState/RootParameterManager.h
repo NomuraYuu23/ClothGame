@@ -39,6 +39,7 @@ enum SRV_VSIndex {
 	kSRV_VSIndexLineForGPU = 3, // 線描画
 	kSRV_VSIndexGPUParticleForGPU = 4, //  GPUパーティクル用
 	kSRV_VSIndexVertex= 5, // 頂点
+	kSRV_VSIndexVertexIndex = 6, // 頂点index
 	kSRV_VSIndexOfCount,
 };
 

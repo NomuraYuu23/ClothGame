@@ -31,10 +31,13 @@ public: // 関数
 	/// <param name="sDevice">デバイス</param>
 	/// <param name="vertices">頂点データ</param>
 	/// <param name="vertexInfluences">インフルエンスデータ</param>
+	/// <param name="indices">インデックスデータ</param>
+	/// <param name="commandList">コマンドリスト</param>
 	void CreateMesh(
 		ID3D12Device* sDevice,
 		const std::vector<VertexData>& vertices,
 		const std::vector<VertexInfluence>& vertexInfluences,
+		const std::vector<uint32_t>& indices,
 		ID3D12GraphicsCommandList* commandList);
 
 	/// <summary>
@@ -58,6 +61,13 @@ public: // 関数
 	void SetGraphicsRootDescriptorTableAnimVertHandleGPU(ID3D12GraphicsCommandList* commandList, uint32_t rootParameterIndex);
 
 	/// <summary>
+	/// インデックスバッファ
+	/// </summary>
+	/// <param name="commandList">コマンドリスト</param>
+	/// <param name="rootParameterIndex">ルートパラメータ</param>
+	void SetGraphicsRootDescriptorTableIndexHandleGPU(ID3D12GraphicsCommandList* commandList, uint32_t rootParameterIndex);
+
+	/// <summary>
 	/// skinningバッファ
 	/// </summary>
 	/// <returns></returns>
@@ -68,6 +78,12 @@ public: // 関数
 	/// </summary>
 	/// <returns></returns>
 	SkinningInformation* GetSkinningInformationMap() { return skinningInformationMap_; }
+
+	/// <summary>
+	/// インデックスバッファ
+	/// </summary>
+	/// <returns></returns>
+	D3D12_INDEX_BUFFER_VIEW* GetIbView() { return &ibView_; }
 	
 	/// <summary>
 	/// ピクセルシェーダ以外用のリソースに変更
@@ -110,6 +126,15 @@ private: // 関数
 		ID3D12Device* sDevice,
 		const std::vector<VertexData>& vertices,
 		ID3D12GraphicsCommandList* commandList);
+
+	/// <summary>
+	/// インデックスバッファの初期化
+	/// </summary>
+	/// <param name="sDevice">デバイス</param>
+	/// <param name="indices">インデックス</param>
+	void IndexBufferInitialize(
+		ID3D12Device* sDevice,
+		const std::vector<uint32_t>& indices);
 
 private:
 
@@ -160,6 +185,20 @@ private:
 	Microsoft::WRL::ComPtr<ID3D12Resource> skinningInformationBuff_;
 	// SkinningInformationバッファマップ
 	SkinningInformation* skinningInformationMap_ = nullptr;
+
+	// インデックスバッファ
+	Microsoft::WRL::ComPtr<ID3D12Resource> indexBuff_;
+	// インデックスバッファマップ
+	uint32_t* indexMap_ = nullptr;
+	// インデックスバッファビュー
+	D3D12_INDEX_BUFFER_VIEW ibView_{};
+
+	// CPUハンドル
+	D3D12_CPU_DESCRIPTOR_HANDLE indexHandleCPU_{};
+	// GPUハンドル
+	D3D12_GPU_DESCRIPTOR_HANDLE indexHandleGPU_{};
+	// ディスクリプタヒープの位置
+	uint32_t indexIndexDescriptorHeap_ = 0;
 
 public:
 
