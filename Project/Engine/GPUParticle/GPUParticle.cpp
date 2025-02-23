@@ -119,6 +119,8 @@ void GPUParticle::Draw(
 
 	// 頂点データ
 	commandList->IASetVertexBuffers(0, 1, model_->GetMesh()->GetVbView());
+	//IBVを設定
+	commandList->IASetIndexBuffer(model_->GetMesh()->GetIbView());
 
 	// GPUパーティクル用
 	commandList->SetGraphicsRootDescriptorTable(0, srvHandleGPU_);
@@ -132,7 +134,7 @@ void GPUParticle::Draw(
 	// マテリアル
 	commandList->SetGraphicsRootConstantBufferView(3, material_->GetMaterialBuff()->GetGPUVirtualAddress());
 	// 描画
-	commandList->DrawInstanced(6, kParticleMax_, 0, 0);
+	commandList->DrawIndexedInstanced(UINT(model_->GetModelData().indices.size()), kParticleMax_, 0, 0, 0);
 
 	// リソースバリア
 	ResouseBarrierToUnorderedAccess(commandList);
