@@ -1,11 +1,11 @@
 #include "BaseScene.h"
 
 //タイトルシーンで初期化
-int BaseScene::sceneNo_ = kDebug;
-int BaseScene::requestSceneNo_ = kDebug;
+int BaseScene::sceneNo_ = kTitle;
+int BaseScene::requestSceneNo_ = kTitle;
 
-int BaseScene::sceneNoCheck_ = kDebug;
-int BaseScene::requestSceneNoCheck_ = kDebug;
+int BaseScene::sceneNoCheck_ = kTitle;
+int BaseScene::requestSceneNoCheck_ = kTitle;
 
 DirectXCommon* BaseScene::dxCommon_ = nullptr;
 Input* BaseScene::input_ = nullptr;
