@@ -92,10 +92,6 @@ void ClothGPU::Draw(ID3D12GraphicsCommandList* commandList, BaseCamera* camera)
 
 	// nullptrチェック
 	assert(commandList);
-	assert(sDirectionalLight_);
-	assert(sPointLightManager_);
-	assert(sSpotLightManager_);
-	assert(sFogManager_);
 
 	// SRV
 	ID3D12DescriptorHeap* ppHeaps[] = { SRVDescriptorHerpManager::descriptorHeap_.Get() };
