@@ -1,5 +1,5 @@
 #include "MyFramework.h"
-#include "../Physics/ClothGPU/ClothGPU.h"
+#include "../Physics/ClothGPU/ClothManager.h"
 
 using namespace NomeEngine;
 
@@ -75,7 +75,7 @@ void MyFramework::Initialize()
 	IObject::StaticInitialize(dxCommon->GetCommadList());
 
 	// 布
-	ClothGPU::StaticInitialize(
+	ClothManager::GetInstance()->Initialize(
 		dxCommon->GetDevice(),
 		FogManager::GetInstance());
 

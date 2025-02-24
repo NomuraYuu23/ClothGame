@@ -39,7 +39,7 @@ void TutorialScene::Initialize() {
 	isDebugCameraActive_ = false;
 
 	// 布ライト
-	ClothGPU::SetLight(
+	ClothManager::GetInstance()->SetLight(
 		directionalLight_.get(),
 		pointLightManager_.get(),
 		spotLightManager_.get());

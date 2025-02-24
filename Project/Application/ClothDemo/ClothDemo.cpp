@@ -12,7 +12,7 @@ void ClothDemo::Initilalize(
 	input_ = Input::GetInstance();
 
 	// 布のライト
-	ClothGPU::SetLight(
+	ClothManager::GetInstance()->SetLight(
 		directionalLight,
 		pointLightManager,
 		spotLightManager);

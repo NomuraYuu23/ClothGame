@@ -42,7 +42,7 @@ void GameScene::Initialize() {
 	collisionManager_->Initialize();
 
 	// 布
-	ClothGPU::SetLight(
+	ClothManager::GetInstance()->SetLight(
 		directionalLight_.get(),
 		pointLightManager_.get(),
 		spotLightManager_.get());

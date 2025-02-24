@@ -22,6 +22,7 @@
 #include "../../Light/SpotLight/SpotLightManager.h"
 #include "../../3D/Fog/FogManager.h"
 #include "ClothGPUCollision.h"
+#include "ClothManager.h"
 
 /// <summary>
 /// 布GPU
@@ -51,23 +52,6 @@ public: // サブクラス
 		kClothSpringBufferStructIndexBendingTopPrime, // 曲げバネ、上、(質点index % 4 > 1)
 
 		kClothSpringBufferStructIndexOfCount // 数える用
-	};
-
-	/// <summary>
-	/// CSのパイプラインステート
-	/// </summary>
-	enum PipelineStateCSIndex {
-		kPipelineStateCSIndexInitVertex,// 初期化 頂点
-		kPipelineStateCSIndexInitMassPoint,// 初期化 質点
-		kPipelineStateCSIndexInitSurface,// 初期化 面
-
-		kPipelineStateCSIndexUpdateExternalOperation,// 更新 外部操作フェーズ
-		kPipelineStateCSIndexUpdateIntegral,// 更新 積分フェーズ
-		kPipelineStateCSIndexUpdateSpring,// 更新 バネフェーズ
-		kPipelineStateCSIndexUpdateSurface,// 更新 面
-		kPipelineStateCSIndexUpdateVertex,// 更新 頂点フェーズ
-
-		kPipelineStateCSIndexOfCount // 数える用
 	};
 
 	/// <summary>
@@ -211,115 +195,6 @@ public: // サブクラス
 		// 厚み
 		float thickness;
 	};
-
-private: // 静的メンバ変数
-
-	//	平行光源
-	static DirectionalLight* sDirectionalLight_;
-	// ポイントライトマネージャ
-	static PointLightManager* sPointLightManager_;
-	//	スポットライトマネージャ
-	static SpotLightManager* sSpotLightManager_;
-	// 霧マネージャー
-	static FogManager* sFogManager_;
-
-	// ルートシグネチャCS
-	static std::array<Microsoft::WRL::ComPtr<ID3D12RootSignature>, kPipelineStateCSIndexOfCount> rootSignaturesCS_;
-	// パイプラインステートオブジェクトCS
-	static std::array<Microsoft::WRL::ComPtr<ID3D12PipelineState>, kPipelineStateCSIndexOfCount> pipelineStatesCS_;
-
-public: // 静的メンバ関数
-
-	/// <summary>
-	/// 静的初期化
-	/// </summary>
-	/// <param name="device"></param>
-	/// <param name="sFogManager"></param>
-	static void StaticInitialize(
-		ID3D12Device* device,
-		FogManager* sFogManager);
-
-	/// <summary>
-	/// ライト設定
-	/// </summary>
-	/// <param name="sDirectionalLight"></param>
-	/// <param name="sPointLightManager"></param>
-	/// <param name="sSpotLightManager"></param>
-	static void SetLight(
-		DirectionalLight* sDirectionalLight,
-		PointLightManager* sPointLightManager,
-		SpotLightManager* sSpotLightManager);
-
-private: // CSの初期化、設定
-
-	/// <summary>
-	/// パイプラインステートの初期化CS
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitialize(ID3D12Device* device);
-
-	/// <summary>
-	/// 初期化 頂点
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForInitVertex(ID3D12Device* device);
-
-	/// <summary>
-	/// 初期化 質点
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForInitMassPoint(ID3D12Device* device);
-
-	/// <summary>
-	/// 初期化 面
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForInitSurface(ID3D12Device* device);
-
-	/// <summary>
-	/// 更新 外部操作フェーズ
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForUpdateExternalOperation(ID3D12Device* device);
-
-	/// <summary>
-	/// 更新 積分フェーズ
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForUpdateIntegral(ID3D12Device* device);
-
-	/// <summary>
-	/// 更新 バネフェーズ
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForUpdateSpring(ID3D12Device* device);
-
-	/// <summary>
-	/// 更新 面
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForUpdateSurface(ID3D12Device* device);
-
-	/// <summary>
-	/// 更新 頂点フェーズ
-	/// </summary>
-	/// <param name="device"></param>
-	static void PipelineStateCSInitializeForUpdateVertex(ID3D12Device* device);
-
-	/// <summary>
-	/// パイプラインステートの初期化 共通関数
-	/// </summary>
-	/// <param name="device">デバイス</param>
-	/// <param name="rootParameters">ルートパラメータ</param>
-	/// <param name="numParameters">ルートパラメータ数</param>
-	/// <param name="pipelineStateCSIndex">どのパイプラインか</param>
-	/// <param name="filePath">HLSLのファイルパス</param>
-	static void PipelineStateCSCommonInitialize(
-		ID3D12Device* device,
-		D3D12_ROOT_PARAMETER* rootParameters,
-		uint32_t numParameters,
-		PipelineStateCSIndex pipelineStateCSIndex,
-		const std::wstring& filePath);
 
 public: // メンバ関数
 
@@ -791,6 +666,9 @@ private: // 変数
 
 	// バネ強度を決めるための変数
 	float determineStiffness_;
+
+	// 布マネージャー
+	ClothManager* clothManager_;
 
 };
 

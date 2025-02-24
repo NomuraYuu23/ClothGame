@@ -982,6 +982,12 @@
     <ClCompile Include="Application\OutGameObject\ClearBackGround\ClearBackGround.cpp">
       <Filter>Application\OutGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothPipelineState.cpp">
+      <Filter>Engine\Physics\ClothGPU</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothManager.cpp">
+      <Filter>Engine\Physics\ClothGPU</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imgui.h">
@@ -1682,6 +1688,12 @@
     </ClInclude>
     <ClInclude Include="Application\OutGameObject\TitleBackGround\TitleBackGround.h">
       <Filter>Application\OutGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothPipelineState.h">
+      <Filter>Engine\Physics\ClothGPU</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothManager.h">
+      <Filter>Engine\Physics\ClothGPU</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

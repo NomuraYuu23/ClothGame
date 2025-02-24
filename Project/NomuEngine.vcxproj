@@ -293,6 +293,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\GlobalVariables\GlobalVariables.cpp" />
     <ClCompile Include="Engine\Math\Ease.cpp" />
     <ClCompile Include="Engine\Math\Math.cpp" />
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothManager.cpp" />
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothPipelineState.cpp" />
     <ClCompile Include="Engine\Physics\Cloth\Cloth.cpp" />
     <ClCompile Include="Engine\Physics\ClothGPU\ClothGPU.cpp" />
     <ClCompile Include="Engine\Physics\ClothGPU\ClothGPUCollision.cpp" />
@@ -523,6 +525,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Math\Ease.h" />
     <ClInclude Include="Engine\Math\Math.h" />
     <ClInclude Include="Application\SceneTransition\SceneTransitionBlackOut\SceneTransitionBlackOut.h" />
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothManager.h" />
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothPipelineState.h" />
     <ClInclude Include="Engine\Physics\Cloth\Cloth.h" />
     <ClInclude Include="Engine\Physics\ClothGPU\ClothGPU.h" />
     <ClInclude Include="Engine\Physics\ClothGPU\ClothGPUCollision.h" />
