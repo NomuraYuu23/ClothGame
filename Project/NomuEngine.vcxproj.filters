@@ -421,6 +421,9 @@
     <Filter Include="Application\Framework">
       <UniqueIdentifier>{2bedf1b2-9be8-4cc8-9cf4-6c3f3d3e6af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Physics\ClothGPU\Collision">
+      <UniqueIdentifier>{47e28034-4ad2-416d-83c3-1e31d99850f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -805,9 +808,6 @@
     <ClCompile Include="Engine\base\DxCommon\SwapChain.cpp">
       <Filter>Engine\Base\DxCommon</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Physics\ClothGPU\ClothGPUCollision.cpp">
-      <Filter>Engine\Physics\ClothGPU</Filter>
-    </ClCompile>
     <ClCompile Include="Application\ClothDemo\ClothDemo.cpp">
       <Filter>Application\ClothDemo</Filter>
     </ClCompile>
@@ -987,6 +987,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Physics\ClothGPU\ClothManager.cpp">
       <Filter>Engine\Physics\ClothGPU</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothGPUCollision.cpp">
+      <Filter>Engine\Physics\ClothGPU\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\ClothGPU\ClothGPUCollisionManager.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1503,9 +1509,6 @@
     <ClInclude Include="Engine\base\DxCommon\Log.h">
       <Filter>Engine\Base\DxCommon</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Physics\ClothGPU\ClothGPUCollision.h">
-      <Filter>Engine\Physics\ClothGPU</Filter>
-    </ClInclude>
     <ClInclude Include="Application\ClothDemo\ClothDemo.h">
       <Filter>Application\ClothDemo</Filter>
     </ClInclude>
@@ -1694,6 +1697,15 @@
     </ClInclude>
     <ClInclude Include="Engine\Physics\ClothGPU\ClothManager.h">
       <Filter>Engine\Physics\ClothGPU</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothGPUCollision.h">
+      <Filter>Engine\Physics\ClothGPU\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ClothGPU\ClothGPUCollisionManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ClothGPU\CollisionTypeIndex.h">
+      <Filter>Engine\Physics\ClothGPU\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

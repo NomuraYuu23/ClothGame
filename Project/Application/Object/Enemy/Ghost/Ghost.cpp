@@ -169,7 +169,7 @@ void Ghost::ClothInitialize()
 	collider_.position = worldTransform_.GetWorldPosition();
 	collider_.position.y += kBaseFixedTop_.y - playerColliderRadius;
 	// 登録
-	cloth_->CollisionDataRegistration(kMyColliderName_, ClothGPUCollision::kCollisionTypeIndexSphere);
+	cloth_->CollisionDataRegistration(kMyColliderName_, kCollisionTypeIndexSphere);
 
 }
 

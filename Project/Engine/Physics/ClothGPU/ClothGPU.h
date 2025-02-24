@@ -456,7 +456,7 @@ public: // その他関数
 	/// <param name="collisionType">衝突判定のタイプ</param>
 	void CollisionDataRegistration(
 		const std::string& name,
-		ClothGPUCollision::CollisionTypeIndex collisionType);
+		CollisionTypeIndex collisionType);
 
 	/// <summary>
 	/// 衝突判定削除

@@ -17,7 +17,8 @@ void ClothManager::Initialize(ID3D12Device* device, FogManager* sFogManager)
 	clothPipelineState_->Initialize(device);
 
 	// 衝突クラス
-	ClothGPUCollision::StaticInitialize();
+	clothGPUCollisionManager_ = std::make_unique<ClothGPUCollisionManager>();
+	clothGPUCollisionManager_->Initialize();
 
 }
 

@@ -1244,14 +1244,14 @@ void ClothGPU::SetMassPointIndex()
 
 void ClothGPU::CollisionDataRegistration(
 	const std::string& name,
-	ClothGPUCollision::CollisionTypeIndex collisionType)
+	CollisionTypeIndex collisionType)
 {
 
 	// 登録して初期化
 	collisionDatas_.emplace_back();
 	collisionDatas_.back().first = name;
 	collisionDatas_.back().second = std::make_unique<ClothGPUCollision>();
-	collisionDatas_.back().second->Initialize(collisionType);
+	collisionDatas_.back().second->Initialize(collisionType, clothManager_->GetClothGPUCollisionManager());
 
 }
 

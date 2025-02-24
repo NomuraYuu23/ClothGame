@@ -165,7 +165,7 @@ void BaseClothGate::ClothInitialize(const Vector2& clothScale, const Vector2& cl
 	const float playerColliderRadius = 2.0f;
 	playerCollider_.radius = playerColliderRadius;
 	// 登録
-	cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+	cloth_->CollisionDataRegistration(kPlayerColliderName_, kCollisionTypeIndexCapsule);
 
 	// 更新秒数
 	const float kInitUpdateSeconds = 2.8f;
@@ -192,7 +192,7 @@ void BaseClothGate::ClothUpdate()
 		}
 		// 登録してない
 		else {
-			cloth_->CollisionDataRegistration(kPlayerColliderName_, ClothGPUCollision::kCollisionTypeIndexCapsule);
+			cloth_->CollisionDataRegistration(kPlayerColliderName_, kCollisionTypeIndexCapsule);
 			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 			registeringPlayer_ = true;

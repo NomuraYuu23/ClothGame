@@ -16,6 +16,11 @@
 
 #pragma comment(lib, "dxcompiler.lib")
 
+#include "CollisionTypeIndex.h"
+
+// 布衝突マネージャー
+class ClothGPUCollisionManager;
+
 /// <summary>
 /// 布衝突GPU
 /// </summary>
@@ -23,16 +28,6 @@ class ClothGPUCollision
 {
 
 public: // サブクラス
-
-	/// <summary>
-	/// 衝突タイプ
-	/// </summary>
-	enum CollisionTypeIndex {
-		kCollisionTypeIndexPlane, // 平面
-		kCollisionTypeIndexSphere, // 球
-		kCollisionTypeIndexCapsule, // カプセル
-		kCollisionTypeIndexOfIndex // 数
-	};
 
 	/// <summary>
 	/// 平面
@@ -71,122 +66,14 @@ public: // サブクラス
 	// 衝突するデータマップ
 	using CollisionDataMap = std::variant<Plane, Sphere, Capsule>;
 
-public: // 静的メンバ関数
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	static void StaticInitialize();
-
-private: // バッファ作成関数
-
-	/// <summary>
-	/// 平面
-	/// </summary>
-	/// <param name="myData">自分</param>
-	static void CreateBufferPlane(ClothGPUCollision* myData);
-
-	/// <summary>
-	/// 球
-	/// </summary>
-	/// <param name="myData">自分</param>
-	static void CreateBufferSphere(ClothGPUCollision* myData);
-
-	/// <summary>
-	/// カプセル
-	/// </summary>
-	/// <param name="myData">自分</param>
-	static void CreateBufferCapsule(ClothGPUCollision* myData);
-
-private: // CSの初期化関数
-
-	/// <summary>
-	/// 平面
-	/// </summary>
-	static void CSInitializePlane();
-
-	/// <summary>
-	/// 球
-	/// </summary>
-	static void CSInitializeSphere();
-
-	/// <summary>
-	/// カプセル
-	/// </summary>
-	static void CSInitializeCapsule();
-
-private: // 衝突確認関数
-
-	/// <summary>
-	/// 平面
-	/// </summary>
-	/// <param name="commandList">コマンドリスト</param>
-	/// <param name="myData">自分</param>
-	/// <param name="massPointIndexSrvHandleGPU">質点のGPUハンドル</param>
-	/// <param name="numBuffer">数バッファ</param>
-	/// <param name="dispatchNum">ディスパッチ回数</param>
-	static void PlaneExecution(
-		ID3D12GraphicsCommandList* commandList, 
-		ClothGPUCollision* myData, 
-		D3D12_GPU_DESCRIPTOR_HANDLE* massPointIndexSrvHandleGPU,
-		ID3D12Resource* numsBuffer,
-		uint32_t dispatchNum);
-
-	/// <summary>
-	/// 球
-	/// </summary>
-	/// <param name="commandList">コマンドリスト</param>
-	/// <param name="myData">自分</param>
-	/// <param name="massPointIndexSrvHandleGPU">質点のGPUハンドル</param>
-	/// <param name="numBuffer">数バッファ</param>
-	/// <param name="dispatchNum">ディスパッチ回数</param>
-	static void SphereExecution(
-		ID3D12GraphicsCommandList* commandList,
-		ClothGPUCollision* myData,
-		D3D12_GPU_DESCRIPTOR_HANDLE* massPointIndexSrvHandleGPU,
-		ID3D12Resource* numsBuffer,
-		uint32_t dispatchNum);
-
-	/// <summary>
-	/// カプセル
-	/// </summary>
-	/// <param name="commandList">コマンドリスト</param>
-	/// <param name="myData">自分</param>
-	/// <param name="massPointIndexSrvHandleGPU">質点のGPUハンドル</param>
-	/// <param name="numBuffer">数バッファ</param>
-	/// <param name="dispatchNum">ディスパッチ回数</param>
-	static void CapsuleExecution(
-		ID3D12GraphicsCommandList* commandList,
-		ClothGPUCollision* myData,
-		D3D12_GPU_DESCRIPTOR_HANDLE* massPointIndexSrvHandleGPU,
-		ID3D12Resource* numsBuffer,
-		uint32_t dispatchNum);
-
-private: // 静的メンバ変数
-
-	// デバイス
-	static ID3D12Device* device_;
-
-	// バッファ作成関数群
-	static std::array<std::function<void(ClothGPUCollision*)>, CollisionTypeIndex::kCollisionTypeIndexOfIndex> crateBufferFunctions_;
-
-	// 衝突確認関数群
-	static std::array<
-		std::function<void(ID3D12GraphicsCommandList*, ClothGPUCollision*, D3D12_GPU_DESCRIPTOR_HANDLE*, ID3D12Resource*, uint32_t)>,
-		CollisionTypeIndex::kCollisionTypeIndexOfIndex> collisionFunctions_;
-
-	// ルートシグネチャCS
-	static std::array<Microsoft::WRL::ComPtr<ID3D12RootSignature>, CollisionTypeIndex::kCollisionTypeIndexOfIndex> rootSignaturesCS_;
-	// パイプラインステートオブジェクトCS
-	static std::array<Microsoft::WRL::ComPtr<ID3D12PipelineState>, CollisionTypeIndex::kCollisionTypeIndexOfIndex> pipelineStatesCS_;
-
 public: // 動的メンバ関数
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
 	/// <param name="collisionType">衝突タイプ</param>
-	void Initialize(CollisionTypeIndex collisionType);
+	/// <param name="clothGPUCollisionManager">布衝突マネージャー</param>
+	void Initialize(CollisionTypeIndex collisionType, ClothGPUCollisionManager* clothGPUCollisionManager);
 
 	/// <summary>
 	/// 更新
@@ -207,6 +94,30 @@ public: // 動的メンバ関数
 		ID3D12Resource* numsBuffer,
 		uint32_t dispatchNum);
 
+	/// <summary>
+	/// 衝突するデータバッファ CBV取得
+	/// </summary>
+	/// <returns></returns>
+	ID3D12Resource* GetCollisionDataBuff() { return collisionDataBuff_.Get(); }
+
+	/// <summary>
+	/// 衝突するデータバッファ CBV設定
+	/// </summary>
+	/// <returns></returns>
+	void SetCollisionDataBuff(ID3D12Resource* collisionDataBuff) { collisionDataBuff_ = collisionDataBuff; }
+
+	/// <summary>
+	/// 衝突するデータマップ取得
+	/// </summary>
+	/// <returns></returns>
+	CollisionDataMap** GetCollisionDataMapAddress() { return &collisionDataMap_; }
+
+	/// <summary>
+	/// 衝突するデータマップ取得
+	/// </summary>
+	/// <returns></returns>
+	CollisionDataMap* GetCollisionDataMap() { return collisionDataMap_; }
+
 private: // 動的メンバ変数
 
 	// 衝突するデータバッファ CBV
@@ -215,6 +126,9 @@ private: // 動的メンバ変数
 	CollisionDataMap* collisionDataMap_ = nullptr;
 	// 衝突タイプ
 	CollisionTypeIndex collisionType_;
+
+	// 布衝突マネージャー
+	ClothGPUCollisionManager* clothGPUCollisionManager_;
 
 };
 

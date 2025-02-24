@@ -291,13 +291,13 @@ void ClothDemo::ClothReset(ID3D12GraphicsCommandList* commandList)
 	clothGPU_->SetRelaxation(relaxation);
 
 	// 登録
-	clothGPU_->CollisionDataRegistration(plane_->GetName(), ClothGPUCollision::kCollisionTypeIndexPlane);
+	clothGPU_->CollisionDataRegistration(plane_->GetName(), kCollisionTypeIndexPlane);
 	plane_->SetExsit(true);
 	// 登録
-	clothGPU_->CollisionDataRegistration(sphere_->GetName(), ClothGPUCollision::kCollisionTypeIndexSphere);
+	clothGPU_->CollisionDataRegistration(sphere_->GetName(), kCollisionTypeIndexSphere);
 	sphere_->SetExsit(true);
 	// 登録
-	clothGPU_->CollisionDataRegistration(capsule_->GetName(), ClothGPUCollision::kCollisionTypeIndexCapsule);
+	clothGPU_->CollisionDataRegistration(capsule_->GetName(), kCollisionTypeIndexCapsule);
 	capsule_->SetExsit(true);
 }
 
@@ -345,7 +345,7 @@ void ClothDemo::PlaneSwitching()
 	}
 	else {
 		// 登録
-		clothGPU_->CollisionDataRegistration(plane_->GetName(), ClothGPUCollision::kCollisionTypeIndexPlane);
+		clothGPU_->CollisionDataRegistration(plane_->GetName(), kCollisionTypeIndexPlane);
 		plane_->SetExsit(true);
 	}
 
@@ -361,7 +361,7 @@ void ClothDemo::SphereSwitching()
 	}
 	else {
 		// 登録
-		clothGPU_->CollisionDataRegistration(sphere_->GetName(), ClothGPUCollision::kCollisionTypeIndexSphere);
+		clothGPU_->CollisionDataRegistration(sphere_->GetName(), kCollisionTypeIndexSphere);
 		sphere_->SetExsit(true);
 	}
 
@@ -377,7 +377,7 @@ void ClothDemo::CapsuleSwitching()
 	}
 	else {
 		// 登録
-		clothGPU_->CollisionDataRegistration(capsule_->GetName(), ClothGPUCollision::kCollisionTypeIndexCapsule);
+		clothGPU_->CollisionDataRegistration(capsule_->GetName(), kCollisionTypeIndexCapsule);
 		capsule_->SetExsit(true);
 	}
 

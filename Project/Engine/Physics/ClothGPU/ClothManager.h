@@ -5,7 +5,7 @@
 #include "../../Light/SpotLight/SpotLightManager.h"
 #include "../../3D/Fog/FogManager.h"
 #include "ClothPipelineState.h"
-#include "ClothGPUCollision.h"
+#include "ClothGPUCollisionManager.h"
 
 /// <summary>
 /// 布マネージャー
@@ -55,6 +55,12 @@ public: // メンバ関数
 	/// <returns></returns>
 	ClothPipelineState* GetClothPipelineState() { return clothPipelineState_.get(); }
 
+	/// <summary>
+	/// 衝突マネージャー取得
+	/// </summary>
+	/// <returns></returns>
+	ClothGPUCollisionManager* GetClothGPUCollisionManager() { return clothGPUCollisionManager_.get(); }
+
 private: // メンバ変数
 
 	//	平行光源
@@ -69,8 +75,8 @@ private: // メンバ変数
 	// パイプラインステート
 	std::unique_ptr<ClothPipelineState> clothPipelineState_;
 
-	// 
-	//std::unique_ptr<ClothGPUCollision> clothGPUCollision_;
+	// 衝突マネージャー
+	std::unique_ptr<ClothGPUCollisionManager> clothGPUCollisionManager_;
 
 private: // シングルトン
 	ClothManager() = default;
