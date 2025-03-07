@@ -57,7 +57,7 @@ void BaseClothGate::Initialize(LevelData::MeshData* data)
 	passThroughClothParticle_->SetEmitter(kEmitter);
 
 	// くぐられたか
-	passedThrough_ = false;
+	isPassedThrough_ = false;
 
 }
 
@@ -80,7 +80,7 @@ void BaseClothGate::Update()
 			0.0f, // 射出間隔調整時間
 			0 // 射出許可
 	};
-	if (passedThrough_) {
+	if (isPassedThrough_) {
 		passThroughClothParticle_->SetEmitter(kEmitter, false);
 	}
 	else {
@@ -89,7 +89,7 @@ void BaseClothGate::Update()
 	passThroughClothParticle_->Update();
 
 	// くぐられていない
-	passedThrough_ = false;
+	isPassedThrough_ = false;
 
 }
 
@@ -120,7 +120,7 @@ void BaseClothGate::OnCollision(ColliderParentObject colliderPartner, const Coll
 	collisionData;
 
 	// くぐられた
-	passedThrough_ = true;
+	isPassedThrough_ = true;
 
 }
 
@@ -186,7 +186,7 @@ void BaseClothGate::ClothUpdate()
 	const float kCollisionDistance = 10.0f; // 距離判定
 	if (Vector3::Length(playerCollider_.origin - worldTransform_.GetWorldPosition()) < kCollisionDistance) {
 		// 登録済み
-		if (registeringPlayer_) {
+		if (isRegisteringPlayer_) {
 			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
 		}
@@ -195,15 +195,15 @@ void BaseClothGate::ClothUpdate()
 			cloth_->CollisionDataRegistration(kPlayerColliderName_, kCollisionTypeIndexCapsule);
 			ClothGPUCollision::CollisionDataMap playerColliderData = playerCollider_;
 			cloth_->CollisionDataUpdate(kPlayerColliderName_, playerColliderData);
-			registeringPlayer_ = true;
+			isRegisteringPlayer_ = true;
 		}
 	}
 	// プレイヤー遠い時の処理
 	else {
 		// 登録解除
-		if (registeringPlayer_) {
+		if (isRegisteringPlayer_) {
 			cloth_->CollisionDataDelete(kPlayerColliderName_);
-			registeringPlayer_ = false;
+			isRegisteringPlayer_ = false;
 			updateSeconds_ = 0.0f;
 		}
 		// 3秒猶予を持たせる

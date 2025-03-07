@@ -100,7 +100,7 @@ protected: // メンバ変数
 	Player* player_;
 
 	// プレイヤーを登録しているか
-	bool registeringPlayer_;
+	bool isRegisteringPlayer_;
 
 	// 更新秒数
 	float updateSeconds_;
@@ -112,7 +112,7 @@ protected: // メンバ変数
 	std::unique_ptr<PassThroughClothParticle> passThroughClothParticle_;
 
 	// くぐられたか
-	bool passedThrough_;
+	bool isPassedThrough_;
 
 };
 

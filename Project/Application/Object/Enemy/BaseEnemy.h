@@ -47,18 +47,18 @@ public: // アクセッサ
     /// プレイヤーと衝突するか取得
     /// </summary>
     /// <returns></returns>
-    bool GetConflictWithPlayer() { return conflictWithPlayer_; }
+    bool GetConflictWithPlayer() { return canCollidePlayer_; }
 
     /// <summary>
     /// プレイヤーと衝突するか設定
     /// </summary>
     /// <param name="conflictWithPlayer"></param>
-    void SetConflictWithPlayer(bool conflictWithPlayer) { conflictWithPlayer_ = conflictWithPlayer; }
+    void SetConflictWithPlayer(bool conflictWithPlayer) { canCollidePlayer_ = conflictWithPlayer; }
 
 protected: // メンバ変数
 
     // プレイヤーと衝突するか
-    bool conflictWithPlayer_;
+    bool canCollidePlayer_;
 
 };
 

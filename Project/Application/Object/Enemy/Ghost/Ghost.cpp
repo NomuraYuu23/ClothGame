@@ -95,14 +95,14 @@ void Ghost::OnCollision(ColliderParentObject colliderPartner, const CollisionDat
 	collisionData;
 
 	// プレイヤー
-	if (std::holds_alternative<Player*>(colliderPartner) && conflictWithPlayer_) {
+	if (std::holds_alternative<Player*>(colliderPartner) && canCollidePlayer_) {
 		
 		Player* player = std::get<Player*>(colliderPartner);
 		
 		if (player->GetCurrentStateNo() == kPlayerStateIndexDash) {
 			ghostStateSystem_->SetNextStateNo(kGhostStateIndexBlownAway);
 			ghostStateSystem_->SetInterruptCommand(true);
-			conflictWithPlayer_ = false;
+			canCollidePlayer_ = false;
 		}
 
 	}

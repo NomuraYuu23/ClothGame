@@ -28,7 +28,7 @@ void BaseEnemy::Initialize(LevelData::MeshData* data)
 	collider_.reset(colliderShape);
 
 	// プレイヤーと衝突するか
-	conflictWithPlayer_ = true;
+	canCollidePlayer_ = true;
 
 }
 
