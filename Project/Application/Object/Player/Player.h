@@ -90,43 +90,48 @@ private: // メンバ関数
     /// </summary>
     void FallCheck();
 
+    /// <summary>
+    /// エフェクト更新
+    /// </summary>
+    void EffectUpdate();
+
 public: // アクセッサ
 
     /// <summary>
     /// プレイヤーが浮いているか取得
     /// </summary>
     /// <returns></returns>
-    bool GetFloating() { return floating_; }
+    bool GetFloating() { return isFloating_; }
 
     /// <summary>
     /// プレイヤーが浮いているか設定
     /// </summary>
     /// <returns></returns>
-    void SetFloating(bool floating) { floating_ = floating; }
+    void SetFloating(bool floating) { isFloating_ = floating; }
 
     /// <summary>
     /// ワープ設定
     /// </summary>
     /// <param name="warping">ワープ</param>
-    void SetWarping(bool warping) { warping_ = warping; }
+    void SetWarping(bool warping) { isWarping_ = warping; }
 
     /// <summary>
     /// ワープ取得
     /// </summary>
     /// <returns></returns>
-    bool GetWarping() { return warping_; }
+    bool GetWarping() { return isWarping_; }
 
     /// <summary>
     /// レベルアップ設定
     /// </summary>
     /// <param name="warping">レベルアップ</param>
-    void SetLevelUp(bool levelUp) { levelUp_ = levelUp; }
+    void SetLevelUp(bool levelUp) { isLevelUp_ = levelUp; }
 
     /// <summary>
     /// レベルアップ取得
     /// </summary>
     /// <returns></returns>
-    bool GetLevelUp() { return levelUp_; }
+    bool GetLevelUp() { return isLevelUp_; }
 
     /// <summary>
     /// 現在のステート番号
@@ -143,13 +148,13 @@ private: // メンバ変数
     std::unique_ptr<PlayerAnimation> playerAnimation_;
 
     // プレイヤーが浮いているか
-    bool floating_;
+    bool isFloating_;
 
-    // ワープ
-    bool warping_;
+    // ワープしているか
+    bool isWarping_;
 
     // レベルアップ
-    bool levelUp_;
+    bool isLevelUp_;
 
     // 通常状態のエフェクト
     std::unique_ptr<RunDustParticle> runDustParticle_;

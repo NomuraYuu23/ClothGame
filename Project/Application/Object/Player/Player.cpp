@@ -45,13 +45,13 @@ void Player::Initialize(LevelData::MeshData* data)
 	playerAnimation_->Initialize(model_);
 
 	// 浮いているか
-	floating_ = false;
+	isFloating_ = false;
 	
 	// ワープ
-	warping_ = false;
+	isWarping_ = false;
 
 	// レベルアップ
-	levelUp_ = false;
+	isLevelUp_ = false;
 
 	// パーティクル
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
@@ -122,65 +122,9 @@ void Player::Update()
 	// 速度保存
 	SaveVelocityUpdate();
 
-	// 通常状態のエフェクト
-	const EmitterCS kRunDustEmitter =
-	{
-			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
-			1.0f, // 射出半径
-			2, // 射出数
-			0.1f, // 射出間隔
-			0.0f, // 射出間隔調整時間
-			0 // 射出許可
-	};
-	if (!floating_) {
-		runDustParticle_->SetEmitter(kRunDustEmitter, false);
-	}
-	else {
-		runDustParticle_->SetEmitter(kRunDustEmitter, true);
-	}
-	runDustParticle_->Update();
-
-	// ジャンプと着地のエフェクト
-	const EmitterCS kJumpLandingEmitter =
-	{
-			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
-			1.0f, // 射出半径
-			20, // 射出数
-			kDeltaTime_ * 2.0f, // 射出間隔
-			0.0f, // 射出間隔調整時間
-			0 // 射出許可
-	};
-	bool jumpTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexRoot && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexJump;
-	bool landingTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexFall && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexRoot;
-	if (jumpTiming || landingTiming) {
-		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, false);
-	}
-	else {
-		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, true);
-	}
-	jumpLandingParticle_->Update();
-
-	// ミスした時のエフェクト
-	const EmitterCS kMissDustEmitter =
-	{
-			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
-			1.0f, // 射出半径
-			2, // 射出数
-			0.1f, // 射出間隔
-			0.0f, // 射出間隔調整時間
-			0 // 射出許可
-	};
-	if (playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexDamage) {
-		missParticle_->SetEmitter(kMissDustEmitter, false);
-	}
-	else {
-		missParticle_->SetEmitter(kMissDustEmitter, true);
-	}
-	missParticle_->Update();
-
-	// 落下していることにする
-	floating_ = true;
-
+	// エフェクト更新
+	EffectUpdate();
+	
 }
 
 void Player::Draw(BaseCamera& camera)
@@ -245,10 +189,10 @@ void Player::WarpPostProcessing()
 {
 
 	// ワープした
-	if (warping_) {
+	if (isWarping_) {
 		// ワープリセット
-		warping_ = false;
-		levelUp_ = false;
+		isWarping_ = false;
+		isLevelUp_ = false;
 		playerStateSystem_->GetPlayerCommand()->DashReset();
 	}
 
@@ -279,5 +223,69 @@ void Player::FallCheck()
 	if (worldTransform_.GetWorldPosition().y <= kFallPositionY) {
 		Damage();
 	}
+
+}
+
+void Player::EffectUpdate()
+{
+
+	// 通常状態のエフェクト
+	const EmitterCS kRunDustEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			2, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	if (!isFloating_) {
+		runDustParticle_->SetEmitter(kRunDustEmitter, false);
+	}
+	else {
+		runDustParticle_->SetEmitter(kRunDustEmitter, true);
+	}
+	runDustParticle_->Update();
+
+	// ジャンプと着地のエフェクト
+	const EmitterCS kJumpLandingEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			20, // 射出数
+			kDeltaTime_ * 2.0f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	bool jumpTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexRoot && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexJump;
+	bool landingTiming = playerStateSystem_->GetPrevStateNo() == kPlayerStateIndexFall && playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexRoot;
+	if (jumpTiming || landingTiming) {
+		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, false);
+	}
+	else {
+		jumpLandingParticle_->SetEmitter(kJumpLandingEmitter, true);
+	}
+	jumpLandingParticle_->Update();
+
+	// ミスした時のエフェクト
+	const EmitterCS kMissDustEmitter =
+	{
+			worldTransform_.GetWorldPosition() + kPositionToFeet_, // 位置
+			1.0f, // 射出半径
+			2, // 射出数
+			0.1f, // 射出間隔
+			0.0f, // 射出間隔調整時間
+			0 // 射出許可
+	};
+	if (playerStateSystem_->GetCurrentStateNo() == kPlayerStateIndexDamage) {
+		missParticle_->SetEmitter(kMissDustEmitter, false);
+	}
+	else {
+		missParticle_->SetEmitter(kMissDustEmitter, true);
+	}
+	missParticle_->Update();
+
+	// 落下していることにする
+	isFloating_ = true;
 
 }
