@@ -39,8 +39,10 @@ void StartCountDown::Initialize()
 	// 説明テクスチャハンドル
 	explanationTextureHnadle_ = TextureManager::Load("Resources/Sprite/Common/Explanation.png", dxCommon);
 	const Vector2 kExplanationSpritePosition = { 640.0f, 400.0f };
-	const Vector4 kExplanationSpriteColor = { 1.0f, 0.2f, 0.2f, 1.0f };
+	const Vector4 kExplanationSpriteColor = { 1.0f, 0.0f, 0.15f, 1.0f };
 	explanationSprite_.reset(Sprite::Create(explanationTextureHnadle_, kExplanationSpritePosition, kExplanationSpriteColor));
+	const Vector2 kExplanationSpriteSize = { 960.0f,192.0f };
+	explanationSprite_->SetSize(kExplanationSpriteSize);
 
 	// カウントダウン秒数
 	const float kCountDownTime = 100.0f;
